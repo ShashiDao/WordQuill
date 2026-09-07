@@ -198,12 +198,12 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
   const content = (
     <div className="w-full max-w-lg mx-auto">
       {/* Step Indicators */}
-      <div className="mb-6 flex items-center justify-between border-b border-black/[0.08] pb-3 dark:border-white/[0.08]">
-        <div className="flex items-center gap-4 text-xs font-medium">
+      <div className="mb-6 flex items-center justify-between gap-2 border-b border-black/[0.08] pb-3 dark:border-white/[0.08]">
+        <div className="flex items-center gap-2.5 sm:gap-4 text-xs font-medium min-w-0">
           {[
-            { num: 1, label: 'Welcome' },
-            { num: 2, label: 'Lexicon' },
-            { num: 3, label: 'Daily Goal' },
+            { num: 1, label: 'Welcome', shortLabel: 'Welcome' },
+            { num: 2, label: 'Lexicon', shortLabel: 'Lexicon' },
+            { num: 3, label: 'Daily Goal', shortLabel: 'Goal' },
           ].map((s) => (
             <button
               key={s.num}
@@ -211,7 +211,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
                 if (!isFirstLaunch) setStep(s.num as 1 | 2 | 3);
               }}
               disabled={isFirstLaunch}
-              className={`flex items-center gap-1.5 pb-0.5 transition cursor-pointer ${
+              className={`flex items-center gap-1 sm:gap-1.5 pb-0.5 transition cursor-pointer whitespace-nowrap shrink-0 ${
                 step === s.num
                   ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
                   : step > s.num
@@ -220,16 +220,19 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
               }`}
             >
               <span className="text-[11px] font-mono-ipa">0{s.num}</span>
-              <span>{s.label}</span>
+              <span>
+                <span className="hidden sm:inline">{s.label}</span>
+                <span className="sm:hidden">{s.shortLabel}</span>
+              </span>
             </button>
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 shrink-0">
           {/* Skip option on every step */}
           <button
             onClick={handleSkip}
-            className="text-xs font-medium text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] transition cursor-pointer"
+            className="text-xs font-medium text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] transition cursor-pointer whitespace-nowrap"
             title="Skip with defaults (all categories, 10 words/day)"
           >
             Skip
