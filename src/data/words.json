@@ -198,5 +198,1405 @@
     "definition": "the time at which something is most powerful, flourishing, or successful",
     "example": "At the zenith of the empire, its architectural wonders were known worldwide.",
     "category": "literary"
+  },
+  {
+    "id": "026",
+    "word": "obfuscate",
+    "phonetic": "/ˈɑːb.fə.skeɪt/",
+    "definition": "to deliberately make something unclear, obscure, or difficult to understand",
+    "example": "The spokesperson tried to obfuscate the facts by delivering an evasive answer.",
+    "category": "advanced"
+  },
+  {
+    "id": "027",
+    "word": "halcyon",
+    "phonetic": "/ˈhæl.si.ən/",
+    "definition": "denoting a period of time in the past that was idyllically happy and peaceful",
+    "example": "The retired mariner fondly remembered the halcyon summers of his coastal youth.",
+    "category": "literary"
+  },
+  {
+    "id": "028",
+    "word": "empirical",
+    "phonetic": "/emˈpɪr.ɪ.kəl/",
+    "definition": "based on, concerned with, or verifiable by observation or experience rather than theory",
+    "example": "The hypothesis gained widespread acceptance once empirical evidence confirmed the findings.",
+    "category": "academic"
+  },
+  {
+    "id": "029",
+    "word": "articulation",
+    "phonetic": "/ɑːrˌtɪk.jəˈleɪ.ʃən/",
+    "definition": "the clear, precise, and effective expression of ideas or thoughts",
+    "example": "Her precise articulation of the company vision inspired confidence among the investors.",
+    "category": "eloquence"
+  },
+  {
+    "id": "030",
+    "word": "conscientious",
+    "phonetic": "/ˌkɑːn.ʃiˈen.ʃəs/",
+    "definition": "wishing to do what is right, especially to do one's work or duty thoroughly",
+    "example": "A conscientious editor reviewed every footnote before sending the manuscript to print.",
+    "category": "everyday"
+  },
+  {
+    "id": "031",
+    "word": "recalcitrant",
+    "phonetic": "/rɪˈkæl.sɪ.trənt/",
+    "definition": "having an obstinately uncooperative attitude toward authority or discipline",
+    "example": "The recalcitrant committee refused to approve the revised budgetary plan.",
+    "category": "advanced"
+  },
+  {
+    "id": "032",
+    "word": "sonorous",
+    "phonetic": "/səˈnɔːr.əs/",
+    "definition": "having a deep, full, and pleasantly rich or resonant sound",
+    "example": "The choir sang in sonorous harmony that reverberated through the stone cathedral.",
+    "category": "literary"
+  },
+  {
+    "id": "033",
+    "word": "epistemology",
+    "phonetic": "/ɪˌpɪs.təˈmɑː.lə.dʒi/",
+    "definition": "the branch of philosophy investigating the origin, nature, and limits of human knowledge",
+    "example": "His doctoral dissertation explored the epistemology of modern scientific discovery.",
+    "category": "academic"
+  },
+  {
+    "id": "034",
+    "word": "grandiloquent",
+    "phonetic": "/ɡrænˈdɪl.ə.kwənt/",
+    "definition": "pompous or extravagant in language, style, or manner, especially to impress",
+    "example": "His grandiloquent speech failed to mask the complete absence of genuine policy proposals.",
+    "category": "eloquence"
+  },
+  {
+    "id": "035",
+    "word": "candid",
+    "phonetic": "/ˈkæn.dɪd/",
+    "definition": "truthful and straightforward; frank and unreserved",
+    "example": "The mentor offered candid feedback that helped the apprentice improve quickly.",
+    "category": "everyday"
+  },
+  {
+    "id": "036",
+    "word": "anachronism",
+    "phonetic": "/əˈnæk.rə.nɪ.zəm/",
+    "definition": "a person or thing that is chronologically out of place in a historical period",
+    "example": "The wristwatch seen in the medieval film was an obvious anachronism.",
+    "category": "advanced"
+  },
+  {
+    "id": "037",
+    "word": "petrichor",
+    "phonetic": "/ˈpet.rɪ.kɔːr/",
+    "definition": "a pleasant, distinctive earthy scent that accompanies the first rain after warm, dry weather",
+    "example": "As the summer thunderstorm ended, the rich scent of petrichor drifted across the courtyard.",
+    "category": "literary"
+  },
+  {
+    "id": "038",
+    "word": "dichotomy",
+    "phonetic": "/daɪˈkɑː.t̬ə.mi/",
+    "definition": "a division or contrast between two things that are represented as being entirely different",
+    "example": "Scholars debated whether the strict dichotomy between nature and nurture still holds value.",
+    "category": "academic"
+  },
+  {
+    "id": "039",
+    "word": "rhetoric",
+    "phonetic": "/ˈret̬.ɚ.ɪk/",
+    "definition": "the art of effective or persuasive speaking or writing, especially the use of figures of speech",
+    "example": "The statesman used powerful rhetoric to unite the divided convention delegates.",
+    "category": "eloquence"
+  },
+  {
+    "id": "040",
+    "word": "meticulous",
+    "phonetic": "/məˈtɪk.jə.ləs/",
+    "definition": "showing great attention to detail; very careful, thorough, and precise",
+    "example": "She conducted meticulous maintenance on the antique engine before each long voyage.",
+    "category": "everyday"
+  },
+  {
+    "id": "041",
+    "word": "gregarious",
+    "phonetic": "/ɡrɪˈɡer.i.əs/",
+    "definition": "fond of company; sociable and enjoying the interaction of crowds",
+    "example": "His gregarious personality made him a natural host at university receptions.",
+    "category": "advanced"
+  },
+  {
+    "id": "042",
+    "word": "effervescent",
+    "phonetic": "/ˌef.ɚˈves.ənt/",
+    "definition": "vivacious, lively, and enthusiastic, or giving off bubbles",
+    "example": "Her effervescent laughter immediately lifted the somber mood in the drawing room.",
+    "category": "literary"
+  },
+  {
+    "id": "043",
+    "word": "hegemony",
+    "phonetic": "/hɪˈdʒem.ə.ni/",
+    "definition": "leadership or predominant influence exercised by one nation or social group over others",
+    "example": "The trading bloc challenged the economic hegemony of traditional superpower states.",
+    "category": "academic"
+  },
+  {
+    "id": "044",
+    "word": "peroration",
+    "phonetic": "/ˌper.əˈreɪ.ʃən/",
+    "definition": "the concluding part of a speech, typically intended to inspire and move an audience",
+    "example": "The senator delivered a ringing peroration that brought the assembly to its feet.",
+    "category": "eloquence"
+  },
+  {
+    "id": "045",
+    "word": "poignant",
+    "phonetic": "/ˈpɔɪn.jənt/",
+    "definition": "evoking a keen sense of sadness, regret, or deep emotion",
+    "example": "The documentary concluded with a poignant reflection on disappearing polar habitats.",
+    "category": "everyday"
+  },
+  {
+    "id": "046",
+    "word": "reticent",
+    "phonetic": "/ˈret̬.ə.sənt/",
+    "definition": "not revealing one's thoughts or feelings readily; reserved",
+    "example": "He remained reticent about his wartime achievements throughout his lifetime.",
+    "category": "advanced"
+  },
+  {
+    "id": "047",
+    "word": "lachrymose",
+    "phonetic": "/ˈlæk.rə.moʊs/",
+    "definition": "tearful or given to weeping; inducing tears or sad contemplation",
+    "example": "The Victorian melodrama was famous for its lachrymose third act.",
+    "category": "literary"
+  },
+  {
+    "id": "048",
+    "word": "taxonomy",
+    "phonetic": "/tækˈsɑː.nə.mi/",
+    "definition": "a scheme or system of classification, especially of organisms or conceptual structures",
+    "example": "Biologists revised the taxonomy of deep-sea corals following genomic sequencing.",
+    "category": "academic"
+  },
+  {
+    "id": "049",
+    "word": "circumlocution",
+    "phonetic": "/ˌsɝː.kəm.loʊˈkjuː.ʃən/",
+    "definition": "the use of many words where fewer would do, especially in an attempt to be vague",
+    "example": "The politician resorted to circumlocution to avoid answering the reporter's direct inquiry.",
+    "category": "eloquence"
+  },
+  {
+    "id": "050",
+    "word": "prudent",
+    "phonetic": "/ˈpruː.dənt/",
+    "definition": "acting with or showing care and thought for the future; discreet and sensible",
+    "example": "It was prudent to set aside an emergency fund before making major investments.",
+    "category": "everyday"
+  },
+  {
+    "id": "051",
+    "word": "transient",
+    "phonetic": "/ˈtræn.zi.ənt/",
+    "definition": "lasting only for a short time; impermanent or fleeting",
+    "example": "Morning mist proved transient, evaporating within an hour of sunrise.",
+    "category": "advanced"
+  },
+  {
+    "id": "052",
+    "word": "verdant",
+    "phonetic": "/ˈvɝː.dənt/",
+    "definition": "green with grass or other rich vegetation; fresh and flourishing",
+    "example": "The hikers descended into a verdant valley crisscrossed by clear mountain brooks.",
+    "category": "literary"
+  },
+  {
+    "id": "053",
+    "word": "juxtapose",
+    "phonetic": "/ˌdʒʌk.stəˈpoʊz/",
+    "definition": "to place two or more things close together to emphasize similarities or differences",
+    "example": "The art curator chose to juxtapose classical marble busts with abstract metal sculptures.",
+    "category": "academic"
+  },
+  {
+    "id": "054",
+    "word": "cadence",
+    "phonetic": "/ˈkeɪ.dəns/",
+    "definition": "a rhythmic sequence or flow of sounds in language; modulation of voice",
+    "example": "The poet read with a rhythmic cadence that mesmerized the crowded auditorium.",
+    "category": "eloquence"
+  },
+  {
+    "id": "055",
+    "word": "altruistic",
+    "phonetic": "/ˌæl.truˈɪs.tɪk/",
+    "definition": "showing selfless concern for the well-being of others; unselfish",
+    "example": "Her altruistic donations funded university scholarships for underprivileged youths.",
+    "category": "everyday"
+  },
+  {
+    "id": "056",
+    "word": "vitriolic",
+    "phonetic": "/ˌvɪt.riˈɑː.lɪk/",
+    "definition": "filled with bitter criticism, sharp malice, or caustic malice",
+    "example": "The anonymous op-ed launched a vitriolic attack on the city council's zoning decisions.",
+    "category": "advanced"
+  },
+  {
+    "id": "057",
+    "word": "gossamer",
+    "phonetic": "/ˈɡɑː.sə.mɚ/",
+    "definition": "something extremely light, delicate, or insubstantial, like a spider's cobweb",
+    "example": "A gossamer veil drifted lightly behind the bride in the gentle breeze.",
+    "category": "literary"
+  },
+  {
+    "id": "058",
+    "word": "hermeneutic",
+    "phonetic": "/ˌhɝː.məˈnuː.tɪk/",
+    "definition": "concerning interpretation, especially of literary, theological, or philosophical texts",
+    "example": "Scholars developed a novel hermeneutic framework to decipher the fragmented papyri.",
+    "category": "academic"
+  },
+  {
+    "id": "059",
+    "word": "lucidity",
+    "phonetic": "/luːˈsɪd.ə.t̬i/",
+    "definition": "the quality of being clear, easily understood, and rationally coherent",
+    "example": "The physics lecturer explained general relativity with remarkable lucidity.",
+    "category": "eloquence"
+  },
+  {
+    "id": "060",
+    "word": "amicable",
+    "phonetic": "/ˈæm.ə.kə.bəl/",
+    "definition": "having a spirit of friendliness; without serious disagreement or acrimony",
+    "example": "The business partners negotiated an amicable resolution and dissolved the venture smoothly.",
+    "category": "everyday"
+  },
+  {
+    "id": "061",
+    "word": "mercurial",
+    "phonetic": "/mɚˈkjʊr.i.əl/",
+    "definition": "subject to sudden, unpredictable, or volatile changes of mood or mind",
+    "example": "His mercurial temperament made it challenging for his subordinates to anticipate his reactions.",
+    "category": "advanced"
+  },
+  {
+    "id": "062",
+    "word": "diaphanous",
+    "phonetic": "/daɪˈæf.ə.nəs/",
+    "definition": "light, delicate, and translucent in texture or appearance",
+    "example": "The morning light filtered softly through the diaphanous silk curtains.",
+    "category": "literary"
+  },
+  {
+    "id": "063",
+    "word": "pedagogical",
+    "phonetic": "/ˌped.əˈɡɑː.dʒɪ.kəl/",
+    "definition": "relating to the methods, theory, and practice of teaching",
+    "example": "The university introduced innovative pedagogical techniques centered on peer discussion.",
+    "category": "academic"
+  },
+  {
+    "id": "064",
+    "word": "resonant",
+    "phonetic": "/ˈrez.ən.ənt/",
+    "definition": "deep, clear, and continuing to sound, or evocative of strong feelings",
+    "example": "His baritone voice was so resonant that it filled the amphitheater without amplification.",
+    "category": "eloquence"
+  },
+  {
+    "id": "065",
+    "word": "benevolent",
+    "phonetic": "/bəˈnev.əl.ənt/",
+    "definition": "well-meaning, kindly, and charitable toward others",
+    "example": "A benevolent benefactor provided meals and warm coats for the shelter residents.",
+    "category": "everyday"
+  },
+  {
+    "id": "066",
+    "word": "intransigent",
+    "phonetic": "/ɪnˈtræn.sə.dʒənt/",
+    "definition": "refusing to compromise, alter a position, or agree about a dispute",
+    "example": "The negotiators reached a stalemate due to the intransigent stance of both factions.",
+    "category": "advanced"
+  },
+  {
+    "id": "067",
+    "word": "susurrus",
+    "phonetic": "/səˈsɝː.əs/",
+    "definition": "a soft murmuring or whispering sound, like rustling leaves",
+    "example": "The gentle susurrus of pine needles in the wind brought tranquility to the woods.",
+    "category": "literary"
+  },
+  {
+    "id": "068",
+    "word": "qualitative",
+    "phonetic": "/ˈkwɑː.lə.teɪ.t̬ɪv/",
+    "definition": "relating to, measuring, or characterized by quality rather than numerical quantity",
+    "example": "The sociologist gathered qualitative data through extensive in-depth interviews.",
+    "category": "academic"
+  },
+  {
+    "id": "069",
+    "word": "loquacious",
+    "phonetic": "/loʊˈkweɪ.ʃəs/",
+    "definition": "tending to talk a great deal; talkative and communicative",
+    "example": "The loquacious tour guide kept the group entertained with endless local anecdotes.",
+    "category": "eloquence"
+  },
+  {
+    "id": "070",
+    "word": "camaraderie",
+    "phonetic": "/ˌkɑːmˈrɑː.dɚ.i/",
+    "definition": "mutual trust, warmth, and friendship among people who spend time together",
+    "example": "The intense training period built an enduring sense of camaraderie among the astronauts.",
+    "category": "everyday"
+  },
+  {
+    "id": "071",
+    "word": "deleterious",
+    "phonetic": "/ˌdel.əˈtɪr.i.əs/",
+    "definition": "causing harm or damage, especially in a gradual manner",
+    "example": "Prolonged lack of sleep exerts a deleterious effect on cognitive performance.",
+    "category": "advanced"
+  },
+  {
+    "id": "072",
+    "word": "languor",
+    "phonetic": "/ˈlæŋ.ɡɚ/",
+    "definition": "the state or feeling, often pleasant, of tiredness, relaxation, or stillness",
+    "example": "On hot July afternoons, an agreeable languor settled over the sleepy seaside hamlet.",
+    "category": "everyday"
+  },
+  {
+    "id": "073",
+    "word": "quantitative",
+    "phonetic": "/ˈkwɑːn.t̬ə.teɪ.t̬ɪv/",
+    "definition": "relating to, measuring, or measured by numerical quantity or statistical data",
+    "example": "The team conducted a quantitative analysis of temperature fluctuations over fifty years.",
+    "category": "academic"
+  },
+  {
+    "id": "074",
+    "word": "bombastic",
+    "phonetic": "/bɑːmˈbæs.tɪk/",
+    "definition": "high-sounding, inflated, and pretentious, but with little actual substance",
+    "example": "The manifesto was written in a bombastic style that alienated thoughtful readers.",
+    "category": "eloquence"
+  },
+  {
+    "id": "075",
+    "word": "compunction",
+    "phonetic": "/kəmˈpʌŋk.ʃən/",
+    "definition": "a feeling of guilt or hesitation that prevents or follows doing something wrong",
+    "example": "The dishonest trader demonstrated zero compunction about overcharging naive clients.",
+    "category": "everyday"
+  },
+  {
+    "id": "076",
+    "word": "insidious",
+    "phonetic": "/ɪnˈsɪd.i.əs/",
+    "definition": "proceeding in a subtle or imperceptible way, but with harmful consequences",
+    "example": "Carbon monoxide is an insidious poison because it is both odorless and colorless.",
+    "category": "advanced"
+  },
+  {
+    "id": "077",
+    "word": "crepuscular",
+    "phonetic": "/krɪˈpʌs.kjə.lɚ/",
+    "definition": "resembling or relating to twilight, or active during dawn and dusk",
+    "example": "Owls and deer are crepuscular creatures that emerge as the sun dips below the ridge.",
+    "category": "literary"
+  },
+  {
+    "id": "078",
+    "word": "ontology",
+    "phonetic": "/ɑːnˈtɑː.lə.dʒi/",
+    "definition": "the branch of metaphysics dealing with the nature of being, existence, and reality",
+    "example": "The seminar examined the ontology of digital entities within computer simulations.",
+    "category": "academic"
+  },
+  {
+    "id": "079",
+    "word": "declamation",
+    "phonetic": "/ˌdek.ləˈmeɪ.ʃən/",
+    "definition": "the rhetorical recital of a formal speech or poem with dramatic passion",
+    "example": "His passionate declamation of the declaration stirred the revolutionaries in the square.",
+    "category": "eloquence"
+  },
+  {
+    "id": "080",
+    "word": "deference",
+    "phonetic": "/ˈdef.ɚ.əns/",
+    "definition": "humble submission, polite courtesy, and respect toward another person",
+    "example": "The young surgeon treated the veteran physician with genuine deference and attentiveness.",
+    "category": "everyday"
+  },
+  {
+    "id": "081",
+    "word": "punctilious",
+    "phonetic": "/pʌŋkˈtɪl.i.əs/",
+    "definition": "showing meticulous attention to detail, strict rules, or proper etiquette",
+    "example": "The diplomat was punctilious regarding formal seating arrangements at state dinners.",
+    "category": "advanced"
+  },
+  {
+    "id": "082",
+    "word": "incandescent",
+    "phonetic": "/ˌɪn.kænˈdes.ənt/",
+    "definition": "emitting light as a result of being heated, or radiating brilliant emotion",
+    "example": "The night sky was illuminated by incandescent meteors streaking across the atmosphere.",
+    "category": "literary"
+  },
+  {
+    "id": "083",
+    "word": "syllogism",
+    "phonetic": "/ˈsɪl.ə.dʒɪ.zəm/",
+    "definition": "a deductive logical reasoning format in which a conclusion is drawn from two premises",
+    "example": "The philosopher dissected the flawed syllogism to expose its underlying contradiction.",
+    "category": "academic"
+  },
+  {
+    "id": "084",
+    "word": "voluble",
+    "phonetic": "/ˈvɑːl.jə.bəl/",
+    "definition": "speaking fluently, incessantly, and at great length",
+    "example": "The voluble merchant extolled the virtues of every Persian rug in his bazaar.",
+    "category": "eloquence"
+  },
+  {
+    "id": "085",
+    "word": "discerning",
+    "phonetic": "/dɪˈsɝː.nɪŋ/",
+    "definition": "having or showing keen judgment, taste, and perceptive discrimination",
+    "example": "The gallery owner possessed a discerning eye for emerging contemporary painters.",
+    "category": "everyday"
+  },
+  {
+    "id": "086",
+    "word": "vociferous",
+    "phonetic": "/voʊˈsɪf.ɚ.əs/",
+    "definition": "expressing opinions or feelings loudly, forcefully, and insistently",
+    "example": "The citizens offered vociferous objections to the construction of a nearby highway.",
+    "category": "advanced"
+  },
+  {
+    "id": "087",
+    "word": "labyrinthine",
+    "phonetic": "/ˌlæb.əˈrɪn.θɪn/",
+    "definition": "intricate, complicated, twisting, and resembling a maze",
+    "example": "They lost their bearings in the labyrinthine cobblestone alleys of the old walled town.",
+    "category": "literary"
+  },
+  {
+    "id": "088",
+    "word": "posit",
+    "phonetic": "/ˈpɑː.zɪt/",
+    "definition": "to put forward something as fact or an underlying premise for argument",
+    "example": "Cosmologists posit that dark energy accelerates the expansion of the observable universe.",
+    "category": "academic"
+  },
+  {
+    "id": "089",
+    "word": "aphorism",
+    "phonetic": "/ˈæf.ɚ.ɪ.zəm/",
+    "definition": "a pithy, memorable observation that contains a general truth or moral principle",
+    "example": "Franklin was celebrated for coining many an enduring aphorism in his yearly almanac.",
+    "category": "eloquence"
+  },
+  {
+    "id": "090",
+    "word": "empathy",
+    "phonetic": "/ˈem.pə.θi/",
+    "definition": "the psychological ability to understand and share the feelings of another person",
+    "example": "Her innate empathy made her a compassionate counselor for families in crisis.",
+    "category": "everyday"
+  },
+  {
+    "id": "091",
+    "word": "obdurate",
+    "phonetic": "/ˈɑːb.dʊ.rət/",
+    "definition": "stubbornly refusing to change one's opinion, course of action, or remorse",
+    "example": "Despite impassioned pleas from his staff, the governor remained obdurate in his veto.",
+    "category": "advanced"
+  },
+  {
+    "id": "092",
+    "word": "melancholy",
+    "phonetic": "/ˈmel.əŋ.kɑː.li/",
+    "definition": "a deep, pensive, and quiet sadness, typically with no immediate obvious cause",
+    "example": "Autumn rain invariably brought on a sweet, contemplative melancholy in the poet.",
+    "category": "everyday"
+  },
+  {
+    "id": "093",
+    "word": "synthesize",
+    "phonetic": "/ˈsɪn.θə.saɪz/",
+    "definition": "to combine diverse ideas, components, or findings into a single coherent whole",
+    "example": "The review article synthesized over two hundred separate studies on cognitive development.",
+    "category": "academic"
+  },
+  {
+    "id": "094",
+    "word": "eulogy",
+    "phonetic": "/ˈjuː.lə.dʒi/",
+    "definition": "a formal speech or tribute in writing that praises someone who has died",
+    "example": "Her granddaughter delivered an affectionate and heartfelt eulogy celebrating her long life.",
+    "category": "eloquence"
+  },
+  {
+    "id": "095",
+    "word": "equanimity",
+    "phonetic": "/ˌek.wəˈnɪm.ə.t̬i/",
+    "definition": "mental calmness, composure, and emotional poise, especially in a crisis",
+    "example": "The captain maintained complete equanimity even as the storm rocked the vessel.",
+    "category": "everyday"
+  },
+  {
+    "id": "096",
+    "word": "iconoclast",
+    "phonetic": "/aɪˈkɑː.nə.klæst/",
+    "definition": "a person who attacks cherished beliefs, traditional institutions, or established dogmas",
+    "example": "The rebellious architect was an iconoclast who dismantled neoclassical design orthodoxies.",
+    "category": "advanced"
+  },
+  {
+    "id": "097",
+    "word": "luminescence",
+    "phonetic": "/ˌluː.məˈnes.əns/",
+    "definition": "the emission of cold light by a substance not resulting from incandescent heat",
+    "example": "Deep under the waves, bioluminescent jellyfish cast an ethereal luminescence.",
+    "category": "literary"
+  },
+  {
+    "id": "098",
+    "word": "theoretical",
+    "phonetic": "/ˌθiː.əˈret̬.ɪ.kəl/",
+    "definition": "concerned with the theoretical concepts of a field rather than practical application",
+    "example": "Theoretical physicists formulated equations describing the behavior of black holes.",
+    "category": "academic"
+  },
+  {
+    "id": "099",
+    "word": "diatribe",
+    "phonetic": "/ˈdaɪ.ə.traɪb/",
+    "definition": "a forceful, bitter, and sharply abusive verbal or written attack",
+    "example": "The editorial launched a blistering diatribe against reckless public spending.",
+    "category": "eloquence"
+  },
+  {
+    "id": "100",
+    "word": "exemplary",
+    "phonetic": "/ɪɡˈzem.plɚ.i/",
+    "definition": "serving as a desirable model, standard, or pattern; commendable",
+    "example": "The nurse was honored for exemplary dedication during the regional health emergency.",
+    "category": "everyday"
+  },
+  {
+    "id": "101",
+    "word": "panacea",
+    "phonetic": "/ˌpæn.əˈsiː.ə/",
+    "definition": "a universal remedy or solution for all difficulties, problems, or diseases",
+    "example": "Technology is a useful tool, but it is certainly not a panacea for social inequality.",
+    "category": "advanced"
+  },
+  {
+    "id": "102",
+    "word": "palimpsest",
+    "phonetic": "/ˈpæl.ɪmp.sest/",
+    "definition": "something reused or altered but still bearing visible traces of its earlier history",
+    "example": "The ancient city was a palimpsest where modern storefronts rested upon Roman foundations.",
+    "category": "literary"
+  },
+  {
+    "id": "103",
+    "word": "vernacular",
+    "phonetic": "/vɚˈnæk.jə.lɚ/",
+    "definition": "the native language, dialect, or idiom spoken by ordinary people in a specific region",
+    "example": "Chaucer chose to write in the English vernacular rather than in court Latin or French.",
+    "category": "eloquence"
+  },
+  {
+    "id": "104",
+    "word": "panegyric",
+    "phonetic": "/ˌpæn.əˈdʒɪr.ɪk/",
+    "definition": "a formal public speech or published text delivering extravagant praise",
+    "example": "The laureate composed a glowing panegyric in celebration of the centenary jubilee.",
+    "category": "eloquence"
+  },
+  {
+    "id": "105",
+    "word": "formidable",
+    "phonetic": "/ˈfɔːr.mɪ.də.bəl/",
+    "definition": "inspiring respect, admiration, or fear through being impressively powerful or capable",
+    "example": "The opposing debate team had a formidable record of undefeated tournament rounds.",
+    "category": "everyday"
+  },
+  {
+    "id": "106",
+    "word": "mendacity",
+    "phonetic": "/menˈdæs.ə.t̬i/",
+    "definition": "untruthfulness; deceitfulness; habitual tendency to lie",
+    "example": "The investigative journalist exposed the mendacity of the company's marketing claims.",
+    "category": "advanced"
+  },
+  {
+    "id": "107",
+    "word": "resplendent",
+    "phonetic": "/rɪˈsplen.dənt/",
+    "definition": "attractive and impressive through being richly colorful, shining, or sumptuous",
+    "example": "The monarch appeared on the palace balcony resplendent in ceremonial gold regalia.",
+    "category": "literary"
+  },
+  {
+    "id": "108",
+    "word": "aberration",
+    "phonetic": "/ˌæb.əˈreɪ.ʃən/",
+    "definition": "a departure from what is normal, standard, or expected, typically unwelcome",
+    "example": "The sharp spike in atmospheric pressure was an unusual meteorological aberration.",
+    "category": "academic"
+  },
+  {
+    "id": "109",
+    "word": "platitude",
+    "phonetic": "/ˈplæt̬.ə.tuːd/",
+    "definition": "a flat, dull, or trite remark uttered as if it were fresh and profound",
+    "example": "Instead of offering concrete help, the manager repeated an unhelpful platitude.",
+    "category": "eloquence"
+  },
+  {
+    "id": "110",
+    "word": "fortuitous",
+    "phonetic": "/fɔːrˈtuː.ə.t̬əs/",
+    "definition": "happening by a lucky chance or coincidence rather than by design",
+    "example": "Their fortuitous encounter at the transit station led to a thriving partnership.",
+    "category": "everyday"
+  },
+  {
+    "id": "111",
+    "word": "evanescent",
+    "phonetic": "/ˌev.əˈnes.ənt/",
+    "definition": "quickly fading, vanishing, or disappearing from sight or memory",
+    "example": "Rainbows after sudden summer storms are evanescent spectacles that fade in minutes.",
+    "category": "advanced"
+  },
+  {
+    "id": "112",
+    "word": "reverie",
+    "phonetic": "/ˈrev.ɚ.i/",
+    "definition": "a state of being pleasantly lost in one's daydream or quiet thoughts",
+    "example": "A knock at the study door abruptly interrupted his nostalgic afternoon reverie.",
+    "category": "literary"
+  },
+  {
+    "id": "113",
+    "word": "axiom",
+    "phonetic": "/ˈæk.si.əm/",
+    "definition": "a statement or proposition regarded as self-evidently true and accepted as a foundation",
+    "example": "Euclidean geometry rests upon a small collection of self-evident axioms.",
+    "category": "academic"
+  },
+  {
+    "id": "114",
+    "word": "repartee",
+    "phonetic": "/ˌrep.ɑːrˈtiː/ ",
+    "definition": "conversation or dialogue characterized by quick, witty, and clever replies",
+    "example": "The drawing-room comedy sparkled with spontaneous wit and brisk repartee.",
+    "category": "eloquence"
+  },
+  {
+    "id": "115",
+    "word": "frugal",
+    "phonetic": "/ˈfruː.ɡəl/",
+    "definition": "sparing, economical, or prudent with regard to money, food, or resources",
+    "example": "Through frugal living and modest habits, they managed to pay off their home early.",
+    "category": "everyday"
+  },
+  {
+    "id": "116",
+    "word": "munificent",
+    "phonetic": "/mjuːˈnɪf.ə.sənt/",
+    "definition": "characterized by exceptional generosity; lavish and open-handed",
+    "example": "The hospital built a new pediatric wing thanks to a munificent private endowment.",
+    "category": "advanced"
+  },
+  {
+    "id": "117",
+    "word": "scintilla",
+    "phonetic": "/sɪnˈtɪl.ə/",
+    "definition": "a tiny trace or minute spark of a specified quality, feeling, or idea",
+    "example": "There was not a single scintilla of doubt regarding the witness's integrity.",
+    "category": "literary"
+  },
+  {
+    "id": "118",
+    "word": "cogent",
+    "phonetic": "/ˈkoʊ.dʒənt/",
+    "definition": "powerfully clear, logical, persuasive, and convincing in argument",
+    "example": "The defense attorney presented a cogent argument that swayed the undecided jury.",
+    "category": "academic"
+  },
+  {
+    "id": "119",
+    "word": "sobriquet",
+    "phonetic": "/ˈsoʊ.brə.keɪ/",
+    "definition": "a person's descriptive nickname or distinctive epithet",
+    "example": "King Richard earned the fearsome sobriquet of 'Lionheart' for his battlefield courage.",
+    "category": "eloquence"
+  },
+  {
+    "id": "120",
+    "word": "gullible",
+    "phonetic": "/ˈɡʌl.ə.bəl/",
+    "definition": "easily persuaded, deceived, or tricked into believing something dubious",
+    "example": "Online fraudsters often prey on gullible consumers with promises of instant wealth.",
+    "category": "everyday"
+  },
+  {
+    "id": "121",
+    "word": "bellicose",
+    "phonetic": "/ˈbel.ə.koʊs/",
+    "definition": "demonstrating aggression, hostility, and a keen willingness to fight",
+    "example": "The neighboring dictator delivered a bellicose broadcast threatening border skirmishes.",
+    "category": "advanced"
+  },
+  {
+    "id": "122",
+    "word": "tenebrous",
+    "phonetic": "/ˈten.ə.brəs/",
+    "definition": "dark, shadowy, murky, or difficult to understand; gloomy",
+    "example": "The spelunkers cautiously ventured into the tenebrous corridors of the limestone cavern.",
+    "category": "literary"
+  },
+  {
+    "id": "123",
+    "word": "delineate",
+    "phonetic": "/dɪˈlɪn.i.eɪt/",
+    "definition": "to describe, portray, or outline with sharp precision and detail",
+    "example": "The white paper clearly delineated the environmental standards expected of manufacturers.",
+    "category": "academic"
+  },
+  {
+    "id": "124",
+    "word": "soliloquy",
+    "phonetic": "/səˈlɪl.ə.kwi/",
+    "definition": "an act of speaking one's innermost thoughts aloud when alone or on stage",
+    "example": "Hamlet's famous soliloquy reflects his profound contemplation of mortality.",
+    "category": "eloquence"
+  },
+  {
+    "id": "125",
+    "word": "humility",
+    "phonetic": "/hjuːˈmɪl.ə.t̬i/",
+    "definition": "a modest or unpretentious view of one's own importance; freedom from pride",
+    "example": "Despite winning the Nobel Prize, the geneticist spoke with genuine humility.",
+    "category": "everyday"
+  },
+  {
+    "id": "126",
+    "word": "assiduous",
+    "phonetic": "/əˈsɪdʒ.u.əs/",
+    "definition": "showing persistent care, diligent attention, and steadfast effort",
+    "example": "Through assiduous research in archival records, the historian solved the mystery.",
+    "category": "advanced"
+  },
+  {
+    "id": "127",
+    "word": "umbrage",
+    "phonetic": "/ˈʌm.brɪdʒ/",
+    "definition": "offense, resentment, or annoyance taken at someone's words or actions",
+    "example": "He took umbrage at the mild suggestion that his report required revisions.",
+    "category": "literary"
+  },
+  {
+    "id": "128",
+    "word": "disparage",
+    "phonetic": "/dɪˈsper.ɪdʒ/",
+    "definition": "to regard or represent someone or something as being of little worth or value",
+    "example": "It is unfair to disparage the rookie's efforts before he has finished training.",
+    "category": "academic"
+  },
+  {
+    "id": "129",
+    "word": "epigram",
+    "phonetic": "/ˈep.ə.ɡræm/",
+    "definition": "a concise, clever, and often satirical statement or short poem",
+    "example": "Oscar Wilde was internationally revered for his sharp wit and unforgettable epigrams.",
+    "category": "eloquence"
+  },
+  {
+    "id": "130",
+    "word": "impending",
+    "phonetic": "/ɪmˈpen.dɪŋ/",
+    "definition": "about to happen; approaching closely; forthcoming",
+    "example": "Darkening skies and dropping barometric pressure signaled an impending blizzard.",
+    "category": "everyday"
+  },
+  {
+    "id": "131",
+    "word": "acerbic",
+    "phonetic": "/əˈsɝː.bɪk/",
+    "definition": "sharp, harsh, and forthright in speech, tone, or temper; sarcastic",
+    "example": "The theatre critic was dreaded for his acerbic assessments of Broadway debuts.",
+    "category": "advanced"
+  },
+  {
+    "id": "132",
+    "word": "vestibule",
+    "phonetic": "/ˈves.tə.bjuːl/",
+    "definition": "an antechamber, hall, or small lobby adjoining the outer entrance of a building",
+    "example": "Guests hung their damp overcoats and left their umbrellas in the oak-paneled vestibule.",
+    "category": "literary"
+  },
+  {
+    "id": "133",
+    "word": "equivocal",
+    "phonetic": "/ɪˈkwɪv.ə.kəl/",
+    "definition": "open to more than one interpretation; ambiguous; uncertain in significance",
+    "example": "The initial clinical trial results were equivocal, necessitating further investigation.",
+    "category": "academic"
+  },
+  {
+    "id": "134",
+    "word": "colloquium",
+    "phonetic": "/kəˈloʊ.kwi.əm/",
+    "definition": "an academic conference or formal seminar for scholarly discussion",
+    "example": "Scholars from twelve nations gathered at the annual colloquium on linguistics.",
+    "category": "eloquence"
+  },
+  {
+    "id": "135",
+    "word": "judicious",
+    "phonetic": "/dʒuːˈdɪʃ.əs/",
+    "definition": "having, showing, or done with sound judgment, prudence, and sense",
+    "example": "A judicious allocation of resources prevented the clinic from running short of medicine.",
+    "category": "everyday"
+  },
+  {
+    "id": "136",
+    "word": "truculent",
+    "phonetic": "/ˈtrʌk.jə.lənt/",
+    "definition": "eager or quick to argue or fight; aggressively defiant and belligerent",
+    "example": "The bouncer escorted the truculent patron out of the club before a brawl erupted.",
+    "category": "advanced"
+  },
+  {
+    "id": "137",
+    "word": "winsome",
+    "phonetic": "/ˈwɪn.səm/",
+    "definition": "attractive, endearing, or appealing in appearance, demeanor, or character",
+    "example": "The stray puppy won over the entire family with its winsome charm and floppy ears.",
+    "category": "literary"
+  },
+  {
+    "id": "138",
+    "word": "heuristic",
+    "phonetic": "/hjuˈrɪs.tɪk/",
+    "definition": "enabling problem-solving through practical trial-and-error techniques rather than fixed formulas",
+    "example": "Software developers frequently use heuristic algorithms to optimize chess simulations.",
+    "category": "academic"
+  },
+  {
+    "id": "139",
+    "word": "parlance",
+    "phonetic": "/ˈpɑːr.ləns/",
+    "definition": "a particular manner of speaking, vocabulary, or idiom used by a specific group",
+    "example": "In legal parlance, the phrase carries a much more restrictive definition than in daily speech.",
+    "category": "eloquence"
+  },
+  {
+    "id": "140",
+    "word": "kinetic",
+    "phonetic": "/kɪˈnet̬.ɪk/",
+    "definition": "relating to or characterized by motion; vigorous, active, and energetic",
+    "example": "The city street festival possessed a kinetic energy that lasted well into midnight.",
+    "category": "everyday"
+  },
+  {
+    "id": "141",
+    "word": "vacillate",
+    "phonetic": "/ˈvæs.ə.leɪt/",
+    "definition": "to waver between different opinions, decisions, or actions; be indecisive",
+    "example": "Leaders who vacillate in an emergency risk compounding the danger to everyone.",
+    "category": "advanced"
+  },
+  {
+    "id": "142",
+    "word": "zephyr",
+    "phonetic": "/ˈzef.ɚ/",
+    "definition": "a gentle, mild, or refreshing breeze from the west",
+    "example": "A fragrant zephyr blew over the lavender fields as evening settled over the hills.",
+    "category": "literary"
+  },
+  {
+    "id": "143",
+    "word": "interpolate",
+    "phonetic": "/ɪnˈtɝː.pə.leɪt/",
+    "definition": "to insert intermediate terms or estimate missing values based on surrounding data",
+    "example": "Statisticians were able to interpolate the missing census figures between decennial surveys.",
+    "category": "academic"
+  },
+  {
+    "id": "144",
+    "word": "colloquial",
+    "phonetic": "/kəˈloʊ.kwi.əl/",
+    "definition": "characteristic of ordinary, familiar conversation rather than formal speech or writing",
+    "example": "The novel relied on colloquial dialogue to bring its gritty urban setting to life.",
+    "category": "eloquence"
+  },
+  {
+    "id": "145",
+    "word": "luminous",
+    "phonetic": "/ˈluː.mə.nəs/",
+    "definition": "full of or shedding light; shining brightly, or clear and enlightened",
+    "example": "The full moon cast a luminous silver reflection across the tranquil lake.",
+    "category": "everyday"
+  },
+  {
+    "id": "146",
+    "word": "venerate",
+    "phonetic": "/ˈven.ə.reɪt/",
+    "definition": "to regard someone or something with profound respect, honor, and reverence",
+    "example": "Indigenous elders are venerated for their deep ecological knowledge and oral traditions.",
+    "category": "advanced"
+  },
+  {
+    "id": "147",
+    "word": "bucolic",
+    "phonetic": "/bjuːˈkɑː.lɪk/",
+    "definition": "relating to the pleasant, peaceful, and idyllic aspects of countryside and rustic life",
+    "example": "They left city life behind to embrace a bucolic existence tending an apple orchard.",
+    "category": "literary"
+  },
+  {
+    "id": "148",
+    "word": "lexicon",
+    "phonetic": "/ˈlek.sə.kɑːn/",
+    "definition": "the complete vocabulary of a person, language, discipline, or specialized subject",
+    "example": "Artificial intelligence has introduced countless new terms into the contemporary lexicon.",
+    "category": "academic"
+  },
+  {
+    "id": "149",
+    "word": "enunciation",
+    "phonetic": "/ɪˌnʌn.siˈeɪ.ʃən/",
+    "definition": "the clear, distinct, and audible pronunciation of words and syllables",
+    "example": "Her crisp enunciation ensured that every syllable reached the balcony of the opera house.",
+    "category": "eloquence"
+  },
+  {
+    "id": "150",
+    "word": "mundane",
+    "phonetic": "/mʌnˈdeɪn/",
+    "definition": "lacking interest or excitement; ordinary; pertaining to everyday worldly matters",
+    "example": "Even mundane chores like weeding the garden became enjoyable in the morning sun.",
+    "category": "everyday"
+  },
+  {
+    "id": "151",
+    "word": "castigate",
+    "phonetic": "/ˈkæs.tə.ɡeɪt/",
+    "definition": "to reprimand, criticize, or punish someone severely for an error or offense",
+    "example": "The inspector castigated the shipyard management for safety violations.",
+    "category": "advanced"
+  },
+  {
+    "id": "152",
+    "word": "chimerical",
+    "phonetic": "/kaɪˈmer.ɪ.kəl/",
+    "definition": "existing only as the product of unchecked imagination; visionary or impossible",
+    "example": "His scheme to extract gold from seawater was dismissed as a chimerical fantasy.",
+    "category": "literary"
+  },
+  {
+    "id": "153",
+    "word": "panoply",
+    "phonetic": "/ˈpæn.ə.pli/",
+    "definition": "an impressive, varied, and comprehensive display or collection of things",
+    "example": "The museum exhibited a dazzling panoply of Renaissance scientific instruments.",
+    "category": "academic"
+  },
+  {
+    "id": "154",
+    "word": "oratory",
+    "phonetic": "/ˈɔːr.ə.tɔːr.i/",
+    "definition": "the art or practice of formal, eloquent, and persuasive public speaking",
+    "example": "Winston Churchill's wartime oratory bolstered national resolve during the blitz.",
+    "category": "eloquence"
+  },
+  {
+    "id": "155",
+    "word": "nonchalant",
+    "phonetic": "/ˌnɑːn.ʃəˈlɑːnt/",
+    "definition": "feeling or appearing casually calm, composed, and unconcerned; indifferent",
+    "example": "Despite the high-stakes test, the seasoned pilot gave a nonchalant shrug and stepped into the cockpit.",
+    "category": "everyday"
+  },
+  {
+    "id": "156",
+    "word": "deprecate",
+    "phonetic": "/ˈdep.rə.keɪt/",
+    "definition": "to express earnest disapproval of, belittle, or minimize the importance of",
+    "example": "He tended to deprecate his own artistic talents whenever guests praised his paintings.",
+    "category": "advanced"
+  },
+  {
+    "id": "157",
+    "word": "dulcet",
+    "phonetic": "/ˈdʌl.sɪt/",
+    "definition": "sweet, soothing, and pleasing to the ear; melodious",
+    "example": "The dulcet tones of the harp gently lulled the restless toddler to sleep.",
+    "category": "literary"
+  },
+  {
+    "id": "158",
+    "word": "postulate",
+    "phonetic": "/ˈpɑːs.tʃə.leɪt/",
+    "definition": "to suggest or assume the truth or reality of something as a premise for reasoning",
+    "example": "Economists postulate that rational actors seek to maximize their personal utility.",
+    "category": "academic"
+  },
+  {
+    "id": "159",
+    "word": "pontificate",
+    "phonetic": "/pɑːnˈtɪf.ə.keɪt/",
+    "definition": "to express one's opinions in an authoritative, pompous, and dogmatic manner",
+    "example": "We grew weary of hearing the pundit pontificate on topics he had never studied.",
+    "category": "eloquence"
+  },
+  {
+    "id": "160",
+    "word": "onerous",
+    "phonetic": "/ˈoʊ.nɚ.əs/",
+    "definition": "involving a burden or amount of effort that is oppressively heavy and troublesome",
+    "example": "Filing quarterly international taxes proved to be an onerous and confusing task.",
+    "category": "everyday"
+  },
+  {
+    "id": "161",
+    "word": "extrapolate",
+    "phonetic": "/ɪkˈstræp.ə.leɪt/",
+    "definition": "to estimate, infer, or project future outcomes based on existing data trends",
+    "example": "Climate scientists extrapolate regional sea-level rises from satellite radar records.",
+    "category": "advanced"
+  },
+  {
+    "id": "162",
+    "word": "elegiac",
+    "phonetic": "/ˌel.əˈdʒaɪ.ək/",
+    "definition": "expressing sorrow, mourning, or melancholy, especially for things lost to the past",
+    "example": "The novel's elegiac tone conveyed the gradual passing of rural frontier communities.",
+    "category": "literary"
+  },
+  {
+    "id": "163",
+    "word": "substantiate",
+    "phonetic": "/səbˈstæn.ʃi.eɪt/",
+    "definition": "to provide firm evidence or proof to support and validate the truth of a claim",
+    "example": "The defense failed to produce witnesses who could substantiate the defendant's alibi.",
+    "category": "academic"
+  },
+  {
+    "id": "164",
+    "word": "polemic",
+    "phonetic": "/pəˈlem.ɪk/",
+    "definition": "a passionate and aggressive verbal or written argument attacking an opposing view",
+    "example": "The philosopher published a fierce polemic against unchecked technological expansion.",
+    "category": "eloquence"
+  },
+  {
+    "id": "165",
+    "word": "opportune",
+    "phonetic": "/ˌɑː.pɚˈtuːn/",
+    "definition": "well-timed, favorable, or particularly convenient for a purpose",
+    "example": "The sudden drop in airfare provided an opportune moment for a family vacation.",
+    "category": "everyday"
+  },
+  {
+    "id": "166",
+    "word": "garrulous",
+    "phonetic": "/ˈɡer.ə.ləs/",
+    "definition": "excessively talkative, especially about trivial, rambling matters",
+    "example": "A garrulous seatmate prevented him from getting any sleep during the overnight train ride.",
+    "category": "advanced"
+  },
+  {
+    "id": "167",
+    "word": "felicity",
+    "phonetic": "/fəˈlɪs.ə.t̬i/",
+    "definition": "intense happiness, or an apt, tasteful, and graceful expression in words",
+    "example": "She possessed a rare felicity of phrase that made her personal essays a joy to read.",
+    "category": "literary"
+  },
+  {
+    "id": "168",
+    "word": "validate",
+    "phonetic": "/ˈvæl.ə.deɪt/",
+    "definition": "to prove, verify, or confirm the accuracy, truth, or legality of something",
+    "example": "Peer review is essential to validate experimental methodologies before publication.",
+    "category": "everyday"
+  },
+  {
+    "id": "169",
+    "word": "equivocation",
+    "phonetic": "/ɪˌkwɪv.əˈkeɪ.ʃən/",
+    "definition": "the deliberate use of ambiguous language to conceal the truth or avoid commitment",
+    "example": "The CEO answered the board's questions without equivocation or evasion.",
+    "category": "eloquence"
+  },
+  {
+    "id": "170",
+    "word": "palatable",
+    "phonetic": "/ˈpæl.ə.t̬ə.bəl/",
+    "definition": "pleasant to the taste, or satisfactory and acceptable to the mind",
+    "example": "The committee revised the tax proposal to make it more palatable to small business owners.",
+    "category": "everyday"
+  },
+  {
+    "id": "171",
+    "word": "harangue",
+    "phonetic": "/həˈræŋ/",
+    "definition": "a lengthy, forceful, and aggressive speech delivered with vehement criticism",
+    "example": "The coach subjected the team to a loud harangue after their lackadaisical performance.",
+    "category": "advanced"
+  },
+  {
+    "id": "172",
+    "word": "somnambulist",
+    "phonetic": "/sɑːmˈnæm.bjə.lɪst/",
+    "definition": "a person who walks around or performs other activities while asleep",
+    "example": "In the silent mansion, the somnambulist wandered down the moonlit marble staircase.",
+    "category": "literary"
+  },
+  {
+    "id": "173",
+    "word": "verisimilitude",
+    "phonetic": "/ˌver.ə.səˈmɪl.ə.tuːd/",
+    "definition": "the appearance or semblance of being real, authentic, or true",
+    "example": "The historical novelist conducted years of research to lend verisimilitude to the dialogue.",
+    "category": "academic"
+  },
+  {
+    "id": "174",
+    "word": "hyperbole",
+    "phonetic": "/haɪˈpɝː.bəl.i/",
+    "definition": "deliberate exaggeration used for dramatic emphasis or rhetorical effect",
+    "example": "To claim the delay cost a billion dollars was gross hyperbole meant to shock listeners.",
+    "category": "eloquence"
+  },
+  {
+    "id": "175",
+    "word": "pivotal",
+    "phonetic": "/ˈpɪv.ə.t̬əl/",
+    "definition": "of crucial, decisive importance in relation to the development or outcome of events",
+    "example": "The quarterback's fourth-quarter interception proved to be the pivotal play of the game.",
+    "category": "everyday"
+  },
+  {
+    "id": "176",
+    "word": "intractable",
+    "phonetic": "/ɪnˈtræk.tə.bəl/",
+    "definition": "hard to control, manage, or deal with; stubbornly resistant to solution",
+    "example": "Poverty in the arid region remained an intractable challenge despite foreign aid programs.",
+    "category": "advanced"
+  },
+  {
+    "id": "177",
+    "word": "limerence",
+    "phonetic": "/ˈlɪm.ɚ.əns/",
+    "definition": "the state of being infatuated, enamored, or obsessively preoccupied with another",
+    "example": "The poet wrote feverishly during the intoxicating first weeks of romantic limerence.",
+    "category": "literary"
+  },
+  {
+    "id": "178",
+    "word": "anathema",
+    "phonetic": "/əˈnæθ.ə.mə/",
+    "definition": "something or someone vehemently detested, cursed, or shunned",
+    "example": "Censorship of academic debate was anathema to the university's founding principles.",
+    "category": "academic"
+  },
+  {
+    "id": "179",
+    "word": "litotes",
+    "phonetic": "/ˈlaɪ.tə.tiːz/",
+    "definition": "ironic understatement in which an affirmative is expressed by negating its contrary",
+    "example": "Calling an Olympic gold medal 'not bad at all' is a classic example of litotes.",
+    "category": "eloquence"
+  },
+  {
+    "id": "180",
+    "word": "precarious",
+    "phonetic": "/prɪˈker.i.əs/",
+    "definition": "not securely held or in position; dangerously unstable or uncertain",
+    "example": "The mountaineers balanced along a precarious ledge overlooking a three-thousand-foot drop.",
+    "category": "everyday"
+  },
+  {
+    "id": "181",
+    "word": "maverick",
+    "phonetic": "/ˈmæv.ɚ.ɪk/",
+    "definition": "an unorthodox, independent-minded person who refuses to conform to a group",
+    "example": "The maverick venture capitalist bet heavily on solar startups when others hesitated.",
+    "category": "everyday"
+  },
+  {
+    "id": "182",
+    "word": "nocturnal",
+    "phonetic": "/nɑːkˈtɝː.nəl/",
+    "definition": "occurring, active, or blossoming during the hours of darkness or night",
+    "example": "The night-blooming cereus is a nocturnal flower that opens its petals only after dusk.",
+    "category": "literary"
+  },
+  {
+    "id": "183",
+    "word": "methodology",
+    "phonetic": "/ˌmeθ.əˈdɑː.lə.dʒi/",
+    "definition": "a systematic, theoretical framework of methods applied to a particular area of study",
+    "example": "The researcher meticulously defended her chosen survey methodology during peer review.",
+    "category": "academic"
+  },
+  {
+    "id": "184",
+    "word": "metonymy",
+    "phonetic": "/məˈtɑː.nə.mi/",
+    "definition": "a figure of speech in which the name of an attribute or concept is substituted for the thing itself",
+    "example": "Referring to the executive branch as 'the White House' is an everyday instance of metonymy.",
+    "category": "eloquence"
+  },
+  {
+    "id": "185",
+    "word": "proactive",
+    "phonetic": "/proʊˈæk.tɪv/",
+    "definition": "taking the initiative by acting in anticipation of future events rather than merely reacting",
+    "example": "The IT department took proactive steps to patch the server before any data breach occurred.",
+    "category": "everyday"
+  },
+  {
+    "id": "186",
+    "word": "nascent",
+    "phonetic": "/ˈneɪ.sənt/",
+    "definition": "just coming into existence and beginning to display signs of future potential",
+    "example": "The nascent biotech company showed promise with its innovative gene-editing therapy.",
+    "category": "advanced"
+  },
+  {
+    "id": "187",
+    "word": "solipsism",
+    "phonetic": "/ˈsɑː.lɪp.sɪ.zəm/",
+    "definition": "the philosophical stance that only one's own mind and conscious experience is sure to exist",
+    "example": "Trapped in isolation, the protagonist struggled against a terrifying sense of solipsism.",
+    "category": "literary"
+  },
+  {
+    "id": "188",
+    "word": "teleology",
+    "phonetic": "/ˌtiː.liˈɑː.lə.dʒi/",
+    "definition": "the philosophical doctrine that design and purpose are inherent in nature or history",
+    "example": "Aristotelian physics relied heavily on teleology to explain why objects fall toward Earth.",
+    "category": "academic"
+  },
+  {
+    "id": "189",
+    "word": "synecdoche",
+    "phonetic": "/sɪˈnek.də.ki/",
+    "definition": "a figure of speech in which a part is made to represent the whole, or vice versa",
+    "example": "Using the phrase 'all hands on deck' to mean the entire crew is a standard synecdoche.",
+    "category": "eloquence"
+  },
+  {
+    "id": "190",
+    "word": "prolific",
+    "phonetic": "/prəˈlɪf.ɪk/",
+    "definition": "producing a huge quantity or great abundance of creative works, fruit, or foliage",
+    "example": "Asimov was a prolific author who penned hundreds of science fiction books and essays.",
+    "category": "everyday"
+  },
+  {
+    "id": "191",
+    "word": "chicanery",
+    "phonetic": "/ʃɪˈkeɪ.nɚ.i/",
+    "definition": "the use of clever trickery, deception, or subterfuge to achieve an underhanded purpose",
+    "example": "The corporate accountant relied on complex financial chicanery to obscure embezzled funds.",
+    "category": "advanced"
+  },
+  {
+    "id": "192",
+    "word": "penumbra",
+    "phonetic": "/pəˈnʌm.brə/",
+    "definition": "the partially shaded outer region of a shadow cast by an opaque object; a fringe area",
+    "example": "An eclipse plunged the valley into a gloomy penumbra that hushed the forest birds.",
+    "category": "literary"
+  },
+  {
+    "id": "193",
+    "word": "parsimony",
+    "phonetic": "/ˈpɑːr.sə.moʊ.ni/",
+    "definition": "extreme unwillingness to spend money or use resources; in science, the principle of choosing the simplest explanation",
+    "example": "Occam's razor is an invocation of parsimony, favoring the hypothesis with the fewest assumptions.",
+    "category": "academic"
+  },
+  {
+    "id": "194",
+    "word": "persuasion",
+    "phonetic": "/pɚˈsweɪ.ʒən/",
+    "definition": "the action or fact of convincing someone or being convinced through reasoned appeal",
+    "example": "He possessed a natural gift of persuasion that won over even the most skeptical constituents.",
+    "category": "eloquence"
+  },
+  {
+    "id": "195",
+    "word": "quandary",
+    "phonetic": "/ˈkwɑːn.dri/",
+    "definition": "a state of perplexity, uncertainty, or doubt over what to do in a difficult situation",
+    "example": "Having received two equally compelling job offers, she found herself in a happy quandary.",
+    "category": "everyday"
+  },
+  {
+    "id": "196",
+    "word": "sanguine",
+    "phonetic": "/ˈsæŋ.ɡwɪn/",
+    "definition": "optimistic or positive, especially in an apparently bad or difficult situation",
+    "example": "Despite the gloomy market forecast, the young entrepreneur remained sanguine about growth.",
+    "category": "everyday"
+  },
+  {
+    "id": "197",
+    "word": "sempiternal",
+    "phonetic": "/ˌsem.pɪˈtɝː.nəl/",
+    "definition": "eternal and unchanging; having everlasting or infinite duration",
+    "example": "The ancient redwoods stood like sempiternal guardians watching over the northern coast.",
+    "category": "literary"
+  },
+  {
+    "id": "198",
+    "word": "tautology",
+    "phonetic": "/tɔːˈtɑː.lə.dʒi/",
+    "definition": "the saying of the same thing twice in different words, generally considered a logical fault",
+    "example": "Saying that something is 'adequate enough' is a redundant tautology in formal writing.",
+    "category": "academic"
+  },
+  {
+    "id": "199",
+    "word": "sonority",
+    "phonetic": "/səˈnɔːr.ə.t̬i/",
+    "definition": "the resonant, deep, and pleasantly rich acoustic tone of speech or music",
+    "example": "The French horn section played with a rich sonority that anchored the brass fanfare.",
+    "category": "eloquence"
+  },
+  {
+    "id": "200",
+    "word": "reciprocate",
+    "phonetic": "/rɪˈsɪp.rə.keɪt/",
+    "definition": "to respond to a gesture or action by giving or doing something similar in return",
+    "example": "The welcoming neighbors were eager to reciprocate the dinner invitation next weekend.",
+    "category": "everyday"
   }
 ]
