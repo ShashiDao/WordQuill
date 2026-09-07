@@ -18,6 +18,8 @@ import {
   recordWordReview,
   setWordStatus,
   toggleWordBookmark,
+  getDueWords,
+  incrementDailyWordsReviewed,
 } from '../db/operations';
 
 interface FlashcardViewProps {
@@ -36,7 +38,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   onNavigateToQuiz,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedStatusFilter, setSelectedStatusFilter] = useState<string>('all');
+  const [selectedStatusFilter, setSelectedStatusFilter] = useState<string>('learning');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
@@ -51,27 +53,26 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
 
   // Filter words based on active category and status
   const filteredWords = useMemo(() => {
-    return words.filter((w) => {
-      // Category filter
-      if (selectedCategory !== 'all' && w.category !== selectedCategory) {
-        return false;
-      }
-      // Status filter
-      const prog = progressMap.get(w.id);
-      if (selectedStatusFilter === 'starred') {
-        return prog?.isBookmarked;
-      }
-      if (selectedStatusFilter === 'learning') {
-        return prog?.status === 'learning';
-      }
-      if (selectedStatusFilter === 'mastered') {
-        return prog?.status === 'mastered';
-      }
-      if (selectedStatusFilter === 'new') {
+    let pool: WordItem[];
+    if (selectedStatusFilter === 'learning') {
+      pool = getDueWords(words, progressMap);
+    } else if (selectedStatusFilter === 'starred') {
+      pool = words.filter((w) => progressMap.get(w.id)?.isBookmarked);
+    } else if (selectedStatusFilter === 'mastered') {
+      pool = words.filter((w) => progressMap.get(w.id)?.status === 'mastered');
+    } else if (selectedStatusFilter === 'new') {
+      pool = words.filter((w) => {
+        const prog = progressMap.get(w.id);
         return !prog || prog.status === 'new';
-      }
-      return true;
-    });
+      });
+    } else {
+      pool = words;
+    }
+
+    if (selectedCategory !== 'all') {
+      return pool.filter((w) => w.category === selectedCategory);
+    }
+    return pool;
   }, [words, progressMap, selectedCategory, selectedStatusFilter]);
 
   // Ensure currentIndex stays within bounds
@@ -103,9 +104,9 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   const handleFlipCard = () => {
     setIsFlipped((prev) => {
       const next = !prev;
-      // If flipping to the back (revealing definition), record word review
+      // If flipping to the back (revealing definition), increment daily study progress
       if (next && currentWord) {
-        recordWordReview(currentWord).then(() => {
+        incrementDailyWordsReviewed().then(() => {
           onDataUpdated();
         });
       }
@@ -145,8 +146,9 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   const handleMarkStatus = async (status: 'learning' | 'mastered', e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     if (!currentWord) return;
-    await setWordStatus(currentWord, status);
-    setActionFeedback(status === 'mastered' ? 'Mastered! ✨' : 'Added to Learning 📖');
+    const isCorrect = status === 'mastered';
+    await recordWordReview(currentWord, isCorrect);
+    setActionFeedback(status === 'mastered' ? 'Mastered! Scheduled ahead ✨' : 'Reviewing tomorrow 📖');
     setTimeout(() => setActionFeedback(null), 1500);
     onDataUpdated();
     // Auto advance to next card after a brief moment
@@ -209,11 +211,11 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
         <div className="flex items-center justify-between gap-2 pt-1 text-xs text-[#8C8272]">
           <div className="flex items-center gap-3">
             {[
-              { id: 'all', label: 'All' },
-              { id: 'new', label: 'New' },
               { id: 'learning', label: 'Learning' },
-              { id: 'mastered', label: 'Mastered' },
+              { id: 'all', label: 'All' },
               { id: 'starred', label: 'Starred' },
+              { id: 'new', label: 'New' },
+              { id: 'mastered', label: 'Mastered' },
             ].map((f) => (
               <button
                 key={f.id}

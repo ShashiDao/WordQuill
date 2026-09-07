@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import type { WordItem, UserWordProgress, QuizQuestion } from '../types';
 import { speakWord } from '../utils/speech';
-import { recordQuizSession } from '../db/operations';
+import { recordQuizSession, getDueWords } from '../db/operations';
 
 interface QuizViewProps {
   words: WordItem[];
@@ -29,8 +29,8 @@ export const QuizView: React.FC<QuizViewProps> = ({
   onDataUpdated,
   onSelectWordForFlashcard,
 }) => {
-  // Source selection: 'all' | 'learning' | 'bookmarked'
-  const [sourceFilter, setSourceFilter] = useState<'all' | 'learning' | 'bookmarked'>('all');
+  // Source selection: 'learning' | 'all' | 'bookmarked'
+  const [sourceFilter, setSourceFilter] = useState<'learning' | 'all' | 'bookmarked'>('learning');
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -41,18 +41,16 @@ export const QuizView: React.FC<QuizViewProps> = ({
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [questionCount, setQuestionCount] = useState<number>(10);
 
-  // Eligible pool of words based on filter
+  // Eligible pool of words based on filter: Learning uses getDueWords, All & Bookmarked bypass due queue
   const eligibleWords = useMemo(() => {
-    return words.filter((w) => {
-      const prog = progressMap.get(w.id);
-      if (sourceFilter === 'learning') {
-        return prog?.status === 'learning';
-      }
-      if (sourceFilter === 'bookmarked') {
-        return prog?.isBookmarked;
-      }
-      return true;
-    });
+    if (sourceFilter === 'learning') {
+      const due = getDueWords(words, progressMap);
+      return due.length > 0 ? due : words;
+    }
+    if (sourceFilter === 'bookmarked') {
+      return words.filter((w) => progressMap.get(w.id)?.isBookmarked);
+    }
+    return words;
   }, [words, progressMap, sourceFilter]);
 
   // Generate quiz questions
@@ -313,7 +311,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-black/[0.08] pb-3 dark:border-white/[0.08]">
         <div className="flex items-center gap-3">
           <span className="text-xs text-[#8C8272]">Deck:</span>
-          {(['all', 'learning', 'bookmarked'] as const).map((filter) => (
+          {(['learning', 'all', 'bookmarked'] as const).map((filter) => (
             <button
               key={filter}
               onClick={() => setSourceFilter(filter)}

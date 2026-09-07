@@ -13,6 +13,35 @@ export class WordQuillDB extends Dexie {
       progress: 'date, wordsReviewed, quizzesCompleted',
       settings: 'key',
     });
+
+    this.version(2)
+      .stores({
+        savedWords: 'id, word, status, isBookmarked, reviewCount, lastReviewedAt, dueDate, interval',
+        progress: 'date, wordsReviewed, quizzesCompleted',
+        settings: 'key',
+      })
+      .upgrade(async (tx) => {
+        const d = new Date();
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const today = `${year}-${month}-${day}`;
+
+        await tx
+          .table('savedWords')
+          .toCollection()
+          .modify((record: UserWordProgress) => {
+            if (!record.dueDate) {
+              record.dueDate = today;
+            }
+            if (record.interval === undefined || record.interval === null) {
+              record.interval = 0;
+            }
+            if (record.easeFactor === undefined || record.easeFactor === null) {
+              record.easeFactor = 2.5;
+            }
+          });
+      });
   }
 }
 

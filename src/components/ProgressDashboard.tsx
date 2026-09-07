@@ -11,10 +11,12 @@ import {
   Trash2,
   Check,
   RotateCcw,
+  Calendar,
 } from 'lucide-react';
 import type { WordItem, UserWordProgress, DailyProgress } from '../types';
 import { db } from '../db';
 import { speakWord } from '../utils/speech';
+import { getTodayString } from '../db/operations';
 
 interface ProgressDashboardProps {
   words: WordItem[];
@@ -41,9 +43,11 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 
   // Stats calculation
   const totalWords = words.length;
+  const today = getTodayString();
   let masteredCount = 0;
   let learningCount = 0;
   let bookmarkedCount = 0;
+  let dueTodayCount = 0;
   let totalReviews = 0;
   let totalCorrectAnswers = 0;
   let totalAnswered = 0;
@@ -52,6 +56,9 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
     if (prog.status === 'mastered') masteredCount++;
     if (prog.status === 'learning') learningCount++;
     if (prog.isBookmarked) bookmarkedCount++;
+    if (prog.status !== 'new' && prog.dueDate && prog.dueDate <= today) {
+      dueTodayCount++;
+    }
     totalReviews += prog.reviewCount || 0;
     totalCorrectAnswers += prog.correctCount || 0;
     totalAnswered += (prog.correctCount || 0) + (prog.incorrectCount || 0);
@@ -133,19 +140,19 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
       </div>
 
       {/* Primary Metrics Grid */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-[#8C8272]">
-              Mastered
+              Due Today
             </span>
-            <CheckCircle2 className="w-4 h-4 text-[#8FB996]" />
+            <Calendar className="w-4 h-4 text-[#D98A93]" />
           </div>
           <div className="mt-2 font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
-            {masteredCount}
+            {dueTodayCount}
           </div>
-          <span className="text-[11px] font-medium text-[#8FB996]">
-            {masteryPercentage}% of deck
+          <span className="text-[11px] font-medium text-[#D98A93]">
+            {dueTodayCount === 0 ? 'all caught up' : 'ready for review'}
           </span>
         </div>
 
@@ -165,6 +172,21 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
         <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-[#8C8272]">
+              Mastered
+            </span>
+            <CheckCircle2 className="w-4 h-4 text-[#8FB996]" />
+          </div>
+          <div className="mt-2 font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+            {masteredCount}
+          </div>
+          <span className="text-[11px] font-medium text-[#8FB996]">
+            {masteryPercentage}% of deck
+          </span>
+        </div>
+
+        <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-medium text-[#8C8272]">
               Quiz Accuracy
             </span>
             <Award className="w-4 h-4 text-[#D98A93]" />
@@ -177,7 +199,7 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           </span>
         </div>
 
-        <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
+        <div className="col-span-2 sm:col-span-1 rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-[#8C8272]">
               Total Reviews

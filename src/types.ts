@@ -18,6 +18,9 @@ export interface UserWordProgress {
   correctCount: number;
   incorrectCount: number;
   lastReviewedAt: number; // timestamp
+  interval: number; // days until next review (SM-2)
+  easeFactor: number; // SM-2 ease factor, default 2.5
+  dueDate: string; // ISO date string YYYY-MM-DD
 }
 
 export interface DailyProgress {
