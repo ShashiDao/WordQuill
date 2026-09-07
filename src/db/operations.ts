@@ -152,6 +152,38 @@ export function getDueWords(
   return newWords.length > 0 ? newWords : words;
 }
 
+/**
+ * Returns true if a word is considered a "leech":
+ * a word the user keeps getting wrong despite repeated review.
+ */
+export function isLeech(progress: UserWordProgress): boolean {
+  if (!progress) return false;
+  const incorrect = progress.incorrectCount || 0;
+  const correct = progress.correctCount || 0;
+  return incorrect >= 4 && incorrect > correct;
+}
+
+/**
+ * Returns words matching isLeech, sorted by incorrectCount descending.
+ */
+export function getLeeches(
+  words: WordItem[],
+  progressMap: Map<string, UserWordProgress>
+): WordItem[] {
+  const leeches: WordItem[] = [];
+  for (const word of words) {
+    const prog = progressMap.get(word.id);
+    if (prog && isLeech(prog)) {
+      leeches.push(word);
+    }
+  }
+  return leeches.sort((a, b) => {
+    const incA = progressMap.get(a.id)?.incorrectCount || 0;
+    const incB = progressMap.get(b.id)?.incorrectCount || 0;
+    return incB - incA;
+  });
+}
+
 export async function recordWordReview(
   word: WordItem,
   isCorrect: boolean = true
@@ -362,6 +394,79 @@ export async function recordQuizSession(
   await db.progress.put(updatedProg);
 }
 
+/**
+ * Returns true if a streak freeze is available in the trailing 7 calendar days.
+ * A freeze is available if fewer than 1 freeze was consumed in the trailing 7 calendar days.
+ */
+export function isStreakFreezeAvailable(
+  freezesUsed: string[],
+  refDateStr: string = getTodayString()
+): boolean {
+  // Trailing 7 calendar days: [refDateStr - 6 days, refDateStr]
+  const d = new Date(refDateStr + 'T12:00:00');
+  d.setDate(d.getDate() - 6);
+  const cutoffStr = getTodayString(d);
+
+  const usedInWindow = freezesUsed.filter(
+    (dateStr) => dateStr >= cutoffStr && dateStr <= refDateStr
+  );
+  return usedInWindow.length < 1;
+}
+
+/**
+ * Checks if yesterday was a missed day requiring a streak freeze, and if available,
+ * records that freeze date in the 'streakFreezesUsed' setting.
+ * Called once per app load. Returns true if a freeze was actually consumed.
+ */
+export async function consumeStreakFreezeIfNeeded(): Promise<boolean> {
+  const records = await db.progress.toArray();
+  const activeDates = new Set(
+    records
+      .filter((r) => (r.wordsReviewed || 0) > 0 || (r.quizzesCompleted || 0) > 0)
+      .map((r) => r.date)
+  );
+
+  const yesterday = getPastDateString(1);
+  const twoDaysAgo = getPastDateString(2);
+
+  // If yesterday had active study, no freeze needed
+  if (activeDates.has(yesterday)) {
+    return false;
+  }
+
+  const freezesUsed = await getSetting<string[]>('streakFreezesUsed', []);
+
+  // If yesterday is already recorded as a freeze, nothing to consume
+  if (freezesUsed.includes(yesterday)) {
+    return false;
+  }
+
+  // To consume a freeze for yesterday:
+  // 1. Two days ago must have had active progress so there was an active streak to protect
+  // 2. Cannot freeze more than one missed day in a row (two days ago must NOT be a freeze day)
+  // 3. A freeze must be available in the trailing 7 calendar days
+  if (!activeDates.has(twoDaysAgo)) {
+    return false;
+  }
+  if (freezesUsed.includes(twoDaysAgo)) {
+    return false;
+  }
+
+  if (!isStreakFreezeAvailable(freezesUsed, yesterday)) {
+    return false;
+  }
+
+  // Consume the freeze for yesterday and persist to settings
+  const updated = [...freezesUsed, yesterday];
+  await setSetting('streakFreezesUsed', updated);
+  return true;
+}
+
+/**
+ * Calculates current consecutive day streak.
+ * Supports 1 streak-freeze grace day per rolling 7-day window.
+ * Read-only calculation; does not write to settings.
+ */
 export async function calculateStreak(): Promise<number> {
   const records = await db.progress.toArray();
   if (records.length === 0) return 0;
@@ -373,25 +478,59 @@ export async function calculateStreak(): Promise<number> {
       .map((r) => r.date)
   );
 
+  const freezesUsed = await getSetting<string[]>('streakFreezesUsed', []);
+  const freezeDates = new Set(freezesUsed);
+
   const today = getTodayString();
   const yesterday = getPastDateString(1);
+  const twoDaysAgo = getPastDateString(2);
 
   let currentStreak = 0;
   let checkDate = new Date();
 
-  // If not active today, check if active yesterday
+  // If not active today, check if active yesterday or if yesterday can be freeze-covered
   if (!activeDates.has(today)) {
-    if (!activeDates.has(yesterday)) {
-      return 0;
+    if (activeDates.has(yesterday)) {
+      // Active yesterday: start counting back from yesterday
+      checkDate.setDate(checkDate.getDate() - 1);
+    } else {
+      // Neither today nor yesterday has activity: yesterday is the gap date
+      const isYesterdayCovered = freezeDates.has(yesterday);
+      const canFreezeYesterday =
+        !isYesterdayCovered &&
+        isStreakFreezeAvailable(freezesUsed, yesterday) &&
+        activeDates.has(twoDaysAgo); // Cannot freeze more than one missed day in a row
+
+      if (isYesterdayCovered || canFreezeYesterday) {
+        // Mark that gap date as freeze-covered and continue counting backward as if it were active
+        freezeDates.add(yesterday);
+        checkDate.setDate(checkDate.getDate() - 1);
+      } else {
+        return 0;
+      }
     }
-    // Start counting back from yesterday
-    checkDate.setDate(checkDate.getDate() - 1);
   }
 
+  // Count backward as long as dates are active or valid freeze-covered days
+  let lastWasFreeze = false;
   while (true) {
     const dStr = getTodayString(checkDate);
     if (activeDates.has(dStr)) {
       currentStreak++;
+      lastWasFreeze = false;
+      checkDate.setDate(checkDate.getDate() - 1);
+    } else if (
+      freezeDates.has(dStr) ||
+      (dStr === yesterday &&
+        isStreakFreezeAvailable(freezesUsed, yesterday) &&
+        activeDates.has(twoDaysAgo))
+    ) {
+      if (lastWasFreeze) {
+        // Do not auto-consume a freeze for more than one missed day in a row
+        break;
+      }
+      currentStreak++;
+      lastWasFreeze = true;
       checkDate.setDate(checkDate.getDate() - 1);
     } else {
       break;

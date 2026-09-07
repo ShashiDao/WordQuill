@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import type { WordItem, UserWordProgress, QuizQuestion } from '../types';
 import { speakWord } from '../utils/speech';
-import { recordQuizSession, getDueWords } from '../db/operations';
+import { recordQuizSession, getDueWords, isLeech } from '../db/operations';
 
 const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -96,15 +96,24 @@ export const QuizView: React.FC<QuizViewProps> = ({
     let chosenWords: WordItem[];
 
     if (sourceFilter === 'all' && !customPool) {
+      // Exclude leeches from the normal weighted quiz pool so they don't dominate every quiz
+      const nonLeechPool = pool.filter((w) => {
+        const prog = progressMap.get(w.id);
+        return !prog || !isLeech(prog);
+      });
+      const quizPool = nonLeechPool.length >= 4 ? nonLeechPool : pool;
+
       // Weight picks toward words returned by getDueWords() and words where incorrectCount > correctCount
-      const dueWordsList = getDueWords(pool, progressMap);
+      const dueWordsList = getDueWords(quizPool, progressMap);
       const dueSet = new Set(dueWordsList.map((w) => w.id));
 
       const priorityCandidates: { word: WordItem; weight: number }[] = [];
-      for (const w of pool) {
+      for (const w of quizPool) {
         const prog = progressMap.get(w.id);
         const isDue = dueSet.has(w.id);
-        const isStruggling = prog ? (prog.incorrectCount || 0) > (prog.correctCount || 0) : false;
+        const isStruggling = prog
+          ? !isLeech(prog) && (prog.incorrectCount || 0) > (prog.correctCount || 0)
+          : false;
 
         if (isDue || isStruggling) {
           let weight = 1;
@@ -132,8 +141,8 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
       const chosenIds = new Set(sampledPriority.map((w) => w.id));
 
-      // Fill remaining slots randomly from the full pool
-      const remainingPool = pool
+      // Fill remaining slots randomly from the non-leech pool
+      const remainingPool = quizPool
         .filter((w) => !chosenIds.has(w.id))
         .sort(() => Math.random() - 0.5);
 

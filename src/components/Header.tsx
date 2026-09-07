@@ -1,7 +1,6 @@
 import React from 'react';
-import { Feather, Moon, Sun, Flame, Volume2, Settings } from 'lucide-react';
-import { PWAInstallButton } from './PWAInstallButton';
-import type { TabType } from '../types';
+import { Feather, Moon, Sun, Flame, Snowflake, Volume2, Settings, Download } from 'lucide-react';
+import type { TabType, BeforeInstallPromptEvent } from '../types';
 
 interface HeaderProps {
   currentTab: TabType;
@@ -9,9 +8,12 @@ interface HeaderProps {
   isDark: boolean;
   onToggleTheme: () => void;
   streak: number;
+  freezeAvailable?: boolean;
   speechRate: number;
   onChangeSpeechRate: (rate: number) => void;
   onOpenPreferences: () => void;
+  installPromptEvent?: BeforeInstallPromptEvent | null;
+  onInstall?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,10 +22,19 @@ export const Header: React.FC<HeaderProps> = ({
   isDark,
   onToggleTheme,
   streak,
+  freezeAvailable = false,
   speechRate,
   onChangeSpeechRate,
   onOpenPreferences,
+  installPromptEvent = null,
+  onInstall,
 }) => {
+  const isStandalone =
+    typeof window !== 'undefined' &&
+    (window.matchMedia('(display-mode: standalone)').matches ||
+      (window.navigator as unknown as { standalone?: boolean }).standalone === true);
+
+  const canInstall = Boolean(installPromptEvent) && !isStandalone;
   return (
     <header className="sticky top-0 z-40 border-b border-black/[0.08] bg-[#F6F1E7]/95 backdrop-blur-sm dark:border-white/[0.08] dark:bg-[#1B1815]/95 transition-colors">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
@@ -108,6 +119,19 @@ export const Header: React.FC<HeaderProps> = ({
             <span>{streak}d</span>
           </div>
 
+          {/* Freeze available indicator - plain icon + text, no pill */}
+          {freezeAvailable && (
+            <div
+              id="freeze-available-indicator"
+              className="flex items-center gap-1 text-xs font-medium text-[#8FB996]"
+              title="1 streak freeze available in current 7-day window"
+            >
+              <Snowflake className="w-3.5 h-3.5 text-[#8FB996]" />
+              <span className="hidden sm:inline">Freeze available</span>
+              <span className="sm:hidden">Freeze</span>
+            </div>
+          )}
+
           {/* Speech Rate Control */}
           <button
             id="speech-rate-toggle"
@@ -119,8 +143,18 @@ export const Header: React.FC<HeaderProps> = ({
             <span>{speechRate === 0.85 ? '0.85x' : '1.0x'}</span>
           </button>
 
-          {/* In-App PWA Install */}
-          <PWAInstallButton />
+          {/* Native Install Button: plain icon+text, no pill, consistent with existing header icon buttons */}
+          {canInstall && (
+            <button
+              id="header-install-btn"
+              onClick={onInstall}
+              className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] px-2.5 py-1 text-xs font-medium text-[#8C8272] hover:text-[#1B1815] hover:border-[#D98A93] dark:border-white/[0.08] dark:text-[#8C8272] dark:hover:text-[#F6F1E7] cursor-pointer transition-colors"
+              title="Install WordQuill on your device"
+            >
+              <Download className="w-3.5 h-3.5 text-[#D98A93]" />
+              <span>Install</span>
+            </button>
+          )}
 
           {/* Theme Toggle */}
           <button

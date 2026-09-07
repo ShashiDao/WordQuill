@@ -23,6 +23,7 @@ import { speakWord } from '../utils/speech';
 import {
   getTodayString,
   getSetting,
+  getLeeches,
   exportDatabaseBackup,
   importDatabaseBackup,
   validateBackupShape,
@@ -100,6 +101,10 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
     totalAnswered > 0 ? Math.round((totalCorrectAnswers / totalAnswered) * 100) : 0;
   const masteryPercentage =
     totalWords > 0 ? Math.round((masteredCount / totalWords) * 100) : 0;
+  const leechesCount = React.useMemo(
+    () => getLeeches(words, progressMap).length,
+    [words, progressMap]
+  );
 
   // Category breakdown
   const categoryStats = React.useMemo(() => {
@@ -259,7 +264,7 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
       </div>
 
       {/* Primary Metrics Grid */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+      <div className={`grid grid-cols-2 gap-3 sm:grid-cols-3 ${leechesCount > 0 ? 'lg:grid-cols-6' : 'lg:grid-cols-5'}`}>
         <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-[#8C8272]">
@@ -303,6 +308,23 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           </span>
         </div>
 
+        {leechesCount > 0 && (
+          <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-[#8C8272]">
+                Leeches
+              </span>
+              <AlertCircle className="w-4 h-4 text-[#D98A93]" />
+            </div>
+            <div className="mt-2 font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+              {leechesCount}
+            </div>
+            <span className="text-[11px] font-medium text-[#D98A93]">
+              needs review
+            </span>
+          </div>
+        )}
+
         <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-[#8C8272]">
@@ -318,7 +340,7 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           </span>
         </div>
 
-        <div className="col-span-2 sm:col-span-1 rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
+        <div className={`rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B] ${leechesCount > 0 ? '' : 'col-span-2 sm:col-span-1'}`}>
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-[#8C8272]">
               Total Reviews

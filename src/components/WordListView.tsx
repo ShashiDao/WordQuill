@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import type { WordItem, UserWordProgress, WordStatus } from '../types';
 import { speakWord } from '../utils/speech';
-import { setWordStatus, toggleWordBookmark } from '../db/operations';
+import { setWordStatus, toggleWordBookmark, getLeeches } from '../db/operations';
 
 interface WordListViewProps {
   words: WordItem[];
@@ -56,7 +56,9 @@ export const WordListView: React.FC<WordListViewProps> = ({
   // Filter words
   const filteredWords = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
-    return words.filter((w) => {
+    const sourceWords = selectedStatus === 'leeches' ? getLeeches(words, progressMap) : words;
+
+    return sourceWords.filter((w) => {
       // Category filter
       if (selectedCategory === 'preferred' && preferredCategories && preferredCategories.length > 0) {
         if (!preferredCategories.includes(w.category)) return false;
@@ -81,7 +83,7 @@ export const WordListView: React.FC<WordListViewProps> = ({
 
       return true;
     });
-  }, [words, progressMap, selectedCategory, selectedStatus, searchQuery]);
+  }, [words, progressMap, selectedCategory, selectedStatus, searchQuery, preferredCategories]);
 
   const handlePronounce = (word: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -161,6 +163,7 @@ export const WordListView: React.FC<WordListViewProps> = ({
             { id: 'learning', label: 'Learning' },
             { id: 'mastered', label: 'Mastered' },
             { id: 'starred', label: 'Starred' },
+            { id: 'leeches', label: 'Leeches' },
           ].map((s) => (
             <button
               key={s.id}

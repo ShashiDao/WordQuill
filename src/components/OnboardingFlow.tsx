@@ -9,6 +9,7 @@ import {
   Sparkles,
   BookOpen,
   Target,
+  Bell,
 } from 'lucide-react';
 import { speakWord } from '../utils/speech';
 
@@ -16,6 +17,8 @@ export interface OnboardingPreferences {
   preferredCategories: string[];
   dailyGoal: number;
   speechRate: number;
+  reminderEnabled?: boolean;
+  reminderTime?: string;
 }
 
 interface OnboardingFlowProps {
@@ -83,7 +86,69 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
     return initialPreferences?.speechRate || 0.85;
   });
 
+  const [reminderEnabled, setReminderEnabled] = useState<boolean>(() => {
+    return initialPreferences?.reminderEnabled ?? false;
+  });
+
+  const [reminderTime, setReminderTime] = useState<string>(() => {
+    return initialPreferences?.reminderTime ?? '19:00';
+  });
+
+  const [notificationStatus, setNotificationStatus] = useState<
+    'default' | 'granted' | 'denied' | 'unsupported'
+  >(() => {
+    if (typeof window === 'undefined' || !('Notification' in window)) {
+      return 'unsupported';
+    }
+    if (Notification.permission === 'denied') {
+      return 'denied';
+    }
+    if (Notification.permission === 'granted') {
+      return 'granted';
+    }
+    return 'default';
+  });
+
   const [hasTestedAudio, setHasTestedAudio] = useState(false);
+
+  const formatTime12h = (timeStr: string): string => {
+    if (!timeStr) return '7:00 PM';
+    const [hStr, mStr] = timeStr.split(':');
+    const h = parseInt(hStr, 10);
+    const m = mStr || '00';
+    if (isNaN(h)) return timeStr;
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const displayH = h % 12 || 12;
+    return `${displayH}:${m} ${ampm}`;
+  };
+
+  const handleToggleReminder = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    if (checked) {
+      if (typeof window === 'undefined' || !('Notification' in window)) {
+        setNotificationStatus('unsupported');
+        setReminderEnabled(false);
+        return;
+      }
+
+      try {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+          setNotificationStatus('granted');
+          setReminderEnabled(true);
+        } else {
+          // If denied, silently disable the setting and show a small inline note, don't nag
+          setNotificationStatus('denied');
+          setReminderEnabled(false);
+        }
+      } catch {
+        setNotificationStatus('denied');
+        setReminderEnabled(false);
+      }
+    } else {
+      setReminderEnabled(false);
+    }
+  };
 
   // Toggle single category
   const toggleCategory = (catId: string) => {
@@ -115,6 +180,8 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
           : ALL_CATEGORIES.map((c) => c.id),
       dailyGoal,
       speechRate,
+      reminderEnabled,
+      reminderTime,
     });
   };
 
@@ -123,6 +190,8 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
       preferredCategories: ALL_CATEGORIES.map((c) => c.id),
       dailyGoal: 10,
       speechRate: 0.85,
+      reminderEnabled: false,
+      reminderTime: '19:00',
     });
   };
 
@@ -449,6 +518,77 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
                 Pronunciation test played using native Web Speech API.
               </p>
             )}
+          </div>
+
+          {/* Daily Reminder (Opt-in Notification API) */}
+          <div className="space-y-3 pt-2">
+            <div className="flex items-center justify-between text-xs text-[#8C8272]">
+              <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                Daily Study Reminder
+              </span>
+              <span className="text-[11px] text-[#8C8272]">
+                {reminderEnabled ? `Active at ${formatTime12h(reminderTime)}` : 'Off'}
+              </span>
+            </div>
+
+            <div className="rounded-xl border border-black/[0.08] dark:border-white/[0.08] p-3.5 space-y-3">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <Bell className="w-4 h-4 text-[#D98A93]" />
+                  <div>
+                    <label
+                      htmlFor="reminder-toggle"
+                      className="text-xs font-medium text-[#1B1815] dark:text-[#F6F1E7] cursor-pointer"
+                    >
+                      Remind me daily at
+                    </label>
+                    <p className="text-[11px] text-[#8C8272]">
+                      Foreground notification when opening WordQuill past reminder time
+                    </p>
+                  </div>
+                </div>
+
+                <input
+                  type="checkbox"
+                  id="reminder-toggle"
+                  checked={reminderEnabled}
+                  onChange={handleToggleReminder}
+                  className="h-4 w-4 rounded accent-[#D98A93] cursor-pointer"
+                />
+              </div>
+
+              {reminderEnabled && (
+                <div className="flex items-center gap-2.5 pt-1">
+                  <label htmlFor="reminder-time" className="text-xs text-[#8C8272]">
+                    Time:
+                  </label>
+                  <input
+                    type="time"
+                    id="reminder-time"
+                    value={reminderTime}
+                    onChange={(e) => setReminderTime(e.target.value)}
+                    className="rounded-lg border border-black/[0.12] dark:border-white/[0.12] bg-transparent px-2.5 py-1 text-xs text-[#1B1815] dark:text-[#F6F1E7] focus:border-[#D98A93] focus:outline-none"
+                  />
+                  <span className="text-xs text-[#8C8272]">({formatTime12h(reminderTime)})</span>
+                </div>
+              )}
+
+              {notificationStatus === 'denied' && (
+                <p className="text-[11px] text-[#D98A93]">
+                  Notification permission was denied in your browser settings.
+                </p>
+              )}
+
+              {notificationStatus === 'unsupported' && (
+                <p className="text-[11px] text-[#8C8272]">
+                  Notifications are not supported in this browser.
+                </p>
+              )}
+
+              <p className="text-[11px] text-[#8C8272] leading-relaxed">
+                Note: Without a background push server, notifications check during open app sessions.
+              </p>
+            </div>
           </div>
 
           <div className="pt-4 flex items-center justify-between gap-3">
