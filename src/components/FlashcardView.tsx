@@ -26,6 +26,7 @@ interface FlashcardViewProps {
   words: WordItem[];
   progressMap: Map<string, UserWordProgress>;
   speechRate: number;
+  preferredCategories?: string[];
   onDataUpdated: () => void;
   onNavigateToQuiz?: () => void;
 }
@@ -34,10 +35,16 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   words,
   progressMap,
   speechRate,
+  preferredCategories,
   onDataUpdated,
   onNavigateToQuiz,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
+    if (preferredCategories && preferredCategories.length > 0 && preferredCategories.length < 5) {
+      return preferredCategories.length === 1 ? preferredCategories[0] : 'preferred';
+    }
+    return 'all';
+  });
   const [selectedStatusFilter, setSelectedStatusFilter] = useState<string>('learning');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
@@ -48,8 +55,12 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   const categories = useMemo(() => {
     const set = new Set<string>();
     words.forEach((w) => set.add(w.category));
-    return ['all', ...Array.from(set)];
-  }, [words]);
+    const allCats = Array.from(set);
+    if (preferredCategories && preferredCategories.length > 0 && preferredCategories.length < allCats.length) {
+      return ['preferred', 'all', ...allCats];
+    }
+    return ['all', ...allCats];
+  }, [words, preferredCategories]);
 
   // Filter words based on active category and status
   const filteredWords = useMemo(() => {
@@ -69,11 +80,14 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
       pool = words;
     }
 
-    if (selectedCategory !== 'all') {
+    if (selectedCategory === 'preferred' && preferredCategories && preferredCategories.length > 0) {
+      return pool.filter((w) => preferredCategories.includes(w.category));
+    }
+    if (selectedCategory !== 'all' && selectedCategory !== 'preferred') {
       return pool.filter((w) => w.category === selectedCategory);
     }
     return pool;
-  }, [words, progressMap, selectedCategory, selectedStatusFilter]);
+  }, [words, progressMap, selectedCategory, selectedStatusFilter, preferredCategories]);
 
   // Ensure currentIndex stays within bounds
   useEffect(() => {
@@ -202,7 +216,11 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                   : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
               }`}
             >
-              {cat === 'all' ? 'All Categories' : cat}
+              {cat === 'all'
+                ? 'All Categories'
+                : cat === 'preferred'
+                ? `Preferred (${preferredCategories?.length || 0})`
+                : cat}
             </button>
           ))}
         </div>

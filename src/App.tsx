@@ -4,10 +4,13 @@ import rawWords from './data/words.json';
 import { Header } from './components/Header';
 import { Navigation } from './components/Navigation';
 import { OfflineIndicator } from './components/OfflineIndicator';
+import { OnboardingFlow, type OnboardingPreferences } from './components/OnboardingFlow';
 import {
   getAllWordProgressMap,
   calculateStreak,
   getTodayString,
+  getSetting,
+  setSetting,
 } from './db/operations';
 import { db } from './db';
 
@@ -36,6 +39,54 @@ export default function App() {
     return saved ? parseFloat(saved) : 0.85;
   });
 
+  // Settings & Onboarding state
+  const [isOnboardingChecking, setIsOnboardingChecking] = useState<boolean>(true);
+  const [isOnboardingNeeded, setIsOnboardingNeeded] = useState<boolean>(false);
+  const [showPreferences, setShowPreferences] = useState<boolean>(false);
+  const [preferredCategories, setPreferredCategories] = useState<string[]>([
+    'advanced',
+    'literary',
+    'academic',
+    'eloquence',
+    'everyday',
+  ]);
+  const [dailyGoal, setDailyGoal] = useState<number>(10);
+
+  // Check onboarding on initial launch
+  useEffect(() => {
+    async function checkOnboardingAndSettings() {
+      try {
+        const completed = await getSetting<boolean | undefined>('onboardingComplete', undefined);
+        const cats = await getSetting<string[]>('preferredCategories', [
+          'advanced',
+          'literary',
+          'academic',
+          'eloquence',
+          'everyday',
+        ]);
+        const goal = await getSetting<number>('dailyGoal', 10);
+        const storedSpeech = await getSetting<number>('speechRate', speechRate);
+
+        setPreferredCategories(cats);
+        setDailyGoal(goal);
+        if (storedSpeech) setSpeechRate(storedSpeech);
+
+        if (completed === undefined) {
+          setIsOnboardingNeeded(true);
+        } else {
+          setIsOnboardingNeeded(false);
+        }
+      } catch (err) {
+        console.warn('Error reading settings from database:', err);
+        setIsOnboardingNeeded(false);
+      } finally {
+        setIsOnboardingChecking(false);
+      }
+    }
+
+    checkOnboardingAndSettings();
+  }, []);
+
   // Dark/Light Theme management
   const [isDark, setIsDark] = useState<boolean>(() => {
     const saved = localStorage.getItem('wordquill_theme');
@@ -61,6 +112,24 @@ export default function App() {
   const handleSpeechRateChange = (rate: number) => {
     setSpeechRate(rate);
     localStorage.setItem('wordquill_speech_rate', rate.toString());
+    setSetting('speechRate', rate);
+  };
+
+  const handleCompleteOnboarding = async (prefs: OnboardingPreferences) => {
+    try {
+      await setSetting('onboardingComplete', true);
+      await setSetting('preferredCategories', prefs.preferredCategories);
+      await setSetting('dailyGoal', prefs.dailyGoal);
+      await setSetting('speechRate', prefs.speechRate);
+      setPreferredCategories(prefs.preferredCategories);
+      setDailyGoal(prefs.dailyGoal);
+      setSpeechRate(prefs.speechRate);
+      localStorage.setItem('wordquill_speech_rate', prefs.speechRate.toString());
+    } catch (err) {
+      console.warn('Failed to save settings:', err);
+    }
+    setIsOnboardingNeeded(false);
+    setShowPreferences(false);
   };
 
   // Load Dexie data
@@ -88,6 +157,30 @@ export default function App() {
     setCurrentTab('flashcards');
   };
 
+  // If checking onboarding status, render subtle loader
+  if (isOnboardingChecking) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#F6F1E7] dark:bg-[#1B1815]">
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#D98A93] border-t-transparent" />
+      </div>
+    );
+  }
+
+  // First launch onboarding flow: rendered before the main app shell
+  if (isOnboardingNeeded) {
+    return (
+      <OnboardingFlow
+        isFirstLaunch={true}
+        initialPreferences={{
+          preferredCategories,
+          dailyGoal,
+          speechRate,
+        }}
+        onComplete={handleCompleteOnboarding}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#F6F1E7] text-[#1B1815] dark:bg-[#1B1815] dark:text-[#F6F1E7] flex flex-col font-sans transition-colors duration-200">
       {/* Offline Alert Banner */}
@@ -102,6 +195,7 @@ export default function App() {
         streak={streak}
         speechRate={speechRate}
         onChangeSpeechRate={handleSpeechRateChange}
+        onOpenPreferences={() => setShowPreferences(true)}
       />
 
       {/* Main Content Area */}
@@ -121,6 +215,7 @@ export default function App() {
               words={words}
               progressMap={progressMap}
               speechRate={speechRate}
+              preferredCategories={preferredCategories}
               onDataUpdated={loadData}
               onNavigateToQuiz={() => setCurrentTab('quiz')}
             />
@@ -131,6 +226,7 @@ export default function App() {
               words={words}
               progressMap={progressMap}
               speechRate={speechRate}
+              preferredCategories={preferredCategories}
               onDataUpdated={loadData}
               onSelectWordForFlashcard={handleSelectWordForFlashcards}
             />
@@ -141,6 +237,7 @@ export default function App() {
               words={words}
               progressMap={progressMap}
               speechRate={speechRate}
+              preferredCategories={preferredCategories}
               onDataUpdated={loadData}
               onSelectWordForFlashcards={handleSelectWordForFlashcards}
             />
@@ -153,6 +250,7 @@ export default function App() {
               streak={streak}
               todayProgress={todayProgress}
               speechRate={speechRate}
+              dailyGoal={dailyGoal}
               onChangeSpeechRate={handleSpeechRateChange}
               onDataUpdated={loadData}
             />
@@ -162,6 +260,20 @@ export default function App() {
 
       {/* Mobile Bottom Navigation */}
       <Navigation currentTab={currentTab} onTabChange={setCurrentTab} />
+
+      {/* Preferences Modal (reopens 3-step setup in editable form) */}
+      {showPreferences && (
+        <OnboardingFlow
+          isFirstLaunch={false}
+          initialPreferences={{
+            preferredCategories,
+            dailyGoal,
+            speechRate,
+          }}
+          onComplete={handleCompleteOnboarding}
+          onClose={() => setShowPreferences(false)}
+        />
+      )}
     </div>
   );
 }

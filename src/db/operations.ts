@@ -407,6 +407,6 @@ export async function getSetting<T>(key: string, defaultValue: T): Promise<T> {
   return setting.value as T;
 }
 
-export async function setSetting(key: string, value: string | number | boolean): Promise<void> {
+export async function setSetting(key: string, value: string | number | boolean | string[] | any): Promise<void> {
   await db.settings.put({ key, value });
 }

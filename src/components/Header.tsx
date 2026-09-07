@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feather, Moon, Sun, Flame, Volume2 } from 'lucide-react';
+import { Feather, Moon, Sun, Flame, Volume2, Settings } from 'lucide-react';
 import { PWAInstallButton } from './PWAInstallButton';
 import type { TabType } from '../types';
 
@@ -11,6 +11,7 @@ interface HeaderProps {
   streak: number;
   speechRate: number;
   onChangeSpeechRate: (rate: number) => void;
+  onOpenPreferences: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -21,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
   streak,
   speechRate,
   onChangeSpeechRate,
+  onOpenPreferences,
 }) => {
   return (
     <header className="sticky top-0 z-40 border-b border-black/[0.08] bg-[#F6F1E7]/95 backdrop-blur-sm dark:border-white/[0.08] dark:bg-[#1B1815]/95 transition-colors">
@@ -128,6 +130,17 @@ export const Header: React.FC<HeaderProps> = ({
             aria-label="Toggle dark mode"
           >
             {isDark ? <Sun className="w-4 h-4 text-[#C9924A]" /> : <Moon className="w-4 h-4 text-[#8C8272]" />}
+          </button>
+
+          {/* Preferences */}
+          <button
+            id="preferences-btn"
+            onClick={onOpenPreferences}
+            className="rounded-lg border border-black/[0.08] p-1.5 text-[#8C8272] hover:text-[#1B1815] dark:border-white/[0.08] dark:hover:text-[#F6F1E7] transition-colors cursor-pointer"
+            aria-label="Preferences"
+            title="Preferences & Study Settings"
+          >
+            <Settings className="w-4 h-4" />
           </button>
         </div>
       </div>

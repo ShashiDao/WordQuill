@@ -33,7 +33,7 @@ export interface DailyProgress {
 
 export interface AppSetting {
   key: string;
-  value: string | number | boolean;
+  value: string | number | boolean | string[] | any;
 }
 
 export type TabType = 'flashcards' | 'quiz' | 'words' | 'progress';

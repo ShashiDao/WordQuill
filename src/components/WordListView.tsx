@@ -19,6 +19,7 @@ interface WordListViewProps {
   words: WordItem[];
   progressMap: Map<string, UserWordProgress>;
   speechRate: number;
+  preferredCategories?: string[];
   onDataUpdated: () => void;
   onSelectWordForFlashcards: (word: WordItem) => void;
 }
@@ -27,11 +28,17 @@ export const WordListView: React.FC<WordListViewProps> = ({
   words,
   progressMap,
   speechRate,
+  preferredCategories,
   onDataUpdated,
   onSelectWordForFlashcards,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    if (preferredCategories && preferredCategories.length > 0 && preferredCategories.length < 5) {
+      return preferredCategories.length === 1 ? preferredCategories[0] : 'preferred';
+    }
+    return 'all';
+  });
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [expandedWordId, setExpandedWordId] = useState<string | null>(null);
 
@@ -39,15 +46,21 @@ export const WordListView: React.FC<WordListViewProps> = ({
   const categories = useMemo(() => {
     const set = new Set<string>();
     words.forEach((w) => set.add(w.category));
-    return ['all', ...Array.from(set)];
-  }, [words]);
+    const allCats = Array.from(set);
+    if (preferredCategories && preferredCategories.length > 0 && preferredCategories.length < allCats.length) {
+      return ['preferred', 'all', ...allCats];
+    }
+    return ['all', ...allCats];
+  }, [words, preferredCategories]);
 
   // Filter words
   const filteredWords = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
     return words.filter((w) => {
       // Category filter
-      if (selectedCategory !== 'all' && w.category !== selectedCategory) {
+      if (selectedCategory === 'preferred' && preferredCategories && preferredCategories.length > 0) {
+        if (!preferredCategories.includes(w.category)) return false;
+      } else if (selectedCategory !== 'all' && selectedCategory !== 'preferred' && w.category !== selectedCategory) {
         return false;
       }
 
@@ -130,7 +143,11 @@ export const WordListView: React.FC<WordListViewProps> = ({
                 : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
             }`}
           >
-            {cat === 'all' ? 'All Categories' : cat}
+            {cat === 'all'
+              ? 'All Categories'
+              : cat === 'preferred'
+              ? `Preferred (${preferredCategories?.length || 0})`
+              : cat}
           </button>
         ))}
       </div>

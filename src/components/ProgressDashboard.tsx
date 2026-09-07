@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Flame,
   CheckCircle2,
@@ -16,7 +16,7 @@ import {
 import type { WordItem, UserWordProgress, DailyProgress } from '../types';
 import { db } from '../db';
 import { speakWord } from '../utils/speech';
-import { getTodayString } from '../db/operations';
+import { getTodayString, getSetting } from '../db/operations';
 
 interface ProgressDashboardProps {
   words: WordItem[];
@@ -24,6 +24,7 @@ interface ProgressDashboardProps {
   streak: number;
   todayProgress: DailyProgress | null;
   speechRate: number;
+  dailyGoal?: number;
   onChangeSpeechRate: (rate: number) => void;
   onDataUpdated: () => void;
 }
@@ -34,12 +35,21 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   streak,
   todayProgress,
   speechRate,
+  dailyGoal: propDailyGoal,
   onChangeSpeechRate,
   onDataUpdated,
 }) => {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
-  const [dailyGoal, setDailyGoal] = useState<number>(10);
+  const [dailyGoal, setDailyGoal] = useState<number>(propDailyGoal || 10);
+
+  useEffect(() => {
+    if (propDailyGoal !== undefined) {
+      setDailyGoal(propDailyGoal);
+    } else {
+      getSetting<number>('dailyGoal', 10).then((val) => setDailyGoal(val));
+    }
+  }, [propDailyGoal]);
 
   // Stats calculation
   const totalWords = words.length;

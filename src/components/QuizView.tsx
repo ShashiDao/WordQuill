@@ -18,6 +18,7 @@ interface QuizViewProps {
   words: WordItem[];
   progressMap: Map<string, UserWordProgress>;
   speechRate: number;
+  preferredCategories?: string[];
   onDataUpdated: () => void;
   onSelectWordForFlashcard?: (word: WordItem) => void;
 }
@@ -26,9 +27,18 @@ export const QuizView: React.FC<QuizViewProps> = ({
   words,
   progressMap,
   speechRate,
+  preferredCategories,
   onDataUpdated,
   onSelectWordForFlashcard,
 }) => {
+  // Category selection: defaults to preferred categories if set, otherwise 'all'
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
+    if (preferredCategories && preferredCategories.length > 0 && preferredCategories.length < 5) {
+      return preferredCategories.length === 1 ? preferredCategories[0] : 'preferred';
+    }
+    return 'all';
+  });
+
   // Source selection: 'learning' | 'all' | 'bookmarked'
   const [sourceFilter, setSourceFilter] = useState<'learning' | 'all' | 'bookmarked'>('learning');
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
@@ -41,17 +51,35 @@ export const QuizView: React.FC<QuizViewProps> = ({
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [questionCount, setQuestionCount] = useState<number>(10);
 
-  // Eligible pool of words based on filter: Learning uses getDueWords, All & Bookmarked bypass due queue
+  // Extract available categories
+  const categories = useMemo(() => {
+    const set = new Set<string>();
+    words.forEach((w) => set.add(w.category));
+    const allCats = Array.from(set);
+    if (preferredCategories && preferredCategories.length > 0 && preferredCategories.length < allCats.length) {
+      return ['preferred', 'all', ...allCats];
+    }
+    return ['all', ...allCats];
+  }, [words, preferredCategories]);
+
+  // Eligible pool of words based on category and deck filter
   const eligibleWords = useMemo(() => {
+    let catPool = words;
+    if (selectedCategory === 'preferred' && preferredCategories && preferredCategories.length > 0) {
+      catPool = words.filter((w) => preferredCategories.includes(w.category));
+    } else if (selectedCategory !== 'all' && selectedCategory !== 'preferred') {
+      catPool = words.filter((w) => w.category === selectedCategory);
+    }
+
     if (sourceFilter === 'learning') {
-      const due = getDueWords(words, progressMap);
-      return due.length > 0 ? due : words;
+      const due = getDueWords(catPool, progressMap);
+      return due.length >= 4 ? due : catPool;
     }
     if (sourceFilter === 'bookmarked') {
-      return words.filter((w) => progressMap.get(w.id)?.isBookmarked);
+      return catPool.filter((w) => progressMap.get(w.id)?.isBookmarked);
     }
-    return words;
-  }, [words, progressMap, sourceFilter]);
+    return catPool;
+  }, [words, progressMap, sourceFilter, selectedCategory, preferredCategories]);
 
   // Generate quiz questions
   const startNewQuiz = (customPool?: WordItem[]) => {
@@ -181,7 +209,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
     if (eligibleWords.length >= 4) {
       startNewQuiz();
     }
-  }, [sourceFilter, eligibleWords.length, questionCount]);
+  }, [sourceFilter, selectedCategory, eligibleWords.length, questionCount]);
 
   const currentQ = questions[currentIndex] as QuizQuestion | undefined;
 
@@ -368,6 +396,27 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
   return (
     <div className="mx-auto max-w-xl pb-24 pt-4 px-4">
+      {/* Category Horizontal Scrolling Tabs */}
+      <div className="mb-3 flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08] mask-edge-fade">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setSelectedCategory(cat)}
+            className={`pb-1 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer ${
+              selectedCategory === cat
+                ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
+                : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
+            }`}
+          >
+            {cat === 'all'
+              ? 'All Categories'
+              : cat === 'preferred'
+              ? `Preferred (${preferredCategories?.length || 0})`
+              : cat}
+          </button>
+        ))}
+      </div>
+
       {/* Quiz Source Filter & Length Selector */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-black/[0.08] pb-3 dark:border-white/[0.08]">
         <div className="flex items-center gap-3">
