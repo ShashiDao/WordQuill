@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import {
   CheckCircle2,
   XCircle,
@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import type { WordItem, UserWordProgress, QuizQuestion } from '../types';
 import { speakWord } from '../utils/speech';
+import { shuffle } from '../utils/shuffle';
 import { recordQuizSession, getDueWords, isLeech } from '../db/operations';
 
 const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -65,30 +66,46 @@ export const QuizView: React.FC<QuizViewProps> = ({
     return ['all', ...allCats];
   }, [words, preferredCategories]);
 
-  // Eligible pool of words based on category and deck filter
-  const eligibleWords = useMemo(() => {
+  // Helper to compute pool snapshot for a quiz round
+  const getEligiblePoolSnapshot = (
+    cat: string,
+    source: 'learning' | 'all' | 'bookmarked',
+    pMap: Map<string, UserWordProgress>
+  ): WordItem[] => {
     let catPool = words;
-    if (selectedCategory === 'preferred' && preferredCategories && preferredCategories.length > 0) {
+    if (cat === 'preferred' && preferredCategories && preferredCategories.length > 0) {
       catPool = words.filter((w) => preferredCategories.includes(w.category));
-    } else if (selectedCategory !== 'all' && selectedCategory !== 'preferred') {
-      catPool = words.filter((w) => w.category === selectedCategory);
+    } else if (cat !== 'all' && cat !== 'preferred') {
+      catPool = words.filter((w) => w.category === cat);
     }
 
-    if (sourceFilter === 'learning') {
-      const due = getDueWords(catPool, progressMap);
+    if (source === 'learning') {
+      const due = getDueWords(catPool, pMap);
       return due.length >= 4 ? due : catPool;
     }
-    if (sourceFilter === 'bookmarked') {
-      return catPool.filter((w) => progressMap.get(w.id)?.isBookmarked);
+    if (source === 'bookmarked') {
+      return catPool.filter((w) => pMap.get(w.id)?.isBookmarked);
     }
     return catPool;
-  }, [words, progressMap, sourceFilter, selectedCategory, preferredCategories]);
+  };
+
+  const quizPoolRef = useRef<WordItem[]>([]);
+  const hasInitializedRef = useRef(false);
+  const prevFilterRef = useRef({ selectedCategory, sourceFilter, questionCount });
 
   // Generate quiz questions
   const startNewQuiz = (customPool?: WordItem[]) => {
-    const pool = customPool || eligibleWords;
+    const pool: WordItem[] = customPool || getEligiblePoolSnapshot(selectedCategory, sourceFilter, progressMap);
+    quizPoolRef.current = pool;
+
     if (pool.length < 4) {
-      // If pool has fewer than 4, fallback to all words so 4 options can be generated
+      setQuestions([]);
+      setCurrentIndex(0);
+      setSelectedOption(null);
+      setTypedAnswer('');
+      setIsAnswered(false);
+      setSessionResults([]);
+      setIsCompleted(false);
       return;
     }
 
@@ -142,17 +159,15 @@ export const QuizView: React.FC<QuizViewProps> = ({
       const chosenIds = new Set(sampledPriority.map((w) => w.id));
 
       // Fill remaining slots randomly from the non-leech pool
-      const remainingPool = quizPool
-        .filter((w) => !chosenIds.has(w.id))
-        .sort(() => Math.random() - 0.5);
+      const remainingPool = shuffle(quizPool.filter((w) => !chosenIds.has(w.id)));
 
       const needed = selectedCount - sampledPriority.length;
       const sampledRemaining = remainingPool.slice(0, needed);
 
-      chosenWords = [...sampledPriority, ...sampledRemaining].sort(() => Math.random() - 0.5);
+      chosenWords = shuffle<WordItem>([...sampledPriority, ...sampledRemaining]);
     } else {
       // Shuffle pool
-      const shuffled = [...pool].sort(() => Math.random() - 0.5);
+      const shuffled = shuffle<WordItem>(pool);
       chosenWords = shuffled.slice(0, selectedCount);
     }
 
@@ -210,9 +225,9 @@ export const QuizView: React.FC<QuizViewProps> = ({
         const correctSynonym = candidateSynonyms[Math.floor(Math.random() * candidateSynonyms.length)];
 
         // 3 distractors: synonyms/words from other unrelated words
-        const unrelatedWords = words
-          .filter((w) => w.id !== target.id && w.word.toLowerCase() !== target.word.toLowerCase())
-          .sort(() => Math.random() - 0.5);
+        const unrelatedWords = shuffle<WordItem>(
+          words.filter((w) => w.id !== target.id && w.word.toLowerCase() !== target.word.toLowerCase())
+        );
 
         const targetSynSet = new Set(candidateSynonyms.map((s) => s.toLowerCase()));
         targetSynSet.add(target.word.toLowerCase());
@@ -237,7 +252,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
           }
         }
 
-        const options = [correctSynonym, ...distractorOptions].sort(() => Math.random() - 0.5);
+        const options = shuffle<string>([correctSynonym, ...distractorOptions]);
 
         return {
           id: `q-${target.id}-${idx}`,
@@ -257,21 +272,13 @@ export const QuizView: React.FC<QuizViewProps> = ({
       let distractors: WordItem[];
 
       if (sameCategoryWords.length >= 4) {
-        distractors = sameCategoryWords
-          .filter((w) => w.id !== target.id)
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3);
+        distractors = shuffle<WordItem>(sameCategoryWords.filter((w) => w.id !== target.id)).slice(0, 3);
       } else {
-        distractors = words
-          .filter((w) => w.id !== target.id)
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3);
+        distractors = shuffle<WordItem>(words.filter((w) => w.id !== target.id)).slice(0, 3);
       }
 
       if (assignedType === 'word_to_def') {
-        const options = [target.definition, ...distractors.map((d) => d.definition)].sort(
-          () => Math.random() - 0.5
-        );
+        const options = shuffle<string>([target.definition, ...distractors.map((d) => d.definition)]);
         return {
           id: `q-${target.id}-${idx}`,
           questionType: 'word_to_def',
@@ -283,9 +290,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
           wordItem: target,
         };
       } else {
-        const options = [target.word, ...distractors.map((d) => d.word)].sort(
-          () => Math.random() - 0.5
-        );
+        const options = shuffle([target.word, ...distractors.map((d) => d.word)]);
         return {
           id: `q-${target.id}-${idx}`,
           questionType: 'def_to_word',
@@ -308,12 +313,29 @@ export const QuizView: React.FC<QuizViewProps> = ({
     setIsCompleted(false);
   };
 
-  // Initialize or re-initialize quiz on filter change
+  // Initialize quiz on mount or re-initialize on explicit filter change
   useEffect(() => {
-    if (eligibleWords.length >= 4) {
+    const filterChanged =
+      prevFilterRef.current.selectedCategory !== selectedCategory ||
+      prevFilterRef.current.sourceFilter !== sourceFilter ||
+      prevFilterRef.current.questionCount !== questionCount;
+
+    prevFilterRef.current = { selectedCategory, sourceFilter, questionCount };
+
+    // Explicit filter change: restart quiz with new filter
+    if (filterChanged) {
+      if (words.length >= 4) {
+        startNewQuiz();
+      }
+      return;
+    }
+
+    // Initial mount: start quiz once words are ready
+    if (!hasInitializedRef.current && words.length >= 4) {
+      hasInitializedRef.current = true;
       startNewQuiz();
     }
-  }, [sourceFilter, selectedCategory, eligibleWords.length, questionCount]);
+  }, [sourceFilter, selectedCategory, questionCount, words.length]);
 
   const currentQ = questions[currentIndex] as QuizQuestion | undefined;
 
@@ -373,39 +395,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
   const scoreCount = sessionResults.filter((r) => r.isCorrect).length;
   const missedWords = sessionResults.filter((r) => !r.isCorrect).map((r) => r.word);
 
-  // If not enough words in current filter
-  if (eligibleWords.length < 4) {
-    return (
-      <div className="mx-auto max-w-md pb-24 pt-8 px-4 text-center">
-        <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-8 dark:border-white/[0.08] dark:bg-[#221E1B]">
-          <HelpCircle className="mx-auto h-10 w-10 text-[#C9924A]" />
-          <h3 className="mt-4 text-lg font-medium text-[#1B1815] dark:text-[#F6F1E7]">
-            Need at least 4 words
-          </h3>
-          <p className="mt-2 text-xs text-[#8C8272]">
-            {sourceFilter === 'learning'
-              ? 'You have not marked enough words as "Learning" yet. Browse the word list or flashcards to add words.'
-              : sourceFilter === 'bookmarked'
-              ? 'You have fewer than 4 bookmarked words. Star more words to quiz from your favorites.'
-              : 'Add more words to test your vocabulary.'}
-          </p>
-
-          <div className="mt-6 flex flex-col gap-2">
-            {sourceFilter !== 'all' && (
-              <button
-                onClick={() => setSourceFilter('all')}
-                className="w-full rounded-xl border border-[#D98A93] py-2.5 text-xs font-medium text-[#D98A93] hover:bg-[#D98A93]/[0.08] cursor-pointer"
-              >
-                Quiz From All Deck ({words.length} words)
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Quiz Summary Screen
+  // Quiz Summary Screen (rendered when session completes, immune to subsequent pool recomputations)
   if (isCompleted) {
     const accuracy = Math.round((scoreCount / questions.length) * 100);
     return (
@@ -435,7 +425,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
                 <div className="text-xs font-medium text-[#8C8272]">
                   Score
                 </div>
-              </div>
+                </div>
               <div className="h-8 w-px bg-black/[0.08] dark:bg-white/[0.08]" />
               <div className="text-center">
                 <div className="font-fraunces text-3xl font-medium text-[#8FB996]">
@@ -511,6 +501,38 @@ export const QuizView: React.FC<QuizViewProps> = ({
                 className="flex-1 rounded-xl border border-[#D98A93] py-2.5 text-xs font-medium text-[#D98A93] hover:bg-[#D98A93]/[0.08] cursor-pointer transition"
               >
                 Retry Missed ({missedWords.length})
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // If not enough words in current filter and no active quiz
+  if (questions.length === 0) {
+    return (
+      <div className="mx-auto max-w-md pb-24 pt-8 px-4 text-center">
+        <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-8 dark:border-white/[0.08] dark:bg-[#221E1B]">
+          <HelpCircle className="mx-auto h-10 w-10 text-[#C9924A]" />
+          <h3 className="mt-4 text-lg font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+            Need at least 4 words
+          </h3>
+          <p className="mt-2 text-xs text-[#8C8272]">
+            {sourceFilter === 'learning'
+              ? 'You have not marked enough words as "Learning" yet. Browse the word list or flashcards to add words.'
+              : sourceFilter === 'bookmarked'
+              ? 'You have fewer than 4 bookmarked words. Star more words to quiz from your favorites.'
+              : 'Add more words to test your vocabulary.'}
+          </p>
+
+          <div className="mt-6 flex flex-col gap-2">
+            {sourceFilter !== 'all' && (
+              <button
+                onClick={() => setSourceFilter('all')}
+                className="w-full rounded-xl border border-[#D98A93] py-2.5 text-xs font-medium text-[#D98A93] hover:bg-[#D98A93]/[0.08] cursor-pointer"
+              >
+                Quiz From All Deck ({words.length} words)
               </button>
             )}
           </div>

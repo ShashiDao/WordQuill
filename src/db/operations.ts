@@ -616,6 +616,10 @@ export async function importDatabaseBackup(data: BackupData): Promise<{
   let settingsCount = 0;
 
   await db.transaction('rw', [db.savedWords, db.progress, db.settings], async () => {
+    await db.savedWords.clear();
+    await db.progress.clear();
+    await db.settings.clear();
+
     if (Array.isArray(data.savedWords) && data.savedWords.length > 0) {
       await db.savedWords.bulkPut(data.savedWords);
       wordsCount = data.savedWords.length;

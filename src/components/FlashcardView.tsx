@@ -27,6 +27,8 @@ interface FlashcardViewProps {
   progressMap: Map<string, UserWordProgress>;
   speechRate: number;
   preferredCategories?: string[];
+  initialWordId?: string | null;
+  onClearInitialWord?: () => void;
   onDataUpdated: () => void;
   onNavigateToQuiz?: () => void;
 }
@@ -36,6 +38,8 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   progressMap,
   speechRate,
   preferredCategories,
+  initialWordId,
+  onClearInitialWord,
   onDataUpdated,
   onNavigateToQuiz,
 }) => {
@@ -74,32 +78,65 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
     return ['all', ...allCats];
   }, [words, preferredCategories]);
 
-  // Filter words based on active category and status
-  const filteredWords = useMemo(() => {
-    let pool: WordItem[];
-    if (selectedStatusFilter === 'learning') {
-      pool = getDueWords(words, progressMap);
-    } else if (selectedStatusFilter === 'starred') {
-      pool = words.filter((w) => progressMap.get(w.id)?.isBookmarked);
-    } else if (selectedStatusFilter === 'mastered') {
-      pool = words.filter((w) => progressMap.get(w.id)?.status === 'mastered');
-    } else if (selectedStatusFilter === 'new') {
-      pool = words.filter((w) => {
-        const prog = progressMap.get(w.id);
-        return !prog || prog.status === 'new';
-      });
-    } else {
-      pool = words;
-    }
+  // Compute word pool snapshot for active category & status filter
+  const computeWordPool = useCallback(
+    (cat: string, statusFilter: string, pMap: Map<string, UserWordProgress>): WordItem[] => {
+      let pool: WordItem[];
+      if (statusFilter === 'learning') {
+        pool = getDueWords(words, pMap);
+      } else if (statusFilter === 'starred') {
+        pool = words.filter((w) => pMap.get(w.id)?.isBookmarked);
+      } else if (statusFilter === 'mastered') {
+        pool = words.filter((w) => pMap.get(w.id)?.status === 'mastered');
+      } else if (statusFilter === 'new') {
+        pool = words.filter((w) => {
+          const prog = pMap.get(w.id);
+          return !prog || prog.status === 'new';
+        });
+      } else {
+        pool = words;
+      }
 
-    if (selectedCategory === 'preferred' && preferredCategories && preferredCategories.length > 0) {
-      return pool.filter((w) => preferredCategories.includes(w.category));
+      if (cat === 'preferred' && preferredCategories && preferredCategories.length > 0) {
+        return pool.filter((w) => preferredCategories.includes(w.category));
+      }
+      if (cat !== 'all' && cat !== 'preferred') {
+        return pool.filter((w) => w.category === cat);
+      }
+      return pool;
+    },
+    [words, preferredCategories]
+  );
+
+  // Snapshot word list: immune to background progressMap updates during active study
+  const [cardPool, setCardPool] = useState<WordItem[]>(() =>
+    computeWordPool(selectedCategory, selectedStatusFilter, progressMap)
+  );
+
+  // Re-snapshot pool only when category, status filter, or words change
+  useEffect(() => {
+    setCardPool(computeWordPool(selectedCategory, selectedStatusFilter, progressMap));
+    setCurrentIndex(0);
+    setIsFlipped(false);
+  }, [selectedCategory, selectedStatusFilter, computeWordPool]);
+
+  // Navigate to specific word requested from other views (e.g. WordListView / Quiz)
+  useEffect(() => {
+    if (!initialWordId) return;
+    const targetWord = words.find((w) => w.id === initialWordId);
+    if (targetWord) {
+      setSelectedCategory('all');
+      setSelectedStatusFilter('all');
+      const allPool = words;
+      setCardPool(allPool);
+      const targetIndex = allPool.findIndex((w) => w.id === initialWordId);
+      setCurrentIndex(targetIndex >= 0 ? targetIndex : 0);
+      setIsFlipped(false);
+      onClearInitialWord?.();
     }
-    if (selectedCategory !== 'all' && selectedCategory !== 'preferred') {
-      return pool.filter((w) => w.category === selectedCategory);
-    }
-    return pool;
-  }, [words, progressMap, selectedCategory, selectedStatusFilter, preferredCategories]);
+  }, [initialWordId, words, onClearInitialWord]);
+
+  const filteredWords = cardPool;
 
   // Ensure currentIndex stays within bounds
   useEffect(() => {
@@ -107,7 +144,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
       setCurrentIndex(0);
     }
     setIsFlipped(false);
-  }, [filteredWords.length, selectedCategory, selectedStatusFilter]);
+  }, [filteredWords.length]);
 
   const currentWord = filteredWords[currentIndex] as WordItem | undefined;
   const currentProgress = currentWord ? progressMap.get(currentWord.id) : undefined;

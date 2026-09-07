@@ -39,8 +39,12 @@ export default function App() {
   const [freezeAvailable, setFreezeAvailable] = useState<boolean>(true);
   const [todayProgress, setTodayProgress] = useState<DailyProgress | null>(null);
   const [speechRate, setSpeechRate] = useState<number>(() => {
-    const saved = localStorage.getItem('wordquill_speech_rate');
-    return saved ? parseFloat(saved) : 0.85;
+    try {
+      const saved = localStorage.getItem('wordquill_speech_rate');
+      return saved ? parseFloat(saved) : 0.85;
+    } catch {
+      return 0.85;
+    }
   });
 
   // Settings & Onboarding state
@@ -61,6 +65,7 @@ export default function App() {
   // Native PWA install prompt & iOS install tip states
   const [installPromptEvent, setInstallPromptEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [showIosTip, setShowIosTip] = useState<boolean>(false);
+  const [pendingFlashcardWordId, setPendingFlashcardWordId] = useState<string | null>(null);
 
   // Capture native beforeinstallprompt on mount
   useEffect(() => {
@@ -199,19 +204,31 @@ export default function App() {
 
   // Dark/Light Theme management
   const [isDark, setIsDark] = useState<boolean>(() => {
-    const saved = localStorage.getItem('wordquill_theme');
-    if (saved) return saved === 'dark';
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    try {
+      const saved = localStorage.getItem('wordquill_theme');
+      if (saved) return saved === 'dark';
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    } catch {
+      return false;
+    }
   });
 
   useEffect(() => {
     const root = document.documentElement;
     if (isDark) {
       root.classList.add('dark');
-      localStorage.setItem('wordquill_theme', 'dark');
+      try {
+        localStorage.setItem('wordquill_theme', 'dark');
+      } catch {
+        // ignore
+      }
     } else {
       root.classList.remove('dark');
-      localStorage.setItem('wordquill_theme', 'light');
+      try {
+        localStorage.setItem('wordquill_theme', 'light');
+      } catch {
+        // ignore
+      }
     }
   }, [isDark]);
 
@@ -221,7 +238,11 @@ export default function App() {
 
   const handleSpeechRateChange = (rate: number) => {
     setSpeechRate(rate);
-    localStorage.setItem('wordquill_speech_rate', rate.toString());
+    try {
+      localStorage.setItem('wordquill_speech_rate', rate.toString());
+    } catch {
+      // ignore
+    }
     setSetting('speechRate', rate);
   };
 
@@ -242,7 +263,11 @@ export default function App() {
       setPreferredCategories(prefs.preferredCategories);
       setDailyGoal(prefs.dailyGoal);
       setSpeechRate(prefs.speechRate);
-      localStorage.setItem('wordquill_speech_rate', prefs.speechRate.toString());
+      try {
+        localStorage.setItem('wordquill_speech_rate', prefs.speechRate.toString());
+      } catch {
+        // ignore
+      }
     } catch (err) {
       console.warn('Failed to save settings:', err);
     }
@@ -273,7 +298,8 @@ export default function App() {
   }, [loadData]);
 
   // Navigate to flashcard with a specific word
-  const handleSelectWordForFlashcards = () => {
+  const handleSelectWordForFlashcards = (word: WordItem) => {
+    setPendingFlashcardWordId(word.id);
     setCurrentTab('flashcards');
   };
 
@@ -367,6 +393,8 @@ export default function App() {
               progressMap={progressMap}
               speechRate={speechRate}
               preferredCategories={preferredCategories}
+              initialWordId={pendingFlashcardWordId}
+              onClearInitialWord={() => setPendingFlashcardWordId(null)}
               onDataUpdated={loadData}
               onNavigateToQuiz={() => setCurrentTab('quiz')}
             />
