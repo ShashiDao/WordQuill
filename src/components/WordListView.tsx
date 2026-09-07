@@ -119,7 +119,7 @@ export const WordListView: React.FC<WordListViewProps> = ({
       </div>
 
       {/* Category Horizontal Scrolling Tabs */}
-      <div className="mb-3 flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08]">
+      <div className="mb-3 flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08] mask-edge-fade">
         {categories.map((cat) => (
           <button
             key={cat}

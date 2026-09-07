@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-4">
+        <nav className="hidden md:flex items-center gap-4 overflow-x-auto scrollbar-none mask-edge-fade">
           <button
             id="nav-tab-flashcards"
             onClick={() => onTabChange('flashcards')}

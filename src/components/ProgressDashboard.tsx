@@ -97,13 +97,13 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   };
 
   return (
-    <div className="mx-auto max-w-2xl pb-28 pt-4 px-4 space-y-4">
+    <div className="mx-auto max-w-2xl pb-36 pt-4 px-4 space-y-4">
       {/* Streak Card */}
       <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-6 dark:border-white/[0.08] dark:bg-[#221E1B]">
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-[11px] font-medium uppercase tracking-wider text-[#C9924A]">
-              Daily Discipline
+            <span className="text-[11px] font-medium text-[#C9924A]">
+              Daily discipline
             </span>
             <div className="mt-2 flex items-baseline gap-2">
               <h2 className="font-fraunces text-4xl sm:text-5xl font-medium tracking-tight text-[#1B1815] dark:text-[#F6F1E7]">
@@ -218,15 +218,15 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
       </div>
 
       {/* Category Mastery Progress */}
-      <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-5 dark:border-white/[0.08] dark:bg-[#221E1B]">
+      <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-5 pb-6 dark:border-white/[0.08] dark:bg-[#221E1B]">
         <div className="flex items-center gap-2 mb-4">
           <BarChart2 className="w-4 h-4 text-[#D98A93]" />
           <h3 className="font-fraunces text-sm font-medium text-[#1B1815] dark:text-[#F6F1E7]">
-            Category Mastery
+            Category mastery
           </h3>
         </div>
 
-        <div className="space-y-3.5">
+        <div className="space-y-3.5 pb-1">
           {categoryStats.map((cat) => (
             <div key={cat.category}>
               <div className="flex items-center justify-between text-xs mb-1">

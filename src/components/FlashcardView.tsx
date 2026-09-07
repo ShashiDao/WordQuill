@@ -10,6 +10,7 @@ import {
   HelpCircle,
   Sparkles,
   BookOpen,
+  RefreshCw,
 } from 'lucide-react';
 import type { WordItem, UserWordProgress } from '../types';
 import { speakWord } from '../utils/speech';
@@ -185,7 +186,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
       {/* Category & Status Filters */}
       <div className="mb-4 space-y-2.5">
         {/* Category horizontal scroll tabs */}
-        <div className="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08]">
+        <div className="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08] mask-edge-fade">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -340,7 +341,10 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
 
                   {/* Card Footer Hint */}
                   <div className="flex items-center justify-between text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-3">
-                    <span>Space or tap to flip</span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <RefreshCw className="w-3.5 h-3.5 text-[#8C8272]" />
+                      <span>Space or tap to flip</span>
+                    </span>
                     <span>
                       {currentProgress?.status === 'mastered'
                         ? 'Mastered · '
@@ -418,8 +422,9 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                   </div>
 
                   {/* Card Footer Hint */}
-                  <div className="text-center text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-2.5">
-                    Tap to flip back
+                  <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-2.5">
+                    <RefreshCw className="w-3.5 h-3.5 text-[#8C8272]" />
+                    <span>Tap to flip back</span>
                   </div>
                 </div>
               </div>

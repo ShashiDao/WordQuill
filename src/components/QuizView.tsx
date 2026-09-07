@@ -239,8 +239,8 @@ export const QuizView: React.FC<QuizViewProps> = ({
           {/* Missed Words Section */}
           {missedWords.length > 0 && (
             <div className="mt-6">
-              <h4 className="text-xs font-medium uppercase tracking-wider text-[#8C8272]">
-                Words to Review ({missedWords.length})
+              <h4 className="text-xs font-medium text-[#8C8272]">
+                Words to review ({missedWords.length})
               </h4>
               <div className="mt-2.5 divide-y divide-black/[0.08] rounded-xl border border-black/[0.08] dark:divide-white/[0.08] dark:border-white/[0.08]">
                 {missedWords.map((item) => (
@@ -352,10 +352,10 @@ export const QuizView: React.FC<QuizViewProps> = ({
           {/* Question Card */}
           <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-6 dark:border-white/[0.08] dark:bg-[#221E1B]">
             <div className="flex items-center justify-between text-xs text-[#8C8272]">
-              <span className="text-[11px] font-medium uppercase tracking-wider text-[#D98A93]">
+              <span className="text-[11px] font-medium text-[#D98A93]">
                 {currentQ.questionType === 'word_to_def'
-                  ? 'Select Definition'
-                  : 'Identify Word'}
+                  ? 'Select definition'
+                  : 'Identify word'}
               </span>
               <span className="text-xs italic text-[#8C8272]">
                 {currentQ.wordItem.category}
@@ -448,7 +448,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
             <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B] transition animate-fade-in space-y-3">
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <span className="text-[10px] font-medium uppercase tracking-wide text-[#8C8272]">
+                  <span className="text-[10px] font-medium text-[#8C8272]">
                     Example in context
                   </span>
                   <p className="mt-1 text-xs italic text-[#8C8272]">

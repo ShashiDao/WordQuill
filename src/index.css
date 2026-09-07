@@ -35,6 +35,12 @@
   .rotate-y-180 {
     transform: rotateY(180deg);
   }
+
+  /* Edge fade for horizontally scrolling tab rows */
+  .mask-edge-fade {
+    mask-image: linear-gradient(to right, black calc(100% - 36px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 36px), transparent 100%);
+  }
 }
 
 /* Printed book scrollbar */
