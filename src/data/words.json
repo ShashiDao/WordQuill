@@ -1,0 +1,202 @@
+[
+  {
+    "id": "001",
+    "word": "ephemeral",
+    "phonetic": "/ɪˈfem.ər.əl/",
+    "definition": "lasting for a very short time",
+    "example": "The ephemeral beauty of cherry blossoms captivated everyone in the park.",
+    "category": "advanced"
+  },
+  {
+    "id": "002",
+    "word": "serendipity",
+    "phonetic": "/ˌser.ənˈdɪp.ə.ti/",
+    "definition": "the occurrence of finding valuable or pleasant things by chance",
+    "example": "A fortunate stroke of serendipity brought the two researchers together.",
+    "category": "literary"
+  },
+  {
+    "id": "003",
+    "word": "ubiquitous",
+    "phonetic": "/juːˈbɪk.wɪ.təs/",
+    "definition": "present, appearing, or found everywhere at the same time",
+    "example": "Smartphones have become ubiquitous in contemporary daily life.",
+    "category": "academic"
+  },
+  {
+    "id": "004",
+    "word": "mellifluous",
+    "phonetic": "/meˈlɪf.lu.əs/",
+    "definition": "sweet or musical; pleasant to hear",
+    "example": "The cellist played a mellifluous melody that quieted the entire hall.",
+    "category": "literary"
+  },
+  {
+    "id": "005",
+    "word": "pernicious",
+    "phonetic": "/pɚˈnɪʃ.əs/",
+    "definition": "having a harmful effect, especially in a gradual or subtle way",
+    "example": "The pernicious spread of misinformation undermines public trust.",
+    "category": "advanced"
+  },
+  {
+    "id": "006",
+    "word": "eloquent",
+    "phonetic": "/ˈel.ə.kwənt/",
+    "definition": "fluent or persuasive in speaking or writing",
+    "example": "She gave an eloquent plea for tolerance and mutual understanding.",
+    "category": "eloquence"
+  },
+  {
+    "id": "007",
+    "word": "pragmatic",
+    "phonetic": "/præɡˈmæt̬.ɪk/",
+    "definition": "dealing with things sensibly and realistically rather than theoretically",
+    "example": "We adopted a pragmatic approach rather than adhering rigidly to ideology.",
+    "category": "academic"
+  },
+  {
+    "id": "008",
+    "word": "resilient",
+    "phonetic": "/rɪˈzɪl.jənt/",
+    "definition": "able to withstand or recover quickly from difficult conditions",
+    "example": "The local community proved resilient after the severe storm.",
+    "category": "advanced"
+  },
+  {
+    "id": "009",
+    "word": "lucid",
+    "phonetic": "/ˈluː.sɪd/",
+    "definition": "expressed clearly; easy to understand, or having full mental faculties",
+    "example": "His lucid explanation made the quantum physics principle accessible.",
+    "category": "academic"
+  },
+  {
+    "id": "010",
+    "word": "ineffable",
+    "phonetic": "/ɪnˈef.ə.bəl/",
+    "definition": "too great or extreme to be expressed or described in words",
+    "example": "Standing atop the snow-covered peak gave her a feeling of ineffable wonder.",
+    "category": "literary"
+  },
+  {
+    "id": "011",
+    "word": "perspicacious",
+    "phonetic": "/ˌpɝː.spəˈkeɪ.ʃəs/",
+    "definition": "having a ready insight into and understanding of things",
+    "example": "The perspicacious detective noticed an inconsistency overlooked by everyone.",
+    "category": "advanced"
+  },
+  {
+    "id": "012",
+    "word": "sycophant",
+    "phonetic": "/ˈsɪk.ə.fænt/",
+    "definition": "a person who acts obsequiously toward someone to gain advantage",
+    "example": "The monarch was surrounded by sycophants who praised his every decree.",
+    "category": "literary"
+  },
+  {
+    "id": "013",
+    "word": "paradigm",
+    "phonetic": "/ˈper.ə.daɪm/",
+    "definition": "a typical example, pattern, or overarching conceptual framework",
+    "example": "The discovery prompted a major paradigm shift in modern biochemistry.",
+    "category": "academic"
+  },
+  {
+    "id": "014",
+    "word": "taciturn",
+    "phonetic": "/ˈtæs.ə.tɝːn/",
+    "definition": "reserved or uncommunicative in speech; saying little",
+    "example": "He was by nature taciturn, speaking only when necessity demanded.",
+    "category": "advanced"
+  },
+  {
+    "id": "015",
+    "word": "magnanimous",
+    "phonetic": "/mæɡˈnæn.ə.məs/",
+    "definition": "generous or forgiving, especially toward a rival or less powerful person",
+    "example": "In victory, the coach was magnanimous, praising the opposing team's grit.",
+    "category": "eloquence"
+  },
+  {
+    "id": "016",
+    "word": "capricious",
+    "phonetic": "/kəˈprɪʃ.əs/",
+    "definition": "given to sudden and unaccountable changes of mood or behavior",
+    "example": "Spring weather in the mountains can be wildly capricious.",
+    "category": "advanced"
+  },
+  {
+    "id": "017",
+    "word": "esoteric",
+    "phonetic": "/ˌes.əˈter.ɪk/",
+    "definition": "intended for or likely to be understood by only a small group with specialized knowledge",
+    "example": "The treatise dealt with esoteric points of ancient Byzantine law.",
+    "category": "academic"
+  },
+  {
+    "id": "018",
+    "word": "fastidious",
+    "phonetic": "/fæsˈtɪd.i.əs/",
+    "definition": "very attentive to and concerned about accuracy and detail",
+    "example": "The watchmaker was fastidious in assembling the tiny clockwork gears.",
+    "category": "advanced"
+  },
+  {
+    "id": "019",
+    "word": "quixotic",
+    "phonetic": "/kwɪkˈsɑː.t̬ɪk/",
+    "definition": "exceedingly idealistic; unrealistic and impractical",
+    "example": "His quest to eliminate bureaucracy proved to be a quixotic adventure.",
+    "category": "literary"
+  },
+  {
+    "id": "020",
+    "word": "solitude",
+    "phonetic": "/ˈsɑː.lə.tuːd/",
+    "definition": "the state or situation of being alone, especially when peaceful or restorative",
+    "example": "She cherished the morning solitude of the botanical greenhouse.",
+    "category": "eloquence"
+  },
+  {
+    "id": "021",
+    "word": "alacrity",
+    "phonetic": "/əˈlæk.rə.t̬i/",
+    "definition": "brisk and cheerful readiness; eager promptness",
+    "example": "He accepted the invitation with alacrity and immediately began packing.",
+    "category": "literary"
+  },
+  {
+    "id": "022",
+    "word": "catalyst",
+    "phonetic": "/ˈkæt̬.əl.ɪst/",
+    "definition": "a person or event that precipitates rapid change or progress",
+    "example": "The inspiring keynote speech served as a catalyst for environmental reform.",
+    "category": "academic"
+  },
+  {
+    "id": "023",
+    "word": "superfluous",
+    "phonetic": "/suːˈpɝː.flu.əs/",
+    "definition": "unnecessary, especially through being more than enough",
+    "example": "The editor eliminated superfluous adjectives to tighten the narrative.",
+    "category": "eloquence"
+  },
+  {
+    "id": "024",
+    "word": "veracity",
+    "phonetic": "/vəˈræs.ə.t̬i/",
+    "definition": "conformity to facts; accuracy, truthfulness, and habitual observance of truth",
+    "example": "The committee verified the veracity of the financial audit documents.",
+    "category": "academic"
+  },
+  {
+    "id": "025",
+    "word": "zenith",
+    "phonetic": "/ˈziː.nɪθ/",
+    "definition": "the time at which something is most powerful, flourishing, or successful",
+    "example": "At the zenith of the empire, its architectural wonders were known worldwide.",
+    "category": "literary"
+  }
+]
