@@ -5,6 +5,9 @@ export interface WordItem {
   definition: string;
   example: string;
   category: string;
+  synonyms?: string[];
+  antonyms?: string[];
+  etymology?: string;
 }
 
 export type WordStatus = 'new' | 'learning' | 'mastered';
@@ -40,7 +43,7 @@ export type TabType = 'flashcards' | 'quiz' | 'words' | 'progress';
 
 export interface QuizQuestion {
   id: string;
-  questionType: 'word_to_def' | 'def_to_word' | 'cloze' | 'spelling';
+  questionType: 'word_to_def' | 'def_to_word' | 'cloze' | 'spelling' | 'synonym_match';
   prompt: string;
   phonetic?: string;
   correctAnswer: string;

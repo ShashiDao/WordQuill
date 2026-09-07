@@ -274,9 +274,30 @@ export const WordListView: React.FC<WordListViewProps> = ({
                       </p>
                     </div>
 
-                    <p className="text-xs italic text-[#8C8272]">
-                      "{word.example}"
-                    </p>
+                    {/* Synonyms & Antonyms */}
+                    {word.synonyms && word.synonyms.length > 0 && (
+                      <p className="text-xs text-[#8C8272] leading-relaxed">
+                        <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">Synonyms: </span>
+                        {word.synonyms.join(', ')}
+                      </p>
+                    )}
+                    {word.antonyms && word.antonyms.length > 0 && (
+                      <p className="text-xs text-[#8C8272] leading-relaxed">
+                        <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">Antonyms: </span>
+                        {word.antonyms.join(', ')}
+                      </p>
+                    )}
+
+                    <div>
+                      <p className="text-xs italic text-[#8C8272]">
+                        "{word.example}"
+                      </p>
+                      {word.etymology && (
+                        <p className="mt-1 text-[11px] italic text-[#8C8272]/90">
+                          {word.etymology}
+                        </p>
+                      )}
+                    </div>
 
                     {/* Status Selection and Practice Link */}
                     <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">

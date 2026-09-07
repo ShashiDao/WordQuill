@@ -2,2001 +2,4804 @@
   {
     "id": "001",
     "word": "ephemeral",
-    "phonetic": "/\u026a\u02c8fem.\u0259r.\u0259l/",
+    "phonetic": "/ɪˈfem.ər.əl/",
     "definition": "lasting for a very short time",
     "example": "The ephemeral beauty of cherry blossoms captivated everyone in the park.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "fleeting",
+      "transient",
+      "momentary",
+      "evanescent"
+    ],
+    "antonyms": [
+      "permanent",
+      "eternal",
+      "everlasting",
+      "perpetual"
+    ],
+    "etymology": "from Greek ephēmeros, lasting a day"
   },
   {
     "id": "002",
     "word": "serendipity",
-    "phonetic": "/\u02ccser.\u0259n\u02c8d\u026ap.\u0259.ti/",
+    "phonetic": "/ˌser.ənˈdɪp.ə.ti/",
     "definition": "the occurrence of finding valuable or pleasant things by chance",
     "example": "A fortunate stroke of serendipity brought the two researchers together.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "chance",
+      "fluke",
+      "fortune",
+      "providence"
+    ],
+    "antonyms": [
+      "misfortune",
+      "adversity"
+    ],
+    "etymology": "coined by Horace Walpole from the Persian fairy tale The Three Princes of Serendip"
   },
   {
     "id": "003",
     "word": "ubiquitous",
-    "phonetic": "/ju\u02d0\u02c8b\u026ak.w\u026a.t\u0259s/",
+    "phonetic": "/juːˈbɪk.wɪ.təs/",
     "definition": "present, appearing, or found everywhere at the same time",
     "example": "Smartphones have become ubiquitous in contemporary daily life.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "omnipresent",
+      "pervasive",
+      "everywhere",
+      "universal"
+    ],
+    "antonyms": [
+      "rare",
+      "scarce",
+      "uncommon",
+      "isolated"
+    ],
+    "etymology": "from Latin ubique, meaning everywhere"
   },
   {
     "id": "004",
     "word": "mellifluous",
-    "phonetic": "/me\u02c8l\u026af.lu.\u0259s/",
+    "phonetic": "/meˈlɪf.lu.əs/",
     "definition": "sweet or musical; pleasant to hear",
     "example": "The cellist played a mellifluous melody that quieted the entire hall.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "dulcet",
+      "melodious",
+      "honeyed",
+      "euphonious"
+    ],
+    "antonyms": [
+      "cacophonous",
+      "grating",
+      "strident",
+      "jarring"
+    ],
+    "etymology": "from Latin mel 'honey' and fluere 'to flow'"
   },
   {
     "id": "005",
     "word": "pernicious",
-    "phonetic": "/p\u025a\u02c8n\u026a\u0283.\u0259s/",
+    "phonetic": "/pɚˈnɪʃ.əs/",
     "definition": "having a harmful effect, especially in a gradual or subtle way",
     "example": "The pernicious spread of misinformation undermines public trust.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "detrimental",
+      "harmful",
+      "destructive",
+      "ruinous"
+    ],
+    "antonyms": [
+      "beneficial",
+      "salubrious",
+      "wholesome",
+      "innocuous"
+    ],
+    "etymology": "from Latin perniciosus 'ruinous', from pernicies 'destruction'"
   },
   {
     "id": "006",
     "word": "eloquent",
-    "phonetic": "/\u02c8el.\u0259.kw\u0259nt/",
+    "phonetic": "/ˈel.ə.kwənt/",
     "definition": "fluent or persuasive in speaking or writing",
     "example": "She gave an eloquent plea for tolerance and mutual understanding.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "articulate",
+      "fluent",
+      "persuasive",
+      "expressive"
+    ],
+    "antonyms": [
+      "inarticulate",
+      "tongue-tied",
+      "hesitant"
+    ],
+    "etymology": "from Latin eloqui, meaning to speak out"
   },
   {
     "id": "007",
     "word": "pragmatic",
-    "phonetic": "/pr\u00e6\u0261\u02c8m\u00e6t\u032c.\u026ak/",
+    "phonetic": "/præɡˈmæt̬.ɪk/",
     "definition": "dealing with things sensibly and realistically rather than theoretically",
     "example": "We adopted a pragmatic approach rather than adhering rigidly to ideology.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "practical",
+      "utilitarian",
+      "realistic",
+      "sensible"
+    ],
+    "antonyms": [
+      "idealistic",
+      "quixotic",
+      "impractical",
+      "theoretical"
+    ],
+    "etymology": "from Greek pragmatikos, meaning relating to fact or business"
   },
   {
     "id": "008",
     "word": "resilient",
-    "phonetic": "/r\u026a\u02c8z\u026al.j\u0259nt/",
+    "phonetic": "/rɪˈzɪl.jənt/",
     "definition": "able to withstand or recover quickly from difficult conditions",
     "example": "The local community proved resilient after the severe storm.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "buoyant",
+      "adaptable",
+      "durable",
+      "tough"
+    ],
+    "antonyms": [
+      "fragile",
+      "vulnerable",
+      "brittle",
+      "delicate"
+    ],
+    "etymology": "from Latin resilire, meaning to leap back or rebound"
   },
   {
     "id": "009",
     "word": "lucid",
-    "phonetic": "/\u02c8lu\u02d0.s\u026ad/",
+    "phonetic": "/ˈluː.sɪd/",
     "definition": "expressed clearly; easy to understand, or having full mental faculties",
     "example": "His lucid explanation made the quantum physics principle accessible.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "clear",
+      "transparent",
+      "coherent",
+      "pellucid"
+    ],
+    "antonyms": [
+      "murky",
+      "obscure",
+      "confusing",
+      "ambiguous"
+    ],
+    "etymology": "from Latin lucidus, from lucere 'to shine'"
   },
   {
     "id": "010",
     "word": "ineffable",
-    "phonetic": "/\u026an\u02c8ef.\u0259.b\u0259l/",
+    "phonetic": "/ɪnˈef.ə.bəl/",
     "definition": "too great or extreme to be expressed or described in words",
     "example": "Standing atop the snow-covered peak gave her a feeling of ineffable wonder.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "indescribable",
+      "inexpressible",
+      "unspeakable",
+      "unutterable"
+    ],
+    "antonyms": [
+      "describable",
+      "expressible",
+      "definable"
+    ],
+    "etymology": "from Latin ineffabilis, meaning unutterable"
   },
   {
     "id": "011",
     "word": "perspicacious",
-    "phonetic": "/\u02ccp\u025d\u02d0.sp\u0259\u02c8ke\u026a.\u0283\u0259s/",
+    "phonetic": "/ˌpɝː.spəˈkeɪ.ʃəs/",
     "definition": "having a ready insight into and understanding of things",
     "example": "The perspicacious detective noticed an inconsistency overlooked by everyone.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "insightful",
+      "shrewd",
+      "astute",
+      "perceptive"
+    ],
+    "antonyms": [
+      "obtuse",
+      "imperceptive",
+      "shortsighted"
+    ],
+    "etymology": "from Latin perspicax 'sharp-sighted', from perspicere 'to look closely'"
   },
   {
     "id": "012",
     "word": "sycophant",
-    "phonetic": "/\u02c8s\u026ak.\u0259.f\u00e6nt/",
+    "phonetic": "/ˈsɪk.ə.fænt/",
     "definition": "a person who acts obsequiously toward someone to gain advantage",
     "example": "The monarch was surrounded by sycophants who praised his every decree.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "flatterer",
+      "toady",
+      "fawner",
+      "bootlicker"
+    ],
+    "etymology": "from Greek sykophantēs, meaning an informer or false accuser"
   },
   {
     "id": "013",
     "word": "paradigm",
-    "phonetic": "/\u02c8per.\u0259.da\u026am/",
+    "phonetic": "/ˈper.ə.daɪm/",
     "definition": "a typical example, pattern, or overarching conceptual framework",
     "example": "The discovery prompted a major paradigm shift in modern biochemistry.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "model",
+      "pattern",
+      "archetype",
+      "exemplar"
+    ],
+    "etymology": "from Greek paradeigma, meaning pattern or model"
   },
   {
     "id": "014",
     "word": "taciturn",
-    "phonetic": "/\u02c8t\u00e6s.\u0259.t\u025d\u02d0n/",
+    "phonetic": "/ˈtæs.ə.tɝːn/",
     "definition": "reserved or uncommunicative in speech; saying little",
     "example": "He was by nature taciturn, speaking only when necessity demanded.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "reticent",
+      "reserved",
+      "uncommunicative",
+      "laconic"
+    ],
+    "antonyms": [
+      "loquacious",
+      "talkative",
+      "garrulous",
+      "voluble"
+    ],
+    "etymology": "from Latin taciturnus, from tacere 'to be silent'"
   },
   {
     "id": "015",
     "word": "magnanimous",
-    "phonetic": "/m\u00e6\u0261\u02c8n\u00e6n.\u0259.m\u0259s/",
+    "phonetic": "/mæɡˈnæn.ə.məs/",
     "definition": "generous or forgiving, especially toward a rival or less powerful person",
     "example": "In victory, the coach was magnanimous, praising the opposing team's grit.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "generous",
+      "charitable",
+      "forgiving",
+      "benevolent"
+    ],
+    "antonyms": [
+      "petty",
+      "vindictive",
+      "spiteful",
+      "mean-spirited"
+    ],
+    "etymology": "from Latin magnus 'great' and animus 'soul or mind'"
   },
   {
     "id": "016",
     "word": "capricious",
-    "phonetic": "/k\u0259\u02c8pr\u026a\u0283.\u0259s/",
+    "phonetic": "/kəˈprɪʃ.əs/",
     "definition": "given to sudden and unaccountable changes of mood or behavior",
     "example": "Spring weather in the mountains can be wildly capricious.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "fickle",
+      "unpredictable",
+      "erratic",
+      "mercurial"
+    ],
+    "antonyms": [
+      "consistent",
+      "predictable",
+      "steady",
+      "reliable"
+    ],
+    "etymology": "from Italian capriccio, meaning sudden whim or shudder"
   },
   {
     "id": "017",
     "word": "esoteric",
-    "phonetic": "/\u02cces.\u0259\u02c8ter.\u026ak/",
+    "phonetic": "/ˌes.əˈter.ɪk/",
     "definition": "intended for or likely to be understood by only a small group with specialized knowledge",
     "example": "The treatise dealt with esoteric points of ancient Byzantine law.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "obscure",
+      "arcane",
+      "recondite",
+      "abstruse"
+    ],
+    "antonyms": [
+      "accessible",
+      "exoteric",
+      "commonplace",
+      "familiar"
+    ],
+    "etymology": "from Greek esōterikos, from esōterō 'further inside'"
   },
   {
     "id": "018",
     "word": "fastidious",
-    "phonetic": "/f\u00e6s\u02c8t\u026ad.i.\u0259s/",
+    "phonetic": "/fæsˈtɪd.i.əs/",
     "definition": "very attentive to and concerned about accuracy and detail",
     "example": "The watchmaker was fastidious in assembling the tiny clockwork gears.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "meticulous",
+      "scrupulous",
+      "punctilious",
+      "fussy"
+    ],
+    "antonyms": [
+      "careless",
+      "lax",
+      "negligent",
+      "sloppy"
+    ],
+    "etymology": "from Latin fastidiosus, from fastidium 'aversion or disgust'"
   },
   {
     "id": "019",
     "word": "quixotic",
-    "phonetic": "/kw\u026ak\u02c8s\u0251\u02d0.t\u032c\u026ak/",
+    "phonetic": "/kwɪkˈsɑː.t̬ɪk/",
     "definition": "exceedingly idealistic; unrealistic and impractical",
     "example": "His quest to eliminate bureaucracy proved to be a quixotic adventure.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "idealistic",
+      "unrealistic",
+      "visionary",
+      "utopian"
+    ],
+    "antonyms": [
+      "pragmatic",
+      "practical",
+      "realistic",
+      "grounded"
+    ],
+    "etymology": "derived from Don Quixote, the chivalric hero of Cervantes's novel"
   },
   {
     "id": "020",
     "word": "solitude",
-    "phonetic": "/\u02c8s\u0251\u02d0.l\u0259.tu\u02d0d/",
+    "phonetic": "/ˈsɑː.lə.tuːd/",
     "definition": "the state or situation of being alone, especially when peaceful or restorative",
     "example": "She cherished the morning solitude of the botanical greenhouse.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "seclusion",
+      "isolation",
+      "privacy",
+      "aloneness"
+    ],
+    "antonyms": [
+      "companionship",
+      "company",
+      "camaraderie"
+    ],
+    "etymology": "from Latin solitudo, from solus 'alone'"
   },
   {
     "id": "021",
     "word": "alacrity",
-    "phonetic": "/\u0259\u02c8l\u00e6k.r\u0259.t\u032ci/",
+    "phonetic": "/əˈlæk.rə.t̬i/",
     "definition": "brisk and cheerful readiness; eager promptness",
     "example": "He accepted the invitation with alacrity and immediately began packing.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "eagerness",
+      "readiness",
+      "briskness",
+      "promptness"
+    ],
+    "antonyms": [
+      "reluctance",
+      "sluggishness",
+      "apathy",
+      "hesitation"
+    ],
+    "etymology": "from Latin alacritas, from alacer 'lively or brisk'"
   },
   {
     "id": "022",
     "word": "catalyst",
-    "phonetic": "/\u02c8k\u00e6t\u032c.\u0259l.\u026ast/",
+    "phonetic": "/ˈkæt̬.əl.ɪst/",
     "definition": "a person or event that precipitates rapid change or progress",
     "example": "The inspiring keynote speech served as a catalyst for environmental reform.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "spark",
+      "stimulus",
+      "impetus",
+      "trigger"
+    ],
+    "antonyms": [
+      "inhibitor",
+      "deterrent",
+      "obstacle"
+    ],
+    "etymology": "from Greek katalysis, meaning dissolution or breakdown"
   },
   {
     "id": "023",
     "word": "superfluous",
-    "phonetic": "/su\u02d0\u02c8p\u025d\u02d0.flu.\u0259s/",
+    "phonetic": "/suːˈpɝː.flu.əs/",
     "definition": "unnecessary, especially through being more than enough",
     "example": "The editor eliminated superfluous adjectives to tighten the narrative.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "unnecessary",
+      "excessive",
+      "redundant",
+      "surplus"
+    ],
+    "antonyms": [
+      "essential",
+      "necessary",
+      "indispensable",
+      "vital"
+    ],
+    "etymology": "from Latin superfluus, from super 'over' and fluere 'to flow'"
   },
   {
     "id": "024",
     "word": "veracity",
-    "phonetic": "/v\u0259\u02c8r\u00e6s.\u0259.t\u032ci/",
+    "phonetic": "/vəˈræs.ə.t̬i/",
     "definition": "conformity to facts; accuracy, truthfulness, and habitual observance of truth",
     "example": "The committee verified the veracity of the financial audit documents.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "truthfulness",
+      "authenticity",
+      "accuracy",
+      "candor"
+    ],
+    "antonyms": [
+      "falsehood",
+      "deceit",
+      "mendacity",
+      "duplicity"
+    ],
+    "etymology": "from Latin veracitas, from verax 'truthful'"
   },
   {
     "id": "025",
     "word": "zenith",
-    "phonetic": "/\u02c8zi\u02d0.n\u026a\u03b8/",
+    "phonetic": "/ˈziː.nɪθ/",
     "definition": "the time at which something is most powerful, flourishing, or successful",
     "example": "At the zenith of the empire, its architectural wonders were known worldwide.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "peak",
+      "pinnacle",
+      "apex",
+      "culmination"
+    ],
+    "antonyms": [
+      "nadir",
+      "bottom",
+      "trough"
+    ],
+    "etymology": "from Old French cenith, ultimately from Arabic samt al-ra's 'path overhead'"
   },
   {
     "id": "026",
     "word": "obfuscate",
-    "phonetic": "/\u02c8\u0251\u02d0b.f\u0259.ske\u026at/",
+    "phonetic": "/ˈɑːb.fə.skeɪt/",
     "definition": "to deliberately make something unclear, obscure, or difficult to understand",
     "example": "The spokesperson tried to obfuscate the facts by delivering an evasive answer.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "obscure",
+      "confuse",
+      "blur",
+      "muddle"
+    ],
+    "antonyms": [
+      "clarify",
+      "elucidate",
+      "illuminate",
+      "simplify"
+    ],
+    "etymology": "from Latin obfuscare, meaning to darken or cast shade over"
   },
   {
     "id": "027",
     "word": "halcyon",
-    "phonetic": "/\u02c8h\u00e6l.si.\u0259n/",
+    "phonetic": "/ˈhæl.si.ən/",
     "definition": "denoting a period of time in the past that was idyllically happy and peaceful",
     "example": "The retired mariner fondly remembered the halcyon summers of his coastal youth.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "tranquil",
+      "serene",
+      "idyllic",
+      "peaceful"
+    ],
+    "antonyms": [
+      "turbulent",
+      "stormy",
+      "chaotic",
+      "tumultuous"
+    ],
+    "etymology": "from Greek alkyōn, a mythical bird that nested on calm winter seas"
   },
   {
     "id": "028",
     "word": "empirical",
-    "phonetic": "/em\u02c8p\u026ar.\u026a.k\u0259l/",
+    "phonetic": "/emˈpɪr.ɪ.kəl/",
     "definition": "based on, concerned with, or verifiable by observation or experience rather than theory",
     "example": "The hypothesis gained widespread acceptance once empirical evidence confirmed the findings.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "observational",
+      "experimental",
+      "factual",
+      "experiential"
+    ],
+    "antonyms": [
+      "theoretical",
+      "hypothetical",
+      "speculative",
+      "conjectural"
+    ],
+    "etymology": "from Greek empeirikos, from empeiria 'experience'"
   },
   {
     "id": "029",
     "word": "articulation",
-    "phonetic": "/\u0251\u02d0r\u02cct\u026ak.j\u0259\u02c8le\u026a.\u0283\u0259n/",
+    "phonetic": "/ɑːrˌtɪk.jəˈleɪ.ʃən/",
     "definition": "the clear, precise, and effective expression of ideas or thoughts",
     "example": "Her precise articulation of the company vision inspired confidence among the investors.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "expression",
+      "enunciation",
+      "pronunciation",
+      "utterance"
+    ],
+    "antonyms": [
+      "inarticulateness",
+      "mumble"
+    ],
+    "etymology": "from Latin articulatio, from articulare 'to divide into joints or speak clearly'"
   },
   {
     "id": "030",
     "word": "conscientious",
-    "phonetic": "/\u02cck\u0251\u02d0n.\u0283i\u02c8en.\u0283\u0259s/",
+    "phonetic": "/ˌkɑːn.ʃiˈen.ʃəs/",
     "definition": "wishing to do what is right, especially to do one's work or duty thoroughly",
     "example": "A conscientious editor reviewed every footnote before sending the manuscript to print.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "diligent",
+      "scrupulous",
+      "meticulous",
+      "thorough"
+    ],
+    "antonyms": [
+      "careless",
+      "remiss",
+      "negligent",
+      "irresponsible"
+    ],
+    "etymology": "from Latin conscientia, meaning moral sense or knowledge of right"
   },
   {
     "id": "031",
     "word": "recalcitrant",
-    "phonetic": "/r\u026a\u02c8k\u00e6l.s\u026a.tr\u0259nt/",
+    "phonetic": "/rɪˈkæl.sɪ.trənt/",
     "definition": "having an obstinately uncooperative attitude toward authority or discipline",
     "example": "The recalcitrant committee refused to approve the revised budgetary plan.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "defiant",
+      "uncooperative",
+      "refractory",
+      "intractable"
+    ],
+    "antonyms": [
+      "compliant",
+      "amenable",
+      "docile",
+      "obedient"
+    ],
+    "etymology": "from Latin recalcitrare, meaning to kick back with heels"
   },
   {
     "id": "032",
     "word": "sonorous",
-    "phonetic": "/s\u0259\u02c8n\u0254\u02d0r.\u0259s/",
+    "phonetic": "/səˈnɔːr.əs/",
     "definition": "having a deep, full, and pleasantly rich or resonant sound",
     "example": "The choir sang in sonorous harmony that reverberated through the stone cathedral.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "resonant",
+      "rich",
+      "resonant",
+      "booming"
+    ],
+    "antonyms": [
+      "thin",
+      "shrill",
+      "tinny",
+      "faint"
+    ],
+    "etymology": "from Latin sonorus, from sonor 'sound'"
   },
   {
     "id": "033",
     "word": "epistemology",
-    "phonetic": "/\u026a\u02ccp\u026as.t\u0259\u02c8m\u0251\u02d0.l\u0259.d\u0292i/",
+    "phonetic": "/ɪˌpɪs.təˈmɑː.lə.dʒi/",
     "definition": "the branch of philosophy investigating the origin, nature, and limits of human knowledge",
     "example": "His doctoral dissertation explored the epistemology of modern scientific discovery.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "theory of knowledge",
+      "gnoseology"
+    ],
+    "etymology": "from Greek epistēmē 'knowledge' and logos 'study or discourse'"
   },
   {
     "id": "034",
     "word": "grandiloquent",
-    "phonetic": "/\u0261r\u00e6n\u02c8d\u026al.\u0259.kw\u0259nt/",
+    "phonetic": "/ɡrænˈdɪl.ə.kwənt/",
     "definition": "pompous or extravagant in language, style, or manner, especially to impress",
     "example": "His grandiloquent speech failed to mask the complete absence of genuine policy proposals.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "pompous",
+      "bombastic",
+      "pretentious",
+      "magniloquent"
+    ],
+    "antonyms": [
+      "modest",
+      "understated",
+      "plainspoken",
+      "simple"
+    ],
+    "etymology": "from Latin grandiloquus, from grandis 'grand' and loqui 'to speak'"
   },
   {
     "id": "035",
     "word": "candid",
-    "phonetic": "/\u02c8k\u00e6n.d\u026ad/",
+    "phonetic": "/ˈkæn.dɪd/",
     "definition": "truthful and straightforward; frank and unreserved",
     "example": "The mentor offered candid feedback that helped the apprentice improve quickly.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "frank",
+      "honest",
+      "forthright",
+      "open"
+    ],
+    "antonyms": [
+      "guarded",
+      "evasive",
+      "disingenuous",
+      "deceitful"
+    ],
+    "etymology": "from Latin candidus, meaning shining white, sincere, or fair"
   },
   {
     "id": "036",
     "word": "anachronism",
-    "phonetic": "/\u0259\u02c8n\u00e6k.r\u0259.n\u026a.z\u0259m/",
+    "phonetic": "/əˈnæk.rə.nɪ.zəm/",
     "definition": "a person or thing that is chronologically out of place in a historical period",
     "example": "The wristwatch seen in the medieval film was an obvious anachronism.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "misplacement",
+      "chronological error",
+      "incongruity"
+    ],
+    "etymology": "from Greek anachronismos, from ana 'against' and chronos 'time'"
   },
   {
     "id": "037",
     "word": "petrichor",
-    "phonetic": "/\u02c8pet.r\u026a.k\u0254\u02d0r/",
+    "phonetic": "/ˈpet.rɪ.kɔːr/",
     "definition": "a pleasant, distinctive earthy scent that accompanies the first rain after warm, dry weather",
     "example": "As the summer thunderstorm ended, the rich scent of petrichor drifted across the courtyard.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "earthy scent",
+      "rain fragrance"
+    ],
+    "etymology": "coined in 1964 from Greek petra 'stone' and ichor 'fluid of the gods'"
   },
   {
     "id": "038",
     "word": "dichotomy",
-    "phonetic": "/da\u026a\u02c8k\u0251\u02d0.t\u032c\u0259.mi/",
+    "phonetic": "/daɪˈkɑː.t̬ə.mi/",
     "definition": "a division or contrast between two things that are represented as being entirely different",
     "example": "Scholars debated whether the strict dichotomy between nature and nurture still holds value.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "division",
+      "split",
+      "duality",
+      "bifurcation"
+    ],
+    "antonyms": [
+      "union",
+      "harmony",
+      "synthesis"
+    ],
+    "etymology": "from Greek dichotomia, from dicha 'in two' and temnein 'to cut'"
   },
   {
     "id": "039",
     "word": "rhetoric",
-    "phonetic": "/\u02c8ret\u032c.\u025a.\u026ak/",
+    "phonetic": "/ˈret̬.ɚ.ɪk/",
     "definition": "the art of effective or persuasive speaking or writing, especially the use of figures of speech",
     "example": "The statesman used powerful rhetoric to unite the divided convention delegates.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "eloquence",
+      "oratory",
+      "persuasion",
+      "discourse"
+    ],
+    "etymology": "from Greek rhētorikē, from rhētōr 'public orator or speaker'"
   },
   {
     "id": "040",
     "word": "meticulous",
-    "phonetic": "/m\u0259\u02c8t\u026ak.j\u0259.l\u0259s/",
+    "phonetic": "/məˈtɪk.jə.ləs/",
     "definition": "showing great attention to detail; very careful, thorough, and precise",
     "example": "She conducted meticulous maintenance on the antique engine before each long voyage.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "precise",
+      "painstaking",
+      "scrupulous",
+      "fastidious"
+    ],
+    "antonyms": [
+      "sloppy",
+      "careless",
+      "slapdash",
+      "reckless"
+    ],
+    "etymology": "from Latin meticulosus 'fearful', later meaning exceedingly careful"
   },
   {
     "id": "041",
     "word": "gregarious",
-    "phonetic": "/\u0261r\u026a\u02c8\u0261er.i.\u0259s/",
+    "phonetic": "/ɡrɪˈɡer.i.əs/",
     "definition": "fond of company; sociable and enjoying the interaction of crowds",
     "example": "His gregarious personality made him a natural host at university receptions.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "sociable",
+      "outgoing",
+      "companionable",
+      "convivial"
+    ],
+    "antonyms": [
+      "solitary",
+      "reclusive",
+      "introverted",
+      "unsociable"
+    ],
+    "etymology": "from Latin gregarius, from grex 'flock or herd'"
   },
   {
     "id": "042",
     "word": "effervescent",
-    "phonetic": "/\u02ccef.\u025a\u02c8ves.\u0259nt/",
+    "phonetic": "/ˌef.ɚˈves.ənt/",
     "definition": "vivacious, lively, and enthusiastic, or giving off bubbles",
     "example": "Her effervescent laughter immediately lifted the somber mood in the drawing room.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "vivacious",
+      "exuberant",
+      "bubbly",
+      "sparkling"
+    ],
+    "antonyms": [
+      "somber",
+      "subdued",
+      "dull",
+      "lifeless"
+    ],
+    "etymology": "from Latin effervescere, from ex 'out' and fervescere 'to begin boiling'"
   },
   {
     "id": "043",
     "word": "hegemony",
-    "phonetic": "/h\u026a\u02c8d\u0292em.\u0259.ni/",
+    "phonetic": "/hɪˈdʒem.ə.ni/",
     "definition": "leadership or predominant influence exercised by one nation or social group over others",
     "example": "The trading bloc challenged the economic hegemony of traditional superpower states.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "dominance",
+      "supremacy",
+      "ascendancy",
+      "leadership"
+    ],
+    "antonyms": [
+      "subordination",
+      "servitude",
+      "inferiority"
+    ],
+    "etymology": "from Greek hēgemonia, from hēgemōn 'leader or guide'"
   },
   {
     "id": "044",
     "word": "peroration",
-    "phonetic": "/\u02ccper.\u0259\u02c8re\u026a.\u0283\u0259n/",
+    "phonetic": "/ˌper.əˈreɪ.ʃən/",
     "definition": "the concluding part of a speech, typically intended to inspire and move an audience",
     "example": "The senator delivered a ringing peroration that brought the assembly to its feet.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "conclusion",
+      "epilogue",
+      "coda",
+      "summation"
+    ],
+    "antonyms": [
+      "introduction",
+      "prologue",
+      "prelude"
+    ],
+    "etymology": "from Latin peroratio, from perorare 'to speak from beginning to end'"
   },
   {
     "id": "045",
     "word": "poignant",
-    "phonetic": "/\u02c8p\u0254\u026an.j\u0259nt/",
+    "phonetic": "/ˈpɔɪn.jənt/",
     "definition": "evoking a keen sense of sadness, regret, or deep emotion",
     "example": "The documentary concluded with a poignant reflection on disappearing polar habitats.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "touching",
+      "moving",
+      "piercing",
+      "heartfelt"
+    ],
+    "antonyms": [
+      "unemotional",
+      "unmoving",
+      "vapid"
+    ],
+    "etymology": "from Old French poignant, from Latin pungere 'to prick or pierce'"
   },
   {
     "id": "046",
     "word": "reticent",
-    "phonetic": "/\u02c8ret\u032c.\u0259.s\u0259nt/",
+    "phonetic": "/ˈret̬.ə.sənt/",
     "definition": "not revealing one's thoughts or feelings readily; reserved",
     "example": "He remained reticent about his wartime achievements throughout his lifetime.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "reserved",
+      "uncommunicative",
+      "taciturn",
+      "inhibited"
+    ],
+    "antonyms": [
+      "outgoing",
+      "candid",
+      "effusive",
+      "frank"
+    ],
+    "etymology": "from Latin reticere, from re- 'intensifier' and tacere 'to be silent'"
   },
   {
     "id": "047",
     "word": "lachrymose",
-    "phonetic": "/\u02c8l\u00e6k.r\u0259.mo\u028as/",
+    "phonetic": "/ˈlæk.rə.moʊs/",
     "definition": "tearful or given to weeping; inducing tears or sad contemplation",
     "example": "The Victorian melodrama was famous for its lachrymose third act.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "tearful",
+      "weeping",
+      "mournful",
+      "sorrowful"
+    ],
+    "antonyms": [
+      "cheerful",
+      "jubilant",
+      "buoyant",
+      "joyful"
+    ],
+    "etymology": "from Latin lacrimosus, from lacrima 'tear'"
   },
   {
     "id": "048",
     "word": "taxonomy",
-    "phonetic": "/t\u00e6k\u02c8s\u0251\u02d0.n\u0259.mi/",
+    "phonetic": "/tækˈsɑː.nə.mi/",
     "definition": "a scheme or system of classification, especially of organisms or conceptual structures",
     "example": "Biologists revised the taxonomy of deep-sea corals following genomic sequencing.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "classification",
+      "categorization",
+      "systematization",
+      "typology"
+    ],
+    "etymology": "coined in French from Greek taxis 'arrangement' and -nomia 'management'"
   },
   {
     "id": "049",
     "word": "circumlocution",
-    "phonetic": "/\u02ccs\u025d\u02d0.k\u0259m.lo\u028a\u02c8kju\u02d0.\u0283\u0259n/",
+    "phonetic": "/ˌsɝː.kəm.loʊˈkjuː.ʃən/",
     "definition": "the use of many words where fewer would do, especially in an attempt to be vague",
     "example": "The politician resorted to circumlocution to avoid answering the reporter's direct inquiry.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "periphrasis",
+      "wordiness",
+      "verbosity",
+      "euphemism"
+    ],
+    "antonyms": [
+      "conciseness",
+      "brevity",
+      "directness",
+      "succinctness"
+    ],
+    "etymology": "from Latin circumlocutio, from circum 'around' and loqui 'to speak'"
   },
   {
     "id": "050",
     "word": "prudent",
-    "phonetic": "/\u02c8pru\u02d0.d\u0259nt/",
+    "phonetic": "/ˈpruː.dənt/",
     "definition": "acting with or showing care and thought for the future; discreet and sensible",
     "example": "It was prudent to set aside an emergency fund before making major investments.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "judicious",
+      "cautious",
+      "discreet",
+      "circumspect"
+    ],
+    "antonyms": [
+      "imprudent",
+      "reckless",
+      "rash",
+      "foolhardy"
+    ],
+    "etymology": "from Latin prudens, a contraction of providens 'foreseeing'"
   },
   {
     "id": "051",
     "word": "transient",
-    "phonetic": "/\u02c8tr\u00e6n.zi.\u0259nt/",
+    "phonetic": "/ˈtræn.zi.ənt/",
     "definition": "lasting only for a short time; impermanent or fleeting",
     "example": "Morning mist proved transient, evaporating within an hour of sunrise.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "fleeting",
+      "ephemeral",
+      "momentary",
+      "impermanent"
+    ],
+    "antonyms": [
+      "permanent",
+      "lasting",
+      "enduring",
+      "perpetual"
+    ],
+    "etymology": "from Latin transire, meaning to go across or pass by"
   },
   {
     "id": "052",
     "word": "verdant",
-    "phonetic": "/\u02c8v\u025d\u02d0.d\u0259nt/",
+    "phonetic": "/ˈvɝː.dənt/",
     "definition": "green with grass or other rich vegetation; fresh and flourishing",
     "example": "The hikers descended into a verdant valley crisscrossed by clear mountain brooks.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "lush",
+      "green",
+      "leafy",
+      "flourishing"
+    ],
+    "antonyms": [
+      "barren",
+      "arid",
+      "parched",
+      "desolate"
+    ],
+    "etymology": "from Old French verdoyer, from Latin viridis 'green'"
   },
   {
     "id": "053",
     "word": "juxtapose",
-    "phonetic": "/\u02ccd\u0292\u028ck.st\u0259\u02c8po\u028az/",
+    "phonetic": "/ˌdʒʌk.stəˈpoʊz/",
     "definition": "to place two or more things close together to emphasize similarities or differences",
     "example": "The art curator chose to juxtapose classical marble busts with abstract metal sculptures.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "collocate",
+      "contrast",
+      "compare"
+    ],
+    "etymology": "from Latin juxta 'near' and French poser 'to place'"
   },
   {
     "id": "054",
     "word": "cadence",
-    "phonetic": "/\u02c8ke\u026a.d\u0259ns/",
+    "phonetic": "/ˈkeɪ.dəns/",
     "definition": "a rhythmic sequence or flow of sounds in language; modulation of voice",
     "example": "The poet read with a rhythmic cadence that mesmerized the crowded auditorium.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "rhythm",
+      "tempo",
+      "meter",
+      "lilt"
+    ],
+    "etymology": "from Latin cadere, meaning to fall"
   },
   {
     "id": "055",
     "word": "altruistic",
-    "phonetic": "/\u02cc\u00e6l.tru\u02c8\u026as.t\u026ak/",
+    "phonetic": "/ˌæl.truˈɪs.tɪk/",
     "definition": "showing selfless concern for the well-being of others; unselfish",
     "example": "Her altruistic donations funded university scholarships for underprivileged youths.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "selfless",
+      "philanthropic",
+      "charitable",
+      "benevolent"
+    ],
+    "antonyms": [
+      "selfish",
+      "egocentric",
+      "self-serving"
+    ],
+    "etymology": "from French altruisme, from Italian altrui 'other people'"
   },
   {
     "id": "056",
     "word": "vitriolic",
-    "phonetic": "/\u02ccv\u026at.ri\u02c8\u0251\u02d0.l\u026ak/",
+    "phonetic": "/ˌvɪt.riˈɑː.lɪk/",
     "definition": "filled with bitter criticism, sharp malice, or caustic malice",
     "example": "The anonymous op-ed launched a vitriolic attack on the city council's zoning decisions.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "caustic",
+      "acerbic",
+      "mordant",
+      "scathing"
+    ],
+    "antonyms": [
+      "amicable",
+      "complimentary",
+      "benign",
+      "soothing"
+    ],
+    "etymology": "from Medieval Latin vitriolum, referring to sulfuric acid"
   },
   {
     "id": "057",
     "word": "gossamer",
-    "phonetic": "/\u02c8\u0261\u0251\u02d0.s\u0259.m\u025a/",
+    "phonetic": "/ˈɡɑː.sə.mɚ/",
     "definition": "something extremely light, delicate, or insubstantial, like a spider's cobweb",
     "example": "A gossamer veil drifted lightly behind the bride in the gentle breeze.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "delicate",
+      "sheer",
+      "filmy",
+      "diaphanous"
+    ],
+    "antonyms": [
+      "heavy",
+      "dense",
+      "thick"
+    ],
+    "etymology": "from Middle English gossomer, perhaps goose-summer referring to late autumn warmth"
   },
   {
     "id": "058",
     "word": "hermeneutic",
-    "phonetic": "/\u02cch\u025d\u02d0.m\u0259\u02c8nu\u02d0.t\u026ak/",
+    "phonetic": "/ˌhɝː.məˈnuː.tɪk/",
     "definition": "concerning interpretation, especially of literary, theological, or philosophical texts",
     "example": "Scholars developed a novel hermeneutic framework to decipher the fragmented papyri.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "interpretative",
+      "explanatory",
+      "exegetical"
+    ],
+    "etymology": "from Greek hermēneutikos, from hermēneus 'interpreter', related to Hermes"
   },
   {
     "id": "059",
     "word": "lucidity",
-    "phonetic": "/lu\u02d0\u02c8s\u026ad.\u0259.t\u032ci/",
+    "phonetic": "/luːˈsɪd.ə.t̬i/",
     "definition": "the quality of being clear, easily understood, and rationally coherent",
     "example": "The physics lecturer explained general relativity with remarkable lucidity.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "clarity",
+      "coherence",
+      "perspicuity",
+      "transparency"
+    ],
+    "antonyms": [
+      "opacity",
+      "obscurity",
+      "confusion"
+    ],
+    "etymology": "from Latin lucidus, meaning shining or full of light"
   },
   {
     "id": "060",
     "word": "amicable",
-    "phonetic": "/\u02c8\u00e6m.\u0259.k\u0259.b\u0259l/",
+    "phonetic": "/ˈæm.ə.kə.bəl/",
     "definition": "having a spirit of friendliness; without serious disagreement or acrimony",
     "example": "The business partners negotiated an amicable resolution and dissolved the venture smoothly.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "friendly",
+      "harmonious",
+      "cordial",
+      "peaceable"
+    ],
+    "antonyms": [
+      "hostile",
+      "antagonistic",
+      "contentious"
+    ],
+    "etymology": "from Latin amicabilis, from amicus 'friend'"
   },
   {
     "id": "061",
     "word": "mercurial",
-    "phonetic": "/m\u025a\u02c8kj\u028ar.i.\u0259l/",
+    "phonetic": "/mɚˈkjʊr.i.əl/",
     "definition": "subject to sudden, unpredictable, or volatile changes of mood or mind",
     "example": "His mercurial temperament made it challenging for his subordinates to anticipate his reactions.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "volatile",
+      "erratic",
+      "capricious",
+      "fickle"
+    ],
+    "antonyms": [
+      "steadfast",
+      "constant",
+      "steady",
+      "stable"
+    ],
+    "etymology": "from Latin Mercurius, the Roman messenger god associated with rapid movement"
   },
   {
     "id": "062",
     "word": "diaphanous",
-    "phonetic": "/da\u026a\u02c8\u00e6f.\u0259.n\u0259s/",
+    "phonetic": "/daɪˈæf.ə.nəs/",
     "definition": "light, delicate, and translucent in texture or appearance",
     "example": "The morning light filtered softly through the diaphanous silk curtains.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "sheer",
+      "translucent",
+      "delicate",
+      "gauzy"
+    ],
+    "antonyms": [
+      "opaque",
+      "thick",
+      "dense"
+    ],
+    "etymology": "from Greek diaphanēs, from dia 'through' and phainein 'to show'"
   },
   {
     "id": "063",
     "word": "pedagogical",
-    "phonetic": "/\u02ccped.\u0259\u02c8\u0261\u0251\u02d0.d\u0292\u026a.k\u0259l/",
+    "phonetic": "/ˌped.əˈɡɑː.dʒɪ.kəl/",
     "definition": "relating to the methods, theory, and practice of teaching",
     "example": "The university introduced innovative pedagogical techniques centered on peer discussion.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "instructional",
+      "didactic",
+      "educational",
+      "academic"
+    ],
+    "etymology": "from Greek paidagōgos, a slave who accompanied boys to school"
   },
   {
     "id": "064",
     "word": "resonant",
-    "phonetic": "/\u02c8rez.\u0259n.\u0259nt/",
+    "phonetic": "/ˈrez.ən.ənt/",
     "definition": "deep, clear, and continuing to sound, or evocative of strong feelings",
     "example": "His baritone voice was so resonant that it filled the amphitheater without amplification.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "resounding",
+      "reverberant",
+      "deep",
+      "sonorous"
+    ],
+    "antonyms": [
+      "muffled",
+      "faint",
+      "muted"
+    ],
+    "etymology": "from Latin resonare, meaning to sound again"
   },
   {
     "id": "065",
     "word": "benevolent",
-    "phonetic": "/b\u0259\u02c8nev.\u0259l.\u0259nt/",
+    "phonetic": "/bəˈnev.əl.ənt/",
     "definition": "well-meaning, kindly, and charitable toward others",
     "example": "A benevolent benefactor provided meals and warm coats for the shelter residents.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "kindhearted",
+      "charitable",
+      "altruistic",
+      "beneficent"
+    ],
+    "antonyms": [
+      "malevolent",
+      "spiteful",
+      "malicious"
+    ],
+    "etymology": "from Latin bene 'well' and velle 'to wish'"
   },
   {
     "id": "066",
     "word": "intransigent",
-    "phonetic": "/\u026an\u02c8tr\u00e6n.s\u0259.d\u0292\u0259nt/",
+    "phonetic": "/ɪnˈtræn.sə.dʒənt/",
     "definition": "refusing to compromise, alter a position, or agree about a dispute",
     "example": "The negotiators reached a stalemate due to the intransigent stance of both factions.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "uncompromising",
+      "obstinate",
+      "inflexible",
+      "stubborn"
+    ],
+    "antonyms": [
+      "amenable",
+      "yielding",
+      "flexible",
+      "compliant"
+    ],
+    "etymology": "from Spanish intransigente, from in- 'not' and transigir 'to compromise'"
   },
   {
     "id": "067",
     "word": "susurrus",
-    "phonetic": "/s\u0259\u02c8s\u025d\u02d0.\u0259s/",
+    "phonetic": "/səˈsɝː.əs/",
     "definition": "a soft murmuring or whispering sound, like rustling leaves",
     "example": "The gentle susurrus of pine needles in the wind brought tranquility to the woods.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "murmur",
+      "whisper",
+      "rustle",
+      "hum"
+    ],
+    "antonyms": [
+      "clamor",
+      "uproar",
+      "din"
+    ],
+    "etymology": "from Latin susurrus, meaning a whisper or hum"
   },
   {
     "id": "068",
     "word": "qualitative",
-    "phonetic": "/\u02c8kw\u0251\u02d0.l\u0259.te\u026a.t\u032c\u026av/",
+    "phonetic": "/ˈkwɑː.lə.teɪ.t̬ɪv/",
     "definition": "relating to, measuring, or characterized by quality rather than numerical quantity",
     "example": "The sociologist gathered qualitative data through extensive in-depth interviews.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "descriptive",
+      "subjective",
+      "experiential"
+    ],
+    "antonyms": [
+      "quantitative",
+      "numerical"
+    ],
+    "etymology": "from Latin qualitas, from qualis 'of what kind'"
   },
   {
     "id": "069",
     "word": "loquacious",
-    "phonetic": "/lo\u028a\u02c8kwe\u026a.\u0283\u0259s/",
+    "phonetic": "/loʊˈkweɪ.ʃəs/",
     "definition": "tending to talk a great deal; talkative and communicative",
     "example": "The loquacious tour guide kept the group entertained with endless local anecdotes.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "talkative",
+      "garrulous",
+      "voluble",
+      "chatty"
+    ],
+    "antonyms": [
+      "taciturn",
+      "reticent",
+      "quiet",
+      "laconic"
+    ],
+    "etymology": "from Latin loqui, meaning to speak"
   },
   {
     "id": "070",
     "word": "camaraderie",
-    "phonetic": "/\u02cck\u0251\u02d0m\u02c8r\u0251\u02d0.d\u025a.i/",
+    "phonetic": "/ˌkɑːmˈrɑː.dɚ.i/",
     "definition": "mutual trust, warmth, and friendship among people who spend time together",
     "example": "The intense training period built an enduring sense of camaraderie among the astronauts.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "fellowship",
+      "companionship",
+      "solidarity",
+      "comradeship"
+    ],
+    "antonyms": [
+      "hostility",
+      "estrangement",
+      "alienation"
+    ],
+    "etymology": "from French camarade, from Spanish camarada 'roommate'"
   },
   {
     "id": "071",
     "word": "deleterious",
-    "phonetic": "/\u02ccdel.\u0259\u02c8t\u026ar.i.\u0259s/",
+    "phonetic": "/ˌdel.əˈtɪr.i.əs/",
     "definition": "causing harm or damage, especially in a gradual manner",
     "example": "Prolonged lack of sleep exerts a deleterious effect on cognitive performance.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "harmful",
+      "damaging",
+      "detrimental",
+      "injurious"
+    ],
+    "antonyms": [
+      "beneficial",
+      "helpful",
+      "advantageous",
+      "salutary"
+    ],
+    "etymology": "from Greek dēlētērios, from dēleisthai 'to harm'"
   },
   {
     "id": "072",
     "word": "languor",
-    "phonetic": "/\u02c8l\u00e6\u014b.\u0261\u025a/",
+    "phonetic": "/ˈlæŋ.ɡɚ/",
     "definition": "the state or feeling, often pleasant, of tiredness, relaxation, or stillness",
     "example": "On hot July afternoons, an agreeable languor settled over the sleepy seaside hamlet.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "lethargy",
+      "lassitude",
+      "torpor",
+      "stillness"
+    ],
+    "antonyms": [
+      "vigor",
+      "vitality",
+      "energy",
+      "dynamism"
+    ],
+    "etymology": "from Latin languere, meaning to be faint or weary"
   },
   {
     "id": "073",
     "word": "quantitative",
-    "phonetic": "/\u02c8kw\u0251\u02d0n.t\u032c\u0259.te\u026a.t\u032c\u026av/",
+    "phonetic": "/ˈkwɑːn.t̬ə.teɪ.t̬ɪv/",
     "definition": "relating to, measuring, or measured by numerical quantity or statistical data",
     "example": "The team conducted a quantitative analysis of temperature fluctuations over fifty years.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "numerical",
+      "measurable",
+      "statistical",
+      "metric"
+    ],
+    "antonyms": [
+      "qualitative",
+      "subjective"
+    ],
+    "etymology": "from Latin quantitas, from quantus 'how much'"
   },
   {
     "id": "074",
     "word": "bombastic",
-    "phonetic": "/b\u0251\u02d0m\u02c8b\u00e6s.t\u026ak/",
+    "phonetic": "/bɑːmˈbæs.tɪk/",
     "definition": "high-sounding, inflated, and pretentious, but with little actual substance",
     "example": "The manifesto was written in a bombastic style that alienated thoughtful readers.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "pompous",
+      "grandiloquent",
+      "inflated",
+      "turgid"
+    ],
+    "antonyms": [
+      "understated",
+      "simple",
+      "restrained",
+      "modest"
+    ],
+    "etymology": "from bombast, referring to cotton padding used in garments"
   },
   {
     "id": "075",
     "word": "compunction",
-    "phonetic": "/k\u0259m\u02c8p\u028c\u014bk.\u0283\u0259n/",
+    "phonetic": "/kəmˈpʌŋk.ʃən/",
     "definition": "a feeling of guilt or hesitation that prevents or follows doing something wrong",
     "example": "The dishonest trader demonstrated zero compunction about overcharging naive clients.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "remorse",
+      "regret",
+      "qualm",
+      "scruple"
+    ],
+    "antonyms": [
+      "shamelessness",
+      "indifference"
+    ],
+    "etymology": "from Latin compungere, meaning to prick sharply"
   },
   {
     "id": "076",
     "word": "insidious",
-    "phonetic": "/\u026an\u02c8s\u026ad.i.\u0259s/",
+    "phonetic": "/ɪnˈsɪd.i.əs/",
     "definition": "proceeding in a subtle or imperceptible way, but with harmful consequences",
     "example": "Carbon monoxide is an insidious poison because it is both odorless and colorless.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "stealthy",
+      "deceitful",
+      "treacherous",
+      "surreptitious"
+    ],
+    "antonyms": [
+      "straightforward",
+      "overt",
+      "benign"
+    ],
+    "etymology": "from Latin insidiosus, from insidiae 'ambush'"
   },
   {
     "id": "077",
     "word": "crepuscular",
-    "phonetic": "/kr\u026a\u02c8p\u028cs.kj\u0259.l\u025a/",
+    "phonetic": "/krɪˈpʌs.kjə.lɚ/",
     "definition": "resembling or relating to twilight, or active during dawn and dusk",
     "example": "Owls and deer are crepuscular creatures that emerge as the sun dips below the ridge.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "twilight",
+      "dusky",
+      "shadowy",
+      "dim"
+    ],
+    "antonyms": [
+      "nocturnal",
+      "diurnal",
+      "bright"
+    ],
+    "etymology": "from Latin crepusculum, meaning twilight or dusk"
   },
   {
     "id": "078",
     "word": "ontology",
-    "phonetic": "/\u0251\u02d0n\u02c8t\u0251\u02d0.l\u0259.d\u0292i/",
+    "phonetic": "/ɑːnˈtɑː.lə.dʒi/",
     "definition": "the branch of metaphysics dealing with the nature of being, existence, and reality",
     "example": "The seminar examined the ontology of digital entities within computer simulations.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "metaphysics",
+      "theory of being"
+    ],
+    "etymology": "from Greek on 'being' and -logia 'study of'"
   },
   {
     "id": "079",
     "word": "declamation",
-    "phonetic": "/\u02ccdek.l\u0259\u02c8me\u026a.\u0283\u0259n/",
+    "phonetic": "/ˌdek.ləˈmeɪ.ʃən/",
     "definition": "the rhetorical recital of a formal speech or poem with dramatic passion",
     "example": "His passionate declamation of the declaration stirred the revolutionaries in the square.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "recitation",
+      "oration",
+      "speech",
+      "rhetoric"
+    ],
+    "etymology": "from Latin declamare, meaning to practice speaking or cry out loudly"
   },
   {
     "id": "080",
     "word": "deference",
-    "phonetic": "/\u02c8def.\u025a.\u0259ns/",
+    "phonetic": "/ˈdef.ɚ.əns/",
     "definition": "humble submission, polite courtesy, and respect toward another person",
     "example": "The young surgeon treated the veteran physician with genuine deference and attentiveness.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "respect",
+      "reverence",
+      "esteem",
+      "veneration"
+    ],
+    "antonyms": [
+      "disrespect",
+      "defiance",
+      "contempt",
+      "impudence"
+    ],
+    "etymology": "from French déférence, from déférer 'to yield'"
   },
   {
     "id": "081",
     "word": "punctilious",
-    "phonetic": "/p\u028c\u014bk\u02c8t\u026al.i.\u0259s/",
+    "phonetic": "/pʌŋkˈtɪl.i.əs/",
     "definition": "showing meticulous attention to detail, strict rules, or proper etiquette",
     "example": "The diplomat was punctilious regarding formal seating arrangements at state dinners.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "meticulous",
+      "scrupulous",
+      "conscientious",
+      "exacting"
+    ],
+    "antonyms": [
+      "careless",
+      "slipshod",
+      "negligent"
+    ],
+    "etymology": "from Italian puntiglio, meaning a fine point of etiquette"
   },
   {
     "id": "082",
     "word": "incandescent",
-    "phonetic": "/\u02cc\u026an.k\u00e6n\u02c8des.\u0259nt/",
+    "phonetic": "/ˌɪn.kænˈdes.ənt/",
     "definition": "emitting light as a result of being heated, or radiating brilliant emotion",
     "example": "The night sky was illuminated by incandescent meteors streaking across the atmosphere.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "glowing",
+      "radiant",
+      "brilliant",
+      "luminous"
+    ],
+    "antonyms": [
+      "dim",
+      "dull",
+      "dark"
+    ],
+    "etymology": "from Latin incandescere, from in- 'upon' and candescere 'to glow white'"
   },
   {
     "id": "083",
     "word": "syllogism",
-    "phonetic": "/\u02c8s\u026al.\u0259.d\u0292\u026a.z\u0259m/",
+    "phonetic": "/ˈsɪl.ə.dʒɪ.zəm/",
     "definition": "a deductive logical reasoning format in which a conclusion is drawn from two premises",
     "example": "The philosopher dissected the flawed syllogism to expose its underlying contradiction.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "deductive argument",
+      "logical deduction",
+      "reasoning"
+    ],
+    "etymology": "from Greek syllogismos, from syn- 'with' and logizesthai 'to reckon'"
   },
   {
     "id": "084",
     "word": "voluble",
-    "phonetic": "/\u02c8v\u0251\u02d0l.j\u0259.b\u0259l/",
+    "phonetic": "/ˈvɑːl.jə.bəl/",
     "definition": "speaking fluently, incessantly, and at great length",
     "example": "The voluble merchant extolled the virtues of every Persian rug in his bazaar.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "fluent",
+      "talkative",
+      "garrulous",
+      "loquacious"
+    ],
+    "antonyms": [
+      "taciturn",
+      "quiet",
+      "laconic",
+      "uncommunicative"
+    ],
+    "etymology": "from Latin volubilis, from volvere 'to roll'"
   },
   {
     "id": "085",
     "word": "discerning",
-    "phonetic": "/d\u026a\u02c8s\u025d\u02d0.n\u026a\u014b/",
+    "phonetic": "/dɪˈsɝː.nɪŋ/",
     "definition": "having or showing keen judgment, taste, and perceptive discrimination",
     "example": "The gallery owner possessed a discerning eye for emerging contemporary painters.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "perceptive",
+      "discriminating",
+      "astute",
+      "judicious"
+    ],
+    "antonyms": [
+      "undiscerning",
+      "indiscriminate",
+      "obtuse"
+    ],
+    "etymology": "from Latin discernere, meaning to separate or distinguish"
   },
   {
     "id": "086",
     "word": "vociferous",
-    "phonetic": "/vo\u028a\u02c8s\u026af.\u025a.\u0259s/",
+    "phonetic": "/voʊˈsɪf.ɚ.əs/",
     "definition": "expressing opinions or feelings loudly, forcefully, and insistently",
     "example": "The citizens offered vociferous objections to the construction of a nearby highway.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "clamorous",
+      "vehement",
+      "outspoken",
+      "noisy"
+    ],
+    "antonyms": [
+      "quiet",
+      "silent",
+      "muted",
+      "reticent"
+    ],
+    "etymology": "from Latin vox 'voice' and ferre 'to carry'"
   },
   {
     "id": "087",
     "word": "labyrinthine",
-    "phonetic": "/\u02ccl\u00e6b.\u0259\u02c8r\u026an.\u03b8\u026an/",
+    "phonetic": "/ˌlæb.əˈrɪn.θɪn/",
     "definition": "intricate, complicated, twisting, and resembling a maze",
     "example": "They lost their bearings in the labyrinthine cobblestone alleys of the old walled town.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "intricate",
+      "convoluted",
+      "tortuous",
+      "complex"
+    ],
+    "antonyms": [
+      "straightforward",
+      "simple",
+      "direct"
+    ],
+    "etymology": "from Greek labyrinthos, referring to the mythical Cretan maze"
   },
   {
     "id": "088",
     "word": "posit",
-    "phonetic": "/\u02c8p\u0251\u02d0.z\u026at/",
+    "phonetic": "/ˈpɑː.zɪt/",
     "definition": "to put forward something as fact or an underlying premise for argument",
     "example": "Cosmologists posit that dark energy accelerates the expansion of the observable universe.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "postulate",
+      "hypothesize",
+      "assume",
+      "assert"
+    ],
+    "antonyms": [
+      "refute",
+      "deny",
+      "disclaim"
+    ],
+    "etymology": "from Latin positus, past participle of ponere 'to place'"
   },
   {
     "id": "089",
     "word": "aphorism",
-    "phonetic": "/\u02c8\u00e6f.\u025a.\u026a.z\u0259m/",
+    "phonetic": "/ˈæf.ɚ.ɪ.zəm/",
     "definition": "a pithy, memorable observation that contains a general truth or moral principle",
     "example": "Franklin was celebrated for coining many an enduring aphorism in his yearly almanac.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "adage",
+      "maxim",
+      "proverb",
+      "precept"
+    ],
+    "etymology": "from Greek aphorismos, from aphorizein 'to define or delimit'"
   },
   {
     "id": "090",
     "word": "empathy",
-    "phonetic": "/\u02c8em.p\u0259.\u03b8i/",
+    "phonetic": "/ˈem.pə.θi/",
     "definition": "the psychological ability to understand and share the feelings of another person",
     "example": "Her innate empathy made her a compassionate counselor for families in crisis.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "compassion",
+      "understanding",
+      "sympathy",
+      "sensitivity"
+    ],
+    "antonyms": [
+      "apathy",
+      "indifference",
+      "callousness"
+    ],
+    "etymology": "coined in 1909 from Greek empatheia, from en- 'in' and pathos 'feeling'"
   },
   {
     "id": "091",
     "word": "obdurate",
-    "phonetic": "/\u02c8\u0251\u02d0b.d\u028a.r\u0259t/",
+    "phonetic": "/ˈɑːb.dʊ.rət/",
     "definition": "stubbornly refusing to change one's opinion, course of action, or remorse",
     "example": "Despite impassioned pleas from his staff, the governor remained obdurate in his veto.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "stubborn",
+      "obstinate",
+      "unyielding",
+      "intransigent"
+    ],
+    "antonyms": [
+      "pliable",
+      "compliant",
+      "submissive",
+      "yielding"
+    ],
+    "etymology": "from Latin obdurare, meaning to harden against"
   },
   {
     "id": "092",
     "word": "melancholy",
-    "phonetic": "/\u02c8mel.\u0259\u014b.k\u0251\u02d0.li/",
+    "phonetic": "/ˈmel.əŋ.kɑː.li/",
     "definition": "a deep, pensive, and quiet sadness, typically with no immediate obvious cause",
     "example": "Autumn rain invariably brought on a sweet, contemplative melancholy in the poet.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "sadness",
+      "sorrow",
+      "gloom",
+      "despondency"
+    ],
+    "antonyms": [
+      "joy",
+      "cheerfulness",
+      "euphoria",
+      "mirth"
+    ],
+    "etymology": "from Greek melas 'black' and cholē 'bile'"
   },
   {
     "id": "093",
     "word": "synthesize",
-    "phonetic": "/\u02c8s\u026an.\u03b8\u0259.sa\u026az/",
+    "phonetic": "/ˈsɪn.θə.saɪz/",
     "definition": "to combine diverse ideas, components, or findings into a single coherent whole",
     "example": "The review article synthesized over two hundred separate studies on cognitive development.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "combine",
+      "integrate",
+      "amalgamate",
+      "blend"
+    ],
+    "antonyms": [
+      "separate",
+      "dissect",
+      "analyze",
+      "divide"
+    ],
+    "etymology": "from Greek synthesis, from syntithenai 'to place together'"
   },
   {
     "id": "094",
     "word": "eulogy",
-    "phonetic": "/\u02c8ju\u02d0.l\u0259.d\u0292i/",
+    "phonetic": "/ˈjuː.lə.dʒi/",
     "definition": "a formal speech or tribute in writing that praises someone who has died",
     "example": "Her granddaughter delivered an affectionate and heartfelt eulogy celebrating her long life.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "tribute",
+      "encomium",
+      "panegyric",
+      "accolade"
+    ],
+    "antonyms": [
+      "diatribe",
+      "condemnation",
+      "denunciation"
+    ],
+    "etymology": "from Greek eulogia, from eu 'well' and logos 'word or speech'"
   },
   {
     "id": "095",
     "word": "equanimity",
-    "phonetic": "/\u02ccek.w\u0259\u02c8n\u026am.\u0259.t\u032ci/",
+    "phonetic": "/ˌek.wəˈnɪm.ə.t̬i/",
     "definition": "mental calmness, composure, and emotional poise, especially in a crisis",
     "example": "The captain maintained complete equanimity even as the storm rocked the vessel.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "composure",
+      "serenity",
+      "poise",
+      "aplomb"
+    ],
+    "antonyms": [
+      "agitation",
+      "perturbation",
+      "anxiety",
+      "hysteria"
+    ],
+    "etymology": "from Latin aequus 'equal or even' and animus 'mind'"
   },
   {
     "id": "096",
     "word": "iconoclast",
-    "phonetic": "/a\u026a\u02c8k\u0251\u02d0.n\u0259.kl\u00e6st/",
+    "phonetic": "/aɪˈkɑː.nə.klæst/",
     "definition": "a person who attacks cherished beliefs, traditional institutions, or established dogmas",
     "example": "The rebellious architect was an iconoclast who dismantled neoclassical design orthodoxies.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "rebel",
+      "dissenter",
+      "nonconformist",
+      "maverick"
+    ],
+    "antonyms": [
+      "traditionalist",
+      "conformist",
+      "orthodox"
+    ],
+    "etymology": "from Greek eikonoklastēs, from eikōn 'image' and klan 'to break'"
   },
   {
     "id": "097",
     "word": "luminescence",
-    "phonetic": "/\u02cclu\u02d0.m\u0259\u02c8nes.\u0259ns/",
+    "phonetic": "/ˌluː.məˈnes.əns/",
     "definition": "the emission of cold light by a substance not resulting from incandescent heat",
     "example": "Deep under the waves, bioluminescent jellyfish cast an ethereal luminescence.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "glow",
+      "radiance",
+      "phosphorescence",
+      "gleam"
+    ],
+    "antonyms": [
+      "darkness",
+      "obscurity"
+    ],
+    "etymology": "coined from Latin lumen 'light' and -escence 'process of becoming'"
   },
   {
     "id": "098",
     "word": "theoretical",
-    "phonetic": "/\u02cc\u03b8i\u02d0.\u0259\u02c8ret\u032c.\u026a.k\u0259l/",
+    "phonetic": "/ˌθiː.əˈret̬.ɪ.kəl/",
     "definition": "concerned with the theoretical concepts of a field rather than practical application",
     "example": "Theoretical physicists formulated equations describing the behavior of black holes.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "hypothetical",
+      "speculative",
+      "abstract",
+      "conjectural"
+    ],
+    "antonyms": [
+      "practical",
+      "empirical",
+      "applied",
+      "concrete"
+    ],
+    "etymology": "from Greek theōrētikos, from theōria 'contemplation or speculation'"
   },
   {
     "id": "099",
     "word": "diatribe",
-    "phonetic": "/\u02c8da\u026a.\u0259.tra\u026ab/",
+    "phonetic": "/ˈdaɪ.ə.traɪb/",
     "definition": "a forceful, bitter, and sharply abusive verbal or written attack",
     "example": "The editorial launched a blistering diatribe against reckless public spending.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "tirade",
+      "harangue",
+      "philippic",
+      "invective"
+    ],
+    "antonyms": [
+      "eulogy",
+      "praise",
+      "encomium",
+      "compliment"
+    ],
+    "etymology": "from Greek diatribē, meaning pastime or spending time in study, later a bitter discourse"
   },
   {
     "id": "100",
     "word": "exemplary",
-    "phonetic": "/\u026a\u0261\u02c8zem.pl\u025a.i/",
+    "phonetic": "/ɪɡˈzem.plɚ.i/",
     "definition": "serving as a desirable model, standard, or pattern; commendable",
     "example": "The nurse was honored for exemplary dedication during the regional health emergency.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "model",
+      "commendable",
+      "praiseworthy",
+      "quintessential"
+    ],
+    "antonyms": [
+      "flawed",
+      "reprehensible",
+      "deficient"
+    ],
+    "etymology": "from Latin exemplaris, from exemplum 'sample or pattern'"
   },
   {
     "id": "101",
     "word": "panacea",
-    "phonetic": "/\u02ccp\u00e6n.\u0259\u02c8si\u02d0.\u0259/",
+    "phonetic": "/ˌpæn.əˈsiː.ə/",
     "definition": "a universal remedy or solution for all difficulties, problems, or diseases",
     "example": "Technology is a useful tool, but it is certainly not a panacea for social inequality.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "cure-all",
+      "elixir",
+      "remedy",
+      "catholicon"
+    ],
+    "etymology": "from Greek panakeia, from pan 'all' and akos 'remedy'"
   },
   {
     "id": "102",
     "word": "palimpsest",
-    "phonetic": "/\u02c8p\u00e6l.\u026amp.sest/",
+    "phonetic": "/ˈpæl.ɪmp.sest/",
     "definition": "something reused or altered but still bearing visible traces of its earlier history",
     "example": "The ancient city was a palimpsest where modern storefronts rested upon Roman foundations.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "effaced manuscript",
+      "layered record",
+      "relic"
+    ],
+    "etymology": "from Greek palimpsēstos, from palin 'again' and psēstos 'scraped'"
   },
   {
     "id": "103",
     "word": "vernacular",
-    "phonetic": "/v\u025a\u02c8n\u00e6k.j\u0259.l\u025a/",
+    "phonetic": "/vɚˈnæk.jə.lɚ/",
     "definition": "the native language, dialect, or idiom spoken by ordinary people in a specific region",
     "example": "Chaucer chose to write in the English vernacular rather than in court Latin or French.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "dialect",
+      "indigenous tongue",
+      "patois",
+      "idiom"
+    ],
+    "antonyms": [
+      "standard language",
+      "literary tongue"
+    ],
+    "etymology": "from Latin vernaculus, meaning native or domestic, from verna 'home-born slave'"
   },
   {
     "id": "104",
     "word": "panegyric",
-    "phonetic": "/\u02ccp\u00e6n.\u0259\u02c8d\u0292\u026ar.\u026ak/",
+    "phonetic": "/ˌpæn.əˈdʒɪr.ɪk/",
     "definition": "a formal public speech or published text delivering extravagant praise",
     "example": "The laureate composed a glowing panegyric in celebration of the centenary jubilee.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "eulogy",
+      "encomium",
+      "tribute",
+      "paean"
+    ],
+    "antonyms": [
+      "diatribe",
+      "condemnation",
+      "reproach"
+    ],
+    "etymology": "from Greek panēgyrikos, meaning a speech delivered at a public assembly"
   },
   {
     "id": "105",
     "word": "formidable",
-    "phonetic": "/\u02c8f\u0254\u02d0r.m\u026a.d\u0259.b\u0259l/",
+    "phonetic": "/ˈfɔːr.mɪ.də.bəl/",
     "definition": "inspiring respect, admiration, or fear through being impressively powerful or capable",
     "example": "The opposing debate team had a formidable record of undefeated tournament rounds.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "intimidating",
+      "daunting",
+      "fearsome",
+      "imposing"
+    ],
+    "antonyms": [
+      "reassuring",
+      "approachable",
+      "weak"
+    ],
+    "etymology": "from Latin formidabilis, from formido 'fear or terror'"
   },
   {
     "id": "106",
     "word": "mendacity",
-    "phonetic": "/men\u02c8d\u00e6s.\u0259.t\u032ci/",
+    "phonetic": "/menˈdæs.ə.t̬i/",
     "definition": "untruthfulness; deceitfulness; habitual tendency to lie",
     "example": "The investigative journalist exposed the mendacity of the company's marketing claims.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "dishonesty",
+      "deceitfulness",
+      "untruthfulness",
+      "duplicity"
+    ],
+    "antonyms": [
+      "veracity",
+      "honesty",
+      "truthfulness",
+      "candor"
+    ],
+    "etymology": "from Latin mendacitas, from mendax 'lying'"
   },
   {
     "id": "107",
     "word": "resplendent",
-    "phonetic": "/r\u026a\u02c8splen.d\u0259nt/",
+    "phonetic": "/rɪˈsplen.dənt/",
     "definition": "attractive and impressive through being richly colorful, shining, or sumptuous",
     "example": "The monarch appeared on the palace balcony resplendent in ceremonial gold regalia.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "dazzling",
+      "brilliant",
+      "splendid",
+      "radiant"
+    ],
+    "antonyms": [
+      "drab",
+      "dull",
+      "lackluster",
+      "dim"
+    ],
+    "etymology": "from Latin resplendere, from re- 'intensifier' and splendere 'to shine'"
   },
   {
     "id": "108",
     "word": "aberration",
-    "phonetic": "/\u02cc\u00e6b.\u0259\u02c8re\u026a.\u0283\u0259n/",
+    "phonetic": "/ˌæb.əˈreɪ.ʃən/",
     "definition": "a departure from what is normal, standard, or expected, typically unwelcome",
     "example": "The sharp spike in atmospheric pressure was an unusual meteorological aberration.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "anomaly",
+      "deviation",
+      "divergence",
+      "abnormality"
+    ],
+    "antonyms": [
+      "regularity",
+      "normality",
+      "conformity"
+    ],
+    "etymology": "from Latin aberrare, from ab- 'away from' and errare 'to stray'"
   },
   {
     "id": "109",
     "word": "platitude",
-    "phonetic": "/\u02c8pl\u00e6t\u032c.\u0259.tu\u02d0d/",
+    "phonetic": "/ˈplæt̬.ə.tuːd/",
     "definition": "a flat, dull, or trite remark uttered as if it were fresh and profound",
     "example": "Instead of offering concrete help, the manager repeated an unhelpful platitude.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "cliché",
+      "truism",
+      "banality",
+      "bromide"
+    ],
+    "antonyms": [
+      "profundity",
+      "original thought"
+    ],
+    "etymology": "from French platitude, from plat 'flat or dull'"
   },
   {
     "id": "110",
     "word": "fortuitous",
-    "phonetic": "/f\u0254\u02d0r\u02c8tu\u02d0.\u0259.t\u032c\u0259s/",
+    "phonetic": "/fɔːrˈtuː.ə.t̬əs/",
     "definition": "happening by a lucky chance or coincidence rather than by design",
     "example": "Their fortuitous encounter at the transit station led to a thriving partnership.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "accidental",
+      "serendipitous",
+      "unexpected",
+      "lucky"
+    ],
+    "antonyms": [
+      "deliberate",
+      "planned",
+      "intentional",
+      "designed"
+    ],
+    "etymology": "from Latin fortuitus, from fors 'chance or luck'"
   },
   {
     "id": "111",
     "word": "evanescent",
-    "phonetic": "/\u02ccev.\u0259\u02c8nes.\u0259nt/",
+    "phonetic": "/ˌev.əˈnes.ənt/",
     "definition": "quickly fading, vanishing, or disappearing from sight or memory",
     "example": "Rainbows after sudden summer storms are evanescent spectacles that fade in minutes.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "vanishing",
+      "transient",
+      "fleeting",
+      "ephemeral"
+    ],
+    "antonyms": [
+      "enduring",
+      "permanent",
+      "lasting"
+    ],
+    "etymology": "from Latin evanescere, from e- 'out' and vanescere 'to disappear'"
   },
   {
     "id": "112",
     "word": "reverie",
-    "phonetic": "/\u02c8rev.\u025a.i/",
+    "phonetic": "/ˈrev.ɚ.i/",
     "definition": "a state of being pleasantly lost in one's daydream or quiet thoughts",
     "example": "A knock at the study door abruptly interrupted his nostalgic afternoon reverie.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "daydream",
+      "contemplation",
+      "trance",
+      "fantasy"
+    ],
+    "etymology": "from Old French reverie, from resver 'to dream or rave'"
   },
   {
     "id": "113",
     "word": "axiom",
-    "phonetic": "/\u02c8\u00e6k.si.\u0259m/",
+    "phonetic": "/ˈæk.si.əm/",
     "definition": "a statement or proposition regarded as self-evidently true and accepted as a foundation",
     "example": "Euclidean geometry rests upon a small collection of self-evident axioms.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "postulate",
+      "premise",
+      "principle",
+      "truism"
+    ],
+    "antonyms": [
+      "absurdity",
+      "paradox"
+    ],
+    "etymology": "from Greek axiōma, from axios 'worthy or fit'"
   },
   {
     "id": "114",
     "word": "repartee",
-    "phonetic": "/\u02ccrep.\u0251\u02d0r\u02c8ti\u02d0/",
+    "phonetic": "/ˌrep.ɑːrˈtiː/",
     "definition": "conversation or dialogue characterized by quick, witty, and clever replies",
     "example": "The drawing-room comedy sparkled with spontaneous wit and brisk repartee.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "witty banter",
+      "badinage",
+      "witticism",
+      "raillery"
+    ],
+    "etymology": "from French repartie, from repartir 'to reply promptly'"
   },
   {
     "id": "115",
     "word": "frugal",
-    "phonetic": "/\u02c8fru\u02d0.\u0261\u0259l/",
+    "phonetic": "/ˈfruː.ɡəl/",
     "definition": "sparing, economical, or prudent with regard to money, food, or resources",
     "example": "Through frugal living and modest habits, they managed to pay off their home early.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "thrifty",
+      "economical",
+      "sparing",
+      "prudent"
+    ],
+    "antonyms": [
+      "extravagant",
+      "lavish",
+      "wasteful",
+      "prodigal"
+    ],
+    "etymology": "from Latin frugalis, from frux 'fruit or profit'"
   },
   {
     "id": "116",
     "word": "munificent",
-    "phonetic": "/mju\u02d0\u02c8n\u026af.\u0259.s\u0259nt/",
+    "phonetic": "/mjuːˈnɪf.ə.sənt/",
     "definition": "characterized by exceptional generosity; lavish and open-handed",
     "example": "The hospital built a new pediatric wing thanks to a munificent private endowment.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "generous",
+      "lavish",
+      "bounteous",
+      "philanthropic"
+    ],
+    "antonyms": [
+      "miserly",
+      "parsimonious",
+      "stingy",
+      "penurious"
+    ],
+    "etymology": "from Latin munificentia, from munus 'gift' and facere 'to make'"
   },
   {
     "id": "117",
     "word": "scintilla",
-    "phonetic": "/s\u026an\u02c8t\u026al.\u0259/",
+    "phonetic": "/sɪnˈtɪl.ə/",
     "definition": "a tiny trace or minute spark of a specified quality, feeling, or idea",
     "example": "There was not a single scintilla of doubt regarding the witness's integrity.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "particle",
+      "shred",
+      "speck",
+      "trace"
+    ],
+    "antonyms": [
+      "abundance",
+      "surfeit"
+    ],
+    "etymology": "from Latin scintilla, meaning a spark"
   },
   {
     "id": "118",
     "word": "cogent",
-    "phonetic": "/\u02c8ko\u028a.d\u0292\u0259nt/",
+    "phonetic": "/ˈkoʊ.dʒənt/",
     "definition": "powerfully clear, logical, persuasive, and convincing in argument",
     "example": "The defense attorney presented a cogent argument that swayed the undecided jury.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "persuasive",
+      "convincing",
+      "compelling",
+      "lucid"
+    ],
+    "antonyms": [
+      "unconvincing",
+      "weak",
+      "invalid",
+      "muddled"
+    ],
+    "etymology": "from Latin cogere, meaning to compel or drive together"
   },
   {
     "id": "119",
     "word": "sobriquet",
-    "phonetic": "/\u02c8so\u028a.br\u0259.ke\u026a/",
+    "phonetic": "/ˈsoʊ.brə.keɪ/",
     "definition": "a person's descriptive nickname or distinctive epithet",
     "example": "King Richard earned the fearsome sobriquet of 'Lionheart' for his battlefield courage.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "nickname",
+      "epithet",
+      "moniker",
+      "alias"
+    ],
+    "etymology": "from Old French soubzbriquet, originally meaning a tap under the chin"
   },
   {
     "id": "120",
     "word": "gullible",
-    "phonetic": "/\u02c8\u0261\u028cl.\u0259.b\u0259l/",
+    "phonetic": "/ˈɡʌl.ə.bəl/",
     "definition": "easily persuaded, deceived, or tricked into believing something dubious",
     "example": "Online fraudsters often prey on gullible consumers with promises of instant wealth.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "naive",
+      "credulous",
+      "trusting",
+      "impressionable"
+    ],
+    "antonyms": [
+      "skeptical",
+      "suspicious",
+      "cynical",
+      "shrewd"
+    ],
+    "etymology": "derived from gull, meaning a dupe or trickable person"
   },
   {
     "id": "121",
     "word": "bellicose",
-    "phonetic": "/\u02c8bel.\u0259.ko\u028as/",
+    "phonetic": "/ˈbel.ə.koʊs/",
     "definition": "demonstrating aggression, hostility, and a keen willingness to fight",
     "example": "The neighboring dictator delivered a bellicose broadcast threatening border skirmishes.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "belligerent",
+      "aggressive",
+      "pugnacious",
+      "combative"
+    ],
+    "antonyms": [
+      "peaceful",
+      "conciliatory",
+      "pacific",
+      "dovish"
+    ],
+    "etymology": "from Latin bellicosus, from bellum 'war'"
   },
   {
     "id": "122",
     "word": "tenebrous",
-    "phonetic": "/\u02c8ten.\u0259.br\u0259s/",
+    "phonetic": "/ˈten.ə.brəs/",
     "definition": "dark, shadowy, murky, or difficult to understand; gloomy",
     "example": "The spelunkers cautiously ventured into the tenebrous corridors of the limestone cavern.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "dark",
+      "shadowy",
+      "gloomy",
+      "obscure"
+    ],
+    "antonyms": [
+      "luminous",
+      "bright",
+      "clear",
+      "radiant"
+    ],
+    "etymology": "from Latin tenebrosus, from tenebrae 'darkness'"
   },
   {
     "id": "123",
     "word": "delineate",
-    "phonetic": "/d\u026a\u02c8l\u026an.i.e\u026at/",
+    "phonetic": "/dɪˈlɪn.i.eɪt/",
     "definition": "to describe, portray, or outline with sharp precision and detail",
     "example": "The white paper clearly delineated the environmental standards expected of manufacturers.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "depict",
+      "portray",
+      "outline",
+      "define"
+    ],
+    "antonyms": [
+      "blur",
+      "confuse",
+      "distort"
+    ],
+    "etymology": "from Latin delineare, from de- 'completely' and lineare 'to trace with lines'"
   },
   {
     "id": "124",
     "word": "soliloquy",
-    "phonetic": "/s\u0259\u02c8l\u026al.\u0259.kwi/",
+    "phonetic": "/səˈlɪl.ə.kwi/",
     "definition": "an act of speaking one's innermost thoughts aloud when alone or on stage",
     "example": "Hamlet's famous soliloquy reflects his profound contemplation of mortality.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "monologue",
+      "internal speech",
+      "aside"
+    ],
+    "antonyms": [
+      "dialogue",
+      "conversation"
+    ],
+    "etymology": "from Late Latin soliloquium, from solus 'alone' and loqui 'to speak'"
   },
   {
     "id": "125",
     "word": "humility",
-    "phonetic": "/hju\u02d0\u02c8m\u026al.\u0259.t\u032ci/",
+    "phonetic": "/hjuːˈmɪl.ə.t̬i/",
     "definition": "a modest or unpretentious view of one's own importance; freedom from pride",
     "example": "Despite winning the Nobel Prize, the geneticist spoke with genuine humility.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "modesty",
+      "meekness",
+      "humbleness",
+      "deference"
+    ],
+    "antonyms": [
+      "hubris",
+      "arrogance",
+      "pride",
+      "vanity"
+    ],
+    "etymology": "from Latin humilitas, from humilis 'lowly', from humus 'earth or ground'"
   },
   {
     "id": "126",
     "word": "assiduous",
-    "phonetic": "/\u0259\u02c8s\u026ad\u0292.u.\u0259s/",
+    "phonetic": "/əˈsɪdʒ.u.əs/",
     "definition": "showing persistent care, diligent attention, and steadfast effort",
     "example": "Through assiduous research in archival records, the historian solved the mystery.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "diligent",
+      "meticulous",
+      "persevering",
+      "painstaking"
+    ],
+    "antonyms": [
+      "lazy",
+      "negligent",
+      "slack",
+      "careless"
+    ],
+    "etymology": "from Latin assiduus, from assidere 'to sit down to or attend closely'"
   },
   {
     "id": "127",
     "word": "umbrage",
-    "phonetic": "/\u02c8\u028cm.br\u026ad\u0292/",
+    "phonetic": "/ˈʌm.brɪdʒ/",
     "definition": "offense, resentment, or annoyance taken at someone's words or actions",
     "example": "He took umbrage at the mild suggestion that his report required revisions.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "offense",
+      "resentment",
+      "annoyance",
+      "pique"
+    ],
+    "antonyms": [
+      "goodwill",
+      "cheer",
+      "satisfaction"
+    ],
+    "etymology": "from Latin umbra, meaning shadow or ghost"
   },
   {
     "id": "128",
     "word": "disparage",
-    "phonetic": "/d\u026a\u02c8sper.\u026ad\u0292/",
+    "phonetic": "/dɪˈsper.ɪdʒ/",
     "definition": "to regard or represent someone or something as being of little worth or value",
     "example": "It is unfair to disparage the rookie's efforts before he has finished training.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "belittle",
+      "deprecate",
+      "denigrate",
+      "deride"
+    ],
+    "antonyms": [
+      "praise",
+      "extol",
+      "acclaim",
+      "laud"
+    ],
+    "etymology": "from Old French desparagier, meaning to marry below one's social status"
   },
   {
     "id": "129",
     "word": "epigram",
-    "phonetic": "/\u02c8ep.\u0259.\u0261r\u00e6m/",
+    "phonetic": "/ˈep.ə.ɡræm/",
     "definition": "a concise, clever, and often satirical statement or short poem",
     "example": "Oscar Wilde was internationally revered for his sharp wit and unforgettable epigrams.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "witticism",
+      "aphorism",
+      "quip",
+      "adage"
+    ],
+    "etymology": "from Greek epigramma, meaning an inscription on a monument"
   },
   {
     "id": "130",
     "word": "impending",
-    "phonetic": "/\u026am\u02c8pen.d\u026a\u014b/",
+    "phonetic": "/ɪmˈpen.dɪŋ/",
     "definition": "about to happen; approaching closely; forthcoming",
     "example": "Darkening skies and dropping barometric pressure signaled an impending blizzard.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "imminent",
+      "approaching",
+      "forthcoming",
+      "looming"
+    ],
+    "antonyms": [
+      "distant",
+      "past",
+      "remote"
+    ],
+    "etymology": "from Latin impendere, from in- 'upon' and pendere 'to hang'"
   },
   {
     "id": "131",
     "word": "acerbic",
-    "phonetic": "/\u0259\u02c8s\u025d\u02d0.b\u026ak/",
+    "phonetic": "/əˈsɝː.bɪk/",
     "definition": "sharp, harsh, and forthright in speech, tone, or temper; sarcastic",
     "example": "The theatre critic was dreaded for his acerbic assessments of Broadway debuts.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "caustic",
+      "sharp",
+      "biting",
+      "sardonic"
+    ],
+    "antonyms": [
+      "mild",
+      "sweet",
+      "complimentary",
+      "mellow"
+    ],
+    "etymology": "from Latin acerbus, meaning sour, bitter, or harsh"
   },
   {
     "id": "132",
     "word": "vestibule",
-    "phonetic": "/\u02c8ves.t\u0259.bju\u02d0l/",
+    "phonetic": "/ˈves.tə.bjuːl/",
     "definition": "an antechamber, hall, or small lobby adjoining the outer entrance of a building",
     "example": "Guests hung their damp overcoats and left their umbrellas in the oak-paneled vestibule.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "foyer",
+      "entrance hall",
+      "lobby",
+      "antechamber"
+    ],
+    "etymology": "from Latin vestibulum, referring to the entrance court of a Roman house"
   },
   {
     "id": "133",
     "word": "equivocal",
-    "phonetic": "/\u026a\u02c8kw\u026av.\u0259.k\u0259l/",
+    "phonetic": "/ɪˈkwɪv.ə.kəl/",
     "definition": "open to more than one interpretation; ambiguous; uncertain in significance",
     "example": "The initial clinical trial results were equivocal, necessitating further investigation.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "ambiguous",
+      "uncertain",
+      "ambivalent",
+      "dubious"
+    ],
+    "antonyms": [
+      "clear",
+      "unambiguous",
+      "unequivocal",
+      "definite"
+    ],
+    "etymology": "from Late Latin aequivocus, from aequus 'equal' and vox 'voice'"
   },
   {
     "id": "134",
     "word": "colloquium",
-    "phonetic": "/k\u0259\u02c8lo\u028a.kwi.\u0259m/",
+    "phonetic": "/kəˈloʊ.kwi.əm/",
     "definition": "an academic conference or formal seminar for scholarly discussion",
     "example": "Scholars from twelve nations gathered at the annual colloquium on linguistics.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "symposium",
+      "conference",
+      "seminar",
+      "forum"
+    ],
+    "etymology": "from Latin colloquium, from colloqui 'to talk together'"
   },
   {
     "id": "135",
     "word": "judicious",
-    "phonetic": "/d\u0292u\u02d0\u02c8d\u026a\u0283.\u0259s/",
+    "phonetic": "/dʒuːˈdɪʃ.əs/",
     "definition": "having, showing, or done with sound judgment, prudence, and sense",
     "example": "A judicious allocation of resources prevented the clinic from running short of medicine.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "prudent",
+      "sensible",
+      "discerning",
+      "astute"
+    ],
+    "antonyms": [
+      "imprudent",
+      "foolish",
+      "ill-advised",
+      "rash"
+    ],
+    "etymology": "from Latin judicium, meaning judgment"
   },
   {
     "id": "136",
     "word": "truculent",
-    "phonetic": "/\u02c8tr\u028ck.j\u0259.l\u0259nt/",
+    "phonetic": "/ˈtrʌk.jə.lənt/",
     "definition": "eager or quick to argue or fight; aggressively defiant and belligerent",
     "example": "The bouncer escorted the truculent patron out of the club before a brawl erupted.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "belligerent",
+      "pugnacious",
+      "defiant",
+      "fierce"
+    ],
+    "antonyms": [
+      "cooperative",
+      "gentle",
+      "amiable",
+      "mild"
+    ],
+    "etymology": "from Latin truculentus, from trux 'fierce or wild'"
   },
   {
     "id": "137",
     "word": "winsome",
-    "phonetic": "/\u02c8w\u026an.s\u0259m/",
+    "phonetic": "/ˈwɪn.səm/",
     "definition": "attractive, endearing, or appealing in appearance, demeanor, or character",
     "example": "The stray puppy won over the entire family with its winsome charm and floppy ears.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "charming",
+      "attractive",
+      "appealing",
+      "endearing"
+    ],
+    "antonyms": [
+      "repulsive",
+      "surly",
+      "dour",
+      "forbidding"
+    ],
+    "etymology": "from Old English wynsum, from wynn 'joy or pleasure'"
   },
   {
     "id": "138",
     "word": "heuristic",
-    "phonetic": "/hju\u02c8r\u026as.t\u026ak/",
+    "phonetic": "/hjuˈrɪs.tɪk/",
     "definition": "enabling problem-solving through practical trial-and-error techniques rather than fixed formulas",
     "example": "Software developers frequently use heuristic algorithms to optimize chess simulations.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "rule-of-thumb",
+      "trial-and-error",
+      "exploratory"
+    ],
+    "etymology": "from Greek heuriskein, meaning to discover or find out"
   },
   {
     "id": "139",
     "word": "parlance",
-    "phonetic": "/\u02c8p\u0251\u02d0r.l\u0259ns/",
+    "phonetic": "/ˈpɑːr.ləns/",
     "definition": "a particular manner of speaking, vocabulary, or idiom used by a specific group",
     "example": "In legal parlance, the phrase carries a much more restrictive definition than in daily speech.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "idiom",
+      "terminology",
+      "dialect",
+      "jargon"
+    ],
+    "etymology": "from Old French parlance, from parler 'to speak'"
   },
   {
     "id": "140",
     "word": "kinetic",
-    "phonetic": "/k\u026a\u02c8net\u032c.\u026ak/",
+    "phonetic": "/kɪˈnet̬.ɪk/",
     "definition": "relating to or characterized by motion; vigorous, active, and energetic",
     "example": "The city street festival possessed a kinetic energy that lasted well into midnight.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "active",
+      "moving",
+      "dynamic",
+      "energetic"
+    ],
+    "antonyms": [
+      "static",
+      "stationary",
+      "immobile",
+      "inert"
+    ],
+    "etymology": "from Greek kinētikos, from kinein 'to move'"
   },
   {
     "id": "141",
     "word": "vacillate",
-    "phonetic": "/\u02c8v\u00e6s.\u0259.le\u026at/",
+    "phonetic": "/ˈvæs.ə.leɪt/",
     "definition": "to waver between different opinions, decisions, or actions; be indecisive",
     "example": "Leaders who vacillate in an emergency risk compounding the danger to everyone.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "waver",
+      "hesitate",
+      "oscillate",
+      "fluctuate"
+    ],
+    "antonyms": [
+      "resolve",
+      "persist",
+      "decide"
+    ],
+    "etymology": "from Latin vacillare, meaning to sway to and fro or waver"
   },
   {
     "id": "142",
     "word": "zephyr",
-    "phonetic": "/\u02c8zef.\u025a/",
+    "phonetic": "/ˈzef.ɚ/",
     "definition": "a gentle, mild, or refreshing breeze from the west",
     "example": "A fragrant zephyr blew over the lavender fields as evening settled over the hills.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "gentle breeze",
+      "draft",
+      "breath",
+      "whisper"
+    ],
+    "etymology": "from Greek Zephyros, the mythological personification of the west wind"
   },
   {
     "id": "143",
     "word": "interpolate",
-    "phonetic": "/\u026an\u02c8t\u025d\u02d0.p\u0259.le\u026at/",
+    "phonetic": "/ɪnˈtɝː.pə.leɪt/",
     "definition": "to insert intermediate terms or estimate missing values based on surrounding data",
     "example": "Statisticians were able to interpolate the missing census figures between decennial surveys.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "insert",
+      "incorporate",
+      "estimate",
+      "interpose"
+    ],
+    "antonyms": [
+      "extrapolate",
+      "remove",
+      "excise"
+    ],
+    "etymology": "from Latin interpolare, meaning to alter, insert, or refurbish"
   },
   {
     "id": "144",
     "word": "colloquial",
-    "phonetic": "/k\u0259\u02c8lo\u028a.kwi.\u0259l/",
+    "phonetic": "/kəˈloʊ.kwi.əl/",
     "definition": "characteristic of ordinary, familiar conversation rather than formal speech or writing",
     "example": "The novel relied on colloquial dialogue to bring its gritty urban setting to life.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "informal",
+      "conversational",
+      "vernacular",
+      "demotic"
+    ],
+    "antonyms": [
+      "formal",
+      "literary",
+      "academic"
+    ],
+    "etymology": "from Latin colloquium, from colloqui 'to speak together'"
   },
   {
     "id": "145",
     "word": "luminous",
-    "phonetic": "/\u02c8lu\u02d0.m\u0259.n\u0259s/",
+    "phonetic": "/ˈluː.mə.nəs/",
     "definition": "full of or shedding light; shining brightly, or clear and enlightened",
     "example": "The full moon cast a luminous silver reflection across the tranquil lake.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "glowing",
+      "radiant",
+      "bright",
+      "brilliant"
+    ],
+    "antonyms": [
+      "dark",
+      "dim",
+      "dull",
+      "obscure"
+    ],
+    "etymology": "from Latin luminosus, from lumen 'light'"
   },
   {
     "id": "146",
     "word": "venerate",
-    "phonetic": "/\u02c8ven.\u0259.re\u026at/",
+    "phonetic": "/ˈven.ə.reɪt/",
     "definition": "to regard someone or something with profound respect, honor, and reverence",
     "example": "Indigenous elders are venerated for their deep ecological knowledge and oral traditions.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "revere",
+      "worship",
+      "honor",
+      "respect"
+    ],
+    "antonyms": [
+      "despise",
+      "desecrate",
+      "disdain",
+      "scorn"
+    ],
+    "etymology": "from Latin venerari, from vener- 'love, worship, or desire'"
   },
   {
     "id": "147",
     "word": "bucolic",
-    "phonetic": "/bju\u02d0\u02c8k\u0251\u02d0.l\u026ak/",
+    "phonetic": "/bjuːˈkɑː.lɪk/",
     "definition": "relating to the pleasant, peaceful, and idyllic aspects of countryside and rustic life",
     "example": "They left city life behind to embrace a bucolic existence tending an apple orchard.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "pastoral",
+      "rustic",
+      "rural",
+      "idyllic"
+    ],
+    "antonyms": [
+      "urban",
+      "metropolitan",
+      "industrial"
+    ],
+    "etymology": "from Greek boukolikos, from boukolos 'herdsman or cattle driver'"
   },
   {
     "id": "148",
     "word": "lexicon",
-    "phonetic": "/\u02c8lek.s\u0259.k\u0251\u02d0n/",
+    "phonetic": "/ˈlek.sə.kɑːn/",
     "definition": "the complete vocabulary of a person, language, discipline, or specialized subject",
     "example": "Artificial intelligence has introduced countless new terms into the contemporary lexicon.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "vocabulary",
+      "glossary",
+      "dictionary",
+      "wordbook"
+    ],
+    "etymology": "from Greek lexikon, from lexis 'word or speech'"
   },
   {
     "id": "149",
     "word": "enunciation",
-    "phonetic": "/\u026a\u02ccn\u028cn.si\u02c8e\u026a.\u0283\u0259n/",
+    "phonetic": "/ɪˌnʌn.siˈeɪ.ʃən/",
     "definition": "the clear, distinct, and audible pronunciation of words and syllables",
     "example": "Her crisp enunciation ensured that every syllable reached the balcony of the opera house.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "articulation",
+      "pronunciation",
+      "utterance",
+      "delivery"
+    ],
+    "antonyms": [
+      "mumble",
+      "slurring"
+    ],
+    "etymology": "from Latin enuntiatio, from enuntiare 'to proclaim or speak out'"
   },
   {
     "id": "150",
     "word": "mundane",
-    "phonetic": "/m\u028cn\u02c8de\u026an/",
+    "phonetic": "/mʌnˈdeɪn/",
     "definition": "lacking interest or excitement; ordinary; pertaining to everyday worldly matters",
     "example": "Even mundane chores like weeding the garden became enjoyable in the morning sun.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "ordinary",
+      "routine",
+      "commonplace",
+      "pedestrian"
+    ],
+    "antonyms": [
+      "extraordinary",
+      "exotic",
+      "wondrous",
+      "ethereal"
+    ],
+    "etymology": "from Latin mundanus, from mundus 'world'"
   },
   {
     "id": "151",
     "word": "castigate",
-    "phonetic": "/\u02c8k\u00e6s.t\u0259.\u0261e\u026at/",
+    "phonetic": "/ˈkæs.tə.ɡeɪt/",
     "definition": "to reprimand, criticize, or punish someone severely for an error or offense",
     "example": "The inspector castigated the shipyard management for safety violations.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "reprimand",
+      "rebuke",
+      "chastise",
+      "admonish"
+    ],
+    "antonyms": [
+      "praise",
+      "commend",
+      "extol",
+      "laud"
+    ],
+    "etymology": "from Latin castigare, from castus 'pure' and agere 'to drive'"
   },
   {
     "id": "152",
     "word": "chimerical",
-    "phonetic": "/ka\u026a\u02c8mer.\u026a.k\u0259l/",
+    "phonetic": "/kaɪˈmer.ɪ.kəl/",
     "definition": "existing only as the product of unchecked imagination; visionary or impossible",
     "example": "His scheme to extract gold from seawater was dismissed as a chimerical fantasy.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "mythical",
+      "fanciful",
+      "illusory",
+      "visionary"
+    ],
+    "antonyms": [
+      "realistic",
+      "practical",
+      "actual",
+      "tangible"
+    ],
+    "etymology": "from Greek chimaira, a mythical fire-breathing monster composed of diverse animals"
   },
   {
     "id": "153",
     "word": "panoply",
-    "phonetic": "/\u02c8p\u00e6n.\u0259.pli/",
+    "phonetic": "/ˈpæn.ə.pli/",
     "definition": "an impressive, varied, and comprehensive display or collection of things",
     "example": "The museum exhibited a dazzling panoply of Renaissance scientific instruments.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "array",
+      "assortment",
+      "display",
+      "collection"
+    ],
+    "etymology": "from Greek panoplia, from pan 'all' and hopla 'arms or armor'"
   },
   {
     "id": "154",
     "word": "oratory",
-    "phonetic": "/\u02c8\u0254\u02d0r.\u0259.t\u0254\u02d0r.i/",
+    "phonetic": "/ˈɔːr.ə.tɔːr.i/",
     "definition": "the art or practice of formal, eloquent, and persuasive public speaking",
     "example": "Winston Churchill's wartime oratory bolstered national resolve during the blitz.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "rhetoric",
+      "public speaking",
+      "eloquence",
+      "declamation"
+    ],
+    "etymology": "from Latin orator, from orare 'to plead, pray, or speak'"
   },
   {
     "id": "155",
     "word": "nonchalant",
-    "phonetic": "/\u02ccn\u0251\u02d0n.\u0283\u0259\u02c8l\u0251\u02d0nt/",
+    "phonetic": "/ˌnɑːn.ʃəˈlɑːnt/",
     "definition": "feeling or appearing casually calm, composed, and unconcerned; indifferent",
     "example": "Despite the high-stakes test, the seasoned pilot gave a nonchalant shrug and stepped into the cockpit.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "unconcerned",
+      "casual",
+      "indifferent",
+      "collected"
+    ],
+    "antonyms": [
+      "anxious",
+      "agitated",
+      "concerned",
+      "emotional"
+    ],
+    "etymology": "from Old French nonchaloir, from non 'not' and chaloir 'to care'"
   },
   {
     "id": "156",
     "word": "deprecate",
-    "phonetic": "/\u02c8dep.r\u0259.ke\u026at/",
+    "phonetic": "/ˈdep.rə.keɪt/",
     "definition": "to express earnest disapproval of, belittle, or minimize the importance of",
     "example": "He tended to deprecate his own artistic talents whenever guests praised his paintings.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "disparage",
+      "belittle",
+      "deplore",
+      "disfavor"
+    ],
+    "antonyms": [
+      "approve",
+      "praise",
+      "endorse"
+    ],
+    "etymology": "from Latin deprecari, meaning to pray against or avert by prayer"
   },
   {
     "id": "157",
     "word": "dulcet",
-    "phonetic": "/\u02c8d\u028cl.s\u026at/",
+    "phonetic": "/ˈdʌl.sɪt/",
     "definition": "sweet, soothing, and pleasing to the ear; melodious",
     "example": "The dulcet tones of the harp gently lulled the restless toddler to sleep.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "sweet",
+      "melodious",
+      "soothing",
+      "honeyed"
+    ],
+    "antonyms": [
+      "discordant",
+      "shrill",
+      "grating",
+      "harsh"
+    ],
+    "etymology": "from Old French doucet, diminutive of doux 'sweet', from Latin dulcis"
   },
   {
     "id": "158",
     "word": "postulate",
-    "phonetic": "/\u02c8p\u0251\u02d0s.t\u0283\u0259.le\u026at/",
+    "phonetic": "/ˈpɑːs.tʃə.leɪt/",
     "definition": "to suggest or assume the truth or reality of something as a premise for reasoning",
     "example": "Economists postulate that rational actors seek to maximize their personal utility.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "hypothesize",
+      "assume",
+      "propose",
+      "premise"
+    ],
+    "antonyms": [
+      "prove",
+      "disprove",
+      "reject"
+    ],
+    "etymology": "from Latin postulare, meaning to request or demand"
   },
   {
     "id": "159",
     "word": "pontificate",
-    "phonetic": "/p\u0251\u02d0n\u02c8t\u026af.\u0259.ke\u026at/",
+    "phonetic": "/pɑːnˈtɪf.ə.keɪt/",
     "definition": "to express one's opinions in an authoritative, pompous, and dogmatic manner",
     "example": "We grew weary of hearing the pundit pontificate on topics he had never studied.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "sermonize",
+      "dogmatize",
+      "lecture",
+      "declaim"
+    ],
+    "etymology": "from Latin pontifex, meaning high priest or bishop"
   },
   {
     "id": "160",
     "word": "onerous",
-    "phonetic": "/\u02c8o\u028a.n\u025a.\u0259s/",
+    "phonetic": "/ˈoʊ.nɚ.əs/",
     "definition": "involving a burden or amount of effort that is oppressively heavy and troublesome",
     "example": "Filing quarterly international taxes proved to be an onerous and confusing task.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "burdensome",
+      "oppressive",
+      "arduous",
+      "demanding"
+    ],
+    "antonyms": [
+      "effortless",
+      "easy",
+      "light",
+      "trivial"
+    ],
+    "etymology": "from Latin onerosus, from onus 'burden or load'"
   },
   {
     "id": "161",
     "word": "extrapolate",
-    "phonetic": "/\u026ak\u02c8str\u00e6p.\u0259.le\u026at/",
+    "phonetic": "/ɪkˈstræp.ə.leɪt/",
     "definition": "to estimate, infer, or project future outcomes based on existing data trends",
     "example": "Climate scientists extrapolate regional sea-level rises from satellite radar records.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "infer",
+      "project",
+      "deduce",
+      "generalize"
+    ],
+    "antonyms": [
+      "interpolate",
+      "restrict"
+    ],
+    "etymology": "coined from extra- 'beyond' and interpolate"
   },
   {
     "id": "162",
     "word": "elegiac",
-    "phonetic": "/\u02ccel.\u0259\u02c8d\u0292a\u026a.\u0259k/",
+    "phonetic": "/ˌel.əˈdʒaɪ.ək/",
     "definition": "expressing sorrow, mourning, or melancholy, especially for things lost to the past",
     "example": "The novel's elegiac tone conveyed the gradual passing of rural frontier communities.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "mournful",
+      "sorrowful",
+      "melancholic",
+      "plaintive"
+    ],
+    "antonyms": [
+      "joyous",
+      "celebratory",
+      "jubilant"
+    ],
+    "etymology": "from Greek elegeiakos, from elegeia 'mournful poem or dirge'"
   },
   {
     "id": "163",
     "word": "substantiate",
-    "phonetic": "/s\u0259b\u02c8st\u00e6n.\u0283i.e\u026at/",
+    "phonetic": "/səbˈstæn.ʃi.eɪt/",
     "definition": "to provide firm evidence or proof to support and validate the truth of a claim",
     "example": "The defense failed to produce witnesses who could substantiate the defendant's alibi.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "verify",
+      "confirm",
+      "validate",
+      "corroborate"
+    ],
+    "antonyms": [
+      "disprove",
+      "refute",
+      "contradict",
+      "invalidate"
+    ],
+    "etymology": "from Latin substantia, meaning essence or material substance"
   },
   {
     "id": "164",
     "word": "polemic",
-    "phonetic": "/p\u0259\u02c8lem.\u026ak/",
+    "phonetic": "/pəˈlem.ɪk/",
     "definition": "a passionate and aggressive verbal or written argument attacking an opposing view",
     "example": "The philosopher published a fierce polemic against unchecked technological expansion.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "diatribe",
+      "invective",
+      "verbal attack",
+      "dispute"
+    ],
+    "antonyms": [
+      "panegyric",
+      "compromise",
+      "praise"
+    ],
+    "etymology": "from Greek polemikos, from polemos 'war'"
   },
   {
     "id": "165",
     "word": "opportune",
-    "phonetic": "/\u02cc\u0251\u02d0.p\u025a\u02c8tu\u02d0n/",
+    "phonetic": "/ˌɑː.pɚˈtuːn/",
     "definition": "well-timed, favorable, or particularly convenient for a purpose",
     "example": "The sudden drop in airfare provided an opportune moment for a family vacation.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "timely",
+      "auspicious",
+      "propitious",
+      "advantageous"
+    ],
+    "antonyms": [
+      "inopportune",
+      "unfavorable",
+      "ill-timed"
+    ],
+    "etymology": "from Latin opportunus, originally describing wind driving toward port"
   },
   {
     "id": "166",
     "word": "garrulous",
-    "phonetic": "/\u02c8\u0261er.\u0259.l\u0259s/",
+    "phonetic": "/ˈɡer.ə.ləs/",
     "definition": "excessively talkative, especially about trivial, rambling matters",
     "example": "A garrulous seatmate prevented him from getting any sleep during the overnight train ride.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "loquacious",
+      "talkative",
+      "voluble",
+      "chatty"
+    ],
+    "antonyms": [
+      "taciturn",
+      "reticent",
+      "concise",
+      "terse"
+    ],
+    "etymology": "from Latin garrire, meaning to chatter"
   },
   {
     "id": "167",
     "word": "felicity",
-    "phonetic": "/f\u0259\u02c8l\u026as.\u0259.t\u032ci/",
+    "phonetic": "/fəˈlɪs.ə.t̬i/",
     "definition": "intense happiness, or an apt, tasteful, and graceful expression in words",
     "example": "She possessed a rare felicity of phrase that made her personal essays a joy to read.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "happiness",
+      "joy",
+      "bliss",
+      "aptness"
+    ],
+    "antonyms": [
+      "misery",
+      "unhappiness",
+      "sorrow"
+    ],
+    "etymology": "from Latin felicitas, from felix 'happy or fortunate'"
   },
   {
     "id": "168",
     "word": "validate",
-    "phonetic": "/\u02c8v\u00e6l.\u0259.de\u026at/",
+    "phonetic": "/ˈvæl.ə.deɪt/",
     "definition": "to prove, verify, or confirm the accuracy, truth, or legality of something",
     "example": "Peer review is essential to validate experimental methodologies before publication.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "verify",
+      "authenticate",
+      "substantiate",
+      "confirm"
+    ],
+    "antonyms": [
+      "invalidate",
+      "negate",
+      "disprove",
+      "nullify"
+    ],
+    "etymology": "from Latin validus, meaning strong or effective"
   },
   {
     "id": "169",
     "word": "equivocation",
-    "phonetic": "/\u026a\u02cckw\u026av.\u0259\u02c8ke\u026a.\u0283\u0259n/",
+    "phonetic": "/ɪˌkwɪv.əˈkeɪ.ʃən/",
     "definition": "the deliberate use of ambiguous language to conceal the truth or avoid commitment",
     "example": "The CEO answered the board's questions without equivocation or evasion.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "ambiguity",
+      "prevarication",
+      "vagueness",
+      "evasion"
+    ],
+    "antonyms": [
+      "clarity",
+      "directness",
+      "candor",
+      "forthrightness"
+    ],
+    "etymology": "from Late Latin aequivocatio, from aequus 'equal' and vocare 'to call'"
   },
   {
     "id": "170",
     "word": "palatable",
-    "phonetic": "/\u02c8p\u00e6l.\u0259.t\u032c\u0259.b\u0259l/",
+    "phonetic": "/ˈpæl.ə.t̬ə.bəl/",
     "definition": "pleasant to the taste, or satisfactory and acceptable to the mind",
     "example": "The committee revised the tax proposal to make it more palatable to small business owners.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "appetizing",
+      "acceptable",
+      "agreeable",
+      "savory"
+    ],
+    "antonyms": [
+      "unpalatable",
+      "distasteful",
+      "repulsive",
+      "offensive"
+    ],
+    "etymology": "from palate, from Latin palatum 'roof of the mouth'"
   },
   {
     "id": "171",
     "word": "harangue",
-    "phonetic": "/h\u0259\u02c8r\u00e6\u014b/",
+    "phonetic": "/həˈræŋ/",
     "definition": "a lengthy, forceful, and aggressive speech delivered with vehement criticism",
     "example": "The coach subjected the team to a loud harangue after their lackadaisical performance.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "tirade",
+      "diatribe",
+      "rant",
+      "polemic"
+    ],
+    "antonyms": [
+      "praise",
+      "tribute",
+      "commendation"
+    ],
+    "etymology": "from Old French harengue, ultimately of Germanic origin related to a public ring"
   },
   {
     "id": "172",
     "word": "somnambulist",
-    "phonetic": "/s\u0251\u02d0m\u02c8n\u00e6m.bj\u0259.l\u026ast/",
+    "phonetic": "/sɑːmˈnæm.bjə.lɪst/",
     "definition": "a person who walks around or performs other activities while asleep",
     "example": "In the silent mansion, the somnambulist wandered down the moonlit marble staircase.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "sleepwalker",
+      "noctambulist"
+    ],
+    "etymology": "from Latin somnus 'sleep' and ambulare 'to walk'"
   },
   {
     "id": "173",
     "word": "verisimilitude",
-    "phonetic": "/\u02ccver.\u0259.s\u0259\u02c8m\u026al.\u0259.tu\u02d0d/",
+    "phonetic": "/ˌver.ə.səˈmɪl.ə.tuːd/",
     "definition": "the appearance or semblance of being real, authentic, or true",
     "example": "The historical novelist conducted years of research to lend verisimilitude to the dialogue.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "plausibility",
+      "authenticity",
+      "realism",
+      "credibility"
+    ],
+    "antonyms": [
+      "implausibility",
+      "artificiality",
+      "falseness"
+    ],
+    "etymology": "from Latin verisimilitudo, from verus 'true' and similis 'like'"
   },
   {
     "id": "174",
     "word": "hyperbole",
-    "phonetic": "/ha\u026a\u02c8p\u025d\u02d0.b\u0259l.i/",
+    "phonetic": "/haɪˈpɝː.bəl.i/",
     "definition": "deliberate exaggeration used for dramatic emphasis or rhetorical effect",
     "example": "To claim the delay cost a billion dollars was gross hyperbole meant to shock listeners.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "exaggeration",
+      "overstatement",
+      "magnification"
+    ],
+    "antonyms": [
+      "understatement",
+      "litotes"
+    ],
+    "etymology": "from Greek hyperbolē, from hyper 'beyond' and ballein 'to throw'"
   },
   {
     "id": "175",
     "word": "pivotal",
-    "phonetic": "/\u02c8p\u026av.\u0259.t\u032c\u0259l/",
+    "phonetic": "/ˈpɪv.ə.t̬əl/",
     "definition": "of crucial, decisive importance in relation to the development or outcome of events",
     "example": "The quarterback's fourth-quarter interception proved to be the pivotal play of the game.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "crucial",
+      "critical",
+      "decisive",
+      "essential"
+    ],
+    "antonyms": [
+      "trivial",
+      "minor",
+      "insignificant",
+      "peripheral"
+    ],
+    "etymology": "from pivot, of French origin describing a central turning point"
   },
   {
     "id": "176",
     "word": "intractable",
-    "phonetic": "/\u026an\u02c8tr\u00e6k.t\u0259.b\u0259l/",
+    "phonetic": "/ɪnˈtræk.tə.bəl/",
     "definition": "hard to control, manage, or deal with; stubbornly resistant to solution",
     "example": "Poverty in the arid region remained an intractable challenge despite foreign aid programs.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "stubborn",
+      "unmanageable",
+      "obstinate",
+      "refractory"
+    ],
+    "antonyms": [
+      "manageable",
+      "compliant",
+      "docile",
+      "tractable"
+    ],
+    "etymology": "from Latin intractabilis, from in- 'not' and tractare 'to handle'"
   },
   {
     "id": "177",
     "word": "limerence",
-    "phonetic": "/\u02c8l\u026am.\u025a.\u0259ns/",
+    "phonetic": "/ˈlɪm.ɚ.əns/",
     "definition": "the state of being infatuated, enamored, or obsessively preoccupied with another",
     "example": "The poet wrote feverishly during the intoxicating first weeks of romantic limerence.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "infatuation",
+      "crush",
+      "romantic obsession"
+    ],
+    "antonyms": [
+      "indifference",
+      "detachment"
+    ],
+    "etymology": "coined in 1979 by psychologist Dorothy Tennov for romantic infatuation"
   },
   {
     "id": "178",
     "word": "anathema",
-    "phonetic": "/\u0259\u02c8n\u00e6\u03b8.\u0259.m\u0259/",
+    "phonetic": "/əˈnæθ.ə.mə/",
     "definition": "something or someone vehemently detested, cursed, or shunned",
     "example": "Censorship of academic debate was anathema to the university's founding principles.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "abomination",
+      "curse",
+      "outcast",
+      "repellent"
+    ],
+    "antonyms": [
+      "blessing",
+      "favorite",
+      "beloved"
+    ],
+    "etymology": "from Greek anathema, originally something dedicated to a god, later an excommunication curse"
   },
   {
     "id": "179",
     "word": "litotes",
-    "phonetic": "/\u02c8la\u026a.t\u0259.ti\u02d0z/",
+    "phonetic": "/ˈlaɪ.tə.tiːz/",
     "definition": "ironic understatement in which an affirmative is expressed by negating its contrary",
     "example": "Calling an Olympic gold medal 'not bad at all' is a classic example of litotes.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "ironic understatement",
+      "meiosis"
+    ],
+    "antonyms": [
+      "hyperbole",
+      "exaggeration"
+    ],
+    "etymology": "from Greek litotēs, from litos 'plain or meager'"
   },
   {
     "id": "180",
     "word": "precarious",
-    "phonetic": "/pr\u026a\u02c8ker.i.\u0259s/",
+    "phonetic": "/prɪˈker.i.əs/",
     "definition": "not securely held or in position; dangerously unstable or uncertain",
     "example": "The mountaineers balanced along a precarious ledge overlooking a three-thousand-foot drop.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "hazardous",
+      "insecure",
+      "unstable",
+      "perilous"
+    ],
+    "antonyms": [
+      "secure",
+      "stable",
+      "safe",
+      "solid"
+    ],
+    "etymology": "from Latin precarius, meaning obtained by prayer and held at another's pleasure"
   },
   {
     "id": "181",
     "word": "maverick",
-    "phonetic": "/\u02c8m\u00e6v.\u025a.\u026ak/",
+    "phonetic": "/ˈmæv.ɚ.ɪk/",
     "definition": "an unorthodox, independent-minded person who refuses to conform to a group",
     "example": "The maverick venture capitalist bet heavily on solar startups when others hesitated.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "nonconformist",
+      "rebel",
+      "individualist",
+      "dissident"
+    ],
+    "antonyms": [
+      "conformist",
+      "traditionalist"
+    ],
+    "etymology": "named after Samuel Maverick, a 19th-century Texas rancher who refused to brand his calves"
   },
   {
     "id": "182",
     "word": "nocturnal",
-    "phonetic": "/n\u0251\u02d0k\u02c8t\u025d\u02d0.n\u0259l/",
+    "phonetic": "/nɑːkˈtɝː.nəl/",
     "definition": "occurring, active, or blossoming during the hours of darkness or night",
     "example": "The night-blooming cereus is a nocturnal flower that opens its petals only after dusk.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "night-loving",
+      "nighttime"
+    ],
+    "antonyms": [
+      "diurnal",
+      "daytime"
+    ],
+    "etymology": "from Latin nocturnus, from nox 'night'"
   },
   {
     "id": "183",
     "word": "methodology",
-    "phonetic": "/\u02ccme\u03b8.\u0259\u02c8d\u0251\u02d0.l\u0259.d\u0292i/",
+    "phonetic": "/ˌmeθ.əˈdɑː.lə.dʒi/",
     "definition": "a systematic, theoretical framework of methods applied to a particular area of study",
     "example": "The researcher meticulously defended her chosen survey methodology during peer review.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "procedure",
+      "system",
+      "doctrine",
+      "framework"
+    ],
+    "etymology": "from Greek methodos 'systematic inquiry' and -logia 'branch of study'"
   },
   {
     "id": "184",
     "word": "metonymy",
-    "phonetic": "/m\u0259\u02c8t\u0251\u02d0.n\u0259.mi/",
+    "phonetic": "/məˈtɑː.nə.mi/",
     "definition": "a figure of speech in which the name of an attribute or concept is substituted for the thing itself",
     "example": "Referring to the executive branch as 'the White House' is an everyday instance of metonymy.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "trope",
+      "associative substitution"
+    ],
+    "etymology": "from Greek metōnymia, from meta 'change' and onoma 'name'"
   },
   {
     "id": "185",
     "word": "proactive",
-    "phonetic": "/pro\u028a\u02c8\u00e6k.t\u026av/",
+    "phonetic": "/proʊˈæk.tɪv/",
     "definition": "taking the initiative by acting in anticipation of future events rather than merely reacting",
     "example": "The IT department took proactive steps to patch the server before any data breach occurred.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "anticipatory",
+      "dynamic",
+      "enterprising",
+      "forward-looking"
+    ],
+    "antonyms": [
+      "reactive",
+      "passive",
+      "lethargic"
+    ],
+    "etymology": "coined from pro- 'before' and active"
   },
   {
     "id": "186",
     "word": "nascent",
-    "phonetic": "/\u02c8ne\u026a.s\u0259nt/",
+    "phonetic": "/ˈneɪ.sənt/",
     "definition": "just coming into existence and beginning to display signs of future potential",
     "example": "The nascent biotech company showed promise with its innovative gene-editing therapy.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "budding",
+      "emerging",
+      "incipient",
+      "embryonic"
+    ],
+    "antonyms": [
+      "mature",
+      "dying",
+      "declining",
+      "moribund"
+    ],
+    "etymology": "from Latin nasci, meaning to be born"
   },
   {
     "id": "187",
     "word": "solipsism",
-    "phonetic": "/\u02c8s\u0251\u02d0.l\u026ap.s\u026a.z\u0259m/",
+    "phonetic": "/ˈsɑː.lɪp.sɪ.zəm/",
     "definition": "the philosophical stance that only one's own mind and conscious experience is sure to exist",
     "example": "Trapped in isolation, the protagonist struggled against a terrifying sense of solipsism.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "subjective idealism",
+      "egoism"
+    ],
+    "etymology": "from Latin solus 'alone' and ipse 'self'"
   },
   {
     "id": "188",
     "word": "teleology",
-    "phonetic": "/\u02ccti\u02d0.li\u02c8\u0251\u02d0.l\u0259.d\u0292i/",
+    "phonetic": "/ˌtiː.liˈɑː.lə.dʒi/",
     "definition": "the philosophical doctrine that design and purpose are inherent in nature or history",
     "example": "Aristotelian physics relied heavily on teleology to explain why objects fall toward Earth.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "doctrine of final causes",
+      "purposiveness"
+    ],
+    "etymology": "from Greek telos 'end or purpose' and -logia 'study of'"
   },
   {
     "id": "189",
     "word": "synecdoche",
-    "phonetic": "/s\u026a\u02c8nek.d\u0259.ki/",
+    "phonetic": "/sɪˈnek.də.ki/",
     "definition": "a figure of speech in which a part is made to represent the whole, or vice versa",
     "example": "Using the phrase 'all hands on deck' to mean the entire crew is a standard synecdoche.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "part-for-whole substitution",
+      "metonymic trope"
+    ],
+    "etymology": "from Greek synekdochē, from syn- 'together' and ekdechesthai 'to take up'"
   },
   {
     "id": "190",
     "word": "prolific",
-    "phonetic": "/pr\u0259\u02c8l\u026af.\u026ak/",
+    "phonetic": "/prəˈlɪf.ɪk/",
     "definition": "producing a huge quantity or great abundance of creative works, fruit, or foliage",
     "example": "Asimov was a prolific author who penned hundreds of science fiction books and essays.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "productive",
+      "fruitful",
+      "fertile",
+      "copious"
+    ],
+    "antonyms": [
+      "barren",
+      "infertile",
+      "unproductive",
+      "sparse"
+    ],
+    "etymology": "from Latin proles 'offspring' and facere 'to make'"
   },
   {
     "id": "191",
     "word": "chicanery",
-    "phonetic": "/\u0283\u026a\u02c8ke\u026a.n\u025a.i/",
+    "phonetic": "/ʃɪˈkeɪ.nɚ.i/",
     "definition": "the use of clever trickery, deception, or subterfuge to achieve an underhanded purpose",
     "example": "The corporate accountant relied on complex financial chicanery to obscure embezzled funds.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "trickery",
+      "deception",
+      "subterfuge",
+      "fraud"
+    ],
+    "antonyms": [
+      "honesty",
+      "forthrightness",
+      "integrity",
+      "transparency"
+    ],
+    "etymology": "from French chicaner, meaning to quibble or trick"
   },
   {
     "id": "192",
     "word": "penumbra",
-    "phonetic": "/p\u0259\u02c8n\u028cm.br\u0259/",
+    "phonetic": "/pəˈnʌm.brə/",
     "definition": "the partially shaded outer region of a shadow cast by an opaque object; a fringe area",
     "example": "An eclipse plunged the valley into a gloomy penumbra that hushed the forest birds.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "shadow fringe",
+      "borderland",
+      "margin"
+    ],
+    "antonyms": [
+      "umbra",
+      "direct light"
+    ],
+    "etymology": "from Latin paene 'almost' and umbra 'shadow'"
   },
   {
     "id": "193",
     "word": "parsimony",
-    "phonetic": "/\u02c8p\u0251\u02d0r.s\u0259.mo\u028a.ni/",
+    "phonetic": "/ˈpɑːr.sə.moʊ.ni/",
     "definition": "extreme unwillingness to spend money or use resources; in science, the principle of choosing the simplest explanation",
     "example": "Occam's razor is an invocation of parsimony, favoring the hypothesis with the fewest assumptions.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "frugality",
+      "economy",
+      "miserliness",
+      "stinginess"
+    ],
+    "antonyms": [
+      "generosity",
+      "extravagance",
+      "lavishness"
+    ],
+    "etymology": "from Latin parsimonia, from parcere 'to spare'"
   },
   {
     "id": "194",
     "word": "persuasion",
-    "phonetic": "/p\u025a\u02c8swe\u026a.\u0292\u0259n/",
+    "phonetic": "/pɚˈsweɪ.ʒən/",
     "definition": "the action or fact of convincing someone or being convinced through reasoned appeal",
     "example": "He possessed a natural gift of persuasion that won over even the most skeptical constituents.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "inducement",
+      "conviction",
+      "influence",
+      "eloquence"
+    ],
+    "antonyms": [
+      "coercion",
+      "dissuasion",
+      "compulsion"
+    ],
+    "etymology": "from Latin persuasio, from persuadere 'to advise thoroughly'"
   },
   {
     "id": "195",
     "word": "quandary",
-    "phonetic": "/\u02c8kw\u0251\u02d0n.dri/",
+    "phonetic": "/ˈkwɑːn.dri/",
     "definition": "a state of perplexity, uncertainty, or doubt over what to do in a difficult situation",
     "example": "Having received two equally compelling job offers, she found herself in a happy quandary.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "dilemma",
+      "predicament",
+      "impasse",
+      "perplexity"
+    ],
+    "antonyms": [
+      "resolution",
+      "certainty"
+    ],
+    "etymology": "of uncertain origin, possibly from Latin quando 'when'"
   },
   {
     "id": "196",
     "word": "sanguine",
-    "phonetic": "/\u02c8s\u00e6\u014b.\u0261w\u026an/",
+    "phonetic": "/ˈsæŋ.ɡwɪn/",
     "definition": "optimistic or positive, especially in an apparently bad or difficult situation",
     "example": "Despite the gloomy market forecast, the young entrepreneur remained sanguine about growth.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "optimistic",
+      "confident",
+      "buoyant",
+      "hopeful"
+    ],
+    "antonyms": [
+      "pessimistic",
+      "despondent",
+      "gloomy",
+      "cynical"
+    ],
+    "etymology": "from Latin sanguineus 'bloody', linked to Medieval humor theory where blood promoted cheerfulness"
   },
   {
     "id": "197",
     "word": "sempiternal",
-    "phonetic": "/\u02ccsem.p\u026a\u02c8t\u025d\u02d0.n\u0259l/",
+    "phonetic": "/ˌsem.pɪˈtɝː.nəl/",
     "definition": "eternal and unchanging; having everlasting or infinite duration",
     "example": "The ancient redwoods stood like sempiternal guardians watching over the northern coast.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "eternal",
+      "everlasting",
+      "perpetual",
+      "endless"
+    ],
+    "antonyms": [
+      "ephemeral",
+      "transient",
+      "finite"
+    ],
+    "etymology": "from Latin sempiternus, from semper 'always' and aeternus 'eternal'"
   },
   {
     "id": "198",
     "word": "tautology",
-    "phonetic": "/t\u0254\u02d0\u02c8t\u0251\u02d0.l\u0259.d\u0292i/",
+    "phonetic": "/tɔːˈtɑː.lə.dʒi/",
     "definition": "the saying of the same thing twice in different words, generally considered a logical fault",
     "example": "Saying that something is 'adequate enough' is a redundant tautology in formal writing.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "repetition",
+      "pleonasm",
+      "redundancy"
+    ],
+    "antonyms": [
+      "succinctness",
+      "brevity"
+    ],
+    "etymology": "from Greek tautologia, from tauto 'the same' and logos 'word'"
   },
   {
     "id": "199",
     "word": "sonority",
-    "phonetic": "/s\u0259\u02c8n\u0254\u02d0r.\u0259.t\u032ci/",
+    "phonetic": "/səˈnɔːr.ə.t̬i/",
     "definition": "the resonant, deep, and pleasantly rich acoustic tone of speech or music",
     "example": "The French horn section played with a rich sonority that anchored the brass fanfare.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "resonance",
+      "richness",
+      "fullness",
+      "depth"
+    ],
+    "antonyms": [
+      "thinness",
+      "harshness",
+      "dissonance"
+    ],
+    "etymology": "from Latin sonoritas, from sonor 'sound'"
   },
   {
     "id": "200",
     "word": "reciprocate",
-    "phonetic": "/r\u026a\u02c8s\u026ap.r\u0259.ke\u026at/",
+    "phonetic": "/rɪˈsɪp.rə.keɪt/",
     "definition": "to respond to a gesture or action by giving or doing something similar in return",
     "example": "The welcoming neighbors were eager to reciprocate the dinner invitation next weekend.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "requite",
+      "return",
+      "repay",
+      "respond"
+    ],
+    "antonyms": [
+      "withhold",
+      "retain",
+      "ignore"
+    ],
+    "etymology": "from Latin reciprocare, from reciprocus 'moving alternately backward and forward'"
   },
   {
     "id": "201",
     "word": "apocryphal",
-    "phonetic": "/\u0259\u02c8p\u0252kr\u026af\u0259l/",
+    "phonetic": "/əˈpɒkrɪfəl/",
     "definition": "of doubtful authenticity or origin, though widely circulated as true",
     "example": "The oft-repeated anecdote about Newton and the falling apple is largely apocryphal, embellished over decades of popular retellings.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "unauthenticated",
+      "spurious",
+      "dubious",
+      "fabricated"
+    ],
+    "antonyms": [
+      "authentic",
+      "canonical",
+      "verified",
+      "genuine"
+    ],
+    "etymology": "from Greek apokryphos, meaning hidden or obscure"
   },
   {
     "id": "202",
     "word": "circumscribe",
-    "phonetic": "/\u02c8s\u025c\u02d0rk\u0259m\u02ccskra\u026ab/",
+    "phonetic": "/ˈsɜːrkəmˌskraɪb/",
     "definition": "to restrict something within definite limits or draw a boundary around",
     "example": "The newly ratified constitutional amendment was carefully drafted to circumscribe the emergency powers of the executive branch.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "restrict",
+      "confine",
+      "delimit",
+      "bound"
+    ],
+    "antonyms": [
+      "expand",
+      "liberate",
+      "enlarge"
+    ],
+    "etymology": "from Latin circumscribere, from circum 'around' and scribere 'to write or draw'"
   },
   {
     "id": "203",
     "word": "demagogue",
-    "phonetic": "/\u02c8d\u025bm\u0259\u02cc\u0261\u0252\u0261/",
+    "phonetic": "/ˈdɛməˌɡɒɡ/",
     "definition": "a political leader who appeals to popular prejudices rather than reasoned argument",
     "example": "The orator warned the assembly that charismatic demagogues often exploit societal anxieties during periods of fiscal turmoil.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "rabble-rouser",
+      "agitator",
+      "populist firebrand"
+    ],
+    "etymology": "from Greek dēmagōgos, from dēmos 'people' and agōgos 'leader'"
   },
   {
     "id": "204",
     "word": "equivocate",
-    "phonetic": "/\u026a\u02c8kw\u026av\u0259\u02ccke\u026at/",
+    "phonetic": "/ɪˈkwɪvəˌkeɪt/",
     "definition": "to use ambiguous language in order to conceal the truth or avoid commitment",
     "example": "Pressed by investigative journalists on the controversial procurement contract, the spokesperson chose to equivocate rather than offer a clear timeline.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "prevaricate",
+      "hedge",
+      "stall",
+      "waffle"
+    ],
+    "antonyms": [
+      "be forthright",
+      "clarify",
+      "speak frankly"
+    ],
+    "etymology": "from Late Latin aequivocare, from aequus 'equal' and vox 'voice'"
   },
   {
     "id": "205",
     "word": "gainsay",
-    "phonetic": "/\u02cc\u0261e\u026an\u02c8se\u026a/",
+    "phonetic": "/ˌɡeɪnˈseɪ/",
     "definition": "to deny, dispute, or contradict a statement or assertion",
     "example": "Although several rival researchers contested her preliminary assumptions, none could gainsay the mathematical rigor of her published proofs.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "contradict",
+      "deny",
+      "dispute",
+      "oppose"
+    ],
+    "antonyms": [
+      "confirm",
+      "corroborate",
+      "affirm",
+      "uphold"
+    ],
+    "etymology": "from Middle English gain- 'against' and say"
   },
   {
     "id": "206",
     "word": "inchoate",
-    "phonetic": "/\u026an\u02c8ko\u028a\u026at/",
+    "phonetic": "/ɪnˈkoʊɪt/",
     "definition": "just begun and so not fully formed or developed; rudimentary",
     "example": "His inchoate ideas for a decentralized operating system were initially scrawled across napkins in an all-night diner.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "rudimentary",
+      "embryonic",
+      "undeveloped",
+      "incipient"
+    ],
+    "antonyms": [
+      "mature",
+      "developed",
+      "completed",
+      "fully formed"
+    ],
+    "etymology": "from Latin inchoare, meaning to commence or begin"
   },
   {
     "id": "207",
     "word": "malediction",
-    "phonetic": "/\u02ccm\u00e6l\u026a\u02c8d\u026ak\u0283\u0259n/",
+    "phonetic": "/ˌmælɪˈdɪkʃən/",
     "definition": "a magical curse or utterance intended to bring about evil and misfortune",
     "example": "As the banished nobleman fled the gates of the citadel, he muttered a bitter malediction against the dynasty that betrayed him.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "curse",
+      "imprecation",
+      "anathema",
+      "execration"
+    ],
+    "antonyms": [
+      "benediction",
+      "blessing",
+      "praise"
+    ],
+    "etymology": "from Latin maledicere, from male 'badly' and dicere 'to speak'"
   },
   {
     "id": "208",
     "word": "penurious",
-    "phonetic": "/p\u0259\u02c8nj\u028a\u0259ri\u0259s/",
+    "phonetic": "/pəˈnjʊəriəs/",
     "definition": "extremely poverty-stricken or excessively parsimonious and miserly",
     "example": "Despite his vast accumulated wealth, the penurious landlord refused to replace the broken boiler during the coldest week of winter.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "poverty-stricken",
+      "destitute",
+      "miserly",
+      "parsimonious"
+    ],
+    "antonyms": [
+      "wealthy",
+      "affluent",
+      "generous",
+      "munificent"
+    ],
+    "etymology": "from Latin penuria, meaning extreme scarcity or want"
   },
   {
     "id": "209",
     "word": "salubrious",
-    "phonetic": "/s\u0259\u02c8lu\u02d0bri\u0259s/",
+    "phonetic": "/səˈluːbriəs/",
     "definition": "health-giving, wholesome, or favorable to general well-being",
     "example": "The physician recommended spending the spring convalescing in the salubrious alpine air of the Swiss canton.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "healthy",
+      "wholesome",
+      "salutary",
+      "beneficial"
+    ],
+    "antonyms": [
+      "unhealthy",
+      "harmful",
+      "deleterious",
+      "noxious"
+    ],
+    "etymology": "from Latin salus, meaning health or well-being"
   },
   {
     "id": "210",
     "word": "trenchant",
-    "phonetic": "/\u02c8tr\u025bnt\u0283\u0259nt/",
+    "phonetic": "/ˈtrɛntʃənt/",
     "definition": "vigorous, incisive, and sharply penetrating in expression or style",
     "example": "Her trenchant critique of post-war architectural planning dismantled decades of conventional municipal doctrine in a single lecture.",
-    "category": "advanced"
+    "category": "advanced",
+    "synonyms": [
+      "incisive",
+      "penetrating",
+      "keen",
+      "sharp"
+    ],
+    "antonyms": [
+      "blunt",
+      "vague",
+      "obtuse",
+      "dull"
+    ],
+    "etymology": "from Old French trenchant, from trenchier 'to cut'"
   },
   {
     "id": "211",
     "word": "apotheosis",
-    "phonetic": "/\u0259\u02ccp\u0252\u03b8i\u02c8o\u028as\u026as/",
+    "phonetic": "/əˌpɒθiˈoʊsɪs/",
     "definition": "the highest point in development, culmination, or deification of a subject",
     "example": "Critics hailed the final movement of the symphony as the apotheosis of late Romantic orchestral counterpoint.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "deification",
+      "culmination",
+      "peak",
+      "elevation"
+    ],
+    "antonyms": [
+      "degradation",
+      "nadir",
+      "defilement"
+    ],
+    "etymology": "from Greek apotheōsis, from apo 'from or away' and theos 'god'"
   },
   {
     "id": "212",
     "word": "chasm",
-    "phonetic": "/\u02c8k\u00e6z\u0259m/",
+    "phonetic": "/ˈkæzəm/",
     "definition": "a profound difference between viewpoints or a deep fissure in the earth",
     "example": "A widening chasm of ideological distrust separated the elder statesmen from the reformist delegates throughout the treaty negotiations.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "abyss",
+      "fissure",
+      "gulf",
+      "rift"
+    ],
+    "antonyms": [
+      "union",
+      "bridge",
+      "junction"
+    ],
+    "etymology": "from Greek chasma, meaning yawning hollow or gulf"
   },
   {
     "id": "213",
     "word": "crepuscule",
-    "phonetic": "/\u02c8kr\u025bp\u0259\u02ccskju\u02d0l/",
+    "phonetic": "/ˈkrɛpəˌskjuːl/",
     "definition": "the dim, atmospheric light of dusk or twilight",
     "example": "A flock of swallows cut silent arcs against the violet crepuscule settling over the village churchyard.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "twilight",
+      "dusk",
+      "gloaming",
+      "nightfall"
+    ],
+    "antonyms": [
+      "dawn",
+      "daybreak",
+      "midday"
+    ],
+    "etymology": "from Latin crepusculum, meaning twilight or dusk"
   },
   {
     "id": "214",
     "word": "desuetude",
-    "phonetic": "/\u02c8d\u025bsw\u026a\u02cctju\u02d0d/",
+    "phonetic": "/ˈdɛswɪˌtjuːd/",
     "definition": "a prolonged state of disuse, dormancy, or inactivity",
     "example": "The ancient irrigation canals had fallen into complete desuetude following generations of rural migration to the coast.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "disuse",
+      "dormancy",
+      "obsolescence",
+      "inactivity"
+    ],
+    "antonyms": [
+      "active use",
+      "currency",
+      "practice"
+    ],
+    "etymology": "from Latin desuetudo, from desuescere 'to grow unaccustomed'"
   },
   {
     "id": "215",
     "word": "epithalamium",
-    "phonetic": "/\u02cc\u025bp\u026a\u03b8\u0259\u02c8le\u026ami\u0259m/",
+    "phonetic": "/ˌɛpɪθəˈleɪmiəm/",
     "definition": "a lyrical poem or song celebrating a bride and groom on their wedding day",
     "example": "The poet laureate recited an intricate epithalamium that wove pastoral allegories into congratulations for the young couple.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "nuptial poem",
+      "wedding hymn",
+      "epithalamy"
+    ],
+    "etymology": "from Greek epithalamion, from epi 'at' and thalamos 'bridal chamber'"
   },
   {
     "id": "216",
     "word": "fuliginous",
-    "phonetic": "/fju\u02d0\u02c8l\u026ad\u0292\u026an\u0259s/",
+    "phonetic": "/fjuːˈlɪdʒɪnəs/",
     "definition": "sooty, dusky, or dark as if stained by smoke",
     "example": "Thick, fuliginous plumes rose from the chimney stacks, veiling the cobblestone waterfront in a suffocating gray twilight.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "sooty",
+      "dusky",
+      "murky",
+      "smoky"
+    ],
+    "antonyms": [
+      "pristine",
+      "clear",
+      "luminous"
+    ],
+    "etymology": "from Latin fuligo, meaning soot"
   },
   {
     "id": "217",
     "word": "lachrymal",
-    "phonetic": "/\u02c8l\u00e6kr\u026am\u0259l/",
+    "phonetic": "/ˈlækrɪməl/",
     "definition": "connected with weeping or shedding tears; mournful",
     "example": "The cellist solitary adagio possessed a haunting, lachrymal cadence that hushed the crowded auditorium into absolute silence.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "tearful",
+      "weeping",
+      "mournful",
+      "sorrowful"
+    ],
+    "antonyms": [
+      "joyful",
+      "exultant",
+      "cheerful"
+    ],
+    "etymology": "from Latin lacrima, meaning tear"
   },
   {
     "id": "218",
     "word": "nadir",
-    "phonetic": "/\u02c8ne\u026ad\u026a\u0259r/",
+    "phonetic": "/ˈneɪdɪər/",
     "definition": "the lowest point in the fortunes or trajectory of a person or institution",
     "example": "The bankruptcy of his publishing house in autumn marked the nadir of his professional life before his triumphant comeback.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "lowest point",
+      "bottom",
+      "depths",
+      "rock bottom"
+    ],
+    "antonyms": [
+      "zenith",
+      "acme",
+      "pinnacle",
+      "peak"
+    ],
+    "etymology": "from Arabic nazir, meaning opposite or corresponding to the zenith"
   },
   {
     "id": "219",
     "word": "paladin",
-    "phonetic": "/\u02c8p\u00e6l\u0259d\u026an/",
+    "phonetic": "/ˈpælədɪn/",
     "definition": "a chivalrous champion of a noble cause or heroic defender",
     "example": "She emerged as an outspoken paladin of civil liberties, challenging surveillance legislation before the supreme appellate court.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "champion",
+      "knight",
+      "heroic defender",
+      "paragon"
+    ],
+    "etymology": "from Italian paladino, from Latin palatinus 'officer of the imperial palace'"
   },
   {
     "id": "220",
     "word": "surcease",
-    "phonetic": "/s\u025c\u02d0r\u02c8si\u02d0s/",
+    "phonetic": "/sɜːrˈsiːs/",
     "definition": "relief, cessation, or a final respite from pain, toil, or war",
     "example": "Weary from months of relentless campaigning, the weary general prayed only for honor and a final surcease from war.",
-    "category": "literary"
+    "category": "literary",
+    "synonyms": [
+      "cessation",
+      "relief",
+      "respite",
+      "termination"
+    ],
+    "antonyms": [
+      "continuation",
+      "resumption",
+      "persistence"
+    ],
+    "etymology": "from Old French sursis, past participle of surseoir 'to refrain or delay'"
   },
   {
     "id": "221",
     "word": "ameliorate",
-    "phonetic": "/\u0259\u02c8mi\u02d0li\u0259\u02ccre\u026at/",
+    "phonetic": "/əˈmiːliəˌreɪt/",
     "definition": "to make something bad, painful, or unsatisfactory significantly better",
     "example": "Targeted public subsidies for early childhood education helped ameliorate the long-standing socio-economic disparities in the district.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "improve",
+      "enhance",
+      "better",
+      "alleviate"
+    ],
+    "antonyms": [
+      "worsen",
+      "aggravate",
+      "deteriorate",
+      "exacerbate"
+    ],
+    "etymology": "from Latin meliorare, from melior 'better'"
   },
   {
     "id": "222",
     "word": "anamnesis",
-    "phonetic": "/\u02cc\u00e6n\u00e6m\u02c8ni\u02d0s\u026as/",
+    "phonetic": "/ˌænæmˈniːsɪs/",
     "definition": "the recollection of past events or a patient comprehensive medical history",
     "example": "The attending neurologist conducted an exhaustive anamnesis to distinguish chronic cognitive fatigue from acute neurological trauma.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "recollection",
+      "remembrance",
+      "medical history"
+    ],
+    "antonyms": [
+      "amnesia",
+      "oblivion"
+    ],
+    "etymology": "from Greek anamnēsis, from ana 'back' and mimnēskesthai 'to recall to mind'"
   },
   {
     "id": "223",
     "word": "bifurcation",
-    "phonetic": "/\u02ccba\u026af\u0259r\u02c8ke\u026a\u0283\u0259n/",
+    "phonetic": "/ˌbaɪfərˈkeɪʃən/",
     "definition": "the division of a system or path into two distinct branches",
     "example": "The mathematical model demonstrates a dramatic bifurcation in fluid dynamics once the velocity exceeds the critical Reynolds number.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "division",
+      "branch",
+      "fork",
+      "splitting"
+    ],
+    "antonyms": [
+      "convergence",
+      "merging",
+      "unification"
+    ],
+    "etymology": "from Medieval Latin bifurcare, from bis 'twice' and furca 'fork'"
   },
   {
     "id": "224",
     "word": "dialectic",
-    "phonetic": "/\u02ccda\u026a\u0259\u02c8l\u025bkt\u026ak/",
+    "phonetic": "/ˌdaɪəˈlɛktɪk/",
     "definition": "the discourse between opposing perspectives seeking truth through reasoned debate",
     "example": "Hegelian dialectic posits that intellectual progress unfolds through the recurrent friction of thesis and antithesis culminating in synthesis.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "rational debate",
+      "argumentation",
+      "discourse",
+      "dialogue"
+    ],
+    "etymology": "from Greek dialektikē, from dialegesthai 'to converse with'"
   },
   {
     "id": "225",
     "word": "epistemological",
-    "phonetic": "/\u026a\u02ccp\u026ast\u0259m\u0259\u02c8l\u0252d\u0292\u026ak\u0259l/",
+    "phonetic": "/ɪˌpɪstəməˈlɒdʒɪkəl/",
     "definition": "relating to the philosophical study of knowledge, its methods, and its scope",
     "example": "The primary epistemological question facing quantum physicists was whether mathematical models merely predict observations or describe objective reality.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "cognitive",
+      "philosophical",
+      "theoretical"
+    ],
+    "etymology": "from Greek epistēmē 'knowledge' and -logia 'branch of study'"
   },
   {
     "id": "226",
     "word": "heuristics",
-    "phonetic": "/hju\u02d0\u02c8r\u026ast\u026aks/",
+    "phonetic": "/hjuːˈrɪstɪks/",
     "definition": "practical problem-solving techniques sufficient for immediate cognitive goals",
     "example": "Human decision-makers frequently rely on availability heuristics when assessing statistical risk under severe time pressure.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "problem-solving methods",
+      "rules of thumb",
+      "trial strategies"
+    ],
+    "etymology": "from Greek heuriskein, meaning to discover or find out"
   },
   {
     "id": "227",
     "word": "isomorphism",
-    "phonetic": "/\u02cca\u026as\u0259\u02c8m\u0254\u02d0rf\u026az\u0259m/",
+    "phonetic": "/ˌaɪsəˈmɔːrfɪzəm/",
     "definition": "a structural mapping between two sets that preserves relationships and operations",
     "example": "The computer scientist proved an elegant isomorphism between formal lambda calculus and intuitionistic logic.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "structural equivalence",
+      "similarity",
+      "one-to-one mapping"
+    ],
+    "antonyms": [
+      "disparity",
+      "divergence",
+      "difference"
+    ],
+    "etymology": "from Greek isos 'equal' and morphē 'form or shape'"
   },
   {
     "id": "228",
     "word": "parsimonious",
-    "phonetic": "/\u02ccp\u0251\u02d0rs\u026a\u02c8mo\u028ani\u0259s/",
+    "phonetic": "/ˌpɑːrsɪˈmoʊniəs/",
     "definition": "favoring the simplest explanation that fully accounts for observed empirical data",
     "example": "Occam razor favors the most parsimonious hypothesis that does not multiply theoretical entities without empirical necessity.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "frugal",
+      "sparing",
+      "austere",
+      "simple"
+    ],
+    "antonyms": [
+      "elaborate",
+      "extravagant",
+      "wasteful"
+    ],
+    "etymology": "from Latin parsimonia, from parcere 'to spare'"
   },
   {
     "id": "229",
     "word": "probabilistic",
-    "phonetic": "/\u02ccpr\u0252b\u0259b\u0259\u02c8l\u026ast\u026ak/",
+    "phonetic": "/ˌprɒbəbəˈlɪstɪk/",
     "definition": "based on or governed by the mathematical calculus of probability",
     "example": "Rather than projecting deterministic outcomes, modern climate forecasts employ probabilistic ensembles to account for chaotic atmospheric variance.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "stochastic",
+      "statistical",
+      "contingent",
+      "likelihood-based"
+    ],
+    "antonyms": [
+      "deterministic",
+      "certain",
+      "absolute"
+    ],
+    "etymology": "from Latin probabilis, meaning credible or provable"
   },
   {
     "id": "230",
     "word": "teleological",
-    "phonetic": "/\u02ccti\u02d0li\u0259\u02c8l\u0252d\u0292\u026ak\u0259l/",
+    "phonetic": "/ˌtiːliəˈlɒdʒɪkəl/",
     "definition": "explaining phenomena by the purpose or end they serve rather than prior causes",
     "example": "Evolutionary biologists strictly avoid teleological explanations that suggest biological adaptations evolved in anticipation of future climatic shifts.",
-    "category": "academic"
+    "category": "academic",
+    "synonyms": [
+      "purposive",
+      "goal-oriented",
+      "finalist"
+    ],
+    "antonyms": [
+      "mechanistic",
+      "accidental",
+      "random"
+    ],
+    "etymology": "from Greek telos 'end or goal' and -logia 'branch of study'"
   },
   {
     "id": "231",
     "word": "anaphora",
-    "phonetic": "/\u0259\u02c8n\u00e6f\u0259r\u0259/",
+    "phonetic": "/əˈnæfərə/",
     "definition": "the deliberate repetition of a word or phrase at the beginning of successive clauses",
     "example": "The civil rights leader masterful use of anaphora throughout the keynote address lent an irresistible rhythm to his call for justice.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "rhetorical repetition",
+      "iteration"
+    ],
+    "etymology": "from Greek anaphora, from ana 'back' and pherein 'to carry'"
   },
   {
     "id": "232",
     "word": "antithesis",
-    "phonetic": "/\u00e6n\u02c8t\u026a\u03b8\u0259s\u026as/",
+    "phonetic": "/ænˈtɪθəsɪs/",
     "definition": "the juxtaposition of contrasting ideas in balanced grammatical phrases",
     "example": "Neil Armstrong iconic line, that is one small step for man, one giant leap for mankind, remains a celebrated antithesis.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "contrast",
+      "opposition",
+      "counterpoint",
+      "reverse"
+    ],
+    "antonyms": [
+      "similarity",
+      "agreement",
+      "parallelism"
+    ],
+    "etymology": "from Greek antithesis, from anti 'against' and tithenai 'to place'"
   },
   {
     "id": "233",
     "word": "chiasmus",
-    "phonetic": "/ka\u026a\u02c8\u00e6zm\u0259s/",
+    "phonetic": "/kaɪˈæzməs/",
     "definition": "a rhetorical reversal in the order of words in two otherwise parallel phrases",
     "example": "President Kennedy employed a memorable chiasmus when he urged citizens to ask not what their country could do for them.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "inverted parallelism",
+      "rhetorical inversion"
+    ],
+    "etymology": "from Greek chiasmos, from chiazein 'to mark with a cross or letter chi'"
   },
   {
     "id": "234",
     "word": "circumlocutory",
-    "phonetic": "/\u02ccs\u025c\u02d0rk\u0259m\u02c8l\u0252kj\u0259t\u0254\u02d0ri/",
+    "phonetic": "/ˌsɜːrkəmˈlɒkjətɔːri/",
     "definition": "using an excessively wordy or indirect manner of speech to avoid directness",
     "example": "The minister delivered a circumlocutory answer that filled five minutes of parliamentary debate without answering the direct question.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "wordy",
+      "periphrastic",
+      "rambling",
+      "roundabout"
+    ],
+    "antonyms": [
+      "direct",
+      "concise",
+      "succinct",
+      "brief"
+    ],
+    "etymology": "from Latin circumlocutio, from circum 'around' and loqui 'to speak'"
   },
   {
     "id": "235",
     "word": "copious",
-    "phonetic": "/\u02c8ko\u028api\u0259s/",
+    "phonetic": "/ˈkoʊpiəs/",
     "definition": "abundant in supply or quantity; lavish and comprehensive in expression",
     "example": "During the treaty negotiations, the historian kept copious handwritten notes detailing every concession made by the rival ambassadors.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "abundant",
+      "plentiful",
+      "profuse",
+      "lavish"
+    ],
+    "antonyms": [
+      "meager",
+      "sparse",
+      "scarce",
+      "deficient"
+    ],
+    "etymology": "from Latin copiosus, from copia 'abundance'"
   },
   {
     "id": "236",
     "word": "discourse",
-    "phonetic": "/\u02c8d\u026ask\u0254\u02d0rs/",
+    "phonetic": "/ˈdɪskɔːrs/",
     "definition": "formal and orderly speech or writing on a topic; intellectual exchange",
     "example": "The ambassador sought to elevate the diplomatic discourse above nationalistic grievances toward mutual commercial collaboration.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "conversation",
+      "dialogue",
+      "discussion",
+      "treatise"
+    ],
+    "etymology": "from Latin discursus, from discurrere 'to run to and fro'"
   },
   {
     "id": "237",
     "word": "exordium",
-    "phonetic": "/\u025b\u0261\u02c8z\u0254\u02d0rdi\u0259m/",
+    "phonetic": "/ɛɡˈzɔːrdiəm/",
     "definition": "the introductory part of a speech designed to gain the audience goodwill",
     "example": "The barrister began his defense with an impassioned exordium that reminded the jurors of their constitutional duty of impartiality.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "introduction",
+      "preamble",
+      "preface",
+      "opening"
+    ],
+    "antonyms": [
+      "conclusion",
+      "peroration",
+      "epilogue"
+    ],
+    "etymology": "from Latin exordiri, meaning to begin a web or commence speaking"
   },
   {
     "id": "238",
     "word": "invocatory",
-    "phonetic": "/\u026an\u02c8v\u0252k\u0259t\u0254\u02d0ri/",
+    "phonetic": "/ɪnˈvɒkətɔːri/",
     "definition": "serving to appeal to or call upon a higher authority, tradition, or muse",
     "example": "The commencement speaker opened with an invocatory stanza honoring the generational sacrifices of the graduates ancestors.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "pleading",
+      "appealing",
+      "suppliant",
+      "petitionary"
+    ],
+    "etymology": "from Latin invocare, from in- 'upon' and vocare 'to call'"
   },
   {
     "id": "239",
     "word": "polyphony",
-    "phonetic": "/p\u0259\u02c8l\u026af\u0259ni/",
+    "phonetic": "/pəˈlɪfəni/",
     "definition": "the coexistence and interplay of multiple distinct authorial or character voices",
     "example": "The novelist debate sequence created a dazzling polyphony wherein conflicting social classes argued their survival with equal persuasive force.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "multi-voicedness",
+      "counterpoint",
+      "polyphonic texture"
+    ],
+    "antonyms": [
+      "monophony",
+      "unison"
+    ],
+    "etymology": "from Greek polyphōnia, from polys 'many' and phōnē 'voice or sound'"
   },
   {
     "id": "240",
     "word": "sententious",
-    "phonetic": "/s\u025bn\u02c8t\u025bn\u0283\u0259s/",
+    "phonetic": "/sɛnˈtɛnʃəs/",
     "definition": "moralizing in an aphoristic, pithy, and concise manner",
     "example": "The elder judge was famous for issuing sententious verdicts that condensed complex legal doctrine into biting moral adages.",
-    "category": "eloquence"
+    "category": "eloquence",
+    "synonyms": [
+      "moralizing",
+      "aphoristic",
+      "pithy",
+      "preachy"
+    ],
+    "antonyms": [
+      "long-winded",
+      "rambling",
+      "unprincipled"
+    ],
+    "etymology": "from Latin sententiosus, from sententia 'opinion or maxim'"
   },
   {
     "id": "241",
     "word": "alleviate",
-    "phonetic": "/\u0259\u02c8li\u02d0vi\u02cce\u026at/",
+    "phonetic": "/əˈliːviˌeɪt/",
     "definition": "to make physical or emotional discomfort more bearable and less intense",
     "example": "A warm cup of ginger tea and a quiet hour of rest helped alleviate her lingering tension headache.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "ease",
+      "relieve",
+      "lessen",
+      "mitigate"
+    ],
+    "antonyms": [
+      "aggravate",
+      "exacerbate",
+      "worsen",
+      "intensify"
+    ],
+    "etymology": "from Late Latin alleviare, from ad- 'to' and levis 'light'"
   },
   {
     "id": "242",
     "word": "bolster",
-    "phonetic": "/\u02c8bo\u028alst\u0259r/",
+    "phonetic": "/ˈboʊlstər/",
     "definition": "to support, strengthen, reinforce, or prop up",
     "example": "The community center organized evening workshops to bolster financial literacy and budgeting skills among local families.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "reinforce",
+      "strengthen",
+      "support",
+      "prop"
+    ],
+    "antonyms": [
+      "undermine",
+      "weaken",
+      "compromise",
+      "impair"
+    ],
+    "etymology": "from Old English bolster, referring to a cushion or supportive pillow"
   },
   {
     "id": "243",
     "word": "culminate",
-    "phonetic": "/\u02c8k\u028clm\u026a\u02ccne\u026at/",
+    "phonetic": "/ˈkʌlmɪˌneɪt/",
     "definition": "to reach a climax, highest stage, or final concluding point",
     "example": "Months of neighborhood tree-planting drives will culminate in a vibrant harvest festival in the central square this Saturday.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "climax",
+      "peak",
+      "conclude",
+      "terminate"
+    ],
+    "antonyms": [
+      "begin",
+      "commence",
+      "originate",
+      "initiate"
+    ],
+    "etymology": "from Late Latin culminare, from culmen 'peak or summit'"
   },
   {
     "id": "244",
     "word": "diminish",
-    "phonetic": "/d\u026a\u02c8m\u026an\u026a\u0283/",
+    "phonetic": "/dɪˈmɪnɪʃ/",
     "definition": "to make or become noticeably smaller, fewer, or less significant",
     "example": "Taking brief screen breaks throughout the workday can noticeably diminish ocular strain and afternoon lethargy.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "reduce",
+      "decrease",
+      "lessen",
+      "shrink"
+    ],
+    "antonyms": [
+      "increase",
+      "expand",
+      "amplify",
+      "enlarge"
+    ],
+    "etymology": "from Middle English diminuen, blending Old French amenuiser and Latin diminuere"
   },
   {
     "id": "245",
     "word": "elucidate",
-    "phonetic": "/\u026a\u02c8lu\u02d0s\u026a\u02ccde\u026at/",
+    "phonetic": "/ɪˈluːsɪˌdeɪt/",
     "definition": "to make an intricate subject clear and readily comprehensible",
     "example": "The chemistry teacher used a simple model of colored beads to elucidate how covalent molecular bonds form.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "clarify",
+      "explain",
+      "illuminate",
+      "expound"
+    ],
+    "antonyms": [
+      "obfuscate",
+      "confuse",
+      "obscure",
+      "muddle"
+    ],
+    "etymology": "from Late Latin elucidare, from e- 'out' and lucidus 'bright'"
   },
   {
     "id": "246",
     "word": "foster",
-    "phonetic": "/\u02c8f\u0252st\u0259r/",
+    "phonetic": "/ˈfɒstər/",
     "definition": "to encourage the growth, development, and mutual flourishing of something",
     "example": "The shared kitchen in the cooperative housing building was deliberately designed to foster spontaneous conversations among neighbors.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "nurture",
+      "encourage",
+      "cultivate",
+      "promote"
+    ],
+    "antonyms": [
+      "hinder",
+      "suppress",
+      "discourage",
+      "stifle"
+    ],
+    "etymology": "from Old English fostrian, from foster 'nourishment or food'"
   },
   {
     "id": "247",
     "word": "glean",
-    "phonetic": "/\u0261li\u02d0n/",
+    "phonetic": "/ɡliːn/",
     "definition": "to extract insights or information gradually from varied sources",
     "example": "By talking directly to long-time shopkeepers, the reporter was able to glean subtle historical details omitted from city records.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "gather",
+      "extract",
+      "harvest",
+      "cull"
+    ],
+    "etymology": "from Old French glener, meaning to gather grain left behind by reapers"
   },
   {
     "id": "248",
     "word": "hinder",
-    "phonetic": "/\u02c8h\u026and\u0259r/",
+    "phonetic": "/ˈhɪndər/",
     "definition": "to delay, obstruct, or make progress difficult for someone or something",
     "example": "Unseasonably heavy snowfall threatened to hinder construction crews working on the new pedestrian suspension bridge.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "obstruct",
+      "impede",
+      "delay",
+      "hamper"
+    ],
+    "antonyms": [
+      "facilitate",
+      "assist",
+      "expedite",
+      "promote"
+    ],
+    "etymology": "from Old English hindrian, meaning to keep back or delay"
   },
   {
     "id": "249",
     "word": "peruse",
-    "phonetic": "/p\u0259\u02c8ru\u02d0z/",
+    "phonetic": "/pəˈruːz/",
     "definition": "to read or examine something in a detailed or contemplative manner",
     "example": "She loved to spend quiet rainy Sunday mornings perusing dusty travel memoirs in the corner used-book shop.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "scrutinize",
+      "examine",
+      "inspect",
+      "read"
+    ],
+    "antonyms": [
+      "skim",
+      "glance",
+      "overlook"
+    ],
+    "etymology": "from Middle English per- 'thoroughly' and use 'to employ or apply'"
   },
   {
     "id": "250",
     "word": "tenacious",
-    "phonetic": "/t\u0259\u02c8ne\u026a\u0283\u0259s/",
+    "phonetic": "/təˈneɪʃəs/",
     "definition": "persistent, determined, and holding firmly to a purpose or goal",
     "example": "Her tenacious pursuit of the truth uncovered financial irregularities that had remained undetected for over a decade.",
-    "category": "everyday"
+    "category": "everyday",
+    "synonyms": [
+      "persistent",
+      "resolute",
+      "stubborn",
+      "determined"
+    ],
+    "antonyms": [
+      "yielding",
+      "irresolute",
+      "fickle",
+      "weak"
+    ],
+    "etymology": "from Latin tenax, from tenere 'to hold'"
   }
 ]

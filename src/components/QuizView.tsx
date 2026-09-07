@@ -161,10 +161,18 @@ export const QuizView: React.FC<QuizViewProps> = ({
       'def_to_word',
       'cloze',
       'spelling',
+      'synonym_match',
     ];
 
     const generated: QuizQuestion[] = chosenWords.map((target, idx) => {
       let assignedType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+
+      // synonym_match is only eligible for words with at least 1 synonym; fall back to word_to_def
+      if (assignedType === 'synonym_match') {
+        if (!target.synonyms || target.synonyms.length === 0) {
+          assignedType = 'word_to_def';
+        }
+      }
 
       if (assignedType === 'cloze') {
         const regex = new RegExp(`\\b${escapeRegExp(target.word)}\\b`, 'i');
@@ -192,6 +200,52 @@ export const QuizView: React.FC<QuizViewProps> = ({
           phonetic: undefined,
           correctAnswer: target.word,
           options: [],
+          explanation: target.example,
+          wordItem: target,
+        };
+      }
+
+      if (assignedType === 'synonym_match') {
+        const candidateSynonyms = target.synonyms!;
+        const correctSynonym = candidateSynonyms[Math.floor(Math.random() * candidateSynonyms.length)];
+
+        // 3 distractors: synonyms/words from other unrelated words
+        const unrelatedWords = words
+          .filter((w) => w.id !== target.id && w.word.toLowerCase() !== target.word.toLowerCase())
+          .sort(() => Math.random() - 0.5);
+
+        const targetSynSet = new Set(candidateSynonyms.map((s) => s.toLowerCase()));
+        targetSynSet.add(target.word.toLowerCase());
+
+        const distractorOptions: string[] = [];
+        for (const other of unrelatedWords) {
+          if (distractorOptions.length >= 3) break;
+          let pick: string | undefined;
+          if (other.synonyms && other.synonyms.length > 0) {
+            const validSyns = other.synonyms.filter(
+              (s) => !targetSynSet.has(s.toLowerCase()) && !distractorOptions.includes(s)
+            );
+            if (validSyns.length > 0) {
+              pick = validSyns[Math.floor(Math.random() * validSyns.length)];
+            }
+          }
+          if (!pick && !targetSynSet.has(other.word.toLowerCase()) && !distractorOptions.includes(other.word)) {
+            pick = other.word;
+          }
+          if (pick && !distractorOptions.includes(pick)) {
+            distractorOptions.push(pick);
+          }
+        }
+
+        const options = [correctSynonym, ...distractorOptions].sort(() => Math.random() - 0.5);
+
+        return {
+          id: `q-${target.id}-${idx}`,
+          questionType: 'synonym_match',
+          prompt: target.word,
+          phonetic: target.phonetic,
+          correctAnswer: correctSynonym,
+          options,
           explanation: target.example,
           wordItem: target,
         };
@@ -538,7 +592,9 @@ export const QuizView: React.FC<QuizViewProps> = ({
                   ? 'Identify word'
                   : currentQ.questionType === 'cloze'
                   ? 'Complete sentence'
-                  : 'Spell the word'}
+                  : currentQ.questionType === 'spelling'
+                  ? 'Spell the word'
+                  : 'Select synonym'}
               </span>
               <span className="text-xs italic text-[#8C8272]">
                 {currentQ.wordItem.category}
@@ -584,6 +640,34 @@ export const QuizView: React.FC<QuizViewProps> = ({
                     "{currentQ.prompt}"
                   </p>
                   <p className="mt-2 text-xs text-[#8C8272]">
+                    Definition: {currentQ.wordItem.definition}
+                  </p>
+                </div>
+              ) : currentQ.questionType === 'synonym_match' ? (
+                <div>
+                  <p className="text-xs text-[#8C8272] mb-1">
+                    Select the closest synonym:
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-fraunces text-3xl font-medium tracking-tight text-[#1B1815] dark:text-[#F6F1E7]">
+                        {currentQ.prompt}
+                      </h3>
+                      {currentQ.phonetic && (
+                        <p className="mt-1 text-sm font-mono-ipa text-[#8C8272]">
+                          {currentQ.phonetic}
+                        </p>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => handlePronounce(currentQ.prompt)}
+                      className="p-2 text-[#8C8272] hover:text-[#D98A93] transition-colors cursor-pointer"
+                      title="Pronounce word"
+                    >
+                      <Volume2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <p className="mt-2 text-xs italic text-[#8C8272]">
                     Definition: {currentQ.wordItem.definition}
                   </p>
                 </div>
@@ -733,11 +817,21 @@ export const QuizView: React.FC<QuizViewProps> = ({
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <span className="text-[10px] font-medium text-[#8C8272]">
-                    {currentQ.questionType === 'cloze' ? 'Full sentence' : 'Example in context'}
+                    {currentQ.questionType === 'cloze'
+                      ? 'Full sentence'
+                      : currentQ.questionType === 'synonym_match'
+                      ? 'Context & Synonyms'
+                      : 'Example in context'}
                   </span>
                   <p className="mt-1 text-xs italic text-[#8C8272]">
                     "{currentQ.explanation}"
                   </p>
+                  {currentQ.questionType === 'synonym_match' && currentQ.wordItem.synonyms && currentQ.wordItem.synonyms.length > 0 && (
+                    <p className="mt-1.5 text-xs text-[#8C8272]">
+                      <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">Synonyms: </span>
+                      {currentQ.wordItem.synonyms.join(', ')}
+                    </p>
+                  )}
                 </div>
                 <button
                   onClick={() => handlePronounce(currentQ.wordItem.word)}

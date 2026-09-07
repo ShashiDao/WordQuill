@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import {
   Volume2,
   Bookmark,
@@ -50,6 +50,18 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
+
+  // Touch gesture state for swipe support (no gesture library dependency)
+  const [dragOffset, setDragOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const isSwipingRef = useRef(false);
+
+  // Reset drag offset when changing cards
+  useEffect(() => {
+    setDragOffset({ x: 0, y: 0 });
+    setIsDragging(false);
+  }, [currentIndex]);
 
   // Extract available categories
   const categories = useMemo(() => {
@@ -169,6 +181,97 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
     setTimeout(() => {
       handleNext();
     }, 350);
+  };
+
+  // Touch event handlers for swipe gesture support (pure touch events, no external library)
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    touchStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      time: Date.now(),
+    };
+    isSwipingRef.current = false;
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current || e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+
+    // Movement threshold to distinguish tap from intentional gesture
+    if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+      isSwipingRef.current = true;
+    }
+
+    if (Math.abs(dx) >= Math.abs(dy)) {
+      // Horizontal dominance: card follows finger horizontally with slight rotation
+      setDragOffset({ x: dx, y: dy * 0.15 });
+    } else {
+      // Vertical dominance: subtle vertical nudge for flip gesture
+      setDragOffset({ x: dx * 0.15, y: dy * 0.45 });
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartRef.current) {
+      setIsDragging(false);
+      return;
+    }
+
+    const dx = dragOffset.x;
+    const dy = dragOffset.y;
+    const absX = Math.abs(dx);
+    const absY = Math.abs(dy);
+    const THRESHOLD_X = 80; // Distance threshold for Mastered / Learning swipe (~80px)
+    const THRESHOLD_Y = 55; // Distance threshold for Flip swipe
+
+    setIsDragging(false);
+
+    if (absX >= THRESHOLD_X && absX > absY) {
+      if (dx > 0) {
+        // Swipe right: Equivalent to tapping "Mastered"
+        setDragOffset({ x: 360, y: dy });
+        setTimeout(() => {
+          handleMarkStatus('mastered');
+        }, 160);
+      } else {
+        // Swipe left: Equivalent to tapping "Learning"
+        setDragOffset({ x: -360, y: dy });
+        setTimeout(() => {
+          handleMarkStatus('learning');
+        }, 160);
+      }
+    } else if (absY >= THRESHOLD_Y && absY > absX) {
+      // Swipe up or down: Equivalent to flip action
+      setDragOffset({ x: 0, y: 0 });
+      handleFlipCard();
+    } else {
+      // Snap back if distance threshold was not reached
+      setDragOffset({ x: 0, y: 0 });
+    }
+
+    // Preserve isSwipingRef briefly to suppress the synthesized click event
+    setTimeout(() => {
+      touchStartRef.current = null;
+      isSwipingRef.current = false;
+    }, 120);
+  };
+
+  const handleTouchCancel = () => {
+    touchStartRef.current = null;
+    isSwipingRef.current = false;
+    setIsDragging(false);
+    setDragOffset({ x: 0, y: 0 });
+  };
+
+  const handleClickCard = () => {
+    // Suppress tap-flip if user just performed a drag gesture
+    if (isSwipingRef.current) return;
+    handleFlipCard();
   };
 
   // Keyboard navigation support: Space to flip, Left/Right arrows to navigate
@@ -294,21 +397,76 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
               />
             </div>
 
-            {/* Interactive 3D Flip Card Container */}
+            {/* Interactive 3D Flip Card Container with Swipe Gestures */}
             <div
-              className="perspective-1000 relative mx-auto h-80 w-full cursor-pointer select-none"
-              onClick={handleFlipCard}
+              className="perspective-1000 relative mx-auto h-[350px] w-full cursor-pointer select-none touch-none"
+              onClick={handleClickCard}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchCancel}
               id="flashcard-container"
             >
-              {/* Card Inner */}
+              {/* Drag Motion Wrapper: card follows finger horizontally with slight rotation & snap-back */}
               <div
-                className={`relative h-full w-full rounded-2xl transition-transform duration-500 transform-style-preserve-3d border border-black/[0.08] dark:border-white/[0.08] ${
-                  isFlipped ? 'rotate-y-180' : ''
-                }`}
+                className="relative h-full w-full transform-style-preserve-3d"
+                style={{
+                  transform: `translate3d(${dragOffset.x}px, ${dragOffset.y}px, 0) rotate(${dragOffset.x * 0.045}deg)`,
+                  transition: isDragging ? 'none' : 'transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1)',
+                }}
               >
-                {/* FRONT FACE */}
-                <div className="backface-hidden absolute inset-0 flex flex-col justify-between rounded-2xl bg-[#FAF6EE] p-6 dark:bg-[#221E1B]">
-                  {/* Card Header Top */}
+                {/* Card Inner */}
+                <div
+                  className={`relative h-full w-full rounded-2xl transition-transform duration-500 transform-style-preserve-3d border border-black/[0.08] dark:border-white/[0.08] ${
+                    isFlipped ? 'rotate-y-180' : ''
+                  }`}
+                >
+                  {/* FRONT FACE */}
+                  <div className="backface-hidden absolute inset-0 flex flex-col justify-between rounded-2xl bg-[#FAF6EE] p-6 dark:bg-[#221E1B] overflow-hidden">
+                    {/* Directional swipe color tint overlay (green-ish for right, warm for left) */}
+                    <div
+                      className="pointer-events-none absolute inset-0 transition-opacity duration-75"
+                      style={{
+                        backgroundColor:
+                          dragOffset.x > 5
+                            ? '#8FB996'
+                            : dragOffset.x < -5
+                            ? '#C9924A'
+                            : 'transparent',
+                        opacity: Math.min(Math.abs(dragOffset.x) / 80, 1) * 0.16,
+                      }}
+                    />
+
+                    {/* Swipe directional cues */}
+                    {dragOffset.x > 25 && (
+                      <div
+                        className="pointer-events-none absolute top-3 inset-x-0 flex justify-center items-center gap-1.5 text-xs font-medium text-[#8FB996] transition-opacity duration-150"
+                        style={{ opacity: Math.min((dragOffset.x - 25) / 45, 1) }}
+                      >
+                        <CheckCircle className="w-3.5 h-3.5 text-[#8FB996]" />
+                        <span>Mastered</span>
+                      </div>
+                    )}
+                    {dragOffset.x < -25 && (
+                      <div
+                        className="pointer-events-none absolute top-3 inset-x-0 flex justify-center items-center gap-1.5 text-xs font-medium text-[#C9924A] transition-opacity duration-150"
+                        style={{ opacity: Math.min((Math.abs(dragOffset.x) - 25) / 45, 1) }}
+                      >
+                        <HelpCircle className="w-3.5 h-3.5 text-[#C9924A]" />
+                        <span>Learning</span>
+                      </div>
+                    )}
+                    {Math.abs(dragOffset.y) > 25 && Math.abs(dragOffset.y) > Math.abs(dragOffset.x) && (
+                      <div
+                        className="pointer-events-none absolute bottom-11 inset-x-0 flex justify-center items-center gap-1.5 text-xs font-medium text-[#D98A93] transition-opacity duration-150"
+                        style={{ opacity: Math.min((Math.abs(dragOffset.y) - 25) / 30, 1) }}
+                      >
+                        <RotateCcw className="w-3.5 h-3.5 text-[#D98A93]" />
+                        <span>Flip to meaning</span>
+                      </div>
+                    )}
+
+                    {/* Card Header Top */}
                   <div className="flex items-center justify-between">
                     <span className="text-xs italic text-[#8C8272]">
                       {currentWord.category}
@@ -377,7 +535,50 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 </div>
 
                 {/* BACK FACE */}
-                <div className="backface-hidden rotate-y-180 absolute inset-0 flex flex-col justify-between rounded-2xl bg-[#FAF6EE] p-6 dark:bg-[#221E1B]">
+                <div className="backface-hidden rotate-y-180 absolute inset-0 flex flex-col justify-between rounded-2xl bg-[#FAF6EE] p-6 dark:bg-[#221E1B] overflow-hidden">
+                  {/* Directional swipe color tint overlay (green-ish for right, warm for left) */}
+                  <div
+                    className="pointer-events-none absolute inset-0 transition-opacity duration-75"
+                    style={{
+                      backgroundColor:
+                        dragOffset.x > 5
+                          ? '#8FB996'
+                          : dragOffset.x < -5
+                          ? '#C9924A'
+                          : 'transparent',
+                      opacity: Math.min(Math.abs(dragOffset.x) / 80, 1) * 0.16,
+                    }}
+                  />
+
+                  {/* Swipe directional cues */}
+                  {dragOffset.x > 25 && (
+                    <div
+                      className="pointer-events-none absolute top-3 inset-x-0 flex justify-center items-center gap-1.5 text-xs font-medium text-[#8FB996] transition-opacity duration-150"
+                      style={{ opacity: Math.min((dragOffset.x - 25) / 45, 1) }}
+                    >
+                      <CheckCircle className="w-3.5 h-3.5 text-[#8FB996]" />
+                      <span>Mastered</span>
+                    </div>
+                  )}
+                  {dragOffset.x < -25 && (
+                    <div
+                      className="pointer-events-none absolute top-3 inset-x-0 flex justify-center items-center gap-1.5 text-xs font-medium text-[#C9924A] transition-opacity duration-150"
+                      style={{ opacity: Math.min((Math.abs(dragOffset.x) - 25) / 45, 1) }}
+                    >
+                      <HelpCircle className="w-3.5 h-3.5 text-[#C9924A]" />
+                      <span>Learning</span>
+                    </div>
+                  )}
+                  {Math.abs(dragOffset.y) > 25 && Math.abs(dragOffset.y) > Math.abs(dragOffset.x) && (
+                    <div
+                      className="pointer-events-none absolute bottom-11 inset-x-0 flex justify-center items-center gap-1.5 text-xs font-medium text-[#D98A93] transition-opacity duration-150"
+                      style={{ opacity: Math.min((Math.abs(dragOffset.y) - 25) / 30, 1) }}
+                    >
+                      <RotateCcw className="w-3.5 h-3.5 text-[#D98A93]" />
+                      <span>Flip to word</span>
+                    </div>
+                  )}
+
                   {/* Card Header Top */}
                   <div>
                     <div className="flex items-center justify-between">
@@ -410,19 +611,40 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                   </div>
 
                   {/* Definition & Example */}
-                  <div className="my-auto space-y-3">
+                  <div className="my-auto space-y-2.5 overflow-y-auto max-h-[220px] pr-1 scrollbar-none">
                     <div>
-                      <p className="font-fraunces text-base font-normal leading-[1.6] text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
+                      <p className="font-fraunces text-base font-normal leading-[1.5] text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
                         {currentWord.definition}
                       </p>
                     </div>
 
-                    <p className="text-xs italic leading-relaxed text-[#8C8272]">
-                      "{currentWord.example}"
-                    </p>
+                    {/* Synonyms & Antonyms: plain comma-separated text under definition */}
+                    {currentWord.synonyms && currentWord.synonyms.length > 0 && (
+                      <p className="text-xs text-[#8C8272] leading-relaxed">
+                        <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">Synonyms: </span>
+                        {currentWord.synonyms.join(', ')}
+                      </p>
+                    )}
+                    {currentWord.antonyms && currentWord.antonyms.length > 0 && (
+                      <p className="text-xs text-[#8C8272] leading-relaxed">
+                        <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">Antonyms: </span>
+                        {currentWord.antonyms.join(', ')}
+                      </p>
+                    )}
+
+                    <div>
+                      <p className="text-xs italic leading-relaxed text-[#8C8272]">
+                        "{currentWord.example}"
+                      </p>
+                      {currentWord.etymology && (
+                        <p className="mt-1 text-[11px] italic text-[#8C8272]/90">
+                          {currentWord.etymology}
+                        </p>
+                      )}
+                    </div>
 
                     {/* Small inline icon + muted-color text below the definition */}
-                    <div className="flex items-center gap-1.5 text-xs text-[#8C8272] pt-1">
+                    <div className="flex items-center gap-1.5 text-xs text-[#8C8272] pt-0.5">
                       {currentProgress?.status === 'mastered' ? (
                         <>
                           <CheckCircle className="w-3.5 h-3.5 text-[#8FB996]" />
@@ -444,11 +666,12 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                   {/* Card Footer Hint */}
                   <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-2.5">
                     <RefreshCw className="w-3.5 h-3.5 text-[#8C8272]" />
-                    <span>Tap to flip back</span>
+                    <span>Tap or swipe vertical to flip</span>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
             {/* Action Feedback Badge */}
             {actionFeedback && (
@@ -484,6 +707,12 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 <CheckCircle className="w-3.5 h-3.5 text-[#8FB996]" />
                 <span>Mastered</span>
               </button>
+            </div>
+
+            {/* Interaction tip */}
+            <div className="mt-1.5 text-center text-[11px] text-[#8C8272]/75">
+              <span className="hidden sm:inline">Tip: Use &larr; / &rarr; keys to navigate, Space to flip</span>
+              <span className="sm:hidden">Tip: Swipe &rarr; for Mastered, &larr; for Learning, &uarr;&darr; to flip</span>
             </div>
 
             {/* Navigation & Controls Bar */}
