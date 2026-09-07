@@ -61,20 +61,81 @@ export const QuizView: React.FC<QuizViewProps> = ({
       return;
     }
 
-    // Shuffle pool
-    const shuffled = [...pool].sort(() => Math.random() - 0.5);
-    const selectedCount = Math.min(shuffled.length, questionCount);
-    const chosenWords = shuffled.slice(0, selectedCount);
+    const selectedCount = Math.min(pool.length, questionCount);
+    let chosenWords: WordItem[];
+
+    if (sourceFilter === 'all' && !customPool) {
+      // Weight picks toward words returned by getDueWords() and words where incorrectCount > correctCount
+      const dueWordsList = getDueWords(pool, progressMap);
+      const dueSet = new Set(dueWordsList.map((w) => w.id));
+
+      const priorityCandidates: { word: WordItem; weight: number }[] = [];
+      for (const w of pool) {
+        const prog = progressMap.get(w.id);
+        const isDue = dueSet.has(w.id);
+        const isStruggling = prog ? (prog.incorrectCount || 0) > (prog.correctCount || 0) : false;
+
+        if (isDue || isStruggling) {
+          let weight = 1;
+          if (isDue) weight += 2;
+          if (isStruggling) weight += 3;
+          priorityCandidates.push({ word: w, weight });
+        }
+      }
+
+      // Reserve slots for priority words (up to ~60%), leaving the remaining slots for random pool
+      const maxPrioritySlots = Math.min(
+        priorityCandidates.length,
+        Math.max(1, Math.floor(selectedCount * 0.6))
+      );
+
+      // Weighted random sampling without replacement using exponential keys
+      const sampledPriority = priorityCandidates
+        .map((item) => ({
+          word: item.word,
+          key: Math.pow(Math.random(), 1 / item.weight),
+        }))
+        .sort((a, b) => b.key - a.key)
+        .slice(0, maxPrioritySlots)
+        .map((item) => item.word);
+
+      const chosenIds = new Set(sampledPriority.map((w) => w.id));
+
+      // Fill remaining slots randomly from the full pool
+      const remainingPool = pool
+        .filter((w) => !chosenIds.has(w.id))
+        .sort(() => Math.random() - 0.5);
+
+      const needed = selectedCount - sampledPriority.length;
+      const sampledRemaining = remainingPool.slice(0, needed);
+
+      chosenWords = [...sampledPriority, ...sampledRemaining].sort(() => Math.random() - 0.5);
+    } else {
+      // Shuffle pool
+      const shuffled = [...pool].sort(() => Math.random() - 0.5);
+      chosenWords = shuffled.slice(0, selectedCount);
+    }
 
     const generated: QuizQuestion[] = chosenWords.map((target, idx) => {
       // 50% chance of 'word_to_def' vs 'def_to_word'
       const isWordToDef = idx % 2 === 0;
 
-      // Select 3 distractors from all words (not the target word)
-      const distractors = words
-        .filter((w) => w.id !== target.id)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
+      // Distractor selection: prefer 3 wrong options from the SAME category as target word.
+      // Only fall back to cross-category sampling if that category has fewer than 4 words total.
+      const sameCategoryWords = words.filter((w) => w.category === target.category);
+      let distractors: WordItem[];
+
+      if (sameCategoryWords.length >= 4) {
+        distractors = sameCategoryWords
+          .filter((w) => w.id !== target.id)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+      } else {
+        distractors = words
+          .filter((w) => w.id !== target.id)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+      }
 
       if (isWordToDef) {
         const options = [target.definition, ...distractors.map((d) => d.definition)].sort(
