@@ -1,5 +1,5 @@
 import { db } from './index';
-import type { UserWordProgress, DailyProgress, WordStatus, WordItem } from '../types';
+import type { UserWordProgress, DailyProgress, WordStatus, WordItem, AppSetting } from '../types';
 
 export function getTodayString(d = new Date()): string {
   const year = d.getFullYear();
@@ -410,3 +410,87 @@ export async function getSetting<T>(key: string, defaultValue: T): Promise<T> {
 export async function setSetting(key: string, value: string | number | boolean | string[] | any): Promise<void> {
   await db.settings.put({ key, value });
 }
+
+export interface BackupData {
+  version: number;
+  exportedAt: string;
+  savedWords: UserWordProgress[];
+  progress: DailyProgress[];
+  settings: AppSetting[];
+}
+
+export function validateBackupShape(data: unknown): data is BackupData {
+  if (!data || typeof data !== 'object') return false;
+  const obj = data as Record<string, unknown>;
+
+  // Must contain valid arrays for at least one table
+  const hasValidWords = !obj.savedWords || Array.isArray(obj.savedWords);
+  const hasValidProgress = !obj.progress || Array.isArray(obj.progress);
+  const hasValidSettings = !obj.settings || Array.isArray(obj.settings);
+
+  const hasAnyData =
+    (Array.isArray(obj.savedWords) && obj.savedWords.length > 0) ||
+    (Array.isArray(obj.progress) && obj.progress.length > 0) ||
+    (Array.isArray(obj.settings) && obj.settings.length > 0);
+
+  return hasValidWords && hasValidProgress && hasValidSettings && hasAnyData;
+}
+
+export async function exportDatabaseBackup(): Promise<void> {
+  const [savedWords, progress, settings] = await Promise.all([
+    db.savedWords.toArray(),
+    db.progress.toArray(),
+    db.settings.toArray(),
+  ]);
+
+  const backup: BackupData = {
+    version: 2,
+    exportedAt: new Date().toISOString(),
+    savedWords,
+    progress,
+    settings,
+  };
+
+  const jsonString = JSON.stringify(backup, null, 2);
+  const blob = new Blob([jsonString], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const todayStr = getTodayString();
+  const filename = `wordquill-backup-${todayStr}.json`;
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+export async function importDatabaseBackup(data: BackupData): Promise<{
+  wordsCount: number;
+  progressCount: number;
+  settingsCount: number;
+}> {
+  let wordsCount = 0;
+  let progressCount = 0;
+  let settingsCount = 0;
+
+  await db.transaction('rw', [db.savedWords, db.progress, db.settings], async () => {
+    if (Array.isArray(data.savedWords) && data.savedWords.length > 0) {
+      await db.savedWords.bulkPut(data.savedWords);
+      wordsCount = data.savedWords.length;
+    }
+    if (Array.isArray(data.progress) && data.progress.length > 0) {
+      await db.progress.bulkPut(data.progress);
+      progressCount = data.progress.length;
+    }
+    if (Array.isArray(data.settings) && data.settings.length > 0) {
+      await db.settings.bulkPut(data.settings);
+      settingsCount = data.settings.length;
+    }
+  });
+
+  return { wordsCount, progressCount, settingsCount };
+}
+

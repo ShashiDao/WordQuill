@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Flame,
   CheckCircle2,
@@ -12,11 +12,22 @@ import {
   Check,
   RotateCcw,
   Calendar,
+  Download,
+  Upload,
+  AlertCircle,
+  X,
 } from 'lucide-react';
 import type { WordItem, UserWordProgress, DailyProgress } from '../types';
 import { db } from '../db';
 import { speakWord } from '../utils/speech';
-import { getTodayString, getSetting } from '../db/operations';
+import {
+  getTodayString,
+  getSetting,
+  exportDatabaseBackup,
+  importDatabaseBackup,
+  validateBackupShape,
+  type BackupData,
+} from '../db/operations';
 
 interface ProgressDashboardProps {
   words: WordItem[];
@@ -42,6 +53,16 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
   const [dailyGoal, setDailyGoal] = useState<number>(propDailyGoal || 10);
+
+  // Backup & Restore State
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [pendingImportData, setPendingImportData] = useState<BackupData | null>(null);
+  const [backupFeedback, setBackupFeedback] = useState<{
+    type: 'success' | 'error';
+    message: string;
+  } | null>(null);
 
   useEffect(() => {
     if (propDailyGoal !== undefined) {
@@ -111,6 +132,94 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 
   const testPronunciation = () => {
     speakWord('supercalifragilisticexpialidocious', speechRate);
+  };
+
+  const handleExport = async () => {
+    try {
+      setIsExporting(true);
+      setBackupFeedback(null);
+      await exportDatabaseBackup();
+      setBackupFeedback({
+        type: 'success',
+        message: 'Progress exported as JSON backup.',
+      });
+    } catch (err) {
+      console.error(err);
+      setBackupFeedback({
+        type: 'error',
+        message: 'Failed to export backup data.',
+      });
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    e.target.value = '';
+    setBackupFeedback(null);
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const text = event.target?.result as string;
+        const parsed = JSON.parse(text);
+
+        if (!validateBackupShape(parsed)) {
+          setBackupFeedback({
+            type: 'error',
+            message: 'Invalid backup format. File does not contain valid WordQuill progress records.',
+          });
+          setPendingImportData(null);
+          return;
+        }
+
+        setPendingImportData(parsed);
+      } catch (err) {
+        setBackupFeedback({
+          type: 'error',
+          message: 'Unable to parse JSON file. Ensure you selected a valid WordQuill backup file.',
+        });
+        setPendingImportData(null);
+      }
+    };
+
+    reader.onerror = () => {
+      setBackupFeedback({
+        type: 'error',
+        message: 'Failed to read file from disk.',
+      });
+    };
+
+    reader.readAsText(file);
+  };
+
+  const confirmImport = async () => {
+    if (!pendingImportData) return;
+    try {
+      setIsImporting(true);
+      const res = await importDatabaseBackup(pendingImportData);
+      setBackupFeedback({
+        type: 'success',
+        message: `Restored: ${res.wordsCount} words, ${res.progressCount} daily logs, ${res.settingsCount} settings.`,
+      });
+      setPendingImportData(null);
+      onDataUpdated();
+    } catch (err) {
+      console.error(err);
+      setBackupFeedback({
+        type: 'error',
+        message: 'Error importing backup into local database.',
+      });
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
+  const cancelImport = () => {
+    setPendingImportData(null);
   };
 
   return (
@@ -373,6 +482,123 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
               </button>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* Backup Section */}
+      <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-5 dark:border-white/[0.08] dark:bg-[#221E1B]">
+        <div className="mb-2">
+          <h3 className="font-fraunces text-base font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+            Backup
+          </h3>
+          <p className="text-xs text-[#8C8272] mt-0.5">
+            Export or restore your vocabulary history, spaced repetition data, and preferences as a local JSON file.
+          </p>
+        </div>
+
+        <div className="space-y-3 pt-2">
+          {/* Export Action */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/[0.06] pt-3 dark:border-white/[0.06]">
+            <div>
+              <span className="text-xs font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                Export progress
+              </span>
+              <p className="text-[11px] text-[#8C8272]">
+                Save all reviews, mastered words, quiz records, and settings to a JSON file
+              </p>
+            </div>
+            <button
+              onClick={handleExport}
+              disabled={isExporting}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-black/[0.08] px-3.5 py-1.5 text-xs font-medium text-[#1B1815] hover:bg-black/[0.03] dark:border-white/[0.08] dark:text-[#F6F1E7] dark:hover:bg-white/[0.03] transition cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5 text-[#D98A93]" />
+              <span>{isExporting ? 'Exporting...' : 'Export progress'}</span>
+            </button>
+          </div>
+
+          {/* Import Action */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/[0.06] pt-3 dark:border-white/[0.06]">
+            <div>
+              <span className="text-xs font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                Import progress
+              </span>
+              <p className="text-[11px] text-[#8C8272]">
+                Restore your progress from a previously saved JSON backup file
+              </p>
+            </div>
+            <div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".json"
+                onChange={handleFileSelect}
+                className="hidden"
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                disabled={isImporting}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-black/[0.08] px-3.5 py-1.5 text-xs font-medium text-[#1B1815] hover:bg-black/[0.03] dark:border-white/[0.08] dark:text-[#F6F1E7] dark:hover:bg-white/[0.03] transition cursor-pointer"
+              >
+                <Upload className="w-3.5 h-3.5 text-[#8FB996]" />
+                <span>Import progress</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Confirmation Step Before Overwriting */}
+          {pendingImportData && (
+            <div className="rounded-xl border border-[#D98A93]/40 bg-[#D98A93]/[0.06] p-3.5 space-y-2.5">
+              <div className="flex items-start gap-2">
+                <AlertCircle className="w-4 h-4 text-[#D98A93] shrink-0 mt-0.5" />
+                <div className="text-xs">
+                  <p className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                    This will replace your current progress. Continue?
+                  </p>
+                  <p className="text-[#8C8272] mt-0.5 text-[11px]">
+                    Backup contains: {pendingImportData.savedWords?.length || 0} words,{' '}
+                    {pendingImportData.progress?.length || 0} daily activity logs,{' '}
+                    {pendingImportData.settings?.length || 0} settings.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 pt-1">
+                <button
+                  onClick={confirmImport}
+                  disabled={isImporting}
+                  className="rounded-lg bg-[#D98A93] px-3 py-1.5 text-xs font-medium text-[#1B1815] hover:opacity-90 transition cursor-pointer"
+                >
+                  {isImporting ? 'Importing...' : 'Yes, overwrite & restore'}
+                </button>
+                <button
+                  onClick={cancelImport}
+                  disabled={isImporting}
+                  className="text-xs font-medium text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] transition cursor-pointer"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Feedback messages */}
+          {backupFeedback && (
+            <div
+              className={`rounded-xl border p-3 text-xs flex items-center justify-between ${
+                backupFeedback.type === 'success'
+                  ? 'border-[#8FB996]/40 text-[#8FB996] bg-[#8FB996]/[0.06]'
+                  : 'border-[#D98A93]/40 text-[#D98A93] bg-[#D98A93]/[0.06]'
+              }`}
+            >
+              <span>{backupFeedback.message}</span>
+              <button
+                onClick={() => setBackupFeedback(null)}
+                className="text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] p-0.5 ml-2 cursor-pointer"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
