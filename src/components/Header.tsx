@@ -109,28 +109,26 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right Actions */}
         <div className="flex items-center gap-3 sm:gap-4">
-          {/* Streak indicator - plain text + icon, no pill */}
+          {/* Compact Streak & Freeze Badge */}
           <div
             id="streak-badge"
-            className="flex items-center gap-1 text-xs font-medium text-[#C9924A]"
-            title={`${streak} day learning streak`}
+            className="flex items-center gap-1.5 text-xs font-medium text-[#C9924A]"
+            title={`${streak} day learning streak${freezeAvailable ? ' · 1 streak freeze available' : ''}`}
           >
-            <Flame className="w-4 h-4 text-[#C9924A]" />
-            <span>{streak}d</span>
-          </div>
-
-          {/* Freeze available indicator - plain icon + text, no pill */}
-          {freezeAvailable && (
-            <div
-              id="freeze-available-indicator"
-              className="flex items-center gap-1 text-xs font-medium text-[#8FB996]"
-              title="1 streak freeze available in current 7-day window"
-            >
-              <Snowflake className="w-3.5 h-3.5 text-[#8FB996]" />
-              <span className="hidden sm:inline">Freeze available</span>
-              <span className="sm:hidden">Freeze</span>
+            <div className="flex items-center gap-1">
+              <Flame className="w-4 h-4 text-[#C9924A]" />
+              <span>{streak}d</span>
             </div>
-          )}
+            {freezeAvailable && (
+              <span
+                id="freeze-available-indicator"
+                className="inline-flex items-center text-[#8FB996]"
+                title="1 streak freeze available in current 7-day window"
+              >
+                <Snowflake className="w-3.5 h-3.5 text-[#8FB996]" />
+              </span>
+            )}
+          </div>
 
           {/* Speech Rate Control */}
           <button

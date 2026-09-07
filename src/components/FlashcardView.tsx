@@ -4,13 +4,12 @@ import {
   Bookmark,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Shuffle,
   RotateCcw,
   CheckCircle,
   HelpCircle,
-  Sparkles,
   BookOpen,
-  RefreshCw,
 } from 'lucide-react';
 import type { WordItem, UserWordProgress } from '../types';
 import { speakWord } from '../utils/speech';
@@ -21,6 +20,14 @@ import {
   getDueWords,
   incrementDailyWordsReviewed,
 } from '../db/operations';
+
+const STATUS_OPTIONS: { id: string; label: string }[] = [
+  { id: 'learning', label: 'Learning' },
+  { id: 'all', label: 'All' },
+  { id: 'starred', label: 'Starred' },
+  { id: 'new', label: 'New' },
+  { id: 'mastered', label: 'Mastered' },
+];
 
 interface FlashcardViewProps {
   words: WordItem[];
@@ -50,10 +57,25 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
     return 'all';
   });
   const [selectedStatusFilter, setSelectedStatusFilter] = useState<string>('learning');
+  const [isStatusMenuOpen, setIsStatusMenuOpen] = useState<boolean>(false);
+  const statusMenuRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
+
+  // Close status dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (statusMenuRef.current && !statusMenuRef.current.contains(e.target as Node)) {
+        setIsStatusMenuOpen(false);
+      }
+    };
+    if (isStatusMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isStatusMenuOpen]);
 
   // Touch gesture state for swipe support (no gesture library dependency)
   const [dragOffset, setDragOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -339,10 +361,9 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
 
   return (
     <div className="mx-auto max-w-xl pb-24 pt-4 px-4">
-      {/* Category & Status Filters */}
-      <div className="mb-4 space-y-2.5">
-        {/* Category horizontal scroll tabs */}
-        <div className="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08] mask-edge-fade">
+      {/* Consolidated Filter Row: Category tabs + Status dropdown */}
+      <div className="mb-3 flex items-center justify-between gap-3 border-b border-black/[0.08] pb-2 dark:border-white/[0.08]">
+        <div className="flex items-center gap-3.5 overflow-x-auto pb-0.5 scrollbar-none mask-edge-fade min-w-0 flex-1">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -350,7 +371,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 setSelectedCategory(cat);
                 setCurrentIndex(0);
               }}
-              className={`pb-1 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer ${
+              className={`pb-0.5 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer shrink-0 ${
                 selectedCategory === cat
                   ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
                   : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
@@ -365,38 +386,46 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
           ))}
         </div>
 
-        {/* Status filter tabs */}
-        <div className="flex items-center justify-between gap-2 pt-1 text-xs text-[#8C8272]">
-          <div className="flex items-center gap-3">
-            {[
-              { id: 'learning', label: 'Learning' },
-              { id: 'all', label: 'All' },
-              { id: 'starred', label: 'Starred' },
-              { id: 'new', label: 'New' },
-              { id: 'mastered', label: 'Mastered' },
-            ].map((f) => (
-              <button
-                key={f.id}
-                onClick={() => {
-                  setSelectedStatusFilter(f.id);
-                  setCurrentIndex(0);
-                }}
-                className={`pb-0.5 text-xs font-medium transition cursor-pointer ${
-                  selectedStatusFilter === f.id
-                    ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
-                    : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
+        {/* Compact Status Filter Dropdown */}
+        <div className="relative shrink-0" ref={statusMenuRef}>
+          <button
+            id="status-filter-btn"
+            type="button"
+            onClick={() => setIsStatusMenuOpen((prev) => !prev)}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium text-[#1B1815] dark:text-[#F6F1E7] rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-[#FAF6EE] dark:bg-[#201D1A] hover:border-[#D98A93] transition-colors cursor-pointer"
+            title="Filter by learning status"
+            aria-haspopup="true"
+            aria-expanded={isStatusMenuOpen}
+          >
+            <span>{STATUS_OPTIONS.find((o) => o.id === selectedStatusFilter)?.label || 'Status'}</span>
+            <ChevronDown className={`w-3.5 h-3.5 text-[#8C8272] transition-transform duration-150 ${isStatusMenuOpen ? 'rotate-180' : ''}`} />
+          </button>
 
-          <div className="text-[11px] font-medium text-[#8C8272]">
-            {filteredWords.length > 0
-              ? `${currentIndex + 1} of ${filteredWords.length}`
-              : '0 words'}
-          </div>
+          {isStatusMenuOpen && (
+            <div className="absolute right-0 top-full mt-1.5 z-30 min-w-[130px] rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-[#FAF6EE] dark:bg-[#201D1A] py-1 shadow-lg">
+              {STATUS_OPTIONS.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedStatusFilter(f.id);
+                    setCurrentIndex(0);
+                    setIsStatusMenuOpen(false);
+                  }}
+                  className={`w-full px-3 py-1.5 text-left text-xs transition-colors cursor-pointer flex items-center justify-between ${
+                    selectedStatusFilter === f.id
+                      ? 'text-[#D98A93] font-medium'
+                      : 'text-[#1B1815] dark:text-[#F6F1E7] hover:bg-black/[0.04] dark:hover:bg-white/[0.04]'
+                  }`}
+                >
+                  <span>{f.label}</span>
+                  {selectedStatusFilter === f.id && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D98A93]" />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -424,14 +453,19 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
       ) : (
         currentWord && (
           <>
-            {/* Progress bar */}
-            <div className="mb-3 h-1 w-full overflow-hidden rounded-full bg-black/[0.05] dark:bg-white/[0.05]">
-              <div
-                className="h-full bg-[#D98A93] transition-all duration-300"
-                style={{
-                  width: `${((currentIndex + 1) / filteredWords.length) * 100}%`,
-                }}
-              />
+            {/* Progress bar with inline position */}
+            <div className="mb-3 flex items-center gap-2.5">
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-black/[0.05] dark:bg-white/[0.05]">
+                <div
+                  className="h-full bg-[#D98A93] transition-all duration-300"
+                  style={{
+                    width: `${((currentIndex + 1) / filteredWords.length) * 100}%`,
+                  }}
+                />
+              </div>
+              <span className="text-[11px] font-mono text-[#8C8272] shrink-0">
+                {currentIndex + 1}/{filteredWords.length}
+              </span>
             </div>
 
             {/* Interactive 3D Flip Card Container with Swipe Gestures */}
@@ -531,12 +565,9 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                     >
                       {currentWord.word}
                     </h2>
-                    <div className="flex items-center gap-1.5 mt-2">
+                    <div className="mt-2">
                       <span className="font-mono-ipa text-sm text-[#8C8272]">
                         {currentWord.phonetic}
-                      </span>
-                      <span className="text-xs italic text-[#8C8272]">
-                        · {currentWord.category}
                       </span>
                     </div>
 
@@ -554,12 +585,8 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                     </button>
                   </div>
 
-                  {/* Card Footer Hint */}
-                  <div className="flex items-center justify-between text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-3">
-                    <span className="inline-flex items-center gap-1.5">
-                      <RefreshCw className="w-3.5 h-3.5 text-[#8C8272]" />
-                      <span>Space or tap to flip</span>
-                    </span>
+                  {/* Card Footer: Review status */}
+                  <div className="flex items-center justify-end text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-3">
                     <span>
                       {currentProgress?.status === 'mastered'
                         ? 'Mastered · '
@@ -699,12 +726,6 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                       )}
                     </div>
                   </div>
-
-                  {/* Card Footer Hint */}
-                  <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-2.5">
-                    <RefreshCw className="w-3.5 h-3.5 text-[#8C8272]" />
-                    <span>Tap or swipe vertical to flip</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -744,12 +765,6 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 <CheckCircle className="w-3.5 h-3.5 text-[#8FB996]" />
                 <span>Mastered</span>
               </button>
-            </div>
-
-            {/* Interaction tip */}
-            <div className="mt-1.5 text-center text-[11px] text-[#8C8272]/75">
-              <span className="hidden sm:inline">Tip: Use &larr; / &rarr; keys to navigate, Space to flip</span>
-              <span className="sm:hidden">Tip: Swipe &rarr; for Mastered, &larr; for Learning, &uarr;&darr; to flip</span>
             </div>
 
             {/* Navigation & Controls Bar */}
@@ -796,19 +811,6 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
-
-            {/* Quick Practice Prompt */}
-            {onNavigateToQuiz && (
-              <div className="mt-4 text-center">
-                <button
-                  onClick={onNavigateToQuiz}
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-[#D98A93] hover:underline cursor-pointer"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-[#D98A93]" />
-                  <span>Ready to test yourself? Take a quick quiz &rarr;</span>
-                </button>
-              </div>
-            )}
           </>
         )
       )}
