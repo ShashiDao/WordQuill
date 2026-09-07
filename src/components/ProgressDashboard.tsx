@@ -16,6 +16,7 @@ import {
   Upload,
   AlertCircle,
   X,
+  Share2,
 } from 'lucide-react';
 import type { WordItem, UserWordProgress, DailyProgress } from '../types';
 import { db } from '../db';
@@ -64,6 +65,18 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
     type: 'success' | 'error';
     message: string;
   } | null>(null);
+
+  // Share Streak State
+  const [shareFeedback, setShareFeedback] = useState<string | null>(null);
+  const shareTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (shareTimeoutRef.current) {
+        clearTimeout(shareTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (propDailyGoal !== undefined) {
@@ -137,6 +150,41 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 
   const testPronunciation = () => {
     speakWord('supercalifragilisticexpialidocious', speechRate);
+  };
+
+  const handleShareStreak = async () => {
+    const wordsText = masteredCount === 1 ? '1 word' : `${masteredCount} words`;
+    const shareText = `🔥 ${streak}-day vocabulary streak on WordQuill — ${wordsText} mastered.`;
+
+    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+      try {
+        await navigator.share({
+          title: 'WordQuill',
+          text: shareText,
+        });
+        return;
+      } catch (err: unknown) {
+        if ((err as Error)?.name === 'AbortError') {
+          return;
+        }
+      }
+    }
+
+    // Fallback when navigator.share is unsupported (desktop browsers)
+    if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(shareText);
+        setShareFeedback('Copied to clipboard');
+        if (shareTimeoutRef.current) {
+          clearTimeout(shareTimeoutRef.current);
+        }
+        shareTimeoutRef.current = window.setTimeout(() => {
+          setShareFeedback(null);
+        }, 2500);
+      } catch (err) {
+        console.warn('Clipboard write failed:', err);
+      }
+    }
   };
 
   const handleExport = async () => {
@@ -243,7 +291,25 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
               <span className="text-sm font-medium text-[#8C8272]">
                 {streak === 1 ? 'day streak' : 'days streak'}
               </span>
+              <button
+                id="share-streak-btn"
+                onClick={handleShareStreak}
+                className="self-center rounded-lg border border-black/[0.08] p-1.5 text-[#8C8272] hover:text-[#1B1815] hover:border-[#D98A93] dark:border-white/[0.08] dark:hover:text-[#F6F1E7] transition-colors cursor-pointer ml-1"
+                title="Share your streak"
+                aria-label="Share your streak"
+              >
+                <Share2 className="w-3.5 h-3.5" />
+              </button>
             </div>
+            {shareFeedback && (
+              <div
+                id="share-streak-feedback"
+                className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[#8FB996] transition"
+              >
+                <Check className="w-3.5 h-3.5 text-[#8FB996]" />
+                <span>{shareFeedback}</span>
+              </div>
+            )}
             <p className="mt-2 max-w-sm text-xs text-[#8C8272] leading-relaxed">
               {streak === 0
                 ? 'Review words today to ignite your daily learning streak.'
