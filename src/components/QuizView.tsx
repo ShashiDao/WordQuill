@@ -14,6 +14,8 @@ import type { WordItem, UserWordProgress, QuizQuestion } from '../types';
 import { speakWord } from '../utils/speech';
 import { recordQuizSession, getDueWords } from '../db/operations';
 
+const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 interface QuizViewProps {
   words: WordItem[];
   progressMap: Map<string, UserWordProgress>;
@@ -44,6 +46,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [typedAnswer, setTypedAnswer] = useState<string>('');
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [sessionResults, setSessionResults] = useState<
     { word: WordItem; isCorrect: boolean }[]
@@ -144,9 +147,46 @@ export const QuizView: React.FC<QuizViewProps> = ({
       chosenWords = shuffled.slice(0, selectedCount);
     }
 
+    const questionTypes: QuizQuestion['questionType'][] = [
+      'word_to_def',
+      'def_to_word',
+      'cloze',
+      'spelling',
+    ];
+
     const generated: QuizQuestion[] = chosenWords.map((target, idx) => {
-      // 50% chance of 'word_to_def' vs 'def_to_word'
-      const isWordToDef = idx % 2 === 0;
+      let assignedType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+
+      if (assignedType === 'cloze') {
+        const regex = new RegExp(`\\b${escapeRegExp(target.word)}\\b`, 'i');
+        if (regex.test(target.example)) {
+          return {
+            id: `q-${target.id}-${idx}`,
+            questionType: 'cloze',
+            prompt: target.example.replace(regex, '_____'),
+            phonetic: target.phonetic,
+            correctAnswer: target.word,
+            options: [],
+            explanation: target.example,
+            wordItem: target,
+          };
+        }
+        // Fall back to word_to_def if word does not appear verbatim in example
+        assignedType = 'word_to_def';
+      }
+
+      if (assignedType === 'spelling') {
+        return {
+          id: `q-${target.id}-${idx}`,
+          questionType: 'spelling',
+          prompt: target.definition,
+          phonetic: undefined,
+          correctAnswer: target.word,
+          options: [],
+          explanation: target.example,
+          wordItem: target,
+        };
+      }
 
       // Distractor selection: prefer 3 wrong options from the SAME category as target word.
       // Only fall back to cross-category sampling if that category has fewer than 4 words total.
@@ -165,7 +205,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
           .slice(0, 3);
       }
 
-      if (isWordToDef) {
+      if (assignedType === 'word_to_def') {
         const options = [target.definition, ...distractors.map((d) => d.definition)].sort(
           () => Math.random() - 0.5
         );
@@ -199,6 +239,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
     setQuestions(generated);
     setCurrentIndex(0);
     setSelectedOption(null);
+    setTypedAnswer('');
     setIsAnswered(false);
     setSessionResults([]);
     setIsCompleted(false);
@@ -218,7 +259,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
     setSelectedOption(option);
     setIsAnswered(true);
 
-    const isCorrect = option === currentQ.correctAnswer;
+    const isCorrect = option.trim().toLowerCase() === currentQ.correctAnswer.trim().toLowerCase();
     const newResults = [...sessionResults, { word: currentQ.wordItem, isCorrect }];
     setSessionResults(newResults);
 
@@ -230,10 +271,31 @@ export const QuizView: React.FC<QuizViewProps> = ({
     }
   };
 
+  const handleCheckTypedAnswer = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (isAnswered || !currentQ) return;
+    const trimmed = typedAnswer.trim();
+    if (!trimmed) return;
+
+    setSelectedOption(trimmed);
+    setIsAnswered(true);
+
+    const isCorrect = trimmed.toLowerCase() === currentQ.correctAnswer.trim().toLowerCase();
+    const newResults = [...sessionResults, { word: currentQ.wordItem, isCorrect }];
+    setSessionResults(newResults);
+
+    if (currentIndex === questions.length - 1) {
+      recordQuizSession(newResults).then(() => {
+        onDataUpdated();
+      });
+    }
+  };
+
   const handleNextQuestion = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
       setSelectedOption(null);
+      setTypedAnswer('');
       setIsAnswered(false);
     } else {
       setIsCompleted(true);
@@ -463,7 +525,11 @@ export const QuizView: React.FC<QuizViewProps> = ({
               <span className="text-[11px] font-medium text-[#D98A93]">
                 {currentQ.questionType === 'word_to_def'
                   ? 'Select definition'
-                  : 'Identify word'}
+                  : currentQ.questionType === 'def_to_word'
+                  ? 'Identify word'
+                  : currentQ.questionType === 'cloze'
+                  ? 'Complete sentence'
+                  : 'Spell the word'}
               </span>
               <span className="text-xs italic text-[#8C8272]">
                 {currentQ.wordItem.category}
@@ -491,10 +557,31 @@ export const QuizView: React.FC<QuizViewProps> = ({
                     <Volume2 className="w-4 h-4" />
                   </button>
                 </div>
-              ) : (
+              ) : currentQ.questionType === 'def_to_word' ? (
                 <div>
                   <p className="text-xs text-[#8C8272] mb-1">
                     Which word matches this meaning?
+                  </p>
+                  <p className="font-fraunces text-lg font-normal leading-relaxed text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
+                    "{currentQ.prompt}"
+                  </p>
+                </div>
+              ) : currentQ.questionType === 'cloze' ? (
+                <div>
+                  <p className="text-xs text-[#8C8272] mb-1.5">
+                    Fill in the missing word:
+                  </p>
+                  <p className="font-fraunces text-lg font-normal leading-relaxed text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
+                    "{currentQ.prompt}"
+                  </p>
+                  <p className="mt-2 text-xs text-[#8C8272]">
+                    Definition: {currentQ.wordItem.definition}
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <p className="text-xs text-[#8C8272] mb-1.5">
+                    Spell the word that matches this definition:
                   </p>
                   <p className="font-fraunces text-lg font-normal leading-relaxed text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
                     "{currentQ.prompt}"
@@ -504,52 +591,132 @@ export const QuizView: React.FC<QuizViewProps> = ({
             </div>
           </div>
 
-          {/* Options Grid */}
-          <div className="space-y-2">
-            {currentQ.options.map((opt, idx) => {
-              const isSelected = selectedOption === opt;
-              const isCorrect = opt === currentQ.correctAnswer;
-
-              let optionClasses =
-                'border-black/[0.08] bg-[#FAF6EE] text-[#1B1815] hover:border-black/[0.2] dark:border-white/[0.08] dark:bg-[#221E1B] dark:text-[#F6F1E7] dark:hover:border-white/[0.2]';
-
-              if (isAnswered) {
-                if (isCorrect) {
-                  optionClasses =
-                    'border-[#8FB996] bg-[#8FB996]/[0.08] text-[#8FB996] font-medium';
-                } else if (isSelected) {
-                  optionClasses =
-                    'border-[#D98A93] bg-[#D98A93]/[0.08] text-[#D98A93] font-medium';
-                } else {
-                  optionClasses =
-                    'border-black/[0.04] bg-[#FAF6EE]/50 text-[#8C8272] dark:border-white/[0.04] dark:bg-[#221E1B]/50';
-                }
-              }
-
-              return (
-                <button
-                  key={`${opt}-${idx}`}
-                  disabled={isAnswered}
-                  onClick={() => handleSelectOption(opt)}
-                  className={`flex w-full items-start gap-3 rounded-xl border p-3.5 text-left text-xs transition cursor-pointer ${optionClasses}`}
+          {/* Options or Text Input Area */}
+          {currentQ.questionType === 'cloze' || currentQ.questionType === 'spelling' ? (
+            <div className="space-y-3">
+              {!isAnswered ? (
+                <form
+                  onSubmit={handleCheckTypedAnswer}
+                  className="flex flex-col sm:flex-row gap-2.5"
                 >
-                  <span className="font-mono text-xs text-[#8C8272] pt-0.5">
-                    {String.fromCharCode(65 + idx)}.
-                  </span>
-                  <span className="flex-1 leading-relaxed">{opt}</span>
-                  {isAnswered && (
-                    <span className="shrink-0 pt-0.5">
-                      {isCorrect ? (
-                        <CheckCircle2 className="h-4 w-4 text-[#8FB996]" />
-                      ) : isSelected ? (
-                        <XCircle className="h-4 w-4 text-[#D98A93]" />
-                      ) : null}
-                    </span>
+                  <input
+                    id="quiz-text-input"
+                    type="text"
+                    autoFocus
+                    value={typedAnswer}
+                    onChange={(e) => setTypedAnswer(e.target.value)}
+                    placeholder={
+                      currentQ.questionType === 'cloze'
+                        ? 'Type the missing word...'
+                        : 'Spell the word from memory...'
+                    }
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="none"
+                    spellCheck={false}
+                    className="flex-1 rounded-xl border border-black/[0.08] bg-[#FAF6EE] px-4 py-3 text-xs text-[#1B1815] placeholder:text-[#8C8272] focus:border-[#D98A93] focus:outline-none dark:border-white/[0.08] dark:bg-[#221E1B] dark:text-[#F6F1E7] transition"
+                  />
+                  <button
+                    id="btn-quiz-check"
+                    type="submit"
+                    disabled={!typedAnswer.trim()}
+                    className="rounded-xl bg-[#D98A93] px-6 py-3 text-xs font-medium text-[#1B1815] hover:opacity-90 active:scale-95 disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed transition shrink-0"
+                  >
+                    Check
+                  </button>
+                </form>
+              ) : (
+                <div className="space-y-2">
+                  {selectedOption?.toLowerCase() === currentQ.correctAnswer.toLowerCase() ? (
+                    <div className="flex items-center gap-3 rounded-xl border border-[#8FB996] bg-[#8FB996]/[0.08] p-3.5 text-xs text-[#8FB996]">
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-[#8FB996]" />
+                      <div className="flex-1">
+                        <span className="text-[#8C8272] mr-1.5">Your answer:</span>
+                        <span className="font-fraunces font-medium text-sm text-[#8FB996]">
+                          {selectedOption}
+                        </span>
+                      </div>
+                      <span className="text-xs font-medium text-[#8FB996]">Correct</span>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 rounded-xl border border-[#D98A93] bg-[#D98A93]/[0.08] p-3.5 text-xs text-[#D98A93]">
+                        <XCircle className="h-4 w-4 shrink-0 text-[#D98A93]" />
+                        <div className="flex-1">
+                          <span className="text-[#8C8272] mr-1.5">Your answer:</span>
+                          <span className="font-fraunces font-medium text-sm text-[#D98A93]">
+                            {selectedOption || '(blank)'}
+                          </span>
+                        </div>
+                        <span className="text-xs font-medium text-[#D98A93]">Incorrect</span>
+                      </div>
+                      <div className="flex items-center gap-3 rounded-xl border border-[#8FB996] bg-[#8FB996]/[0.08] p-3.5 text-xs text-[#8FB996]">
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-[#8FB996]" />
+                        <div className="flex-1">
+                          <span className="text-[#8C8272] mr-1.5">Correct answer:</span>
+                          <span className="font-fraunces font-medium text-sm text-[#8FB996]">
+                            {currentQ.correctAnswer}
+                          </span>
+                          {currentQ.wordItem.phonetic && (
+                            <span className="ml-2 font-mono-ipa text-xs text-[#8C8272]">
+                              {currentQ.wordItem.phonetic}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   )}
-                </button>
-              );
-            })}
-          </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            /* Options Grid */
+            <div className="space-y-2">
+              {currentQ.options.map((opt, idx) => {
+                const isSelected = selectedOption === opt;
+                const isCorrect = opt === currentQ.correctAnswer;
+
+                let optionClasses =
+                  'border-black/[0.08] bg-[#FAF6EE] text-[#1B1815] hover:border-black/[0.2] dark:border-white/[0.08] dark:bg-[#221E1B] dark:text-[#F6F1E7] dark:hover:border-white/[0.2]';
+
+                if (isAnswered) {
+                  if (isCorrect) {
+                    optionClasses =
+                      'border-[#8FB996] bg-[#8FB996]/[0.08] text-[#8FB996] font-medium';
+                  } else if (isSelected) {
+                    optionClasses =
+                      'border-[#D98A93] bg-[#D98A93]/[0.08] text-[#D98A93] font-medium';
+                  } else {
+                    optionClasses =
+                      'border-black/[0.04] bg-[#FAF6EE]/50 text-[#8C8272] dark:border-white/[0.04] dark:bg-[#221E1B]/50';
+                  }
+                }
+
+                return (
+                  <button
+                    key={`${opt}-${idx}`}
+                    disabled={isAnswered}
+                    onClick={() => handleSelectOption(opt)}
+                    className={`flex w-full items-start gap-3 rounded-xl border p-3.5 text-left text-xs transition cursor-pointer ${optionClasses}`}
+                  >
+                    <span className="font-mono text-xs text-[#8C8272] pt-0.5">
+                      {String.fromCharCode(65 + idx)}.
+                    </span>
+                    <span className="flex-1 leading-relaxed">{opt}</span>
+                    {isAnswered && (
+                      <span className="shrink-0 pt-0.5">
+                        {isCorrect ? (
+                          <CheckCircle2 className="h-4 w-4 text-[#8FB996]" />
+                        ) : isSelected ? (
+                          <XCircle className="h-4 w-4 text-[#D98A93]" />
+                        ) : null}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           {/* Feedback & Next Button */}
           {isAnswered && (
@@ -557,7 +724,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <span className="text-[10px] font-medium text-[#8C8272]">
-                    Example in context
+                    {currentQ.questionType === 'cloze' ? 'Full sentence' : 'Example in context'}
                   </span>
                   <p className="mt-1 text-xs italic text-[#8C8272]">
                     "{currentQ.explanation}"

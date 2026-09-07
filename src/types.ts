@@ -40,7 +40,7 @@ export type TabType = 'flashcards' | 'quiz' | 'words' | 'progress';
 
 export interface QuizQuestion {
   id: string;
-  questionType: 'word_to_def' | 'def_to_word';
+  questionType: 'word_to_def' | 'def_to_word' | 'cloze' | 'spelling';
   prompt: string;
   phonetic?: string;
   correctAnswer: string;
