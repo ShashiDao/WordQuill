@@ -1,52 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4f46e5" />
-      <stop offset="50%" stop-color="#4338ca" />
-      <stop offset="100%" stop-color="#312e81" />
-    </linearGradient>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24" />
-      <stop offset="100%" stop-color="#f59e0b" />
-    </linearGradient>
-    <linearGradient id="feather" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="100%" stop-color="#e0e7ff" />
-    </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#1e1b4b" flood-opacity="0.4" />
-    </filter>
-  </defs>
-
   <!-- Background rounded canvas for standard icon -->
-  <rect width="512" height="512" rx="104" fill="url(#bg)" />
-
-  <!-- Decorative subtle background circle -->
-  <circle cx="256" cy="256" r="190" fill="none" stroke="#6366f1" stroke-width="3" stroke-dasharray="10 8" opacity="0.4" />
+  <rect width="512" height="512" rx="104" fill="#1B1815" />
 
   <!-- Open Book Base -->
-  <g filter="url(#shadow)">
+  <g>
     <!-- Book Pages Backing -->
-    <path d="M120 330 C180 320 230 335 256 350 C282 335 332 320 392 330 L392 370 C332 360 282 375 256 390 C230 375 180 360 120 370 Z" fill="#3730a3" />
+    <path d="M120 330 C180 320 230 335 256 350 C282 335 332 320 392 330 L392 370 C332 360 282 375 256 390 C230 375 180 360 120 370 Z" fill="#8C8272" />
     <!-- Book Left Page -->
-    <path d="M120 310 C180 298 230 315 256 330 L256 368 C230 353 180 338 120 350 Z" fill="#f8fafc" />
+    <path d="M120 310 C180 298 230 315 256 330 L256 368 C230 353 180 338 120 350 Z" fill="#F6F1E7" />
     <!-- Book Right Page -->
-    <path d="M392 310 C332 298 282 315 256 330 L256 368 C282 353 332 338 392 350 Z" fill="#e2e8f0" />
+    <path d="M392 310 C332 298 282 315 256 330 L256 368 C282 353 332 338 392 350 Z" fill="#EDE6DA" />
     <!-- Book Spine Rib -->
-    <line x1="256" y1="330" x2="256" y2="385" stroke="url(#gold)" stroke-width="4" stroke-linecap="round" />
+    <line x1="256" y1="330" x2="256" y2="385" stroke="#D98A93" stroke-width="4" stroke-linecap="round" />
   </g>
 
   <!-- Feather Quill -->
-  <g filter="url(#shadow)">
+  <g>
     <!-- Quill Feather Body -->
-    <path d="M350 110 C345 90 285 130 235 185 C185 240 170 300 172 325 C190 320 230 295 270 245 C310 195 355 130 350 110 Z" fill="url(#feather)" />
+    <path d="M350 110 C345 90 285 130 235 185 C185 240 170 300 172 325 C190 320 230 295 270 245 C310 195 355 130 350 110 Z" fill="#F6F1E7" />
     <!-- Feather Details / Notches -->
-    <path d="M260 160 L235 185 M230 200 L205 222 M200 240 L180 260" stroke="#c7d2fe" stroke-width="3" stroke-linecap="round" />
-    <!-- Quill Shaft & Golden Nib -->
-    <path d="M350 110 Q260 210 172 325" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" />
-    <path d="M172 325 L165 338 L178 332 Z" fill="url(#gold)" />
+    <path d="M260 160 L235 185 M230 200 L205 222 M200 240 L180 260" stroke="#8C8272" stroke-width="3" stroke-linecap="round" />
+    <!-- Quill Shaft & Accent Nib -->
+    <path d="M350 110 Q260 210 172 325" fill="none" stroke="#D98A93" stroke-width="5" stroke-linecap="round" />
+    <path d="M172 325 L165 338 L178 332 Z" fill="#D98A93" />
     <!-- Little ink starlet spark -->
-    <circle cx="160" cy="342" r="3.5" fill="#fbbf24" />
-    <circle cx="152" cy="348" r="2" fill="#fbbf24" opacity="0.8" />
+    <circle cx="160" cy="342" r="3.5" fill="#D98A93" />
+    <circle cx="152" cy="348" r="2" fill="#D98A93" opacity="0.8" />
   </g>
 </svg>
