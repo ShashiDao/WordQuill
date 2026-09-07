@@ -97,124 +97,119 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   };
 
   return (
-    <div className="mx-auto max-w-2xl pb-28 pt-4 px-4 space-y-6">
-      {/* Streak Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-indigo-700 to-indigo-900 p-6 text-white shadow-xl">
-        <div className="relative z-10 flex items-center justify-between">
+    <div className="mx-auto max-w-2xl pb-28 pt-4 px-4 space-y-4">
+      {/* Streak Card */}
+      <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-6 dark:border-white/[0.08] dark:bg-[#221E1B]">
+        <div className="flex items-center justify-between">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="rounded-full bg-indigo-500/30 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-300 backdrop-blur-sm border border-amber-300/30">
-                Daily Discipline
-              </span>
-            </div>
+            <span className="text-[11px] font-medium uppercase tracking-wider text-[#C9924A]">
+              Daily Discipline
+            </span>
             <div className="mt-2 flex items-baseline gap-2">
-              <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+              <h2 className="font-fraunces text-4xl sm:text-5xl font-medium tracking-tight text-[#1B1815] dark:text-[#F6F1E7]">
                 {streak}
               </h2>
-              <span className="text-lg font-medium text-indigo-200">
+              <span className="text-sm font-medium text-[#8C8272]">
                 {streak === 1 ? 'day streak' : 'days streak'}
               </span>
             </div>
-            <p className="mt-2 max-w-sm text-xs text-indigo-100/90 leading-relaxed">
+            <p className="mt-2 max-w-sm text-xs text-[#8C8272] leading-relaxed">
               {streak === 0
-                ? 'Review words today to ignite your daily learning streak!'
+                ? 'Review words today to ignite your daily learning streak.'
                 : streak >= 7
-                ? 'Unstoppable consistency! Your memory retention is peaking.'
+                ? 'Unstoppable consistency. Your memory retention is peaking.'
                 : 'Keep practicing every day to cement new words into long-term memory.'}
             </p>
           </div>
 
-          <div className="flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-inner">
+          <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl border border-black/[0.08] dark:border-white/[0.08] text-[#C9924A]">
             <Flame
-              className={`h-12 w-12 sm:h-14 sm:w-14 transition-transform duration-300 ${
-                streak > 0 ? 'text-amber-400 fill-amber-400 animate-bounce' : 'text-indigo-300'
+              className={`h-8 w-8 sm:h-10 sm:w-10 ${
+                streak > 0 ? 'text-[#C9924A] fill-[#C9924A]' : 'text-[#8C8272]'
               }`}
             />
           </div>
         </div>
-
-        {/* Subtle decorative glow */}
-        <div className="absolute -bottom-12 -right-12 h-48 w-48 rounded-full bg-amber-400/20 blur-2xl" />
       </div>
 
       {/* Primary Metrics Grid */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            <span className="text-xs font-medium text-[#8C8272]">
               Mastered
             </span>
-            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+            <CheckCircle2 className="w-4 h-4 text-[#8FB996]" />
           </div>
-          <div className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="mt-2 font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
             {masteredCount}
           </div>
-          <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
+          <span className="text-[11px] font-medium text-[#8FB996]">
             {masteryPercentage}% of deck
           </span>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            <span className="text-xs font-medium text-[#8C8272]">
               In Learning
             </span>
-            <HelpCircle className="w-4 h-4 text-amber-500" />
+            <HelpCircle className="w-4 h-4 text-[#C9924A]" />
           </div>
-          <div className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="mt-2 font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
             {learningCount}
           </div>
-          <span className="text-[11px] text-slate-400">active words</span>
+          <span className="text-[11px] text-[#8C8272]">active words</span>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            <span className="text-xs font-medium text-[#8C8272]">
               Quiz Accuracy
             </span>
-            <Award className="w-4 h-4 text-indigo-500" />
+            <Award className="w-4 h-4 text-[#D98A93]" />
           </div>
-          <div className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="mt-2 font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
             {overallAccuracy}%
           </div>
-          <span className="text-[11px] text-slate-400">
+          <span className="text-[11px] text-[#8C8272]">
             {totalAnswered} questions
           </span>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            <span className="text-xs font-medium text-[#8C8272]">
               Total Reviews
             </span>
-            <BookOpen className="w-4 h-4 text-purple-500" />
+            <BookOpen className="w-4 h-4 text-[#8C8272]" />
           </div>
-          <div className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="mt-2 font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
             {totalReviews}
           </div>
-          <span className="text-[11px] text-slate-400">repetitions</span>
+          <span className="text-[11px] text-[#8C8272]">repetitions</span>
         </div>
       </div>
 
       {/* Today's Learning Goal */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-5 dark:border-white/[0.08] dark:bg-[#221E1B]">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+            <h3 className="font-fraunces text-sm font-medium text-[#1B1815] dark:text-[#F6F1E7]">
               Today's Study Goal
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-[#8C8272] mt-0.5">
               {wordsStudiedToday} of {dailyGoal} words reviewed today
             </p>
           </div>
-          <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400">
+          <span className="text-xs font-medium text-[#D98A93]">
             {Math.min(100, Math.round((wordsStudiedToday / dailyGoal) * 100))}%
           </span>
         </div>
 
-        <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+        <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-black/[0.06] dark:bg-white/[0.06]">
           <div
-            className="h-full rounded-full bg-indigo-600 dark:bg-indigo-500 transition-all duration-500"
+            className="h-full rounded-full bg-[#D98A93] transition-all duration-500"
             style={{
               width: `${Math.min(100, (wordsStudiedToday / dailyGoal) * 100)}%`,
             }}
@@ -223,10 +218,10 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
       </div>
 
       {/* Category Mastery Progress */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-5 dark:border-white/[0.08] dark:bg-[#221E1B]">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-          <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+          <BarChart2 className="w-4 h-4 text-[#D98A93]" />
+          <h3 className="font-fraunces text-sm font-medium text-[#1B1815] dark:text-[#F6F1E7]">
             Category Mastery
           </h3>
         </div>
@@ -235,16 +230,16 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           {categoryStats.map((cat) => (
             <div key={cat.category}>
               <div className="flex items-center justify-between text-xs mb-1">
-                <span className="font-medium capitalize text-slate-700 dark:text-slate-200">
+                <span className="capitalize text-[#1B1815] dark:text-[#F6F1E7]">
                   {cat.category}
                 </span>
-                <span className="text-slate-500 dark:text-slate-400">
+                <span className="text-[#8C8272]">
                   {cat.mastered}/{cat.total} ({cat.percent}%)
                 </span>
               </div>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-black/[0.06] dark:bg-white/[0.06]">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-indigo-600 dark:from-indigo-600 dark:to-indigo-400 transition-all duration-500"
+                  className="h-full rounded-full bg-[#8FB996] transition-all duration-500"
                   style={{ width: `${cat.percent}%` }}
                 />
               </div>
@@ -254,8 +249,8 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
       </div>
 
       {/* Audio & Offline Preferences */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-        <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3">
+      <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-5 dark:border-white/[0.08] dark:bg-[#221E1B]">
+        <h3 className="font-fraunces text-sm font-medium text-[#1B1815] dark:text-[#F6F1E7] mb-3">
           Audio & Offline Storage
         </h3>
 
@@ -263,22 +258,22 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           {/* Pronunciation Speed */}
           <div className="flex items-center justify-between">
             <div>
-              <span className="font-semibold text-slate-800 dark:text-slate-200">
+              <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">
                 Pronunciation Speed
               </span>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-[11px] text-[#8C8272]">
                 Adjust playback speed for clearer vocabulary listening
               </p>
             </div>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-3">
               {[0.75, 0.85, 1.0].map((rate) => (
                 <button
                   key={rate}
                   onClick={() => onChangeSpeechRate(rate)}
-                  className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer ${
+                  className={`pb-0.5 text-xs transition cursor-pointer ${
                     speechRate === rate
-                      ? 'bg-indigo-600 text-white dark:bg-indigo-500'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
+                      ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93] font-medium'
+                      : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
                   }`}
                 >
                   {rate}x
@@ -286,52 +281,52 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
               ))}
               <button
                 onClick={testPronunciation}
-                className="rounded-lg border border-slate-200 p-1 text-slate-500 hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800 cursor-pointer ml-1"
+                className="p-1 text-[#8C8272] hover:text-[#D98A93] cursor-pointer ml-1"
                 title="Test pronunciation audio"
               >
-                <Volume2 className="w-4 h-4" />
+                <Volume2 className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
           {/* Offline Database Status */}
-          <div className="flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-800">
+          <div className="flex items-center justify-between border-t border-black/[0.06] pt-3 dark:border-white/[0.06]">
             <div>
-              <span className="font-semibold text-slate-800 dark:text-slate-200">
+              <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">
                 Local IndexedDB Cache
               </span>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-[11px] text-[#8C8272]">
                 100% offline-first. Progress is saved locally in your browser.
               </p>
             </div>
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
+            <span className="inline-flex items-center gap-1 text-xs font-medium text-[#8FB996]">
               <Check className="w-3 h-3" /> Active
             </span>
           </div>
 
           {/* Reset progress */}
-          <div className="flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-800">
+          <div className="flex items-center justify-between border-t border-black/[0.06] pt-3 dark:border-white/[0.06]">
             <div>
-              <span className="font-semibold text-rose-600 dark:text-rose-400">
+              <span className="font-medium text-[#D98A93]">
                 Reset Progress
               </span>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-[11px] text-[#8C8272]">
                 Clear all mastered words, streak, and quiz history
               </p>
             </div>
 
             {showResetConfirm ? (
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-2">
                 <button
                   onClick={handleResetData}
                   disabled={isResetting}
-                  className="rounded-lg bg-rose-600 px-3 py-1 text-xs font-semibold text-white hover:bg-rose-700 cursor-pointer"
+                  className="text-xs font-medium text-[#D98A93] underline cursor-pointer"
                 >
                   {isResetting ? 'Resetting...' : 'Confirm'}
                 </button>
                 <button
                   onClick={() => setShowResetConfirm(false)}
-                  className="rounded-lg border border-slate-200 px-2 py-1 text-xs font-medium text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 cursor-pointer"
+                  className="text-xs font-medium text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -339,7 +334,7 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
             ) : (
               <button
                 onClick={() => setShowResetConfirm(true)}
-                className="flex items-center gap-1 rounded-lg border border-rose-200 bg-rose-50 px-2.5 py-1 text-xs font-medium text-rose-700 hover:bg-rose-100 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-300 cursor-pointer"
+                className="inline-flex items-center gap-1 text-xs font-medium text-[#D98A93] hover:underline cursor-pointer"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Reset</span>

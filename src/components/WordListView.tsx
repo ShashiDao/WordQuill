@@ -99,35 +99,35 @@ export const WordListView: React.FC<WordListViewProps> = ({
     <div className="mx-auto max-w-2xl pb-24 pt-4 px-4">
       {/* Search Bar */}
       <div className="relative mb-3">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#8C8272]" />
         <input
           id="search-words-input"
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search words, definitions, or categories..."
-          className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-9 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500"
+          className="w-full rounded-xl border border-black/[0.08] bg-[#FAF6EE] py-2.5 pl-10 pr-9 text-xs text-[#1B1815] placeholder:text-[#8C8272] focus:border-[#D98A93] focus:outline-none dark:border-white/[0.08] dark:bg-[#221E1B] dark:text-[#F6F1E7] dark:placeholder:text-[#8C8272]"
         />
         {searchQuery && (
           <button
             onClick={() => setSearchQuery('')}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         )}
       </div>
 
-      {/* Category Horizontal Scrolling Chips */}
-      <div className="mb-3 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+      {/* Category Horizontal Scrolling Tabs */}
+      <div className="mb-3 flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08]">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`rounded-full px-3 py-1 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer ${
+            className={`pb-1 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer ${
               selectedCategory === cat
-                ? 'bg-indigo-600 text-white shadow-sm dark:bg-indigo-500'
-                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700'
+                ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
+                : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
             }`}
           >
             {cat === 'all' ? 'All Categories' : cat}
@@ -136,8 +136,8 @@ export const WordListView: React.FC<WordListViewProps> = ({
       </div>
 
       {/* Status Filter Bar & Total Count */}
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2 text-xs dark:border-slate-800">
-        <div className="flex items-center gap-1">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 pt-1 text-xs text-[#8C8272]">
+        <div className="flex items-center gap-3">
           {[
             { id: 'all', label: 'All' },
             { id: 'new', label: 'New' },
@@ -148,10 +148,10 @@ export const WordListView: React.FC<WordListViewProps> = ({
             <button
               key={s.id}
               onClick={() => setSelectedStatus(s.id)}
-              className={`rounded px-2 py-0.5 font-medium transition cursor-pointer ${
+              className={`pb-0.5 font-medium transition cursor-pointer ${
                 selectedStatus === s.id
-                  ? 'bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200 font-semibold'
-                  : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
+                  ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
+                  : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
               }`}
             >
               {s.label}
@@ -159,15 +159,15 @@ export const WordListView: React.FC<WordListViewProps> = ({
           ))}
         </div>
 
-        <span className="text-slate-400 font-medium text-[11px]">
+        <span className="text-[#8C8272] font-medium text-[11px]">
           Showing {filteredWords.length} words
         </span>
       </div>
 
       {/* Words List */}
       {filteredWords.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-slate-200 bg-white p-12 text-center dark:border-slate-800 dark:bg-slate-900">
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+        <div className="rounded-2xl border border-dashed border-black/[0.1] bg-[#FAF6EE] p-12 text-center dark:border-white/[0.1] dark:bg-[#221E1B]">
+          <p className="text-xs text-[#8C8272]">
             No words matched your criteria.
           </p>
           <button
@@ -176,13 +176,13 @@ export const WordListView: React.FC<WordListViewProps> = ({
               setSelectedCategory('all');
               setSelectedStatus('all');
             }}
-            className="mt-3 text-xs font-semibold text-indigo-600 hover:underline dark:text-indigo-400 cursor-pointer"
+            className="mt-3 text-xs font-medium text-[#D98A93] hover:underline cursor-pointer"
           >
             Clear filters
           </button>
         </div>
       ) : (
-        <div className="space-y-2.5">
+        <div className="space-y-2">
           {filteredWords.map((word) => {
             const prog = progressMap.get(word.id);
             const isExpanded = expandedWordId === word.id;
@@ -193,57 +193,53 @@ export const WordListView: React.FC<WordListViewProps> = ({
                 key={word.id}
                 id={`word-card-${word.id}`}
                 onClick={() => toggleExpand(word.id)}
-                className="group rounded-xl border border-slate-200 bg-white p-3.5 shadow-sm transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 cursor-pointer"
+                className="group rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-3.5 transition hover:border-[#D98A93]/40 dark:border-white/[0.08] dark:bg-[#221E1B] cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                      <h4 className="font-fraunces text-base font-medium text-[#1B1815] dark:text-[#F6F1E7]">
                         {word.word}
                       </h4>
-                      <span className="font-mono text-xs text-indigo-600 dark:text-indigo-400">
+                      <span className="font-mono-ipa text-xs text-[#8C8272]">
                         {word.phonetic}
                       </span>
-                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium capitalize text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                        {word.category}
+                      <span className="text-xs italic text-[#8C8272]">
+                        · {word.category}
                       </span>
                     </div>
-                    <p className="mt-1 text-xs text-slate-600 dark:text-slate-300 line-clamp-1">
+                    <p className="mt-1 text-xs text-[#8C8272] line-clamp-1">
                       {word.definition}
                     </p>
                   </div>
 
-                  {/* Actions: Pronounce, Star, Status, Expand */}
-                  <div className="flex items-center gap-1 shrink-0">
+                  {/* Actions: Pronounce, Star, Expand */}
+                  <div className="flex items-center gap-1.5 shrink-0">
                     <button
                       onClick={(e) => handlePronounce(word.word, e)}
-                      className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-indigo-600 dark:hover:bg-slate-800 dark:hover:text-indigo-400 cursor-pointer"
+                      className="p-1 text-[#8C8272] hover:text-[#D98A93] transition-colors cursor-pointer"
                       title="Pronounce"
                     >
-                      <Volume2 className="w-4 h-4" />
+                      <Volume2 className="w-3.5 h-3.5" />
                     </button>
 
                     <button
                       onClick={(e) => handleToggleBookmark(word, e)}
-                      className={`rounded-lg p-1.5 transition hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer ${
-                        prog?.isBookmarked
-                          ? 'text-amber-500 fill-amber-500'
-                          : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
-                      }`}
+                      className="p-1 text-[#8C8272] hover:text-[#C9924A] transition-colors cursor-pointer"
                       title="Bookmark"
                     >
                       <Bookmark
-                        className={`w-4 h-4 ${
-                          prog?.isBookmarked ? 'fill-current' : ''
+                        className={`w-3.5 h-3.5 ${
+                          prog?.isBookmarked ? 'fill-[#C9924A] text-[#C9924A]' : 'text-[#8C8272]'
                         }`}
                       />
                     </button>
 
-                    <div className="text-slate-400 p-1">
+                    <div className="text-[#8C8272] p-1">
                       {isExpanded ? (
-                        <ChevronUp className="w-4 h-4" />
+                        <ChevronUp className="w-3.5 h-3.5" />
                       ) : (
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="w-3.5 h-3.5" />
                       )}
                     </div>
                   </div>
@@ -251,60 +247,52 @@ export const WordListView: React.FC<WordListViewProps> = ({
 
                 {/* Expanded Details */}
                 {isExpanded && (
-                  <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                  <div className="mt-3 pt-3 border-t border-black/[0.08] dark:border-white/[0.08] space-y-2.5">
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                        Full Definition
-                      </span>
-                      <p className="mt-0.5 text-sm font-medium text-slate-800 dark:text-slate-200">
+                      <p className="font-fraunces text-sm font-normal leading-relaxed text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
                         {word.definition}
                       </p>
                     </div>
 
-                    <div className="rounded-lg bg-slate-50 p-2.5 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                        Example Sentence
-                      </span>
-                      <p className="mt-0.5 text-xs italic text-slate-600 dark:text-slate-300">
-                        "{word.example}"
-                      </p>
-                    </div>
+                    <p className="text-xs italic text-[#8C8272]">
+                      "{word.example}"
+                    </p>
 
-                    {/* Status Toggle Buttons */}
-                    <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-xs text-slate-400 mr-1">Status:</span>
+                    {/* Status Selection and Practice Link */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+                      <div className="flex items-center gap-3 text-xs">
+                        <span className="text-[#8C8272]">Status:</span>
                         <button
                           onClick={(e) => handleSetStatus(word, 'new', e)}
-                          className={`rounded-md px-2.5 py-1 text-xs font-medium transition cursor-pointer ${
+                          className={`transition cursor-pointer pb-0.5 ${
                             currentStatus === 'new'
-                              ? 'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-white font-semibold'
-                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
+                              ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93] font-medium'
+                              : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
                           }`}
                         >
                           New
                         </button>
                         <button
                           onClick={(e) => handleSetStatus(word, 'learning', e)}
-                          className={`flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition cursor-pointer ${
+                          className={`inline-flex items-center gap-1 transition cursor-pointer pb-0.5 ${
                             currentStatus === 'learning'
-                              ? 'bg-amber-100 text-amber-900 dark:bg-amber-950/70 dark:text-amber-300 font-semibold'
-                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
+                              ? 'text-[#C9924A] border-b border-[#C9924A] font-medium'
+                              : 'text-[#8C8272] hover:text-[#C9924A]'
                           }`}
                         >
-                          <HelpCircle className="w-3 h-3 text-amber-600 dark:text-amber-400" />
-                          Learning
+                          <HelpCircle className="w-3 h-3" />
+                          <span>Learning</span>
                         </button>
                         <button
                           onClick={(e) => handleSetStatus(word, 'mastered', e)}
-                          className={`flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition cursor-pointer ${
+                          className={`inline-flex items-center gap-1 transition cursor-pointer pb-0.5 ${
                             currentStatus === 'mastered'
-                              ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-950/70 dark:text-emerald-300 font-semibold'
-                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
+                              ? 'text-[#8FB996] border-b border-[#8FB996] font-medium'
+                              : 'text-[#8C8272] hover:text-[#8FB996]'
                           }`}
                         >
-                          <CheckCircle className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                          Mastered
+                          <CheckCircle className="w-3 h-3" />
+                          <span>Mastered</span>
                         </button>
                       </div>
 
@@ -313,9 +301,9 @@ export const WordListView: React.FC<WordListViewProps> = ({
                           e.stopPropagation();
                           onSelectWordForFlashcards(word);
                         }}
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 cursor-pointer"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-[#D98A93] hover:underline cursor-pointer"
                       >
-                        <Sparkles className="w-3 h-3" />
+                        <Sparkles className="w-3 h-3 text-[#D98A93]" />
                         <span>Practice Card</span>
                       </button>
                     </div>

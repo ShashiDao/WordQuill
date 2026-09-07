@@ -89,7 +89,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-[#F6F1E7] text-[#1B1815] dark:bg-[#1B1815] dark:text-[#F6F1E7] flex flex-col font-sans transition-colors duration-200">
       {/* Offline Alert Banner */}
       <OfflineIndicator />
 
@@ -110,8 +110,8 @@ export default function App() {
           fallback={
             <div className="flex h-72 items-center justify-center">
               <div className="flex flex-col items-center gap-3">
-                <div className="h-7 w-7 animate-spin rounded-full border-2 border-indigo-600 border-t-transparent dark:border-indigo-400" />
-                <p className="text-xs font-medium text-slate-400">Loading WordQuill...</p>
+                <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#D98A93] border-t-transparent" />
+                <p className="text-xs font-medium text-[#8C8272]">Loading dictionary...</p>
               </div>
             </div>
           }

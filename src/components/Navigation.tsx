@@ -18,7 +18,7 @@ export const Navigation: React.FC<NavigationProps> = ({ currentTab, onTabChange 
   return (
     <nav
       id="bottom-mobile-nav"
-      className="fixed bottom-0 left-0 right-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/95 md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-40 border-t border-black/[0.08] bg-[#F6F1E7] dark:border-white/[0.08] dark:bg-[#1B1815] md:hidden"
     >
       <div className="flex h-16 items-center justify-around px-2">
         {tabs.map((tab) => {
@@ -29,18 +29,14 @@ export const Navigation: React.FC<NavigationProps> = ({ currentTab, onTabChange 
               key={tab.id}
               id={`mobile-tab-${tab.id}`}
               onClick={() => onTabChange(tab.id)}
-              className={`flex flex-1 flex-col items-center justify-center py-1 transition-all cursor-pointer ${
+              className={`flex flex-1 flex-col items-center justify-center py-1 transition-colors cursor-pointer ${
                 isActive
-                  ? 'text-indigo-600 dark:text-indigo-400 font-semibold'
-                  : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
+                  ? 'text-[#D98A93]'
+                  : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
               }`}
             >
-              <div className={`relative flex items-center justify-center rounded-full p-1 transition-all ${
-                isActive ? 'bg-indigo-50 dark:bg-indigo-950/60' : ''
-              }`}>
-                <Icon className={`w-5 h-5 transition-transform ${isActive ? 'scale-110' : ''}`} />
-              </div>
-              <span className="text-[11px] tracking-tight">{tab.label}</span>
+              <Icon className="w-5 h-5 stroke-[1.5]" />
+              <span className="text-[11px] tracking-tight mt-1 font-medium">{tab.label}</span>
             </button>
           );
         })}

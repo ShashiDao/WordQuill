@@ -184,8 +184,8 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
     <div className="mx-auto max-w-xl pb-24 pt-4 px-4">
       {/* Category & Status Filters */}
       <div className="mb-4 space-y-2.5">
-        {/* Category horizontal scroll chips */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+        {/* Category horizontal scroll tabs */}
+        <div className="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08]">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -193,10 +193,10 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 setSelectedCategory(cat);
                 setCurrentIndex(0);
               }}
-              className={`rounded-full px-3 py-1 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer ${
+              className={`pb-1 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-indigo-600 text-white shadow-sm dark:bg-indigo-500'
-                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700'
+                  ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
+                  : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
               }`}
             >
               {cat === 'all' ? 'All Categories' : cat}
@@ -205,8 +205,8 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
         </div>
 
         {/* Status filter tabs */}
-        <div className="flex items-center justify-between gap-2 border-b border-slate-200 pb-2 text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
-          <div className="flex items-center gap-1">
+        <div className="flex items-center justify-between gap-2 pt-1 text-xs text-[#8C8272]">
+          <div className="flex items-center gap-3">
             {[
               { id: 'all', label: 'All' },
               { id: 'new', label: 'New' },
@@ -220,10 +220,10 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                   setSelectedStatusFilter(f.id);
                   setCurrentIndex(0);
                 }}
-                className={`rounded px-2 py-0.5 text-xs font-medium transition cursor-pointer ${
+                className={`pb-0.5 text-xs font-medium transition cursor-pointer ${
                   selectedStatusFilter === f.id
-                    ? 'bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200 font-semibold'
-                    : 'hover:text-slate-800 dark:hover:text-slate-200'
+                    ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
+                    : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
                 }`}
               >
                 {f.label}
@@ -231,7 +231,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
             ))}
           </div>
 
-          <div className="text-[11px] font-medium text-slate-400">
+          <div className="text-[11px] font-medium text-[#8C8272]">
             {filteredWords.length > 0
               ? `${currentIndex + 1} of ${filteredWords.length}`
               : '0 words'}
@@ -241,12 +241,12 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
 
       {/* Empty State if filter yields no words */}
       {filteredWords.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center dark:border-slate-800 dark:bg-slate-900">
-          <BookOpen className="mx-auto h-12 w-12 text-slate-400" />
-          <h3 className="mt-4 text-base font-semibold text-slate-800 dark:text-slate-200">
+        <div className="rounded-2xl border border-dashed border-black/[0.1] bg-[#FAF6EE] p-12 text-center dark:border-white/[0.1] dark:bg-[#221E1B]">
+          <BookOpen className="mx-auto h-10 w-10 text-[#8C8272]" />
+          <h3 className="mt-4 text-base font-medium text-[#1B1815] dark:text-[#F6F1E7]">
             No words found
           </h3>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-xs text-[#8C8272]">
             No words match the selected category or filter.
           </p>
           <button
@@ -254,7 +254,7 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
               setSelectedCategory('all');
               setSelectedStatusFilter('all');
             }}
-            className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700 cursor-pointer"
+            className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-[#D98A93] px-3.5 py-1.5 text-xs font-medium text-[#D98A93] hover:bg-[#D98A93]/[0.08] cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             Reset Filters
@@ -264,9 +264,9 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
         currentWord && (
           <>
             {/* Progress bar */}
-            <div className="mb-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+            <div className="mb-3 h-1 w-full overflow-hidden rounded-full bg-black/[0.05] dark:bg-white/[0.05]">
               <div
-                className="h-full bg-indigo-600 dark:bg-indigo-500 transition-all duration-300"
+                className="h-full bg-[#D98A93] transition-all duration-300"
                 style={{
                   width: `${((currentIndex + 1) / filteredWords.length) * 100}%`,
                 }}
@@ -281,127 +281,144 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
             >
               {/* Card Inner */}
               <div
-                className={`relative h-full w-full rounded-2xl transition-transform duration-500 transform-style-preserve-3d shadow-lg border border-slate-200/80 dark:border-slate-800 ${
+                className={`relative h-full w-full rounded-2xl transition-transform duration-500 transform-style-preserve-3d border border-black/[0.08] dark:border-white/[0.08] ${
                   isFlipped ? 'rotate-y-180' : ''
                 }`}
               >
                 {/* FRONT FACE */}
-                <div className="backface-hidden absolute inset-0 flex flex-col justify-between rounded-2xl bg-white p-6 dark:bg-slate-900">
+                <div className="backface-hidden absolute inset-0 flex flex-col justify-between rounded-2xl bg-[#FAF6EE] p-6 dark:bg-[#221E1B]">
                   {/* Card Header Top */}
                   <div className="flex items-center justify-between">
-                    <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300">
+                    <span className="text-xs italic text-[#8C8272]">
                       {currentWord.category}
                     </span>
 
-                    <div className="flex items-center gap-1">
-                      {/* Status badge */}
-                      {currentProgress?.status === 'mastered' && (
-                        <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
-                          <CheckCircle className="w-3 h-3" /> Mastered
-                        </span>
-                      )}
-                      {currentProgress?.status === 'learning' && (
-                        <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700 dark:bg-amber-950/60 dark:text-amber-300">
-                          Learning
-                        </span>
-                      )}
-
-                      {/* Bookmark button */}
-                      <button
-                        onClick={handleToggleBookmark}
-                        className={`rounded-full p-2 transition hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer ${
-                          currentProgress?.isBookmarked
-                            ? 'text-amber-500 fill-amber-500'
-                            : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+                    {/* Bookmark button */}
+                    <button
+                      onClick={handleToggleBookmark}
+                      className="p-1 text-[#8C8272] hover:text-[#C9924A] cursor-pointer transition-colors"
+                      title="Bookmark word"
+                    >
+                      <Bookmark
+                        className={`w-4 h-4 ${
+                          currentProgress?.isBookmarked ? 'fill-[#C9924A] text-[#C9924A]' : 'text-[#8C8272]'
                         }`}
-                        title="Bookmark word"
-                      >
-                        <Bookmark
-                          className={`w-5 h-5 ${
-                            currentProgress?.isBookmarked ? 'fill-current' : ''
-                          }`}
-                        />
-                      </button>
-                    </div>
+                      />
+                    </button>
                   </div>
 
                   {/* Card Center Body: Word & Phonetic & Pronunciation */}
                   <div className="flex flex-col items-center justify-center text-center my-auto">
                     <h2
                       id="card-word-title"
-                      className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl dark:text-white"
+                      className="font-fraunces text-4xl font-medium tracking-tight text-[#1B1815] dark:text-[#F6F1E7]"
                     >
                       {currentWord.word}
                     </h2>
-                    <p className="mt-1.5 text-sm font-mono tracking-wide text-indigo-600 dark:text-indigo-400">
-                      {currentWord.phonetic}
-                    </p>
+                    <div className="flex items-center gap-1.5 mt-2">
+                      <span className="font-mono-ipa text-sm text-[#8C8272]">
+                        {currentWord.phonetic}
+                      </span>
+                      <span className="text-xs italic text-[#8C8272]">
+                        · {currentWord.category}
+                      </span>
+                    </div>
 
-                    {/* Pronunciation button */}
+                    {/* Pronunciation button: icon + text only, accent color with bottom border under text */}
                     <button
                       id="audio-pronounce-btn"
                       onClick={handlePlayPronunciation}
-                      className={`mt-4 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50/80 px-4 py-1.5 text-xs font-semibold text-indigo-700 transition hover:bg-indigo-100 active:scale-95 cursor-pointer dark:border-indigo-800/80 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/60 ${
-                        isSpeaking ? 'ring-2 ring-indigo-500 animate-pulse' : ''
-                      }`}
+                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-[#D98A93] cursor-pointer hover:opacity-80 transition-opacity"
                       title="Listen to pronunciation"
                     >
-                      <Volume2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                      <span>{isSpeaking ? 'Speaking...' : 'Listen'}</span>
+                      <Volume2 className="w-3.5 h-3.5 text-[#D98A93]" />
+                      <span className="border-b border-[#D98A93] pb-0.5">
+                        {isSpeaking ? 'Speaking...' : 'Listen'}
+                      </span>
                     </button>
                   </div>
 
                   {/* Card Footer Hint */}
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
+                  <div className="flex items-center justify-between text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-3">
                     <span>Space or tap to flip</span>
-                    <span>Reviews: {currentProgress?.reviewCount || 0}</span>
+                    <span>
+                      {currentProgress?.status === 'mastered'
+                        ? 'Mastered · '
+                        : currentProgress?.status === 'learning'
+                        ? 'Learning · '
+                        : ''}
+                      reviewed {currentProgress?.reviewCount || 0} times
+                    </span>
                   </div>
                 </div>
 
                 {/* BACK FACE */}
-                <div className="backface-hidden rotate-y-180 absolute inset-0 flex flex-col justify-between rounded-2xl bg-gradient-to-b from-white to-slate-50 p-6 dark:from-slate-900 dark:to-slate-950">
+                <div className="backface-hidden rotate-y-180 absolute inset-0 flex flex-col justify-between rounded-2xl bg-[#FAF6EE] p-6 dark:bg-[#221E1B]">
                   {/* Card Header Top */}
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-2.5 dark:border-slate-800">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-slate-800 dark:text-slate-100">
-                        {currentWord.word}
-                      </span>
-                      <span className="text-xs text-indigo-600 dark:text-indigo-400 font-mono">
-                        {currentWord.phonetic}
-                      </span>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                          {currentWord.word}
+                        </span>
+                        <div className="flex items-center gap-1.5 mt-0.5">
+                          <span className="font-mono-ipa text-xs text-[#8C8272]">
+                            {currentWord.phonetic}
+                          </span>
+                          <span className="text-xs italic text-[#8C8272]">
+                            · {currentWord.category}
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={handlePlayPronunciation}
+                        className="inline-flex items-center gap-1 text-xs font-medium text-[#D98A93] cursor-pointer hover:opacity-80 transition-opacity"
+                        title="Listen"
+                      >
+                        <Volume2 className="w-3.5 h-3.5 text-[#D98A93]" />
+                        <span className="border-b border-[#D98A93] pb-0.5">Listen</span>
+                      </button>
                     </div>
-                    <button
-                      onClick={handlePlayPronunciation}
-                      className="rounded-full p-1.5 text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-indigo-950/50 cursor-pointer"
-                      title="Listen"
-                    >
-                      <Volume2 className="w-4 h-4" />
-                    </button>
+
+                    {/* Single 1px hairline divider between word/IPA and definition block */}
+                    <div className="w-full border-b border-black/[0.08] dark:border-white/[0.08] my-3.5" />
                   </div>
 
                   {/* Definition & Example */}
-                  <div className="my-auto space-y-4">
+                  <div className="my-auto space-y-3">
                     <div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                        Definition
-                      </span>
-                      <p className="mt-1 text-base font-medium leading-relaxed text-slate-800 dark:text-slate-200">
+                      <p className="font-fraunces text-base font-normal leading-[1.6] text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
                         {currentWord.definition}
                       </p>
                     </div>
 
-                    <div className="rounded-xl bg-slate-100/80 p-3.5 dark:bg-slate-800/60 border border-slate-200/50 dark:border-slate-700/50">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                        Example
-                      </span>
-                      <p className="mt-1 text-sm italic leading-relaxed text-slate-600 dark:text-slate-300">
-                        "{currentWord.example}"
-                      </p>
+                    <p className="text-xs italic leading-relaxed text-[#8C8272]">
+                      "{currentWord.example}"
+                    </p>
+
+                    {/* Small inline icon + muted-color text below the definition */}
+                    <div className="flex items-center gap-1.5 text-xs text-[#8C8272] pt-1">
+                      {currentProgress?.status === 'mastered' ? (
+                        <>
+                          <CheckCircle className="w-3.5 h-3.5 text-[#8FB996]" />
+                          <span className="text-[#8FB996] font-medium">Mastered</span>
+                          <span>· reviewed {currentProgress?.reviewCount || 0} times</span>
+                        </>
+                      ) : currentProgress?.status === 'learning' ? (
+                        <>
+                          <HelpCircle className="w-3.5 h-3.5 text-[#C9924A]" />
+                          <span className="text-[#C9924A] font-medium">Learning</span>
+                          <span>· reviewed {currentProgress?.reviewCount || 0} times</span>
+                        </>
+                      ) : (
+                        <span>Reviewed {currentProgress?.reviewCount || 0} times</span>
+                      )}
                     </div>
                   </div>
 
                   {/* Card Footer Hint */}
-                  <div className="text-center text-[11px] text-slate-400 dark:text-slate-500">
+                  <div className="text-center text-[11px] text-[#8C8272] border-t border-black/[0.08] dark:border-white/[0.08] pt-2.5">
                     Tap to flip back
                   </div>
                 </div>
@@ -410,49 +427,57 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
 
             {/* Action Feedback Badge */}
             {actionFeedback && (
-              <div className="mt-2 text-center text-xs font-semibold text-emerald-600 dark:text-emerald-400 transition animate-fade-in">
+              <div className="mt-2 text-center text-xs font-medium text-[#8FB996] transition animate-fade-in">
                 {actionFeedback}
               </div>
             )}
 
-            {/* Learning Status Quick Actions */}
-            <div className="mt-4 flex items-center justify-center gap-3">
+            {/* Segmented control: Learning / Mastered buttons */}
+            <div className="mt-4 flex w-full max-w-sm mx-auto rounded-xl border border-black/[0.08] dark:border-white/[0.08] divide-x divide-black/[0.08] dark:divide-white/[0.08] overflow-hidden text-xs">
               <button
                 id="btn-mark-learning"
                 onClick={(e) => handleMarkStatus('learning', e)}
-                className="flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-4 py-2.5 text-xs font-semibold text-amber-800 shadow-sm transition hover:bg-amber-100 active:scale-95 cursor-pointer dark:border-amber-800/60 dark:bg-amber-950/40 dark:text-amber-300 dark:hover:bg-amber-950/60"
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 transition-colors cursor-pointer ${
+                  currentProgress?.status === 'learning'
+                    ? 'bg-[#C9924A]/[0.08] text-[#C9924A] font-medium'
+                    : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
+                }`}
               >
-                <HelpCircle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                <span>Mark as Learning</span>
+                <HelpCircle className="w-3.5 h-3.5 text-[#C9924A]" />
+                <span>Learning</span>
               </button>
 
               <button
                 id="btn-mark-mastered"
                 onClick={(e) => handleMarkStatus('mastered', e)}
-                className="flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-xs font-semibold text-emerald-800 shadow-sm transition hover:bg-emerald-100 active:scale-95 cursor-pointer dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-300 dark:hover:bg-emerald-950/60"
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 transition-colors cursor-pointer ${
+                  currentProgress?.status === 'mastered'
+                    ? 'bg-[#8FB996]/[0.08] text-[#8FB996] font-medium'
+                    : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
+                }`}
               >
-                <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <span>Mark as Mastered</span>
+                <CheckCircle className="w-3.5 h-3.5 text-[#8FB996]" />
+                <span>Mastered</span>
               </button>
             </div>
 
             {/* Navigation & Controls Bar */}
-            <div className="mt-5 flex items-center justify-between rounded-xl bg-white p-2.5 shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
+            <div className="mt-4 flex items-center justify-between rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-[#FAF6EE] dark:bg-[#221E1B] p-2 text-xs">
               <button
                 id="btn-prev-card"
                 onClick={handlePrev}
-                className="flex items-center gap-1 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100 active:scale-95 cursor-pointer dark:text-slate-300 dark:hover:bg-slate-800"
+                className="flex items-center gap-1 px-2.5 py-1.5 font-medium text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] cursor-pointer"
                 aria-label="Previous card"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span className="hidden sm:inline">Prev</span>
               </button>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <button
                   id="btn-shuffle-card"
                   onClick={handleShuffle}
-                  className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-800 cursor-pointer dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                  className="p-1.5 text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] cursor-pointer"
                   title="Shuffle deck"
                 >
                   <Shuffle className="w-4 h-4" />
@@ -461,17 +486,19 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                 <button
                   id="btn-flip-card-btn"
                   onClick={handleFlipCard}
-                  className="flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 cursor-pointer dark:bg-indigo-950/70 dark:text-indigo-300 dark:hover:bg-indigo-900/80"
+                  className="flex items-center gap-1 text-xs font-medium text-[#D98A93] hover:opacity-80 cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
-                  <span>{isFlipped ? 'Show Word' : 'Show Meaning'}</span>
+                  <span className="border-b border-[#D98A93] pb-0.5">
+                    {isFlipped ? 'Show Word' : 'Show Meaning'}
+                  </span>
                 </button>
               </div>
 
               <button
                 id="btn-next-card"
                 onClick={handleNext}
-                className="flex items-center gap-1 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100 active:scale-95 cursor-pointer dark:text-slate-300 dark:hover:bg-slate-800"
+                className="flex items-center gap-1 px-2.5 py-1.5 font-medium text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] cursor-pointer"
                 aria-label="Next card"
               >
                 <span className="hidden sm:inline">Next</span>
@@ -481,12 +508,12 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
 
             {/* Quick Practice Prompt */}
             {onNavigateToQuiz && (
-              <div className="mt-5 text-center">
+              <div className="mt-4 text-center">
                 <button
                   onClick={onNavigateToQuiz}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-[#D98A93] hover:underline cursor-pointer"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className="w-3.5 h-3.5 text-[#D98A93]" />
                   <span>Ready to test yourself? Take a quick quiz &rarr;</span>
                 </button>
               </div>

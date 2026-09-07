@@ -17,10 +17,10 @@ export const PWAInstallButton: React.FC = () => {
       <button
         id="pwa-install-btn"
         onClick={install}
-        className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:bg-indigo-700 active:scale-95 cursor-pointer dark:bg-indigo-500 dark:hover:bg-indigo-600"
+        className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] px-2.5 py-1 text-xs font-medium text-[#1B1815] transition hover:border-[#D98A93] dark:border-white/[0.08] dark:text-[#F6F1E7] cursor-pointer"
         title="Install WordQuill on your device"
       >
-        <Download className="w-3.5 h-3.5" />
+        <Download className="w-3.5 h-3.5 text-[#D98A93]" />
         <span>Install App</span>
       </button>
     );
@@ -33,48 +33,48 @@ export const PWAInstallButton: React.FC = () => {
         <button
           id="pwa-install-ios-btn"
           onClick={() => setShowIOSGuide(true)}
-          className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white/80 px-2.5 py-1 text-xs font-medium text-slate-700 backdrop-blur-sm transition hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-800 cursor-pointer"
+          className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] px-2.5 py-1 text-xs font-medium text-[#1B1815] transition hover:border-[#D98A93] dark:border-white/[0.08] dark:text-[#F6F1E7] cursor-pointer"
           title="Install on iOS"
         >
-          <Smartphone className="w-3.5 h-3.5 text-indigo-500" />
+          <Smartphone className="w-3.5 h-3.5 text-[#D98A93]" />
           <span>Install</span>
         </button>
 
         {showIOSGuide && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-            <div className="relative w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+            <div className="relative w-full max-w-sm rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-6 dark:border-white/[0.08] dark:bg-[#221E1B]">
               <button
                 onClick={() => setShowIOSGuide(false)}
-                className="absolute top-4 right-4 rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200 cursor-pointer"
+                className="absolute top-4 right-4 p-1 text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] cursor-pointer"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">
-                  <Share2 className="w-5 h-5" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-black/[0.08] text-[#D98A93] dark:border-white/[0.08]">
+                  <Share2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-slate-900 dark:text-white">Install on iPhone / iPad</h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Add WordQuill to your home screen</p>
+                  <h3 className="font-fraunces text-base font-medium text-[#1B1815] dark:text-[#F6F1E7]">Install on iPhone / iPad</h3>
+                  <p className="text-xs text-[#8C8272]">Add WordQuill to your home screen</p>
                 </div>
               </div>
-              <div className="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+              <div className="mt-4 space-y-2.5 text-xs text-[#8C8272]">
                 <div className="flex items-start gap-2.5">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">1</span>
-                  <span>Tap the <strong className="text-indigo-600 dark:text-indigo-400">Share</strong> button in the Safari bottom toolbar.</span>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-black/[0.08] font-mono text-[11px] text-[#8C8272] dark:border-white/[0.08]">1</span>
+                  <span>Tap the <strong className="text-[#D98A93] font-medium">Share</strong> button in the Safari bottom toolbar.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">2</span>
-                  <span>Scroll down and select <strong className="text-indigo-600 dark:text-indigo-400">Add to Home Screen</strong>.</span>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-black/[0.08] font-mono text-[11px] text-[#8C8272] dark:border-white/[0.08]">2</span>
+                  <span>Scroll down and select <strong className="text-[#D98A93] font-medium">Add to Home Screen</strong>.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">3</span>
-                  <span>Enjoy fast offline access directly from your app launcher!</span>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-black/[0.08] font-mono text-[11px] text-[#8C8272] dark:border-white/[0.08]">3</span>
+                  <span>Enjoy fast offline access directly from your home screen.</span>
                 </div>
               </div>
               <button
                 onClick={() => setShowIOSGuide(false)}
-                className="mt-6 w-full rounded-xl bg-indigo-600 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 cursor-pointer dark:bg-indigo-500 dark:hover:bg-indigo-600"
+                className="mt-6 w-full rounded-xl bg-[#D98A93] py-2 text-xs font-medium text-[#1B1815] hover:opacity-90 cursor-pointer transition"
               >
                 Got It
               </button>

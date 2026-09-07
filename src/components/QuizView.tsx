@@ -165,12 +165,12 @@ export const QuizView: React.FC<QuizViewProps> = ({
   if (eligibleWords.length < 4) {
     return (
       <div className="mx-auto max-w-md pb-24 pt-8 px-4 text-center">
-        <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-          <HelpCircle className="mx-auto h-12 w-12 text-indigo-500" />
-          <h3 className="mt-4 text-lg font-bold text-slate-800 dark:text-slate-100">
+        <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-8 dark:border-white/[0.08] dark:bg-[#221E1B]">
+          <HelpCircle className="mx-auto h-10 w-10 text-[#C9924A]" />
+          <h3 className="mt-4 text-lg font-medium text-[#1B1815] dark:text-[#F6F1E7]">
             Need at least 4 words
           </h3>
-          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-2 text-xs text-[#8C8272]">
             {sourceFilter === 'learning'
               ? 'You have not marked enough words as "Learning" yet. Browse the word list or flashcards to add words.'
               : sourceFilter === 'bookmarked'
@@ -182,7 +182,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
             {sourceFilter !== 'all' && (
               <button
                 onClick={() => setSourceFilter('all')}
-                className="w-full rounded-xl bg-indigo-600 py-2.5 text-xs font-semibold text-white hover:bg-indigo-700 cursor-pointer dark:bg-indigo-500"
+                className="w-full rounded-xl border border-[#D98A93] py-2.5 text-xs font-medium text-[#D98A93] hover:bg-[#D98A93]/[0.08] cursor-pointer"
               >
                 Quiz From All Deck ({words.length} words)
               </button>
@@ -198,38 +198,38 @@ export const QuizView: React.FC<QuizViewProps> = ({
     const accuracy = Math.round((scoreCount / questions.length) * 100);
     return (
       <div className="mx-auto max-w-lg pb-24 pt-6 px-4">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-md dark:border-slate-800 dark:bg-slate-900">
+        <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-6 dark:border-white/[0.08] dark:bg-[#221E1B]">
           <div className="text-center">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white shadow-lg shadow-indigo-500/20">
-              <Award className="h-8 w-8 text-amber-200" />
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl border border-black/[0.08] dark:border-white/[0.08] text-[#C9924A]">
+              <Award className="h-7 w-7 text-[#C9924A]" />
             </div>
-            <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Quiz Completed!
+            <h2 className="mt-4 font-fraunces text-2xl font-medium tracking-tight text-[#1B1815] dark:text-[#F6F1E7]">
+              Quiz Completed
             </h2>
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-1 text-xs text-[#8C8272]">
               {accuracy >= 80
-                ? 'Outstanding mastery of vocabulary!'
+                ? 'Outstanding mastery of vocabulary.'
                 : accuracy >= 60
-                ? 'Great progress! Reviewing missed words will help reinforce them.'
-                : 'Keep practicing! Repetition leads to permanence.'}
+                ? 'Great progress. Reviewing missed words will help reinforce them.'
+                : 'Keep practicing. Repetition leads to permanence.'}
             </p>
 
-            {/* Score Ring / Metric */}
-            <div className="mt-6 flex items-center justify-center gap-6 rounded-xl bg-slate-50 p-4 dark:bg-slate-800/60">
+            {/* Score Metric */}
+            <div className="mt-6 flex items-center justify-center gap-8 rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
               <div className="text-center">
-                <div className="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">
+                <div className="font-fraunces text-3xl font-medium text-[#D98A93]">
                   {scoreCount}/{questions.length}
                 </div>
-                <div className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                <div className="text-xs font-medium text-[#8C8272]">
                   Score
                 </div>
               </div>
-              <div className="h-8 w-px bg-slate-200 dark:bg-slate-700" />
+              <div className="h-8 w-px bg-black/[0.08] dark:bg-white/[0.08]" />
               <div className="text-center">
-                <div className="text-3xl font-extrabold text-slate-900 dark:text-white">
+                <div className="font-fraunces text-3xl font-medium text-[#8FB996]">
                   {accuracy}%
                 </div>
-                <div className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                <div className="text-xs font-medium text-[#8C8272]">
                   Accuracy
                 </div>
               </div>
@@ -239,43 +239,43 @@ export const QuizView: React.FC<QuizViewProps> = ({
           {/* Missed Words Section */}
           {missedWords.length > 0 && (
             <div className="mt-6">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <h4 className="text-xs font-medium uppercase tracking-wider text-[#8C8272]">
                 Words to Review ({missedWords.length})
               </h4>
-              <div className="mt-2.5 divide-y divide-slate-100 rounded-xl border border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+              <div className="mt-2.5 divide-y divide-black/[0.08] rounded-xl border border-black/[0.08] dark:divide-white/[0.08] dark:border-white/[0.08]">
                 {missedWords.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between p-3 transition hover:bg-slate-50 dark:hover:bg-slate-800/40"
+                    className="flex items-center justify-between p-3"
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-slate-900 dark:text-white text-sm">
+                        <span className="font-fraunces font-medium text-[#1B1815] dark:text-[#F6F1E7] text-sm">
                           {item.word}
                         </span>
-                        <span className="text-xs text-indigo-600 dark:text-indigo-400 font-mono">
+                        <span className="text-xs text-[#8C8272] font-mono-ipa">
                           {item.phonetic}
                         </span>
                       </div>
-                      <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400 line-clamp-1">
+                      <p className="mt-0.5 text-xs text-[#8C8272] line-clamp-1">
                         {item.definition}
                       </p>
                     </div>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => handlePronounce(item.word)}
-                        className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-indigo-600 dark:hover:bg-slate-800 cursor-pointer"
+                        className="p-1.5 text-[#8C8272] hover:text-[#D98A93] transition-colors cursor-pointer"
                         title="Pronounce"
                       >
-                        <Volume2 className="w-4 h-4" />
+                        <Volume2 className="w-3.5 h-3.5" />
                       </button>
                       {onSelectWordForFlashcard && (
                         <button
                           onClick={() => onSelectWordForFlashcard(item)}
-                          className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-indigo-600 dark:hover:bg-slate-800 cursor-pointer"
+                          className="p-1.5 text-[#8C8272] hover:text-[#D98A93] transition-colors cursor-pointer"
                           title="Review in flashcards"
                         >
-                          <BookOpen className="w-4 h-4" />
+                          <BookOpen className="w-3.5 h-3.5" />
                         </button>
                       )}
                     </div>
@@ -289,14 +289,14 @@ export const QuizView: React.FC<QuizViewProps> = ({
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => startNewQuiz()}
-              className="flex-1 rounded-xl bg-indigo-600 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-indigo-700 active:scale-95 cursor-pointer dark:bg-indigo-500"
+              className="flex-1 rounded-xl bg-[#D98A93] py-2.5 text-xs font-medium text-[#1B1815] hover:opacity-90 active:scale-95 cursor-pointer transition"
             >
               New Quiz Round
             </button>
             {missedWords.length >= 4 && (
               <button
                 onClick={() => startNewQuiz(missedWords)}
-                className="flex-1 rounded-xl border border-indigo-200 bg-indigo-50 py-2.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 cursor-pointer dark:border-indigo-800 dark:bg-indigo-950/60 dark:text-indigo-300"
+                className="flex-1 rounded-xl border border-[#D98A93] py-2.5 text-xs font-medium text-[#D98A93] hover:bg-[#D98A93]/[0.08] cursor-pointer transition"
               >
                 Retry Missed ({missedWords.length})
               </button>
@@ -310,18 +310,17 @@ export const QuizView: React.FC<QuizViewProps> = ({
   return (
     <div className="mx-auto max-w-xl pb-24 pt-4 px-4">
       {/* Quiz Source Filter & Length Selector */}
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3 dark:border-slate-800">
-        <div className="flex items-center gap-1.5">
-          <Filter className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Deck:</span>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-black/[0.08] pb-3 dark:border-white/[0.08]">
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-[#8C8272]">Deck:</span>
           {(['all', 'learning', 'bookmarked'] as const).map((filter) => (
             <button
               key={filter}
               onClick={() => setSourceFilter(filter)}
-              className={`rounded-lg px-2.5 py-1 text-xs font-medium capitalize transition cursor-pointer ${
+              className={`pb-0.5 text-xs font-medium capitalize transition cursor-pointer ${
                 sourceFilter === filter
-                  ? 'bg-indigo-50 text-indigo-700 font-semibold dark:bg-indigo-950/70 dark:text-indigo-300'
-                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+                  ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
+                  : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
               }`}
             >
               {filter === 'all'
@@ -334,16 +333,16 @@ export const QuizView: React.FC<QuizViewProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400">
-            Q{currentIndex + 1}/{questions.length}
+          <span className="text-xs font-medium text-[#D98A93]">
+            Question {currentIndex + 1} of {questions.length}
           </span>
         </div>
       </div>
 
       {/* Question Progress Bar */}
-      <div className="mb-5 h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+      <div className="mb-5 h-1 w-full overflow-hidden rounded-full bg-black/[0.05] dark:bg-white/[0.05]">
         <div
-          className="h-full bg-indigo-600 dark:bg-indigo-500 transition-all duration-300"
+          className="h-full bg-[#D98A93] transition-all duration-300"
           style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
         />
       </div>
@@ -351,45 +350,45 @@ export const QuizView: React.FC<QuizViewProps> = ({
       {currentQ && (
         <div className="space-y-4">
           {/* Question Card */}
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-            <div className="flex items-center justify-between text-xs text-slate-400">
-              <span className="font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+          <div className="rounded-2xl border border-black/[0.08] bg-[#FAF6EE] p-6 dark:border-white/[0.08] dark:bg-[#221E1B]">
+            <div className="flex items-center justify-between text-xs text-[#8C8272]">
+              <span className="text-[11px] font-medium uppercase tracking-wider text-[#D98A93]">
                 {currentQ.questionType === 'word_to_def'
                   ? 'Select Definition'
                   : 'Identify Word'}
               </span>
-              <span className="rounded bg-slate-100 px-2 py-0.5 font-medium capitalize dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+              <span className="text-xs italic text-[#8C8272]">
                 {currentQ.wordItem.category}
               </span>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-3">
               {currentQ.questionType === 'word_to_def' ? (
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                    <h3 className="font-fraunces text-3xl font-medium tracking-tight text-[#1B1815] dark:text-[#F6F1E7]">
                       {currentQ.prompt}
                     </h3>
                     {currentQ.phonetic && (
-                      <p className="mt-1 text-sm font-mono text-indigo-600 dark:text-indigo-400">
+                      <p className="mt-1 text-sm font-mono-ipa text-[#8C8272]">
                         {currentQ.phonetic}
                       </p>
                     )}
                   </div>
                   <button
                     onClick={() => handlePronounce(currentQ.prompt)}
-                    className="rounded-full bg-indigo-50 p-3 text-indigo-600 hover:bg-indigo-100 transition cursor-pointer dark:bg-indigo-950/70 dark:text-indigo-400"
+                    className="p-2 text-[#8C8272] hover:text-[#D98A93] transition-colors cursor-pointer"
                     title="Pronounce word"
                   >
-                    <Volume2 className="w-5 h-5" />
+                    <Volume2 className="w-4 h-4" />
                   </button>
                 </div>
               ) : (
                 <div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">
+                  <p className="text-xs text-[#8C8272] mb-1">
                     Which word matches this meaning?
                   </p>
-                  <p className="text-lg sm:text-xl font-medium leading-relaxed text-slate-800 dark:text-slate-100">
+                  <p className="font-fraunces text-lg font-normal leading-relaxed text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
                     "{currentQ.prompt}"
                   </p>
                 </div>
@@ -398,24 +397,24 @@ export const QuizView: React.FC<QuizViewProps> = ({
           </div>
 
           {/* Options Grid */}
-          <div className="space-y-2.5">
+          <div className="space-y-2">
             {currentQ.options.map((opt, idx) => {
               const isSelected = selectedOption === opt;
               const isCorrect = opt === currentQ.correctAnswer;
 
               let optionClasses =
-                'border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-700';
+                'border-black/[0.08] bg-[#FAF6EE] text-[#1B1815] hover:border-black/[0.2] dark:border-white/[0.08] dark:bg-[#221E1B] dark:text-[#F6F1E7] dark:hover:border-white/[0.2]';
 
               if (isAnswered) {
                 if (isCorrect) {
                   optionClasses =
-                    'border-emerald-500 bg-emerald-50/80 text-emerald-900 dark:border-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-200 font-semibold';
+                    'border-[#8FB996] bg-[#8FB996]/[0.08] text-[#8FB996] font-medium';
                 } else if (isSelected) {
                   optionClasses =
-                    'border-rose-500 bg-rose-50/80 text-rose-900 dark:border-rose-600 dark:bg-rose-950/50 dark:text-rose-200';
+                    'border-[#D98A93] bg-[#D98A93]/[0.08] text-[#D98A93] font-medium';
                 } else {
                   optionClasses =
-                    'border-slate-200 bg-white/50 text-slate-400 dark:border-slate-800/50 dark:bg-slate-900/40 dark:text-slate-600';
+                    'border-black/[0.04] bg-[#FAF6EE]/50 text-[#8C8272] dark:border-white/[0.04] dark:bg-[#221E1B]/50';
                 }
               }
 
@@ -424,18 +423,18 @@ export const QuizView: React.FC<QuizViewProps> = ({
                   key={`${opt}-${idx}`}
                   disabled={isAnswered}
                   onClick={() => handleSelectOption(opt)}
-                  className={`flex w-full items-start gap-3 rounded-xl border p-4 text-left text-sm transition cursor-pointer active:scale-[0.99] ${optionClasses}`}
+                  className={`flex w-full items-start gap-3 rounded-xl border p-3.5 text-left text-xs transition cursor-pointer ${optionClasses}`}
                 >
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-xs font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                    {String.fromCharCode(65 + idx)}
+                  <span className="font-mono text-xs text-[#8C8272] pt-0.5">
+                    {String.fromCharCode(65 + idx)}.
                   </span>
                   <span className="flex-1 leading-relaxed">{opt}</span>
                   {isAnswered && (
-                    <span className="shrink-0">
+                    <span className="shrink-0 pt-0.5">
                       {isCorrect ? (
-                        <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                        <CheckCircle2 className="h-4 w-4 text-[#8FB996]" />
                       ) : isSelected ? (
-                        <XCircle className="h-5 w-5 text-rose-500" />
+                        <XCircle className="h-4 w-4 text-[#D98A93]" />
                       ) : null}
                     </span>
                   )}
@@ -446,36 +445,36 @@ export const QuizView: React.FC<QuizViewProps> = ({
 
           {/* Feedback & Next Button */}
           {isAnswered && (
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/60 transition animate-fade-in">
+            <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B] transition animate-fade-in space-y-3">
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
+                  <span className="text-[10px] font-medium uppercase tracking-wide text-[#8C8272]">
                     Example in context
                   </span>
-                  <p className="mt-1 text-xs italic text-slate-600 dark:text-slate-300">
+                  <p className="mt-1 text-xs italic text-[#8C8272]">
                     "{currentQ.explanation}"
                   </p>
                 </div>
                 <button
                   onClick={() => handlePronounce(currentQ.wordItem.word)}
-                  className="rounded-lg p-1.5 text-indigo-600 hover:bg-indigo-100 dark:text-indigo-400 dark:hover:bg-indigo-950/60 cursor-pointer"
+                  className="p-1 text-[#8C8272] hover:text-[#D98A93] cursor-pointer"
                   title="Pronounce"
                 >
-                  <Volume2 className="w-4 h-4" />
+                  <Volume2 className="w-3.5 h-3.5" />
                 </button>
               </div>
 
               <button
                 id="btn-quiz-next"
                 onClick={handleNextQuestion}
-                className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 py-3 text-xs font-semibold text-white shadow-sm hover:bg-indigo-700 active:scale-95 cursor-pointer dark:bg-indigo-500"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#D98A93] py-2.5 text-xs font-medium text-[#1B1815] hover:opacity-90 active:scale-95 cursor-pointer transition"
               >
                 <span>
                   {currentIndex === questions.length - 1
                     ? 'View Results'
                     : 'Next Question'}
                 </span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           )}
