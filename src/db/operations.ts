@@ -622,6 +622,8 @@ export async function exportDatabaseBackup(): Promise<void> {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
+
+  await setSetting('lastBackupExportedAt', new Date().toISOString());
 }
 
 export async function importDatabaseBackup(data: BackupData): Promise<{

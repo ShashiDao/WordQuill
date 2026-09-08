@@ -24,11 +24,13 @@ import { speakWord } from '../utils/speech';
 import {
   getTodayString,
   getSetting,
+  setSetting,
   getLeeches,
   getActivityCalendar,
   exportDatabaseBackup,
 } from '../db/operations';
 import { useBackupRestore } from '../hooks/useBackupRestore';
+import { DataPrivacyModal } from './DataPrivacyModal';
 
 interface ProgressDashboardProps {
   words: WordItem[];
@@ -77,6 +79,10 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   // Share Streak State
   const [shareFeedback, setShareFeedback] = useState<string | null>(null);
   const shareTimeoutRef = useRef<number | null>(null);
+
+  // Privacy Modal & Backup Reminder Nudge State
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showBackupNudge, setShowBackupNudge] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -301,6 +307,73 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
     }
   };
 
+  // Check backup reminder nudge
+  useEffect(() => {
+    async function checkBackupNudge() {
+      // 1. Check for meaningful user activity
+      const hasMeaningfulActivity = progressMap.size > 0 || totalReviews > 5;
+      if (!hasMeaningfulActivity) {
+        setShowBackupNudge(false);
+        return;
+      }
+
+      // 2. Check if snoozed within last 14 days
+      const snoozeTimestamp = await getSetting<string | null>('backupNudgeDismissedAt', null);
+      const now = Date.now();
+      if (snoozeTimestamp) {
+        const snoozedTime = new Date(snoozeTimestamp).getTime();
+        const daysSinceSnooze = (now - snoozedTime) / (1000 * 60 * 60 * 24);
+        if (daysSinceSnooze < 14) {
+          setShowBackupNudge(false);
+          return;
+        }
+      }
+
+      // 3. Check last backup exported timestamp
+      const lastBackupStr = await getSetting<string | null>('lastBackupExportedAt', null);
+      if (lastBackupStr) {
+        const lastBackupTime = new Date(lastBackupStr).getTime();
+        const daysSinceBackup = (now - lastBackupTime) / (1000 * 60 * 60 * 24);
+        if (daysSinceBackup >= 30) {
+          setShowBackupNudge(true);
+          return;
+        }
+      } else {
+        // lastBackupExportedAt is unset: check when the app was first used (> 30 days ago)
+        let firstUsedStr = await getSetting<string | null>('firstUsedAt', null);
+        if (!firstUsedStr) {
+          const earliestRecord = await db.progress.orderBy('date').first();
+          if (earliestRecord) {
+            firstUsedStr = new Date(earliestRecord.date).toISOString();
+          } else {
+            firstUsedStr = new Date().toISOString();
+            await setSetting('firstUsedAt', firstUsedStr);
+          }
+        }
+        const firstUsedTime = new Date(firstUsedStr).getTime();
+        const daysSinceFirstUse = (now - firstUsedTime) / (1000 * 60 * 60 * 24);
+        if (daysSinceFirstUse >= 30) {
+          setShowBackupNudge(true);
+          return;
+        }
+      }
+
+      setShowBackupNudge(false);
+    }
+
+    checkBackupNudge();
+  }, [progressMap, totalReviews]);
+
+  const handleDismissBackupNudge = async () => {
+    setShowBackupNudge(false);
+    await setSetting('backupNudgeDismissedAt', new Date().toISOString());
+  };
+
+  const handleBackupFromNudge = async () => {
+    await handleExport();
+    setShowBackupNudge(false);
+  };
+
   return (
     <div className="mx-auto max-w-2xl pb-36 pt-4 px-4 space-y-4">
       {/* Streak Card */}
@@ -452,6 +525,48 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Backup Reminder Nudge */}
+      {showBackupNudge && (
+        <div
+          id="progress-backup-nudge"
+          className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#C9924A]/40 bg-[#FAF6EE] dark:bg-[#221E1B] p-3.5 shadow-sm"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#C9924A]/15 text-[#C9924A]">
+              <Download className="w-4 h-4" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                Protect your learning progress — export a local backup
+              </p>
+              <p className="text-[11px] text-[#8C8272]">
+                WordQuill saves everything in this browser. Export a JSON file to keep your progress safe.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0 ml-auto sm:ml-0">
+            <button
+              type="button"
+              onClick={handleBackupFromNudge}
+              disabled={isExporting}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-[#C9924A] px-3 py-1.5 text-xs font-medium text-[#1B1815] hover:opacity-90 transition cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>{isExporting ? 'Exporting...' : 'Export backup'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleDismissBackupNudge}
+              className="p-1 rounded-md text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] cursor-pointer"
+              title="Snooze backup reminder for 14 days"
+              aria-label="Snooze backup reminder for 14 days"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Proactive Leech Callout (dismissible for this session) */}
       {leechesCount > 0 && !isLeechAlertDismissed && (
@@ -729,6 +844,43 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
             </span>
           </div>
 
+          {/* Privacy & Data Safety */}
+          <div className="flex items-center justify-between border-t border-black/[0.06] pt-3 dark:border-white/[0.06]">
+            <div>
+              <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                Privacy & Data Safety
+              </span>
+              <p className="text-[11px] text-[#8C8272]">
+                Zero trackers, no user accounts, and 100% local storage
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowPrivacyModal(true)}
+              className="text-xs font-medium text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition cursor-pointer"
+            >
+              How your data works
+            </button>
+          </div>
+
+          {/* Feedback */}
+          <div className="flex items-center justify-between border-t border-black/[0.06] pt-3 dark:border-white/[0.06]">
+            <div>
+              <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                Feedback & Inquiries
+              </span>
+              <p className="text-[11px] text-[#8C8272]">
+                Suggestions, issues, or thoughts? Let us know
+              </p>
+            </div>
+            <a
+              href="mailto:feedback@wordquill.app?subject=WordQuill%20Feedback"
+              className="text-xs text-[#8C8272] hover:text-[#D98A93] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition"
+            >
+              feedback@wordquill.app
+            </a>
+          </div>
+
           {/* Reset progress */}
           <div className="flex items-center justify-between border-t border-black/[0.06] pt-3 dark:border-white/[0.06]">
             <div>
@@ -885,6 +1037,11 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           )}
         </div>
       </div>
+
+      <DataPrivacyModal
+        isOpen={showPrivacyModal}
+        onClose={() => setShowPrivacyModal(false)}
+      />
     </div>
   );
 };

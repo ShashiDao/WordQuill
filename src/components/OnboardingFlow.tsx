@@ -15,6 +15,7 @@ import {
 import { speakWord } from '../utils/speech';
 import { useBackupRestore } from '../hooks/useBackupRestore';
 import { getSetting } from '../db/operations';
+import { DataPrivacyModal } from './DataPrivacyModal';
 
 export interface OnboardingPreferences {
   preferredCategories: string[];
@@ -175,6 +176,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
   });
 
   const [hasTestedAudio, setHasTestedAudio] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   const formatTime12h = (timeStr: string): string => {
     if (!timeStr) return '7:00 PM';
@@ -432,21 +434,30 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
             </div>
           </div>
 
-          {/* Backup Restore Link */}
-          <div className="pt-1">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".json"
-              onChange={handleFileSelect}
-              className="hidden"
-            />
+          {/* Backup Restore & Data Privacy Links */}
+          <div className="pt-1 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".json"
+                onChange={handleFileSelect}
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={openFilePicker}
+                className="text-[#8C8272] hover:text-[#D98A93] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition cursor-pointer"
+              >
+                Already have a WordQuill backup? Restore it
+              </button>
+            </div>
             <button
               type="button"
-              onClick={openFilePicker}
-              className="text-xs text-[#8C8272] hover:text-[#D98A93] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition cursor-pointer"
+              onClick={() => setShowPrivacyModal(true)}
+              className="text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition cursor-pointer"
             >
-              Already have a WordQuill backup? Restore it
+              How your data works
             </button>
           </div>
 
@@ -827,6 +838,29 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
             </div>
           </div>
 
+          {/* Data Safety & Feedback */}
+          <div className="space-y-2 border-t border-black/[0.08] pt-3 dark:border-white/[0.08] text-xs">
+            <div className="flex items-center justify-between">
+              <span className="text-[#8C8272]">Privacy & Storage</span>
+              <button
+                type="button"
+                onClick={() => setShowPrivacyModal(true)}
+                className="text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition cursor-pointer"
+              >
+                How your data works
+              </button>
+            </div>
+            <div className="flex items-center justify-between text-[#8C8272]">
+              <span>Have thoughts or suggestions?</span>
+              <a
+                href="mailto:feedback@wordquill.app?subject=WordQuill%20Feedback"
+                className="hover:text-[#D98A93] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition"
+              >
+                feedback@wordquill.app
+              </a>
+            </div>
+          </div>
+
           <div className="pt-4 flex items-center justify-between gap-3">
             <button
               onClick={() => setStep(2)}
@@ -853,16 +887,20 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
     return (
       <div className="min-h-screen bg-[#F6F1E7] dark:bg-[#1B1815] text-[#1B1815] dark:text-[#F6F1E7] flex flex-col justify-center px-4 py-8 sm:px-6 transition-colors">
         {content}
+        <DataPrivacyModal isOpen={showPrivacyModal} onClose={() => setShowPrivacyModal(false)} />
       </div>
     );
   }
 
   // Preferences modal overlay
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
-      <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-black/[0.08] bg-[#F6F1E7] p-6 text-[#1B1815] shadow-xl dark:border-white/[0.08] dark:bg-[#1B1815] dark:text-[#F6F1E7]">
-        {content}
+    <>
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs">
+        <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-black/[0.08] bg-[#F6F1E7] p-6 text-[#1B1815] shadow-xl dark:border-white/[0.08] dark:bg-[#1B1815] dark:text-[#F6F1E7]">
+          {content}
+        </div>
       </div>
-    </div>
+      <DataPrivacyModal isOpen={showPrivacyModal} onClose={() => setShowPrivacyModal(false)} />
+    </>
   );
 };

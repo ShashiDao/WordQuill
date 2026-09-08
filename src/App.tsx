@@ -6,6 +6,7 @@ import { Header } from './components/Header';
 import { Navigation } from './components/Navigation';
 import { OfflineIndicator } from './components/OfflineIndicator';
 import { OnboardingFlow, type OnboardingPreferences } from './components/OnboardingFlow';
+import { PwaUpdateToast } from './components/PwaUpdateToast';
 import {
   getAllWordProgressMap,
   calculateStreak,
@@ -526,6 +527,9 @@ export default function App() {
           onRestore={handleRestoreFromBackup}
         />
       )}
+
+      {/* PWA Update Toast */}
+      <PwaUpdateToast />
     </div>
   );
 }
