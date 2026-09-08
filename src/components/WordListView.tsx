@@ -59,6 +59,7 @@ export const WordListView: React.FC<WordListViewProps> = ({
     return 'all';
   });
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [selectedTag, setSelectedTag] = useState<string>('all');
   const [isStatusMenuOpen, setIsStatusMenuOpen] = useState<boolean>(false);
   const statusMenuRef = useRef<HTMLDivElement>(null);
   const [expandedWordId, setExpandedWordId] = useState<string | null>(null);
@@ -104,6 +105,27 @@ export const WordListView: React.FC<WordListViewProps> = ({
     return ['all', ...allCats];
   }, [words, preferredCategories]);
 
+  // Extract tags (collections)
+  const tags = useMemo(() => {
+    const set = new Set<string>();
+    words.forEach((w) => {
+      if (w.tags) {
+        w.tags.forEach((t) => set.add(t));
+      }
+    });
+    return ['all', ...Array.from(set)];
+  }, [words]);
+
+  const formatTagLabel = (tag: string): string => {
+    if (tag === 'all') return 'All';
+    if (tag.toUpperCase() === 'GRE') return 'GRE';
+    if (tag.toUpperCase() === 'SAT') return 'SAT';
+    return tag
+      .split(/[-_]/)
+      .map((w) => (w.length > 0 ? w[0].toUpperCase() + w.slice(1) : ''))
+      .join(' ');
+  };
+
   // Filter words
   const filteredWords = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
@@ -115,6 +137,11 @@ export const WordListView: React.FC<WordListViewProps> = ({
         if (!preferredCategories.includes(w.category)) return false;
       } else if (selectedCategory !== 'all' && selectedCategory !== 'preferred' && w.category !== selectedCategory) {
         return false;
+      }
+
+      // Collection (Tag) filter
+      if (selectedTag !== 'all') {
+        if (!w.tags || !w.tags.includes(selectedTag)) return false;
       }
 
       // Status filter
@@ -136,7 +163,7 @@ export const WordListView: React.FC<WordListViewProps> = ({
 
       return true;
     });
-  }, [words, progressMap, selectedCategory, selectedStatus, searchQuery, preferredCategories]);
+  }, [words, progressMap, selectedCategory, selectedTag, selectedStatus, searchQuery, preferredCategories]);
 
   const handlePronounce = (word: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -243,7 +270,7 @@ export const WordListView: React.FC<WordListViewProps> = ({
       </div>
 
       {/* Consolidated Filter Row: Category tabs + Word Count & Status dropdown */}
-      <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/[0.08] pb-2 dark:border-white/[0.08]">
+      <div className="mb-2.5 flex items-center justify-between gap-3 border-b border-black/[0.08] pb-2 dark:border-white/[0.08]">
         {/* Category Horizontal Scrolling Tabs */}
         <div className="flex items-center gap-3.5 overflow-x-auto pb-0.5 scrollbar-none mask-edge-fade min-w-0 flex-1">
           {categories.map((cat) => (
@@ -313,6 +340,24 @@ export const WordListView: React.FC<WordListViewProps> = ({
         </div>
       </div>
 
+      {/* Collections Chip Row */}
+      <div className="mb-4 flex items-center gap-3.5 overflow-x-auto pb-2 border-b border-black/[0.08] dark:border-white/[0.08] scrollbar-none mask-edge-fade min-w-0">
+        {tags.map((tag) => (
+          <button
+            key={tag}
+            type="button"
+            onClick={() => setSelectedTag(tag)}
+            className={`pb-0.5 text-xs font-medium whitespace-nowrap transition cursor-pointer shrink-0 ${
+              selectedTag === tag
+                ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
+                : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
+            }`}
+          >
+            {formatTagLabel(tag)}
+          </button>
+        ))}
+      </div>
+
       {/* Words List */}
       {filteredWords.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-black/[0.1] bg-[#FAF6EE] p-12 text-center dark:border-white/[0.1] dark:bg-[#221E1B]">
@@ -324,6 +369,7 @@ export const WordListView: React.FC<WordListViewProps> = ({
               setSearchQuery('');
               setSelectedCategory('all');
               setSelectedStatus('all');
+              setSelectedTag('all');
             }}
             className="mt-3 text-xs font-medium text-[#D98A93] hover:underline cursor-pointer"
           >
