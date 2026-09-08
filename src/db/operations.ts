@@ -556,6 +556,7 @@ export interface BackupData {
   savedWords: UserWordProgress[];
   progress: DailyProgress[];
   settings: AppSetting[];
+  customWords?: WordItem[];
 }
 
 export function validateBackupShape(data: unknown): data is BackupData {
@@ -566,28 +567,32 @@ export function validateBackupShape(data: unknown): data is BackupData {
   const hasValidWords = !obj.savedWords || Array.isArray(obj.savedWords);
   const hasValidProgress = !obj.progress || Array.isArray(obj.progress);
   const hasValidSettings = !obj.settings || Array.isArray(obj.settings);
+  const hasValidCustom = !obj.customWords || Array.isArray(obj.customWords);
 
   const hasAnyData =
     (Array.isArray(obj.savedWords) && obj.savedWords.length > 0) ||
     (Array.isArray(obj.progress) && obj.progress.length > 0) ||
-    (Array.isArray(obj.settings) && obj.settings.length > 0);
+    (Array.isArray(obj.settings) && obj.settings.length > 0) ||
+    (Array.isArray(obj.customWords) && obj.customWords.length > 0);
 
-  return hasValidWords && hasValidProgress && hasValidSettings && hasAnyData;
+  return hasValidWords && hasValidProgress && hasValidSettings && hasValidCustom && hasAnyData;
 }
 
 export async function exportDatabaseBackup(): Promise<void> {
-  const [savedWords, progress, settings] = await Promise.all([
+  const [savedWords, progress, settings, customWords] = await Promise.all([
     db.savedWords.toArray(),
     db.progress.toArray(),
     db.settings.toArray(),
+    db.customWords.toArray(),
   ]);
 
   const backup: BackupData = {
-    version: 2,
+    version: 3,
     exportedAt: new Date().toISOString(),
     savedWords,
     progress,
     settings,
+    customWords,
   };
 
   const jsonString = JSON.stringify(backup, null, 2);
@@ -610,15 +615,18 @@ export async function importDatabaseBackup(data: BackupData): Promise<{
   wordsCount: number;
   progressCount: number;
   settingsCount: number;
+  customWordsCount: number;
 }> {
   let wordsCount = 0;
   let progressCount = 0;
   let settingsCount = 0;
+  let customWordsCount = 0;
 
-  await db.transaction('rw', [db.savedWords, db.progress, db.settings], async () => {
+  await db.transaction('rw', [db.savedWords, db.progress, db.settings, db.customWords], async () => {
     await db.savedWords.clear();
     await db.progress.clear();
     await db.settings.clear();
+    await db.customWords.clear();
 
     if (Array.isArray(data.savedWords) && data.savedWords.length > 0) {
       await db.savedWords.bulkPut(data.savedWords);
@@ -632,8 +640,75 @@ export async function importDatabaseBackup(data: BackupData): Promise<{
       await db.settings.bulkPut(data.settings);
       settingsCount = data.settings.length;
     }
+    if (Array.isArray(data.customWords) && data.customWords.length > 0) {
+      await db.customWords.bulkPut(data.customWords);
+      customWordsCount = data.customWords.length;
+    }
   });
 
-  return { wordsCount, progressCount, settingsCount };
+  return { wordsCount, progressCount, settingsCount, customWordsCount };
+}
+
+export async function getCustomWords(): Promise<WordItem[]> {
+  try {
+    return await db.customWords.toArray();
+  } catch {
+    return [];
+  }
+}
+
+export async function addCustomWord(input: {
+  word: string;
+  definition: string;
+  example: string;
+  category: string;
+  phonetic?: string;
+  synonyms?: string[];
+  antonyms?: string[];
+  etymology?: string;
+  tags?: string[];
+}): Promise<WordItem> {
+  const cleanWord = input.word.trim();
+  const id = `custom_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+  const item: WordItem = {
+    id,
+    word: cleanWord,
+    phonetic: input.phonetic?.trim() || '',
+    definition: input.definition.trim(),
+    example: input.example.trim(),
+    category: input.category,
+    synonyms: input.synonyms?.filter(Boolean),
+    antonyms: input.antonyms?.filter(Boolean),
+    etymology: input.etymology?.trim() || undefined,
+    tags: input.tags && input.tags.length > 0 ? input.tags : ['custom'],
+    isCustom: true,
+  };
+
+  await db.customWords.put(item);
+
+  // Initialize progress as 'new'
+  const today = getTodayString();
+  await db.savedWords.put({
+    id,
+    word: cleanWord,
+    status: 'new',
+    isBookmarked: false,
+    reviewCount: 0,
+    correctCount: 0,
+    incorrectCount: 0,
+    lastReviewedAt: 0,
+    interval: 0,
+    easeFactor: 2.5,
+    dueDate: today,
+  });
+
+  return item;
+}
+
+export async function deleteCustomWord(id: string): Promise<void> {
+  await db.transaction('rw', [db.customWords, db.savedWords], async () => {
+    await db.customWords.delete(id);
+    await db.savedWords.delete(id);
+  });
 }
 

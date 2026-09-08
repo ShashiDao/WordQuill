@@ -8,6 +8,9 @@ export interface WordItem {
   synonyms?: string[];
   antonyms?: string[];
   etymology?: string;
+  tags?: string[];
+  confusedWith?: { word: string; distinction: string }[];
+  isCustom?: boolean;
 }
 
 export type WordStatus = 'new' | 'learning' | 'mastered';
@@ -43,7 +46,7 @@ export type TabType = 'flashcards' | 'quiz' | 'words' | 'progress';
 
 export interface QuizQuestion {
   id: string;
-  questionType: 'word_to_def' | 'def_to_word' | 'cloze' | 'spelling' | 'synonym_match';
+  questionType: 'word_to_def' | 'def_to_word' | 'cloze' | 'spelling' | 'synonym_match' | 'typed_recall';
   prompt: string;
   phonetic?: string;
   correctAnswer: string;

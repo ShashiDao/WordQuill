@@ -27,6 +27,7 @@ const STATUS_OPTIONS: { id: string; label: string }[] = [
   { id: 'starred', label: 'Starred' },
   { id: 'new', label: 'New' },
   { id: 'mastered', label: 'Mastered' },
+  { id: 'custom', label: 'Custom' },
 ];
 
 interface FlashcardViewProps {
@@ -115,6 +116,8 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
           const prog = pMap.get(w.id);
           return !prog || prog.status === 'new';
         });
+      } else if (statusFilter === 'custom') {
+        pool = words.filter((w) => w.isCustom);
       } else {
         pool = words;
       }
@@ -539,9 +542,16 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
 
                     {/* Card Header Top */}
                   <div className="flex items-center justify-between">
-                    <span className="text-xs italic text-[#8C8272]">
-                      {currentWord.category}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs italic text-[#8C8272]">
+                        {currentWord.category}
+                      </span>
+                      {currentWord.isCustom && (
+                        <span className="rounded bg-[#D98A93]/15 px-1.5 py-0.5 text-[9px] font-medium tracking-wide uppercase text-[#D98A93]">
+                          Custom
+                        </span>
+                      )}
+                    </div>
 
                     {/* Bookmark button */}
                     <button
@@ -647,9 +657,16 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                   <div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <span className="font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
-                          {currentWord.word}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                            {currentWord.word}
+                          </span>
+                          {currentWord.isCustom && (
+                            <span className="rounded bg-[#D98A93]/15 px-1.5 py-0.5 text-[9px] font-medium tracking-wide uppercase text-[#D98A93]">
+                              Custom
+                            </span>
+                          )}
+                        </div>
                         <div className="flex items-center gap-1.5 mt-0.5">
                           <span className="font-mono-ipa text-xs text-[#8C8272]">
                             {currentWord.phonetic}
@@ -706,6 +723,33 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
                         </p>
                       )}
                     </div>
+
+                    {/* Don't confuse with callout */}
+                    {currentWord.confusedWith && currentWord.confusedWith.length > 0 && (
+                      <div className="rounded-lg border border-[#C9924A]/25 bg-[#C9924A]/[0.06] p-2 text-xs">
+                        <span className="font-medium text-[#C9924A]">Don't confuse with: </span>
+                        {currentWord.confusedWith.map((c, i) => (
+                          <span key={i} className="text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
+                            <span className="font-medium underline decoration-[#C9924A]/50">{c.word}</span> ({c.distinction})
+                            {i < currentWord.confusedWith!.length - 1 ? '; ' : ''}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Context Tags */}
+                    {currentWord.tags && currentWord.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1 pt-0.5">
+                        {currentWord.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-md border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.03] dark:bg-white/[0.04] px-1.5 py-0.5 text-[10px] text-[#8C8272]"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
                     {/* Small inline icon + muted-color text below the definition */}
                     <div className="flex items-center gap-1.5 text-xs text-[#8C8272] pt-0.5">

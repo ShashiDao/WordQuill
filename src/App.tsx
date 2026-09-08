@@ -14,6 +14,7 @@ import {
   setSetting,
   consumeStreakFreezeIfNeeded,
   isStreakFreezeAvailable,
+  getCustomWords,
 } from './db/operations';
 import { db } from './db';
 
@@ -33,7 +34,7 @@ const ProgressDashboard = React.lazy(() =>
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<TabType>('flashcards');
-  const [words] = useState<WordItem[]>(rawWords as WordItem[]);
+  const [words, setWords] = useState<WordItem[]>(rawWords as WordItem[]);
   const [progressMap, setProgressMap] = useState<Map<string, UserWordProgress>>(new Map());
   const [streak, setStreak] = useState<number>(0);
   const [freezeAvailable, setFreezeAvailable] = useState<boolean>(true);
@@ -278,16 +279,22 @@ export default function App() {
   // Load Dexie data
   const loadData = useCallback(async () => {
     try {
-      const [pMap, currentStreak, today, freezes] = await Promise.all([
+      const [pMap, currentStreak, today, freezes, custom] = await Promise.all([
         getAllWordProgressMap(),
         calculateStreak(),
         db.progress.get(getTodayString()),
         getSetting<string[]>('streakFreezesUsed', []),
+        getCustomWords(),
       ]);
       setProgressMap(pMap);
       setStreak(currentStreak);
       setTodayProgress(today || null);
       setFreezeAvailable(isStreakFreezeAvailable(freezes));
+      if (custom && custom.length > 0) {
+        setWords([...(rawWords as WordItem[]), ...custom]);
+      } else {
+        setWords(rawWords as WordItem[]);
+      }
     } catch (err) {
       console.warn('Error loading progress data from IndexedDB:', err);
     }

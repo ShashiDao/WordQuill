@@ -1,10 +1,11 @@
 import Dexie, { type Table } from 'dexie';
-import type { UserWordProgress, DailyProgress, AppSetting } from '../types';
+import type { UserWordProgress, DailyProgress, AppSetting, WordItem } from '../types';
 
 export class WordQuillDB extends Dexie {
   savedWords!: Table<UserWordProgress, string>;
   progress!: Table<DailyProgress, string>;
   settings!: Table<AppSetting, string>;
+  customWords!: Table<WordItem, string>;
 
   constructor() {
     super('WordQuillDB');
@@ -42,6 +43,13 @@ export class WordQuillDB extends Dexie {
             }
           });
       });
+
+    this.version(3).stores({
+      savedWords: 'id, word, status, isBookmarked, reviewCount, lastReviewedAt, dueDate, interval',
+      progress: 'date, wordsReviewed, quizzesCompleted',
+      settings: 'key',
+      customWords: 'id, word, category, isCustom',
+    });
   }
 }
 

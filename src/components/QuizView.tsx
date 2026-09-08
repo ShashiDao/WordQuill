@@ -177,6 +177,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
       'cloze',
       'spelling',
       'synonym_match',
+      'typed_recall',
     ];
 
     const generated: QuizQuestion[] = chosenWords.map((target, idx) => {
@@ -187,6 +188,19 @@ export const QuizView: React.FC<QuizViewProps> = ({
         if (!target.synonyms || target.synonyms.length === 0) {
           assignedType = 'word_to_def';
         }
+      }
+
+      if (assignedType === 'typed_recall') {
+        return {
+          id: `q-${target.id}-${idx}`,
+          questionType: 'typed_recall',
+          prompt: target.definition,
+          phonetic: target.phonetic,
+          correctAnswer: target.word,
+          options: [],
+          explanation: target.example,
+          wordItem: target,
+        };
       }
 
       if (assignedType === 'cloze') {
@@ -616,6 +630,8 @@ export const QuizView: React.FC<QuizViewProps> = ({
                   ? 'Complete sentence'
                   : currentQ.questionType === 'spelling'
                   ? 'Spell the word'
+                  : currentQ.questionType === 'typed_recall'
+                  ? 'Active recall (type word)'
                   : 'Select synonym'}
               </span>
               <span className="text-xs italic text-[#8C8272]">
@@ -693,7 +709,7 @@ export const QuizView: React.FC<QuizViewProps> = ({
                     Definition: {currentQ.wordItem.definition}
                   </p>
                 </div>
-              ) : (
+              ) : currentQ.questionType === 'spelling' ? (
                 <div>
                   <p className="text-xs text-[#8C8272] mb-1.5">
                     Spell the word that matches this definition:
@@ -702,12 +718,26 @@ export const QuizView: React.FC<QuizViewProps> = ({
                     "{currentQ.prompt}"
                   </p>
                 </div>
+              ) : (
+                <div>
+                  <p className="text-xs text-[#8C8272] mb-1.5">
+                    Active Recall: Type the word for this definition:
+                  </p>
+                  <p className="font-fraunces text-lg font-normal leading-relaxed text-[#1B1815]/90 dark:text-[#F6F1E7]/90">
+                    "{currentQ.prompt}"
+                  </p>
+                  {currentQ.phonetic && (
+                    <p className="mt-1.5 text-xs font-mono-ipa text-[#8C8272]">
+                      Phonetic cue: {currentQ.phonetic}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           </div>
 
           {/* Options or Text Input Area */}
-          {currentQ.questionType === 'cloze' || currentQ.questionType === 'spelling' ? (
+          {currentQ.questionType === 'cloze' || currentQ.questionType === 'spelling' || currentQ.questionType === 'typed_recall' ? (
             <div className="space-y-3">
               {!isAnswered ? (
                 <form
@@ -723,7 +753,9 @@ export const QuizView: React.FC<QuizViewProps> = ({
                     placeholder={
                       currentQ.questionType === 'cloze'
                         ? 'Type the missing word...'
-                        : 'Spell the word from memory...'
+                        : currentQ.questionType === 'spelling'
+                        ? 'Spell the word from memory...'
+                        : 'Type the word from memory...'
                     }
                     autoComplete="off"
                     autoCorrect="off"
