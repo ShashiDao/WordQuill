@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Search,
   Volume2,
@@ -14,6 +14,15 @@ import {
 import type { WordItem, UserWordProgress, WordStatus } from '../types';
 import { speakWord } from '../utils/speech';
 import { setWordStatus, toggleWordBookmark, getLeeches } from '../db/operations';
+
+const STATUS_OPTIONS: { id: string; label: string }[] = [
+  { id: 'all', label: 'All' },
+  { id: 'new', label: 'New' },
+  { id: 'learning', label: 'Learning' },
+  { id: 'mastered', label: 'Mastered' },
+  { id: 'starred', label: 'Starred' },
+  { id: 'leeches', label: 'Leeches' },
+];
 
 interface WordListViewProps {
   words: WordItem[];
@@ -40,7 +49,24 @@ export const WordListView: React.FC<WordListViewProps> = ({
     return 'all';
   });
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [isStatusMenuOpen, setIsStatusMenuOpen] = useState<boolean>(false);
+  const statusMenuRef = useRef<HTMLDivElement>(null);
   const [expandedWordId, setExpandedWordId] = useState<string | null>(null);
+
+  // Close status dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (statusMenuRef.current && !statusMenuRef.current.contains(e.target as Node)) {
+        setIsStatusMenuOpen(false);
+      }
+    };
+    if (isStatusMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isStatusMenuOpen]);
 
   // Extract categories
   const categories = useMemo(() => {
@@ -133,55 +159,75 @@ export const WordListView: React.FC<WordListViewProps> = ({
         )}
       </div>
 
-      {/* Category Horizontal Scrolling Tabs */}
-      <div className="mb-3 flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none border-b border-black/[0.08] dark:border-white/[0.08] mask-edge-fade">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            className={`pb-1 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer ${
-              selectedCategory === cat
-                ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
-                : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
-            }`}
-          >
-            {cat === 'all'
-              ? 'All Categories'
-              : cat === 'preferred'
-              ? `Preferred (${preferredCategories?.length || 0})`
-              : cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Status Filter Bar & Total Count */}
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 pt-1 text-xs text-[#8C8272]">
-        <div className="flex items-center gap-3">
-          {[
-            { id: 'all', label: 'All' },
-            { id: 'new', label: 'New' },
-            { id: 'learning', label: 'Learning' },
-            { id: 'mastered', label: 'Mastered' },
-            { id: 'starred', label: 'Starred' },
-            { id: 'leeches', label: 'Leeches' },
-          ].map((s) => (
+      {/* Consolidated Filter Row: Category tabs + Word Count & Status dropdown */}
+      <div className="mb-4 flex items-center justify-between gap-3 border-b border-black/[0.08] pb-2 dark:border-white/[0.08]">
+        {/* Category Horizontal Scrolling Tabs */}
+        <div className="flex items-center gap-3.5 overflow-x-auto pb-0.5 scrollbar-none mask-edge-fade min-w-0 flex-1">
+          {categories.map((cat) => (
             <button
-              key={s.id}
-              onClick={() => setSelectedStatus(s.id)}
-              className={`pb-0.5 font-medium transition cursor-pointer ${
-                selectedStatus === s.id
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`pb-0.5 text-xs font-medium capitalize whitespace-nowrap transition cursor-pointer shrink-0 ${
+                selectedCategory === cat
                   ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
                   : 'text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7]'
               }`}
             >
-              {s.label}
+              {cat === 'all'
+                ? 'All Categories'
+                : cat === 'preferred'
+                ? `Preferred (${preferredCategories?.length || 0})`
+                : cat}
             </button>
           ))}
         </div>
 
-        <span className="text-[#8C8272] font-medium text-[11px]">
-          Showing {filteredWords.length} words
-        </span>
+        {/* Word Count and Compact Status Filter Dropdown */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          <span className="text-[#8C8272] font-medium text-[11px] whitespace-nowrap">
+            Showing {filteredWords.length} words
+          </span>
+
+          <div className="relative shrink-0" ref={statusMenuRef}>
+            <button
+              id="status-filter-btn"
+              type="button"
+              onClick={() => setIsStatusMenuOpen((prev) => !prev)}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium text-[#1B1815] dark:text-[#F6F1E7] rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-[#FAF6EE] dark:bg-[#201D1A] hover:border-[#D98A93] transition-colors cursor-pointer"
+              title="Filter by learning status"
+              aria-haspopup="true"
+              aria-expanded={isStatusMenuOpen}
+            >
+              <span>{STATUS_OPTIONS.find((o) => o.id === selectedStatus)?.label || 'Status'}</span>
+              <ChevronDown className={`w-3.5 h-3.5 text-[#8C8272] transition-transform duration-150 ${isStatusMenuOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {isStatusMenuOpen && (
+              <div className="absolute right-0 top-full mt-1.5 z-30 min-w-[130px] rounded-lg border border-black/[0.08] dark:border-white/[0.08] bg-[#FAF6EE] dark:bg-[#201D1A] py-1 shadow-lg">
+                {STATUS_OPTIONS.map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => {
+                      setSelectedStatus(f.id);
+                      setIsStatusMenuOpen(false);
+                    }}
+                    className={`w-full px-3 py-1.5 text-left text-xs transition-colors cursor-pointer flex items-center justify-between ${
+                      selectedStatus === f.id
+                        ? 'text-[#D98A93] font-medium'
+                        : 'text-[#1B1815] dark:text-[#F6F1E7] hover:bg-black/[0.04] dark:hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    <span>{f.label}</span>
+                    {selectedStatus === f.id && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#D98A93]" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Words List */}
@@ -216,15 +262,15 @@ export const WordListView: React.FC<WordListViewProps> = ({
                 className="group rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-3.5 transition hover:border-[#D98A93]/40 dark:border-white/[0.08] dark:bg-[#221E1B] cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <h4 className="font-fraunces text-base font-medium text-[#1B1815] dark:text-[#F6F1E7]">
-                        {word.word}
-                      </h4>
-                      <span className="font-mono-ipa text-xs text-[#8C8272]">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-fraunces text-base font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                      {word.word}
+                    </h4>
+                    <div className="mt-0.5 flex items-center gap-1.5 min-w-0">
+                      <span className="font-mono-ipa text-xs text-[#8C8272] whitespace-nowrap shrink-0">
                         {word.phonetic}
                       </span>
-                      <span className="text-xs italic text-[#8C8272]">
+                      <span className="text-xs italic text-[#8C8272] whitespace-nowrap overflow-hidden text-ellipsis min-w-0">
                         · {word.category}
                       </span>
                     </div>
