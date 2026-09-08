@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feather, Moon, Sun, Flame, Snowflake, Volume2, Settings, Download } from 'lucide-react';
+import { Feather, Moon, Sun, Flame, Snowflake, Volume2, Settings, Download, Sparkles } from 'lucide-react';
 import type { TabType, BeforeInstallPromptEvent } from '../types';
 
 interface HeaderProps {
@@ -11,6 +11,8 @@ interface HeaderProps {
   freezeAvailable?: boolean;
   speechRate: number;
   onChangeSpeechRate: (rate: number) => void;
+  soundHapticsEnabled?: boolean;
+  onToggleSoundHaptics?: () => void;
   onOpenPreferences: () => void;
   installPromptEvent?: BeforeInstallPromptEvent | null;
   onInstall?: () => void;
@@ -25,6 +27,8 @@ export const Header: React.FC<HeaderProps> = ({
   freezeAvailable = false,
   speechRate,
   onChangeSpeechRate,
+  soundHapticsEnabled = true,
+  onToggleSoundHaptics,
   onOpenPreferences,
   installPromptEvent = null,
   onInstall,
@@ -140,6 +144,20 @@ export const Header: React.FC<HeaderProps> = ({
             <Volume2 className="w-3.5 h-3.5 text-[#D98A93]" />
             <span>{speechRate === 0.85 ? '0.85x' : '1.0x'}</span>
           </button>
+
+          {/* Sound & Haptics Toggle */}
+          {onToggleSoundHaptics && (
+            <button
+              id="sound-haptics-toggle"
+              onClick={onToggleSoundHaptics}
+              className="hidden sm:flex items-center gap-1.5 rounded-lg border border-black/[0.08] px-2.5 py-1 text-xs font-medium text-[#8C8272] hover:text-[#1B1815] dark:border-white/[0.08] dark:text-[#8C8272] dark:hover:text-[#F6F1E7] cursor-pointer transition-colors"
+              title={`Sound & Haptics: ${soundHapticsEnabled ? 'On' : 'Off'}`}
+              aria-label={`Sound and haptics feedback ${soundHapticsEnabled ? 'enabled' : 'disabled'}`}
+            >
+              <Sparkles className={`w-3.5 h-3.5 ${soundHapticsEnabled ? 'text-[#8FB996]' : 'text-[#8C8272]/50'}`} />
+              <span>{soundHapticsEnabled ? 'SFX On' : 'SFX Off'}</span>
+            </button>
+          )}
 
           {/* Native Install Button: plain icon+text, no pill, consistent with existing header icon buttons */}
           {canInstall && (

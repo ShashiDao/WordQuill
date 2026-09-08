@@ -25,6 +25,7 @@ import {
   getTodayString,
   getSetting,
   getLeeches,
+  getActivityCalendar,
   exportDatabaseBackup,
 } from '../db/operations';
 import { useBackupRestore } from '../hooks/useBackupRestore';
@@ -36,8 +37,11 @@ interface ProgressDashboardProps {
   todayProgress: DailyProgress | null;
   speechRate: number;
   dailyGoal?: number;
+  soundHapticsEnabled?: boolean;
+  onToggleSoundHaptics?: () => void;
   onChangeSpeechRate: (rate: number) => void;
   onDataUpdated: () => void;
+  onNavigateToFlashcardsWithFilter?: (filter: string) => void;
 }
 
 export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
@@ -47,8 +51,11 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   todayProgress,
   speechRate,
   dailyGoal: propDailyGoal,
+  soundHapticsEnabled = true,
+  onToggleSoundHaptics,
   onChangeSpeechRate,
   onDataUpdated,
+  onNavigateToFlashcardsWithFilter,
 }) => {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
@@ -139,6 +146,92 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
       percent: Math.round((data.mastered / data.total) * 100),
     }));
   }, [words, progressMap]);
+
+  // Activity calendar records for 12 weeks / 84 days
+  const [calendarRecords, setCalendarRecords] = useState<DailyProgress[]>([]);
+
+  useEffect(() => {
+    getActivityCalendar(84).then((recs) => {
+      setCalendarRecords(recs);
+    });
+  }, [todayProgress, streak]);
+
+  // Session-dismissible leech callout
+  const [isLeechAlertDismissed, setIsLeechAlertDismissed] = useState<boolean>(() => {
+    try {
+      return sessionStorage.getItem('wordquill_leeches_dismissed') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const handleDismissLeechAlert = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsLeechAlertDismissed(true);
+    try {
+      sessionStorage.setItem('wordquill_leeches_dismissed', 'true');
+    } catch {}
+  };
+
+  // Compute 12 columns of 7 days (Sunday to Saturday) ending on current week
+  const heatmapData = React.useMemo(() => {
+    const progressMapByDate = new Map<string, number>();
+    calendarRecords.forEach((r) => {
+      progressMapByDate.set(r.date, r.wordsReviewed || 0);
+    });
+
+    const now = new Date();
+    // Align so the final column ends on Saturday of current week
+    const currentDayOfWeek = now.getDay(); // 0 (Sun) to 6 (Sat)
+    const daysUntilEndOfWeek = 6 - currentDayOfWeek;
+    const endDate = new Date(now);
+    endDate.setDate(now.getDate() + daysUntilEndOfWeek);
+
+    // 84 days total (12 weeks * 7 days)
+    const startDate = new Date(endDate);
+    startDate.setDate(endDate.getDate() - 83);
+
+    const columns: {
+      date: string;
+      formattedDate: string;
+      dayOfWeek: number;
+      count: number;
+      isFuture: boolean;
+      isToday: boolean;
+    }[][] = [];
+
+    const todayStr = getTodayString(now);
+    let totalReviewed = 0;
+
+    for (let w = 0; w < 12; w++) {
+      const colDays: (typeof columns)[0] = [];
+      for (let d = 0; d < 7; d++) {
+        const current = new Date(startDate);
+        current.setDate(startDate.getDate() + (w * 7 + d));
+        const dateStr = getTodayString(current);
+        const isFuture = dateStr > todayStr;
+        const isToday = dateStr === todayStr;
+        const count = isFuture ? 0 : progressMapByDate.get(dateStr) || 0;
+        if (!isFuture) totalReviewed += count;
+
+        colDays.push({
+          date: dateStr,
+          formattedDate: current.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          }),
+          dayOfWeek: d,
+          count,
+          isFuture,
+          isToday,
+        });
+      }
+      columns.push(colDays);
+    }
+
+    return { columns, totalReviewed };
+  }, [calendarRecords]);
 
   const handleResetData = async () => {
     setIsResetting(true);
@@ -260,7 +353,144 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
             />
           </div>
         </div>
+
+        {/* 12-Week Activity Heatmap (GitHub-style 84 days) */}
+        <div className="mt-5 pt-4 border-t border-black/[0.06] dark:border-white/[0.06]">
+          <div className="flex items-center justify-between mb-2.5">
+            <div className="flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-[#8C8272]" />
+              <span className="text-[11px] font-medium text-[#8C8272] uppercase tracking-wider">
+                12-Week Activity
+              </span>
+            </div>
+            <span className="text-[11px] text-[#8C8272]">
+              {heatmapData.totalReviewed} words reviewed
+            </span>
+          </div>
+
+          {/* Heatmap Grid */}
+          <div className="overflow-x-auto pb-1 scrollbar-none mask-edge-fade">
+            <div className="inline-flex gap-1.5 items-center">
+              {/* Day of week labels */}
+              <div className="flex flex-col gap-1 sm:gap-1.5 text-[9px] font-mono text-[#8C8272] pr-1 select-none">
+                <span className="h-3 w-4 sm:h-3.5 leading-3">Sun</span>
+                <span className="h-3 w-4 sm:h-3.5 leading-3">Mon</span>
+                <span className="h-3 w-4 sm:h-3.5 leading-3">Tue</span>
+                <span className="h-3 w-4 sm:h-3.5 leading-3">Wed</span>
+                <span className="h-3 w-4 sm:h-3.5 leading-3">Thu</span>
+                <span className="h-3 w-4 sm:h-3.5 leading-3">Fri</span>
+                <span className="h-3 w-4 sm:h-3.5 leading-3">Sat</span>
+              </div>
+
+              {/* 12 Week Columns */}
+              <div className="flex gap-1 sm:gap-1.5">
+                {heatmapData.columns.map((col, colIdx) => (
+                  <div key={colIdx} className="flex flex-col gap-1 sm:gap-1.5">
+                    {col.map((day) => {
+                      let colorClass =
+                        'bg-black/[0.04] dark:bg-white/[0.05] border border-black/[0.04] dark:border-white/[0.04]';
+                      if (day.isFuture) {
+                        colorClass =
+                          'opacity-20 bg-transparent border border-dashed border-black/[0.06] dark:border-white/[0.06]';
+                      } else if (day.count >= 20) {
+                        colorClass = 'bg-[#D98A93] border border-[#D98A93]';
+                      } else if (day.count >= 10) {
+                        colorClass = 'bg-[#8FB996] border border-[#8FB996]';
+                      } else if (day.count >= 5) {
+                        colorClass = 'bg-[#8FB996]/70 border border-[#8FB996]/80';
+                      } else if (day.count >= 1) {
+                        colorClass = 'bg-[#8FB996]/35 border border-[#8FB996]/40';
+                      }
+
+                      return (
+                        <div
+                          key={day.date}
+                          className={`h-3 w-3 sm:h-3.5 sm:w-3.5 rounded-[3px] transition-transform hover:scale-125 cursor-pointer ${
+                            day.isToday ? 'ring-1 ring-[#D98A93]' : ''
+                          } ${colorClass}`}
+                          title={
+                            day.isFuture
+                              ? `${day.formattedDate} (Future)`
+                              : `${day.formattedDate}: ${day.count} word${day.count === 1 ? '' : 's'} reviewed`
+                          }
+                        />
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Legend */}
+          <div className="mt-3 flex items-center justify-between text-[11px] text-[#8C8272]">
+            <span>Past 84 days</span>
+            <div className="flex items-center gap-1.5">
+              <span>Less</span>
+              <div
+                className="h-2.5 w-2.5 rounded-[2px] bg-black/[0.04] dark:bg-white/[0.05] border border-black/[0.04] dark:border-white/[0.04]"
+                title="0 words"
+              />
+              <div
+                className="h-2.5 w-2.5 rounded-[2px] bg-[#8FB996]/35 border border-[#8FB996]/40"
+                title="1–4 words"
+              />
+              <div
+                className="h-2.5 w-2.5 rounded-[2px] bg-[#8FB996]/70 border border-[#8FB996]/80"
+                title="5–9 words"
+              />
+              <div
+                className="h-2.5 w-2.5 rounded-[2px] bg-[#8FB996] border border-[#8FB996]"
+                title="10–19 words"
+              />
+              <div
+                className="h-2.5 w-2.5 rounded-[2px] bg-[#D98A93] border border-[#D98A93]"
+                title="20+ words"
+              />
+              <span>More</span>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Proactive Leech Callout (dismissible for this session) */}
+      {leechesCount > 0 && !isLeechAlertDismissed && (
+        <div
+          id="progress-leech-callout"
+          onClick={() => {
+            onNavigateToFlashcardsWithFilter?.('leeches');
+          }}
+          className="group flex items-center justify-between gap-3 rounded-xl border border-[#D98A93]/40 bg-[#FAF6EE] dark:bg-[#221E1B] p-3.5 shadow-sm hover:border-[#D98A93] transition cursor-pointer"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#D98A93]/15 text-[#D98A93]">
+              <AlertCircle className="w-4 h-4" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                {leechesCount} {leechesCount === 1 ? 'word keeps' : 'words keep'} slipping — review them now
+              </p>
+              <p className="text-[11px] text-[#8C8272] truncate">
+                Tap to jump straight into targeted flashcard review for slipping words
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="hidden sm:inline text-xs font-medium text-[#D98A93] group-hover:underline">
+              Review now &rarr;
+            </span>
+            <button
+              type="button"
+              onClick={handleDismissLeechAlert}
+              className="p-1 rounded-md text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] cursor-pointer"
+              aria-label="Dismiss leech callout for this session"
+              title="Dismiss for this session"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Primary Metrics Grid */}
       <div className={`grid grid-cols-2 gap-3 sm:grid-cols-3 ${leechesCount > 0 ? 'lg:grid-cols-6' : 'lg:grid-cols-5'}`}>
@@ -308,9 +538,13 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
         </div>
 
         {leechesCount > 0 && (
-          <div className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B]">
+          <div
+            onClick={() => onNavigateToFlashcardsWithFilter?.('leeches')}
+            className="rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-4 dark:border-white/[0.08] dark:bg-[#221E1B] cursor-pointer hover:border-[#D98A93] transition group"
+            title="Click to review leeches in Flashcards"
+          >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-[#8C8272]">
+              <span className="text-xs font-medium text-[#8C8272] group-hover:text-[#D98A93] transition-colors">
                 Leeches
               </span>
               <AlertCircle className="w-4 h-4 text-[#D98A93]" />
@@ -318,8 +552,8 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
             <div className="mt-2 font-fraunces text-2xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
               {leechesCount}
             </div>
-            <span className="text-[11px] font-medium text-[#D98A93]">
-              needs review
+            <span className="text-[11px] font-medium text-[#D98A93] group-hover:underline">
+              review now &rarr;
             </span>
           </div>
         )}
@@ -449,6 +683,35 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                 <Volume2 className="w-3.5 h-3.5" />
               </button>
             </div>
+          </div>
+
+          {/* Sound & Haptics Feedback */}
+          <div className="flex items-center justify-between border-t border-black/[0.06] pt-3 dark:border-white/[0.06]">
+            <div>
+              <span className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                Sound & Haptics Feedback
+              </span>
+              <p className="text-[11px] text-[#8C8272]">
+                Audio chime and vibration cues for correct answers and card mastery
+              </p>
+            </div>
+            {onToggleSoundHaptics && (
+              <button
+                id="toggle-sound-haptics-dashboard"
+                onClick={onToggleSoundHaptics}
+                className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors cursor-pointer shrink-0 ${
+                  soundHapticsEnabled ? 'bg-[#8FB996]' : 'bg-black/20 dark:bg-white/20'
+                }`}
+                title={`Sound & Haptics: ${soundHapticsEnabled ? 'Enabled' : 'Disabled'}`}
+                aria-label={`Sound and haptics feedback ${soundHapticsEnabled ? 'enabled' : 'disabled'}`}
+              >
+                <span
+                  className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                    soundHapticsEnabled ? 'translate-x-4.5' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            )}
           </div>
 
           {/* Offline Database Status */}

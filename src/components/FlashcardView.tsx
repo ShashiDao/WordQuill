@@ -10,6 +10,8 @@ import {
   CheckCircle,
   HelpCircle,
   BookOpen,
+  AlertCircle,
+  X,
 } from 'lucide-react';
 import type { WordItem, UserWordProgress } from '../types';
 import { speakWord } from '../utils/speech';
@@ -18,8 +20,10 @@ import {
   setWordStatus,
   toggleWordBookmark,
   getDueWords,
+  getLeeches,
   incrementDailyWordsReviewed,
 } from '../db/operations';
+import { triggerSuccessFeedback } from '../utils/feedback';
 
 const STATUS_OPTIONS: { id: string; label: string }[] = [
   { id: 'learning', label: 'Learning' },
@@ -27,6 +31,7 @@ const STATUS_OPTIONS: { id: string; label: string }[] = [
   { id: 'starred', label: 'Starred' },
   { id: 'new', label: 'New' },
   { id: 'mastered', label: 'Mastered' },
+  { id: 'leeches', label: 'Leeches' },
   { id: 'custom', label: 'Custom' },
 ];
 
@@ -37,6 +42,8 @@ interface FlashcardViewProps {
   preferredCategories?: string[];
   initialWordId?: string | null;
   onClearInitialWord?: () => void;
+  initialStatusFilter?: string | null;
+  onClearInitialStatusFilter?: () => void;
   onDataUpdated: () => void;
   onNavigateToQuiz?: () => void;
 }
@@ -48,6 +55,8 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
   preferredCategories,
   initialWordId,
   onClearInitialWord,
+  initialStatusFilter,
+  onClearInitialStatusFilter,
   onDataUpdated,
   onNavigateToQuiz,
 }) => {
@@ -116,6 +125,8 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
           const prog = pMap.get(w.id);
           return !prog || prog.status === 'new';
         });
+      } else if (statusFilter === 'leeches') {
+        pool = getLeeches(words, pMap);
       } else if (statusFilter === 'custom') {
         pool = words.filter((w) => w.isCustom);
       } else {
@@ -160,6 +171,35 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
       onClearInitialWord?.();
     }
   }, [initialWordId, words, onClearInitialWord]);
+
+  // Navigate to specific status filter requested externally (e.g. leeches callout from ProgressDashboard)
+  useEffect(() => {
+    if (initialStatusFilter) {
+      setSelectedStatusFilter(initialStatusFilter);
+      onClearInitialStatusFilter?.();
+    }
+  }, [initialStatusFilter, onClearInitialStatusFilter]);
+
+  const leeches = useMemo(() => getLeeches(words, progressMap), [words, progressMap]);
+  const [isLeechAlertDismissed, setIsLeechAlertDismissed] = useState<boolean>(() => {
+    try {
+      return sessionStorage.getItem('wordquill_leeches_dismissed') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const handleDismissLeechAlert = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsLeechAlertDismissed(true);
+    try {
+      sessionStorage.setItem('wordquill_leeches_dismissed', 'true');
+    } catch {}
+  };
+
+  const handleOpenLeeches = () => {
+    setSelectedStatusFilter('leeches');
+  };
 
   const filteredWords = cardPool;
 
@@ -236,6 +276,9 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
     if (!currentWord) return;
     const isCorrect = status === 'mastered';
     await recordWordReview(currentWord, isCorrect);
+    if (status === 'mastered') {
+      triggerSuccessFeedback();
+    }
     setActionFeedback(status === 'mastered' ? 'Mastered! Scheduled ahead ✨' : 'Reviewing tomorrow 📖');
     setTimeout(() => setActionFeedback(null), 1500);
     onDataUpdated();
@@ -431,6 +474,43 @@ export const FlashcardView: React.FC<FlashcardViewProps> = ({
           )}
         </div>
       </div>
+
+      {/* Proactive Leech Callout (dismissible for this session) */}
+      {leeches.length > 0 && !isLeechAlertDismissed && selectedStatusFilter !== 'leeches' && (
+        <div
+          id="flashcard-leech-callout"
+          onClick={handleOpenLeeches}
+          className="group mb-3.5 flex items-center justify-between gap-3 rounded-xl border border-[#D98A93]/40 bg-[#FAF6EE] dark:bg-[#221E1B] p-3 shadow-sm hover:border-[#D98A93] transition cursor-pointer"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#D98A93]/15 text-[#D98A93]">
+              <AlertCircle className="w-4 h-4" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                {leeches.length} {leeches.length === 1 ? 'word keeps' : 'words keep'} slipping — review them now
+              </p>
+              <p className="text-[11px] text-[#8C8272] truncate">
+                Targeted practice helps overcome difficult recall hurdles
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="hidden sm:inline text-xs font-medium text-[#D98A93] group-hover:underline">
+              Review now &rarr;
+            </span>
+            <button
+              type="button"
+              onClick={handleDismissLeechAlert}
+              className="p-1 rounded-md text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] cursor-pointer"
+              aria-label="Dismiss leech callout for this session"
+              title="Dismiss for this session"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Empty State if filter yields no words */}
       {filteredWords.length === 0 ? (

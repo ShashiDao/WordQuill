@@ -14,6 +14,7 @@ import type { WordItem, UserWordProgress, QuizQuestion } from '../types';
 import { speakWord } from '../utils/speech';
 import { shuffle } from '../utils/shuffle';
 import { recordQuizSession, getDueWords, isLeech } from '../db/operations';
+import { triggerSuccessFeedback } from '../utils/feedback';
 
 const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -359,6 +360,9 @@ export const QuizView: React.FC<QuizViewProps> = ({
     setIsAnswered(true);
 
     const isCorrect = option.trim().toLowerCase() === currentQ.correctAnswer.trim().toLowerCase();
+    if (isCorrect) {
+      triggerSuccessFeedback();
+    }
     const newResults = [...sessionResults, { word: currentQ.wordItem, isCorrect }];
     setSessionResults(newResults);
 
@@ -380,6 +384,9 @@ export const QuizView: React.FC<QuizViewProps> = ({
     setIsAnswered(true);
 
     const isCorrect = trimmed.toLowerCase() === currentQ.correctAnswer.trim().toLowerCase();
+    if (isCorrect) {
+      triggerSuccessFeedback();
+    }
     const newResults = [...sessionResults, { word: currentQ.wordItem, isCorrect }];
     setSessionResults(newResults);
 

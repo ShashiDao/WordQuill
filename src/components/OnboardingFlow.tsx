@@ -22,6 +22,7 @@ export interface OnboardingPreferences {
   speechRate: number;
   reminderEnabled?: boolean;
   reminderTime?: string;
+  soundHapticsEnabled?: boolean;
 }
 
 interface OnboardingFlowProps {
@@ -146,6 +147,10 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
     return initialPreferences?.speechRate || 0.85;
   });
 
+  const [soundHapticsEnabled, setSoundHapticsEnabled] = useState<boolean>(() => {
+    return initialPreferences?.soundHapticsEnabled ?? true;
+  });
+
   const [reminderEnabled, setReminderEnabled] = useState<boolean>(() => {
     return initialPreferences?.reminderEnabled ?? false;
   });
@@ -237,6 +242,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
       preferredCategories: opt.categories,
       dailyGoal: opt.dailyGoal,
       speechRate,
+      soundHapticsEnabled,
       reminderEnabled,
       reminderTime,
     });
@@ -250,6 +256,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
           : ALL_CATEGORIES.map((c) => c.id),
       dailyGoal,
       speechRate,
+      soundHapticsEnabled,
       reminderEnabled,
       reminderTime,
     });
@@ -260,6 +267,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
       preferredCategories: ALL_CATEGORIES.map((c) => c.id),
       dailyGoal: 10,
       speechRate: 0.85,
+      soundHapticsEnabled: true,
       reminderEnabled: false,
       reminderTime: '19:00',
     });
@@ -718,6 +726,34 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
                 Pronunciation test played using native Web Speech API.
               </p>
             )}
+          </div>
+
+          {/* Sound & Haptic Feedback */}
+          <div className="space-y-2 pt-2">
+            <div className="flex items-center justify-between p-3.5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-[#FAF6EE] dark:bg-[#221E1B]">
+              <div className="space-y-0.5 pr-3">
+                <span className="font-medium text-xs text-[#1B1815] dark:text-[#F6F1E7]">
+                  Sound & Haptic Feedback
+                </span>
+                <p className="text-[11px] text-[#8C8272]">
+                  Subtle audio chime and vibration on correct answers and card mastery
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSoundHapticsEnabled(!soundHapticsEnabled)}
+                className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors cursor-pointer shrink-0 ${
+                  soundHapticsEnabled ? 'bg-[#8FB996]' : 'bg-black/20 dark:bg-white/20'
+                }`}
+                aria-label={`Sound and haptics ${soundHapticsEnabled ? 'enabled' : 'disabled'}`}
+              >
+                <span
+                  className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+                    soundHapticsEnabled ? 'translate-x-4.5' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
           </div>
 
           {/* Daily Reminder (Opt-in Notification API) */}

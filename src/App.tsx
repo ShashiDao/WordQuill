@@ -62,11 +62,13 @@ export default function App() {
   const [dailyGoal, setDailyGoal] = useState<number>(10);
   const [reminderEnabled, setReminderEnabled] = useState<boolean>(false);
   const [reminderTime, setReminderTime] = useState<string>('19:00');
+  const [soundHapticsEnabled, setSoundHapticsEnabled] = useState<boolean>(true);
 
   // Native PWA install prompt & iOS install tip states
   const [installPromptEvent, setInstallPromptEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [showIosTip, setShowIosTip] = useState<boolean>(false);
   const [pendingFlashcardWordId, setPendingFlashcardWordId] = useState<string | null>(null);
+  const [pendingFlashcardStatusFilter, setPendingFlashcardStatusFilter] = useState<string | null>(null);
 
   // Capture native beforeinstallprompt on mount
   useEffect(() => {
@@ -145,12 +147,14 @@ export default function App() {
         const storedSpeech = await getSetting<number>('speechRate', speechRate);
         const remEnabled = await getSetting<boolean>('reminderEnabled', false);
         const remTime = await getSetting<string>('reminderTime', '19:00');
+        const soundHaptics = await getSetting<boolean>('soundHapticsEnabled', true);
 
         setPreferredCategories(cats);
         setDailyGoal(goal);
         if (storedSpeech) setSpeechRate(storedSpeech);
         setReminderEnabled(remEnabled);
         setReminderTime(remTime);
+        setSoundHapticsEnabled(soundHaptics);
 
         // Foreground opt-in reminder check
         if (
@@ -247,12 +251,35 @@ export default function App() {
     setSetting('speechRate', rate);
   };
 
+  const handleToggleSoundHaptics = async () => {
+    const nextVal = !soundHapticsEnabled;
+    setSoundHapticsEnabled(nextVal);
+    await setSetting('soundHapticsEnabled', nextVal);
+    try {
+      localStorage.setItem('wordquill_sound_haptics', nextVal ? 'true' : 'false');
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleNavigateToFlashcardsWithFilter = (filter: string) => {
+    setPendingFlashcardStatusFilter(filter);
+    setCurrentTab('flashcards');
+  };
+
   const handleCompleteOnboarding = async (prefs: OnboardingPreferences) => {
     try {
       await setSetting('onboardingComplete', true);
       await setSetting('preferredCategories', prefs.preferredCategories);
       await setSetting('dailyGoal', prefs.dailyGoal);
       await setSetting('speechRate', prefs.speechRate);
+      if (prefs.soundHapticsEnabled !== undefined) {
+        await setSetting('soundHapticsEnabled', prefs.soundHapticsEnabled);
+        setSoundHapticsEnabled(prefs.soundHapticsEnabled);
+        try {
+          localStorage.setItem('wordquill_sound_haptics', prefs.soundHapticsEnabled ? 'true' : 'false');
+        } catch {}
+      }
       if (prefs.reminderEnabled !== undefined) {
         await setSetting('reminderEnabled', prefs.reminderEnabled);
         setReminderEnabled(prefs.reminderEnabled);
@@ -404,6 +431,8 @@ export default function App() {
         streak={streak}
         freezeAvailable={freezeAvailable}
         speechRate={speechRate}
+        soundHapticsEnabled={soundHapticsEnabled}
+        onToggleSoundHaptics={handleToggleSoundHaptics}
         onChangeSpeechRate={handleSpeechRateChange}
         onOpenPreferences={() => setShowPreferences(true)}
         installPromptEvent={installPromptEvent}
@@ -430,6 +459,8 @@ export default function App() {
               preferredCategories={preferredCategories}
               initialWordId={pendingFlashcardWordId}
               onClearInitialWord={() => setPendingFlashcardWordId(null)}
+              initialStatusFilter={pendingFlashcardStatusFilter}
+              onClearInitialStatusFilter={() => setPendingFlashcardStatusFilter(null)}
               onDataUpdated={loadData}
               onNavigateToQuiz={() => setCurrentTab('quiz')}
             />
@@ -465,8 +496,11 @@ export default function App() {
               todayProgress={todayProgress}
               speechRate={speechRate}
               dailyGoal={dailyGoal}
+              soundHapticsEnabled={soundHapticsEnabled}
+              onToggleSoundHaptics={handleToggleSoundHaptics}
               onChangeSpeechRate={handleSpeechRateChange}
               onDataUpdated={loadData}
+              onNavigateToFlashcardsWithFilter={handleNavigateToFlashcardsWithFilter}
             />
           )}
         </Suspense>
@@ -485,6 +519,7 @@ export default function App() {
             speechRate,
             reminderEnabled,
             reminderTime,
+            soundHapticsEnabled,
           }}
           onComplete={handleCompleteOnboarding}
           onClose={() => setShowPreferences(false)}

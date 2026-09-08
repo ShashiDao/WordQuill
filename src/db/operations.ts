@@ -540,6 +540,19 @@ export async function calculateStreak(): Promise<number> {
   return currentStreak;
 }
 
+/**
+ * Fetches the last `days` days of DailyProgress records from db.progress.
+ * Missing dates have no record (treated as zero activity). Does not backfill empty rows.
+ */
+export async function getActivityCalendar(days: number): Promise<DailyProgress[]> {
+  const cutoffDateStr = getPastDateString(days - 1);
+  const records = await db.progress
+    .where('date')
+    .aboveOrEqual(cutoffDateStr)
+    .toArray();
+  return records.sort((a, b) => a.date.localeCompare(b.date));
+}
+
 export async function getSetting<T>(key: string, defaultValue: T): Promise<T> {
   const setting = await db.settings.get(key);
   if (!setting) return defaultValue;
