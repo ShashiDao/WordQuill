@@ -10,8 +10,11 @@ import {
   BookOpen,
   Target,
   Bell,
+  AlertCircle,
 } from 'lucide-react';
 import { speakWord } from '../utils/speech';
+import { useBackupRestore } from '../hooks/useBackupRestore';
+import { getSetting } from '../db/operations';
 
 export interface OnboardingPreferences {
   preferredCategories: string[];
@@ -26,6 +29,7 @@ interface OnboardingFlowProps {
   initialPreferences?: OnboardingPreferences;
   onComplete: (prefs: OnboardingPreferences) => void;
   onClose?: () => void;
+  onRestore?: () => Promise<void> | void;
 }
 
 const ALL_CATEGORIES = [
@@ -56,6 +60,33 @@ const ALL_CATEGORIES = [
   },
 ];
 
+const PURPOSE_OPTIONS = [
+  {
+    id: 'exam',
+    title: 'Exam prep (GRE/SAT)',
+    desc: 'High-yield advanced and academic terminology for competitive tests',
+    pace: '15 words / day',
+    categories: ['advanced', 'academic'],
+    dailyGoal: 15,
+  },
+  {
+    id: 'writing',
+    title: 'Better writing & speaking',
+    desc: 'Articulate diction, rhetoric, and literary nuance for vivid expression',
+    pace: '10 words / day',
+    categories: ['literary', 'eloquence'],
+    dailyGoal: 10,
+  },
+  {
+    id: 'curiosity',
+    title: 'General curiosity',
+    desc: 'Broad, eclectic expansion spanning all five curated domains',
+    pace: '10 words / day',
+    categories: ALL_CATEGORIES.map((c) => c.id),
+    dailyGoal: 10,
+  },
+];
+
 const DAILY_GOALS = [
   { count: 5, label: '5 words', pace: 'Gentle & steady' },
   { count: 10, label: '10 words', pace: 'Recommended balance' },
@@ -68,8 +99,37 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
   initialPreferences,
   onComplete,
   onClose,
+  onRestore,
 }) => {
   const [step, setStep] = useState<1 | 2 | 3>(1);
+
+  const {
+    fileInputRef,
+    isImporting,
+    pendingImportData,
+    backupFeedback,
+    setBackupFeedback,
+    handleFileSelect,
+    confirmImport,
+    cancelImport,
+    openFilePicker,
+  } = useBackupRestore(async () => {
+    if (onRestore) {
+      await onRestore();
+    } else {
+      const restoredCategories = await getSetting<string[]>(
+        'preferredCategories',
+        ALL_CATEGORIES.map((c) => c.id)
+      );
+      const restoredGoal = await getSetting<number>('dailyGoal', 10);
+      const restoredSpeech = await getSetting<number>('speechRate', 0.85);
+      onComplete({
+        preferredCategories: restoredCategories,
+        dailyGoal: restoredGoal,
+        speechRate: restoredSpeech,
+      });
+    }
+  });
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>(() => {
     if (initialPreferences?.preferredCategories && initialPreferences.preferredCategories.length > 0) {
@@ -172,6 +232,16 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
     setHasTestedAudio(true);
   };
 
+  const handleSelectPurpose = (opt: (typeof PURPOSE_OPTIONS)[number]) => {
+    onComplete({
+      preferredCategories: opt.categories,
+      dailyGoal: opt.dailyGoal,
+      speechRate,
+      reminderEnabled,
+      reminderTime,
+    });
+  };
+
   const handleFinish = () => {
     onComplete({
       preferredCategories:
@@ -199,34 +269,37 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
     <div className="w-full max-w-lg mx-auto">
       {/* Step Indicators */}
       <div className="mb-6 flex items-center justify-between gap-2 border-b border-black/[0.08] pb-3 dark:border-white/[0.08]">
-        <div className="flex items-center gap-2.5 sm:gap-4 text-xs font-medium min-w-0">
-          {[
-            { num: 1, label: 'Welcome', shortLabel: 'Welcome' },
-            { num: 2, label: 'Lexicon', shortLabel: 'Lexicon' },
-            { num: 3, label: 'Daily Goal', shortLabel: 'Goal' },
-          ].map((s) => (
-            <button
-              key={s.num}
-              onClick={() => {
-                if (!isFirstLaunch) setStep(s.num as 1 | 2 | 3);
-              }}
-              disabled={isFirstLaunch}
-              className={`flex items-center gap-1 sm:gap-1.5 pb-0.5 transition cursor-pointer whitespace-nowrap shrink-0 ${
-                step === s.num
-                  ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
-                  : step > s.num
-                  ? 'text-[#8FB996]'
-                  : 'text-[#8C8272]'
-              }`}
-            >
-              <span className="text-[11px] font-mono-ipa">0{s.num}</span>
-              <span>
-                <span className="hidden sm:inline">{s.label}</span>
-                <span className="sm:hidden">{s.shortLabel}</span>
-              </span>
-            </button>
-          ))}
-        </div>
+        {step > 1 || !isFirstLaunch ? (
+          <div className="flex items-center gap-2.5 sm:gap-4 text-xs font-medium min-w-0">
+            {[
+              { num: 1, label: 'Welcome', shortLabel: 'Welcome' },
+              { num: 2, label: 'Lexicon', shortLabel: 'Lexicon' },
+              { num: 3, label: 'Daily Goal', shortLabel: 'Goal' },
+            ].map((s) => (
+              <button
+                key={s.num}
+                onClick={() => {
+                  setStep(s.num as 1 | 2 | 3);
+                }}
+                className={`flex items-center gap-1 sm:gap-1.5 pb-0.5 transition cursor-pointer whitespace-nowrap shrink-0 ${
+                  step === s.num
+                    ? 'text-[#1B1815] dark:text-[#F6F1E7] border-b border-[#D98A93]'
+                    : step > s.num
+                    ? 'text-[#8FB996]'
+                    : 'text-[#8C8272]'
+                }`}
+              >
+                <span className="text-[11px] font-mono-ipa">0{s.num}</span>
+                <span>
+                  <span className="hidden sm:inline">{s.label}</span>
+                  <span className="sm:hidden">{s.shortLabel}</span>
+                </span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <span className="text-xs font-medium text-[#8C8272]">Quick Setup</span>
+        )}
 
         <div className="flex items-center gap-2.5 shrink-0">
           {/* Skip option on every step */}
@@ -250,7 +323,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
         </div>
       </div>
 
-      {/* Step 1: Welcome */}
+      {/* Step 1: Welcome & Quick Setup */}
       {step === 1 && (
         <div className="space-y-6">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-black/[0.08] dark:border-white/[0.08] text-[#D98A93]">
@@ -265,11 +338,11 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
               WordQuill
             </h1>
             <p className="mt-2.5 text-sm text-[#8C8272] leading-relaxed">
-              Elevate your vocabulary through spaced-repetition flashcards, adaptive retrieval quizzes, and native audio pronunciation — completely offline in your browser.
+              Build an articulate, commanding vocabulary for exams, writing, and literature. Master nuanced words through spaced repetition, adaptive recall quizzes, and native audio — completely offline in your browser.
             </p>
           </div>
 
-          <div className="space-y-3 pt-2">
+          <div className="space-y-3 pt-1">
             <div className="flex items-start gap-3 text-xs text-[#8C8272]">
               <span className="font-mono-ipa text-[#D98A93] pt-0.5">•</span>
               <div>
@@ -295,20 +368,144 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
             </div>
           </div>
 
-          <div className="pt-4 flex items-center justify-between gap-3">
+          {/* Purpose Question & Quick Setup Cards */}
+          <div className="pt-2 space-y-3">
+            <div>
+              <h2 className="font-fraunces text-lg sm:text-xl font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                What are you building your vocabulary for?
+              </h2>
+              <p className="mt-1 text-xs text-[#8C8272]">
+                Choose your focus to set up in one tap, or customize every detail yourself.
+              </p>
+            </div>
+
+            <div className="space-y-2.5">
+              {PURPOSE_OPTIONS.map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  onClick={() => handleSelectPurpose(opt)}
+                  className="w-full group rounded-xl border border-black/[0.08] bg-[#FAF6EE] p-3.5 sm:p-4 text-left transition hover:border-[#D98A93]/60 dark:border-white/[0.08] dark:bg-[#221E1B] dark:hover:border-[#D98A93]/60 cursor-pointer"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-fraunces text-base font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                        {opt.title}
+                      </span>
+                      <p className="mt-1 text-xs text-[#8C8272] leading-relaxed">
+                        {opt.desc}
+                      </p>
+                    </div>
+                    <span className="shrink-0 text-[11px] font-mono-ipa text-[#D98A93] bg-[#D98A93]/10 px-2 py-0.5 rounded-md mt-0.5">
+                      {opt.pace}
+                    </span>
+                  </div>
+                </button>
+              ))}
+
+              {/* 4th card: Let me pick myself */}
+              <button
+                type="button"
+                onClick={() => setStep(2)}
+                className="w-full group rounded-xl border border-black/[0.08] bg-transparent p-3.5 sm:p-4 text-left transition hover:border-black/[0.2] hover:bg-black/[0.02] dark:border-white/[0.08] dark:hover:border-white/[0.2] dark:hover:bg-white/[0.02] cursor-pointer"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    <span className="font-fraunces text-base font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                      Let me pick myself
+                    </span>
+                    <p className="mt-1 text-xs text-[#8C8272] leading-relaxed">
+                      Hand-pick vocabulary domains, review targets, and pronunciation pace
+                    </p>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-[#8C8272] group-hover:text-[#1B1815] dark:group-hover:text-[#F6F1E7] shrink-0 mt-1 transition-transform group-hover:translate-x-0.5" />
+                </div>
+              </button>
+            </div>
+          </div>
+
+          {/* Backup Restore Link */}
+          <div className="pt-1">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json"
+              onChange={handleFileSelect}
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={openFilePicker}
+              className="text-xs text-[#8C8272] hover:text-[#D98A93] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition cursor-pointer"
+            >
+              Already have a WordQuill backup? Restore it
+            </button>
+          </div>
+
+          {/* Pending Backup Import Confirmation */}
+          {pendingImportData && (
+            <div className="rounded-xl border border-[#D98A93]/40 bg-[#FAF6EE] dark:bg-[#221E1B] p-4 space-y-3">
+              <div className="flex items-start gap-2.5">
+                <AlertCircle className="w-4 h-4 text-[#D98A93] shrink-0 mt-0.5" />
+                <div className="text-xs">
+                  <p className="font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+                    Restore WordQuill backup?
+                  </p>
+                  <p className="text-[#8C8272] mt-0.5 text-[11px]">
+                    Contains: {pendingImportData.savedWords?.length || 0} words,{' '}
+                    {pendingImportData.progress?.length || 0} daily activity logs,{' '}
+                    {pendingImportData.settings?.length || 0} settings.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2.5 pt-1">
+                <button
+                  type="button"
+                  onClick={confirmImport}
+                  disabled={isImporting}
+                  className="rounded-lg bg-[#D98A93] px-3.5 py-1.5 text-xs font-medium text-[#1B1815] hover:opacity-90 transition cursor-pointer"
+                >
+                  {isImporting ? 'Restoring...' : 'Restore backup'}
+                </button>
+                <button
+                  type="button"
+                  onClick={cancelImport}
+                  disabled={isImporting}
+                  className="rounded-lg border border-black/[0.08] dark:border-white/[0.08] px-3 py-1.5 text-xs font-medium text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] transition cursor-pointer"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Backup feedback */}
+          {backupFeedback && (
+            <div
+              className={`rounded-xl border p-3 text-xs flex items-center justify-between gap-2 ${
+                backupFeedback.type === 'success'
+                  ? 'border-[#8FB996]/40 text-[#8FB996] bg-[#8FB996]/[0.06]'
+                  : 'border-[#D98A93]/40 text-[#D98A93] bg-[#D98A93]/[0.06]'
+              }`}
+            >
+              <span>{backupFeedback.message}</span>
+              <button
+                type="button"
+                onClick={() => setBackupFeedback(null)}
+                className="p-0.5 hover:opacity-75 cursor-pointer"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
+
+          {/* Skip setup footer link */}
+          <div className="pt-2 flex items-center justify-between gap-3 border-t border-black/[0.06] dark:border-white/[0.06]">
             <button
               onClick={handleSkip}
               className="text-xs text-[#8C8272] hover:text-[#1B1815] dark:hover:text-[#F6F1E7] transition cursor-pointer"
             >
               Skip setup
-            </button>
-
-            <button
-              onClick={() => setStep(2)}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#D98A93] px-5 py-2.5 text-xs font-medium text-[#1B1815] hover:opacity-90 active:scale-95 transition cursor-pointer"
-            >
-              <span>Get started</span>
-              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>

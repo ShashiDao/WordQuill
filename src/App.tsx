@@ -297,6 +297,33 @@ export default function App() {
     loadData();
   }, [loadData]);
 
+  const handleRestoreFromBackup = async () => {
+    try {
+      await setSetting('onboardingComplete', true);
+      const cats = await getSetting<string[]>('preferredCategories', [
+        'advanced',
+        'literary',
+        'academic',
+        'eloquence',
+        'everyday',
+      ]);
+      const goal = await getSetting<number>('dailyGoal', 10);
+      const storedSpeech = await getSetting<number>('speechRate', speechRate);
+      const remEnabled = await getSetting<boolean>('reminderEnabled', false);
+      const remTime = await getSetting<string>('reminderTime', '19:00');
+      setPreferredCategories(cats);
+      setDailyGoal(goal);
+      if (storedSpeech) setSpeechRate(storedSpeech);
+      setReminderEnabled(remEnabled);
+      setReminderTime(remTime);
+      await loadData();
+    } catch (err) {
+      console.warn('Failed to refresh data after restore:', err);
+    }
+    setIsOnboardingNeeded(false);
+    setShowPreferences(false);
+  };
+
   // Navigate to flashcard with a specific word
   const handleSelectWordForFlashcards = (word: WordItem) => {
     setPendingFlashcardWordId(word.id);
@@ -325,6 +352,7 @@ export default function App() {
           reminderTime,
         }}
         onComplete={handleCompleteOnboarding}
+        onRestore={handleRestoreFromBackup}
       />
     );
   }
@@ -453,6 +481,7 @@ export default function App() {
           }}
           onComplete={handleCompleteOnboarding}
           onClose={() => setShowPreferences(false)}
+          onRestore={handleRestoreFromBackup}
         />
       )}
     </div>

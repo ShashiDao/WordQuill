@@ -26,10 +26,8 @@ import {
   getSetting,
   getLeeches,
   exportDatabaseBackup,
-  importDatabaseBackup,
-  validateBackupShape,
-  type BackupData,
 } from '../db/operations';
+import { useBackupRestore } from '../hooks/useBackupRestore';
 
 interface ProgressDashboardProps {
   words: WordItem[];
@@ -56,15 +54,18 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   const [isResetting, setIsResetting] = useState(false);
   const [dailyGoal, setDailyGoal] = useState<number>(propDailyGoal || 10);
 
-  // Backup & Restore State
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  // Backup & Restore Hook
   const [isExporting, setIsExporting] = useState(false);
-  const [isImporting, setIsImporting] = useState(false);
-  const [pendingImportData, setPendingImportData] = useState<BackupData | null>(null);
-  const [backupFeedback, setBackupFeedback] = useState<{
-    type: 'success' | 'error';
-    message: string;
-  } | null>(null);
+  const {
+    fileInputRef,
+    isImporting,
+    pendingImportData,
+    backupFeedback,
+    setBackupFeedback,
+    handleFileSelect,
+    confirmImport,
+    cancelImport,
+  } = useBackupRestore(onDataUpdated);
 
   // Share Streak State
   const [shareFeedback, setShareFeedback] = useState<string | null>(null);
@@ -205,74 +206,6 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
     } finally {
       setIsExporting(false);
     }
-  };
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    e.target.value = '';
-    setBackupFeedback(null);
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const text = event.target?.result as string;
-        const parsed = JSON.parse(text);
-
-        if (!validateBackupShape(parsed)) {
-          setBackupFeedback({
-            type: 'error',
-            message: 'Invalid backup format. File does not contain valid WordQuill progress records.',
-          });
-          setPendingImportData(null);
-          return;
-        }
-
-        setPendingImportData(parsed);
-      } catch (err) {
-        setBackupFeedback({
-          type: 'error',
-          message: 'Unable to parse JSON file. Ensure you selected a valid WordQuill backup file.',
-        });
-        setPendingImportData(null);
-      }
-    };
-
-    reader.onerror = () => {
-      setBackupFeedback({
-        type: 'error',
-        message: 'Failed to read file from disk.',
-      });
-    };
-
-    reader.readAsText(file);
-  };
-
-  const confirmImport = async () => {
-    if (!pendingImportData) return;
-    try {
-      setIsImporting(true);
-      const res = await importDatabaseBackup(pendingImportData);
-      setBackupFeedback({
-        type: 'success',
-        message: `Restored: ${res.wordsCount} words, ${res.progressCount} daily logs, ${res.settingsCount} settings.`,
-      });
-      setPendingImportData(null);
-      onDataUpdated();
-    } catch (err) {
-      console.error(err);
-      setBackupFeedback({
-        type: 'error',
-        message: 'Error importing backup into local database.',
-      });
-    } finally {
-      setIsImporting(false);
-    }
-  };
-
-  const cancelImport = () => {
-    setPendingImportData(null);
   };
 
   return (
