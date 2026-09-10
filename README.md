@@ -6,12 +6,12 @@ WordQuill is an offline-first vocabulary learning Progressive Web App (PWA) desi
 
 ## Features
 
-- **Flashcard Study**: Interactive flashcards with phonetic IPA notations, definitions, contextual example sentences, synonyms, and mnemonics.
+- **Flashcard Study**: Interactive flashcards with phonetic IPA notations, definitions, contextual example sentences, and synonyms.
 - **SM-2 Spaced Repetition**: Intelligent review scheduling using the SuperMemo SM-2 algorithm to optimize retention intervals.
 - **Multiple Quiz Modes**: Test recall with definition matching, fill-in-the-blank sentences, synonyms, and reverse quizzes.
 - **Pronunciation Support**: Built-in speech pronunciation using the browser's native Web Speech API with configurable speech rates.
 - **Progress Tracking & Streaks**: Visual activity heatmaps, daily streak tracking, streak freeze safeguards, and leech identification for difficult words.
-- **Custom Vocabulary**: Add personal words and custom notes directly into your study deck.
+- **Custom Vocabulary**: Add personal words with definitions, examples, and categories directly into your study deck.
 - **100% Local Storage**: All study data, custom words, review schedules, and preferences are stored locally in your browser via IndexedDB. No backend servers, accounts, or trackers.
 - **PWA & Offline-First**: Installable to desktop or mobile home screens with full offline capability powered by service worker caching.
 

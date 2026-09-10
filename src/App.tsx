@@ -45,6 +45,7 @@ export default function App() {
   const [currentTab, setCurrentTab] = useState<TabType>('flashcards');
   const [words, setWords] = useState<WordItem[]>([]);
   const [isWordsLoaded, setIsWordsLoaded] = useState<boolean>(false);
+  const [loadError, setLoadError] = useState<boolean>(false);
   const [progressMap, setProgressMap] = useState<Map<string, UserWordProgress>>(new Map());
   const [streak, setStreak] = useState<number>(0);
   const [freezeAvailable, setFreezeAvailable] = useState<boolean>(true);
@@ -334,8 +335,10 @@ export default function App() {
         setWords(baseWords);
       }
       setIsWordsLoaded(true);
+      setLoadError(false);
     } catch (err) {
       console.warn('Error loading progress data from IndexedDB:', err);
+      setLoadError(true);
     }
   }, []);
 
@@ -375,6 +378,29 @@ export default function App() {
     setPendingFlashcardWordId(word.id);
     setCurrentTab('flashcards');
   };
+
+  // If loading encountered an error, render recoverable error state
+  if (loadError) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#F6F1E7] dark:bg-[#1B1815] px-4">
+        <div className="flex flex-col items-center gap-3 text-center max-w-sm">
+          <p className="text-sm font-medium text-[#1B1815] dark:text-[#F6F1E7]">
+            Something went wrong loading your vocabulary.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setLoadError(false);
+              loadData();
+            }}
+            className="rounded-lg bg-[#D98A93] px-4 py-2 text-xs font-medium text-white hover:opacity-90 transition cursor-pointer"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   // If checking onboarding status or loading vocabulary, render subtle loader
   if (isOnboardingChecking || !isWordsLoaded) {
