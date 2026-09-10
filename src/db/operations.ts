@@ -153,6 +153,55 @@ export function getDueWords(
 }
 
 /**
+ * Deterministically selects or retrieves the cached Word of the Day.
+ * Caches selection per calendar day so reviews throughout the day don't shift the word.
+ */
+export async function getWordOfTheDay(
+  words: WordItem[],
+  progressMap?: Map<string, UserWordProgress>
+): Promise<WordItem | null> {
+  if (!words || words.length === 0) return null;
+
+  const todayStr = getTodayString();
+  const cached = await getSetting<{ date: string; wordId: string } | null>(
+    'wordOfTheDayCache',
+    null
+  );
+
+  if (cached && cached.date === todayStr && cached.wordId) {
+    const existing = words.find((w) => w.id === cached.wordId);
+    if (existing) return existing;
+  }
+
+  // Determine source pool matching getDueWords logic: due words if any exist, else fall back to all words
+  const map = progressMap || cachedProgressMap;
+  const dueWords: WordItem[] = [];
+
+  for (const word of words) {
+    const prog = map.get(word.id);
+    if (prog?.dueDate && prog.dueDate <= todayStr) {
+      dueWords.push(word);
+    }
+  }
+
+  const pool = dueWords.length > 0 ? dueWords : words;
+  if (pool.length === 0) return null;
+
+  // Simple deterministic string hash of today's date string
+  let hash = 0;
+  for (let i = 0; i < todayStr.length; i++) {
+    hash = (hash << 5) - hash + todayStr.charCodeAt(i);
+    hash |= 0;
+  }
+
+  const index = Math.abs(hash) % pool.length;
+  const selectedWord = pool[index];
+
+  await setSetting('wordOfTheDayCache', { date: todayStr, wordId: selectedWord.id });
+  return selectedWord;
+}
+
+/**
  * Returns true if a word is considered a "leech":
  * a word the user keeps getting wrong despite repeated review.
  */

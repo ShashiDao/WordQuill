@@ -19,6 +19,11 @@ export default defineConfig(() => {
           short_name: 'WordQuill',
           description: 'Offline-first vocabulary learning progressive web app with flashcards, quizzes, and progress tracking.',
           categories: ['education', 'productivity', 'lifestyle'],
+          shortcuts: [
+            { name: "Today's Word", url: '/?shortcut=today', icons: [{ src: '/pwa-192x192.png', sizes: '192x192' }] },
+            { name: 'Start Quiz', url: '/?shortcut=quiz', icons: [{ src: '/pwa-192x192.png', sizes: '192x192' }] },
+            { name: 'Continue Learning', url: '/?shortcut=flashcards', icons: [{ src: '/pwa-192x192.png', sizes: '192x192' }] },
+          ],
           theme_color: '#F6F1E7',
           background_color: '#1B1815',
           display: 'standalone',

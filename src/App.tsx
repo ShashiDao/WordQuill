@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Suspense } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import { Share2, X } from 'lucide-react';
 import type { TabType, WordItem, UserWordProgress, DailyProgress, BeforeInstallPromptEvent } from './types';
 import { Header } from './components/Header';
@@ -15,6 +15,8 @@ import {
   consumeStreakFreezeIfNeeded,
   isStreakFreezeAvailable,
   getCustomWords,
+  getWordOfTheDay,
+  getDueWords,
 } from './db/operations';
 import { db } from './db';
 
@@ -39,6 +41,9 @@ const ProgressDashboard = React.lazy(() =>
 );
 const OnboardingFlow = React.lazy(() =>
   import('./components/OnboardingFlow').then((m) => ({ default: m.OnboardingFlow }))
+);
+const WordOfTheDaySpotlight = React.lazy(() =>
+  import('./components/WordOfTheDaySpotlight').then((m) => ({ default: m.WordOfTheDaySpotlight }))
 );
 
 export default function App() {
@@ -80,6 +85,9 @@ export default function App() {
   const [showIosTip, setShowIosTip] = useState<boolean>(false);
   const [pendingFlashcardWordId, setPendingFlashcardWordId] = useState<string | null>(null);
   const [pendingFlashcardStatusFilter, setPendingFlashcardStatusFilter] = useState<string | null>(null);
+  const [showWotdSpotlight, setShowWotdSpotlight] = useState<boolean>(false);
+  const [wordOfTheDay, setWordOfTheDay] = useState<WordItem | null>(null);
+  const shortcutHandledRef = useRef<boolean>(false);
 
   // Capture native beforeinstallprompt on mount
   useEffect(() => {
@@ -189,8 +197,25 @@ export default function App() {
 
               if (wordsReviewed === 0) {
                 try {
+                  let notifBody = 'Time for your daily vocabulary review! Keep your learning streak alive.';
+                  try {
+                    const [baseWords, pMap, custom] = await Promise.all([
+                      loadBaseWords(),
+                      getAllWordProgressMap(),
+                      getCustomWords(),
+                    ]);
+                    const allWords = custom && custom.length > 0 ? [...baseWords, ...custom] : baseWords;
+                    const wotd = await getWordOfTheDay(allWords, pMap);
+                    if (wotd) {
+                      const dueCount = getDueWords(allWords, pMap).length;
+                      notifBody = `Your word today is "${wotd.word}" — ${dueCount} more are ready for review.`;
+                    }
+                  } catch (wotdErr) {
+                    console.warn('Could not determine word of the day for notification:', wotdErr);
+                  }
+
                   new Notification('WordQuill Daily Reminder', {
-                    body: 'Time for your daily vocabulary review! Keep your learning streak alive.',
+                    body: notifBody,
                     icon: '/pwa-192x192.png',
                   });
                   await setSetting('lastReminderShownDate', todayStr);
@@ -377,6 +402,60 @@ export default function App() {
   const handleSelectWordForFlashcards = (word: WordItem) => {
     setPendingFlashcardWordId(word.id);
     setCurrentTab('flashcards');
+  };
+
+  // Handle App Shortcuts and Word of the Day spotlight (runs after onboarding and word-loading gates)
+  useEffect(() => {
+    if (!isWordsLoaded || isOnboardingChecking || isOnboardingNeeded || shortcutHandledRef.current) {
+      return;
+    }
+    shortcutHandledRef.current = true;
+
+    async function evaluateShortcutsAndWotd() {
+      let shortcut: string | null = null;
+      if (typeof window !== 'undefined' && window.location.search) {
+        const searchParams = new URLSearchParams(window.location.search);
+        shortcut = searchParams.get('shortcut');
+        if (shortcut) {
+          window.history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      if (shortcut === 'quiz') {
+        setCurrentTab('quiz');
+        return;
+      }
+
+      if (shortcut === 'flashcards') {
+        setCurrentTab('flashcards');
+        return;
+      }
+
+      const todayStr = getTodayString();
+      const seenDate = await getSetting<string>('wordOfTheDaySeenDate', '');
+      const shouldShow = shortcut === 'today' || seenDate !== todayStr;
+
+      if (shouldShow && words.length > 0) {
+        const wotd = await getWordOfTheDay(words, progressMap);
+        if (wotd) {
+          setWordOfTheDay(wotd);
+          setShowWotdSpotlight(true);
+        }
+      }
+    }
+
+    evaluateShortcutsAndWotd();
+  }, [isWordsLoaded, isOnboardingChecking, isOnboardingNeeded, words, progressMap]);
+
+  const handleStudyWordOfTheDay = async (word: WordItem) => {
+    setShowWotdSpotlight(false);
+    await setSetting('wordOfTheDaySeenDate', getTodayString());
+    handleSelectWordForFlashcards(word);
+  };
+
+  const handleDismissWordOfTheDay = async () => {
+    setShowWotdSpotlight(false);
+    await setSetting('wordOfTheDaySeenDate', getTodayString());
   };
 
   // If loading encountered an error, render recoverable error state
@@ -571,6 +650,18 @@ export default function App() {
             onComplete={handleCompleteOnboarding}
             onClose={() => setShowPreferences(false)}
             onRestore={handleRestoreFromBackup}
+          />
+        </Suspense>
+      )}
+
+      {/* Word of the Day Spotlight */}
+      {showWotdSpotlight && wordOfTheDay && (
+        <Suspense fallback={null}>
+          <WordOfTheDaySpotlight
+            word={wordOfTheDay}
+            speechRate={speechRate}
+            onStudy={handleStudyWordOfTheDay}
+            onDismiss={handleDismissWordOfTheDay}
           />
         </Suspense>
       )}
