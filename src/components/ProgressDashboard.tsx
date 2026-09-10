@@ -873,6 +873,7 @@ export const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                 Suggestions, issues, or thoughts? Let us know
               </p>
             </div>
+            {/* TODO: replace with real support email before production launch */}
             <a
               href="mailto:feedback@wordquill.app?subject=WordQuill%20Feedback"
               className="text-xs text-[#8C8272] hover:text-[#D98A93] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition"

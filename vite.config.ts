@@ -18,6 +18,7 @@ export default defineConfig(() => {
           name: 'WordQuill',
           short_name: 'WordQuill',
           description: 'Offline-first vocabulary learning progressive web app with flashcards, quizzes, and progress tracking.',
+          categories: ['education', 'productivity', 'lifestyle'],
           theme_color: '#F6F1E7',
           background_color: '#1B1815',
           display: 'standalone',

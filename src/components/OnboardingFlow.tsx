@@ -852,6 +852,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
             </div>
             <div className="flex items-center justify-between text-[#8C8272]">
               <span>Have thoughts or suggestions?</span>
+              {/* TODO: replace with real support email before production launch */}
               <a
                 href="mailto:feedback@wordquill.app?subject=WordQuill%20Feedback"
                 className="hover:text-[#D98A93] dark:hover:text-[#F6F1E7] underline underline-offset-2 transition"

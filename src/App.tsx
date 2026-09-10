@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { Share2, X } from 'lucide-react';
 import type { TabType, WordItem, UserWordProgress, DailyProgress, BeforeInstallPromptEvent } from './types';
-import rawWords from './data/words.json';
 import { Header } from './components/Header';
 import { Navigation } from './components/Navigation';
 import { OfflineIndicator } from './components/OfflineIndicator';
-import { OnboardingFlow, type OnboardingPreferences } from './components/OnboardingFlow';
+import type { OnboardingPreferences } from './components/OnboardingFlow';
 import { PwaUpdateToast } from './components/PwaUpdateToast';
 import {
   getAllWordProgressMap,
@@ -18,6 +17,12 @@ import {
   getCustomWords,
 } from './db/operations';
 import { db } from './db';
+
+// Dynamically import base word lexicon to keep initial bundle lightweight
+const loadBaseWords = async (): Promise<WordItem[]> => {
+  const mod = await import('./data/words.json');
+  return mod.default as WordItem[];
+};
 
 // Code-split tab views using React.lazy as mandated by architecture requirements
 const FlashcardView = React.lazy(() =>
@@ -32,10 +37,14 @@ const WordListView = React.lazy(() =>
 const ProgressDashboard = React.lazy(() =>
   import('./components/ProgressDashboard').then((m) => ({ default: m.ProgressDashboard }))
 );
+const OnboardingFlow = React.lazy(() =>
+  import('./components/OnboardingFlow').then((m) => ({ default: m.OnboardingFlow }))
+);
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<TabType>('flashcards');
-  const [words, setWords] = useState<WordItem[]>(rawWords as WordItem[]);
+  const [words, setWords] = useState<WordItem[]>([]);
+  const [isWordsLoaded, setIsWordsLoaded] = useState<boolean>(false);
   const [progressMap, setProgressMap] = useState<Map<string, UserWordProgress>>(new Map());
   const [streak, setStreak] = useState<number>(0);
   const [freezeAvailable, setFreezeAvailable] = useState<boolean>(true);
@@ -307,7 +316,8 @@ export default function App() {
   // Load Dexie data
   const loadData = useCallback(async () => {
     try {
-      const [pMap, currentStreak, today, freezes, custom] = await Promise.all([
+      const [baseWords, pMap, currentStreak, today, freezes, custom] = await Promise.all([
+        loadBaseWords(),
         getAllWordProgressMap(),
         calculateStreak(),
         db.progress.get(getTodayString()),
@@ -319,10 +329,11 @@ export default function App() {
       setTodayProgress(today || null);
       setFreezeAvailable(isStreakFreezeAvailable(freezes));
       if (custom && custom.length > 0) {
-        setWords([...(rawWords as WordItem[]), ...custom]);
+        setWords([...baseWords, ...custom]);
       } else {
-        setWords(rawWords as WordItem[]);
+        setWords(baseWords);
       }
+      setIsWordsLoaded(true);
     } catch (err) {
       console.warn('Error loading progress data from IndexedDB:', err);
     }
@@ -365,8 +376,8 @@ export default function App() {
     setCurrentTab('flashcards');
   };
 
-  // If checking onboarding status, render subtle loader
-  if (isOnboardingChecking) {
+  // If checking onboarding status or loading vocabulary, render subtle loader
+  if (isOnboardingChecking || !isWordsLoaded) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#F6F1E7] dark:bg-[#1B1815]">
         <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#D98A93] border-t-transparent" />
@@ -377,18 +388,26 @@ export default function App() {
   // First launch onboarding flow: rendered before the main app shell
   if (isOnboardingNeeded) {
     return (
-      <OnboardingFlow
-        isFirstLaunch={true}
-        initialPreferences={{
-          preferredCategories,
-          dailyGoal,
-          speechRate,
-          reminderEnabled,
-          reminderTime,
-        }}
-        onComplete={handleCompleteOnboarding}
-        onRestore={handleRestoreFromBackup}
-      />
+      <Suspense
+        fallback={
+          <div className="flex min-h-screen items-center justify-center bg-[#F6F1E7] dark:bg-[#1B1815]">
+            <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#D98A93] border-t-transparent" />
+          </div>
+        }
+      >
+        <OnboardingFlow
+          isFirstLaunch={true}
+          initialPreferences={{
+            preferredCategories,
+            dailyGoal,
+            speechRate,
+            reminderEnabled,
+            reminderTime,
+          }}
+          onComplete={handleCompleteOnboarding}
+          onRestore={handleRestoreFromBackup}
+        />
+      </Suspense>
     );
   }
 
@@ -512,20 +531,22 @@ export default function App() {
 
       {/* Preferences Modal (reopens 3-step setup in editable form) */}
       {showPreferences && (
-        <OnboardingFlow
-          isFirstLaunch={false}
-          initialPreferences={{
-            preferredCategories,
-            dailyGoal,
-            speechRate,
-            reminderEnabled,
-            reminderTime,
-            soundHapticsEnabled,
-          }}
-          onComplete={handleCompleteOnboarding}
-          onClose={() => setShowPreferences(false)}
-          onRestore={handleRestoreFromBackup}
-        />
+        <Suspense fallback={null}>
+          <OnboardingFlow
+            isFirstLaunch={false}
+            initialPreferences={{
+              preferredCategories,
+              dailyGoal,
+              speechRate,
+              reminderEnabled,
+              reminderTime,
+              soundHapticsEnabled,
+            }}
+            onComplete={handleCompleteOnboarding}
+            onClose={() => setShowPreferences(false)}
+            onRestore={handleRestoreFromBackup}
+          />
+        </Suspense>
       )}
 
       {/* PWA Update Toast */}
