@@ -91,7 +91,7 @@ export const DataPrivacyModal: React.FC<DataPrivacyModalProps> = ({ isOpen, onCl
                 The Only Network Request
               </strong>
               <p>
-                The only external network request the app ever makes is fetching Google Fonts (Fraunces and Plus Jakarta Sans) on your very first visit. Once loaded, the fonts are cached locally by the browser and service worker so the app remains fully functional offline.
+                The only external network request the app ever makes is fetching Google Fonts (Fraunces, IBM Plex Mono, and Inter) on your very first visit. Once loaded, the fonts are cached locally by the browser and service worker so the app remains fully functional offline.
               </p>
             </div>
           </div>
